@@ -1,17 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-08-15T12:20:55+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Keep</title><subtitle>Write post.</subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2024/08/14/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2024-08-14T21:44:29+08:00</published><updated>2024-08-14T21:44:29+08:00</updated><id>http://localhost:4000/jekyll/update/2024/08/14/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/14/welcome-to-jekyll.html"><![CDATA[<p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-08-16T15:24:44+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Keep</title><subtitle>Write post.</subtitle><entry><title type="html">trading view basic script</title><link href="http://localhost:4000/quant/2024/08/16/trading_view.html" rel="alternate" type="text/html" title="trading view basic script" /><published>2024-08-16T12:24:29+08:00</published><updated>2024-08-16T12:24:29+08:00</updated><id>http://localhost:4000/quant/2024/08/16/trading_view</id><content type="html" xml:base="http://localhost:4000/quant/2024/08/16/trading_view.html"><![CDATA[<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span> <span class="n">This</span> <span class="n">Pine</span> <span class="n">Script</span><span class="err">™</span> <span class="n">code</span> <span class="ow">is</span> <span class="n">subject</span> <span class="n">to</span> <span class="n">the</span> <span class="n">terms</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Mozilla</span> <span class="n">Public</span> <span class="n">License</span> <span class="mf">2.0</span> <span class="n">at</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">mozilla</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">MPL</span><span class="o">/</span><span class="mf">2.0</span><span class="o">/</span>
+<span class="o">//</span><span class="nd">@version</span><span class="o">=</span><span class="mi">5</span>
+<span class="nf">indicator</span><span class="p">(</span><span class="sh">"</span><span class="s">EMA Example</span><span class="sh">"</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="n">true</span><span class="p">)</span>
 
-<p>Jekyll requires blog post files to be named according to the following format:</p>
+<span class="o">//</span> <span class="n">参数设置</span>
+<span class="n">length</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sh">"</span><span class="s">EMA Length</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">close</span>  <span class="o">//</span> <span class="n">使用收盘价计算</span>
 
-<p><code class="language-plaintext highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code></p>
+<span class="o">//</span> <span class="n">计算</span> <span class="n">EMA</span>
+<span class="n">ema_shot</span> <span class="o">=</span> <span class="n">ta</span><span class="p">.</span><span class="nf">ema</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span>
+<span class="n">ema_long</span> <span class="o">=</span> <span class="n">ta</span><span class="p">.</span><span class="nf">ema</span><span class="p">(</span><span class="n">close</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
 
-<p>Where <code class="language-plaintext highlighter-rouge">YEAR</code> is a four-digit number, <code class="language-plaintext highlighter-rouge">MONTH</code> and <code class="language-plaintext highlighter-rouge">DAY</code> are both two-digit numbers, and <code class="language-plaintext highlighter-rouge">MARKUP</code> is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+<span class="o">//</span> <span class="n">绘制</span> <span class="n">EMA</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">ema_shot</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sh">"</span><span class="s">EMA</span><span class="sh">"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">.</span><span class="n">blue</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="quant" /><summary type="html"><![CDATA[// This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/ //@version=5 indicator("EMA Example", overlay=true) // 参数设置 length = input(14, title="EMA Length") source = close // 使用收盘价计算 // 计算 EMA ema_shot = ta.ema(source, length) ema_long = ta.ema(close,25) // 绘制 EMA plot(ema_shot, title="EMA", color=color.blue, linewidth=2)]]></summary></entry><entry><title type="html">quant</title><link href="http://localhost:4000/quant/2024/08/15/quant.html" rel="alternate" type="text/html" title="quant" /><published>2024-08-15T12:24:29+08:00</published><updated>2024-08-15T12:24:29+08:00</updated><id>http://localhost:4000/quant/2024/08/15/quant</id><content type="html" xml:base="http://localhost:4000/quant/2024/08/15/quant.html"><![CDATA[<p>量化交易（Quantitative Trading）是一种通过数学模型和算法来进行金融市场交易的方式。它利用历史数据、统计分析、以及计算机技术来识别和执行交易机会，旨在最大化回报并最小化风险。量化交易在现代金融市场中扮演着越来越重要的角色，尤其是在高频交易和自动化交易领域。</p>
 
-<p>Jekyll also offers powerful support for code snippets:</p>
+<h3 id="量化交易的特点">量化交易的特点</h3>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
-<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+<ol>
+  <li>
+    <p><strong>数据驱动</strong>：量化交易依赖于大量的历史数据和实时数据，通过分析这些数据来预测市场趋势和价格变动。</p>
+  </li>
+  <li>
+    <p><strong>算法与模型</strong>：交易决策主要由复杂的数学模型和计算机算法生成。这些模型基于统计学、计量经济学和机器学习等技术。</p>
+  </li>
+  <li>
+    <p><strong>自动化</strong>：交易策略可以自动执行，减少了人工操作的误差和情绪干扰。计算机程序可以快速响应市场变化，执行数以千计的交易。</p>
+  </li>
+  <li>
+    <p><strong>策略多样化</strong>：量化交易策略种类繁多，如均值回归、动量策略、套利策略等，每种策略都有其特定的应用场景和目标。</p>
+  </li>
+  <li>
+    <p><strong>风险管理</strong>：通过精密的风险控制模型，量化交易能够严格管理资金分配和风险敞口，降低交易损失的可能性。</p>
+  </li>
+</ol>
 
-<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.]]></summary></entry></feed>
+<h3 id="量化交易的优势">量化交易的优势</h3>
+
+<ol>
+  <li>
+    <p><strong>提高效率</strong>：利用计算机技术，量化交易可以在极短的时间内完成复杂的计算和交易执行，比人工交易更高效。</p>
+  </li>
+  <li>
+    <p><strong>降低情绪干扰</strong>：量化交易依赖于数据和算法，避免了人类情绪对交易决策的影响，减少了冲动交易的可能性。</p>
+  </li>
+  <li>
+    <p><strong>可重复性</strong>：量化策略可以在不同的市场和时间段内重复使用，增加了交易的一致性和可预测性。</p>
+  </li>
+  <li>
+    <p><strong>更好的风险管理</strong>：量化交易通常配有严格的风险管理机制，通过止损、对冲等手段，控制交易风险。</p>
+  </li>
+</ol>
+
+<h3 id="如何开始量化交易">如何开始量化交易</h3>
+
+<ol>
+  <li>
+    <p><strong>学习基础知识</strong>：掌握金融市场的基本知识、统计学和编程技能是入门量化交易的第一步。</p>
+  </li>
+  <li>
+    <p><strong>选择工具与平台</strong>：使用专业的量化交易平台，如Python的Backtrader、freqtrade，或是金融行业专用的软件如Matlab等。</p>
+  </li>
+  <li>
+    <p><strong>开发交易策略</strong>：基于历史数据和市场分析，开发并测试你的交易策略，确保其在不同市场条件下都能表现良好。</p>
+  </li>
+  <li>
+    <p><strong>实时测试与优化</strong>：在实际市场中以小额资金进行策略测试，并根据结果不断优化模型。</p>
+  </li>
+  <li>
+    <p><strong>自动化执行</strong>：将优化后的策略编程为自动化交易系统，利用计算机执行交易。</p>
+  </li>
+</ol>
+
+<!-- 量化交易通过结合技术与金融的优势，能够为投资者提供强大的交易工具，帮助他们在竞争激烈的市场中立于不败之地。 -->]]></content><author><name></name></author><category term="quant" /><summary type="html"><![CDATA[量化交易（Quantitative Trading）是一种通过数学模型和算法来进行金融市场交易的方式。它利用历史数据、统计分析、以及计算机技术来识别和执行交易机会，旨在最大化回报并最小化风险。量化交易在现代金融市场中扮演着越来越重要的角色，尤其是在高频交易和自动化交易领域。]]></summary></entry></feed>
