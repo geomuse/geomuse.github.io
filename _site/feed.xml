@@ -1,74 +1,157 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-08-16T15:24:44+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Keep</title><subtitle>Write post.</subtitle><entry><title type="html">trading view basic script</title><link href="http://localhost:4000/quant/2024/08/16/trading_view.html" rel="alternate" type="text/html" title="trading view basic script" /><published>2024-08-16T12:24:29+08:00</published><updated>2024-08-16T12:24:29+08:00</updated><id>http://localhost:4000/quant/2024/08/16/trading_view</id><content type="html" xml:base="http://localhost:4000/quant/2024/08/16/trading_view.html"><![CDATA[<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span> <span class="n">This</span> <span class="n">Pine</span> <span class="n">Script</span><span class="err">™</span> <span class="n">code</span> <span class="ow">is</span> <span class="n">subject</span> <span class="n">to</span> <span class="n">the</span> <span class="n">terms</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Mozilla</span> <span class="n">Public</span> <span class="n">License</span> <span class="mf">2.0</span> <span class="n">at</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">mozilla</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">MPL</span><span class="o">/</span><span class="mf">2.0</span><span class="o">/</span>
-<span class="o">//</span><span class="nd">@version</span><span class="o">=</span><span class="mi">5</span>
-<span class="nf">indicator</span><span class="p">(</span><span class="sh">"</span><span class="s">EMA Example</span><span class="sh">"</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="n">true</span><span class="p">)</span>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-08-23T17:46:54+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">墨巢</title><subtitle>Keep Write | Keep Life</subtitle><entry><title type="html">书评-阿甘投資法</title><link href="http://localhost:4000/review/2024/08/23/review05.html" rel="alternate" type="text/html" title="书评-阿甘投資法" /><published>2024-08-23T11:24:29+08:00</published><updated>2024-08-23T11:24:29+08:00</updated><id>http://localhost:4000/review/2024/08/23/review05</id><content type="html" xml:base="http://localhost:4000/review/2024/08/23/review05.html"><![CDATA[<p>阿甘投資法︰不看盤、不選股、不挑買點也能穩穩賺 (闕又上)</p>
 
-<span class="o">//</span> <span class="n">参数设置</span>
-<span class="n">length</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sh">"</span><span class="s">EMA Length</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">source</span> <span class="o">=</span> <span class="n">close</span>  <span class="o">//</span> <span class="n">使用收盘价计算</span>
+<h3 id="阅读书本前">阅读书本前</h3>
 
-<span class="o">//</span> <span class="n">计算</span> <span class="n">EMA</span>
-<span class="n">ema_shot</span> <span class="o">=</span> <span class="n">ta</span><span class="p">.</span><span class="nf">ema</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span>
-<span class="n">ema_long</span> <span class="o">=</span> <span class="n">ta</span><span class="p">.</span><span class="nf">ema</span><span class="p">(</span><span class="n">close</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+<h3 id="书评">书评</h3>
 
-<span class="o">//</span> <span class="n">绘制</span> <span class="n">EMA</span>
-<span class="nf">plot</span><span class="p">(</span><span class="n">ema_shot</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sh">"</span><span class="s">EMA</span><span class="sh">"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">.</span><span class="n">blue</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="quant" /><summary type="html"><![CDATA[// This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/ //@version=5 indicator("EMA Example", overlay=true) // 参数设置 length = input(14, title="EMA Length") source = close // 使用收盘价计算 // 计算 EMA ema_shot = ta.ema(source, length) ema_long = ta.ema(close,25) // 绘制 EMA plot(ema_shot, title="EMA", color=color.blue, linewidth=2)]]></summary></entry><entry><title type="html">quant</title><link href="http://localhost:4000/quant/2024/08/15/quant.html" rel="alternate" type="text/html" title="quant" /><published>2024-08-15T12:24:29+08:00</published><updated>2024-08-15T12:24:29+08:00</updated><id>http://localhost:4000/quant/2024/08/15/quant</id><content type="html" xml:base="http://localhost:4000/quant/2024/08/15/quant.html"><![CDATA[<p>量化交易（Quantitative Trading）是一种通过数学模型和算法来进行金融市场交易的方式。它利用历史数据、统计分析、以及计算机技术来识别和执行交易机会，旨在最大化回报并最小化风险。量化交易在现代金融市场中扮演着越来越重要的角色，尤其是在高频交易和自动化交易领域。</p>
+<h3 id="评后感">评后感</h3>]]></content><author><name></name></author><category term="review" /><summary type="html"><![CDATA[阿甘投資法︰不看盤、不選股、不挑買點也能穩穩賺 (闕又上) 阅读书本前 书评 评后感]]></summary></entry><entry><title type="html">书评-精準撩動人心的戀愛人類學 :先觀察…</title><link href="http://localhost:4000/review/2024/08/22/review04.html" rel="alternate" type="text/html" title="书评-精準撩動人心的戀愛人類學 :先觀察…" /><published>2024-08-22T11:24:29+08:00</published><updated>2024-08-22T11:24:29+08:00</updated><id>http://localhost:4000/review/2024/08/22/review04</id><content type="html" xml:base="http://localhost:4000/review/2024/08/22/review04.html"><![CDATA[<p>精準撩動人心的戀愛人類學： 先觀察，後剖析，多練習，79個經典情境與實用技巧</p>
 
-<h3 id="量化交易的特点">量化交易的特点</h3>
+<h3 id="阅读书本前">阅读书本前</h3>
 
-<ol>
-  <li>
-    <p><strong>数据驱动</strong>：量化交易依赖于大量的历史数据和实时数据，通过分析这些数据来预测市场趋势和价格变动。</p>
-  </li>
-  <li>
-    <p><strong>算法与模型</strong>：交易决策主要由复杂的数学模型和计算机算法生成。这些模型基于统计学、计量经济学和机器学习等技术。</p>
-  </li>
-  <li>
-    <p><strong>自动化</strong>：交易策略可以自动执行，减少了人工操作的误差和情绪干扰。计算机程序可以快速响应市场变化，执行数以千计的交易。</p>
-  </li>
-  <li>
-    <p><strong>策略多样化</strong>：量化交易策略种类繁多，如均值回归、动量策略、套利策略等，每种策略都有其特定的应用场景和目标。</p>
-  </li>
-  <li>
-    <p><strong>风险管理</strong>：通过精密的风险控制模型，量化交易能够严格管理资金分配和风险敞口，降低交易损失的可能性。</p>
-  </li>
-</ol>
+<h3 id="书评">书评</h3>
 
-<h3 id="量化交易的优势">量化交易的优势</h3>
+<h3 id="评后感">评后感</h3>]]></content><author><name></name></author><category term="review" /><summary type="html"><![CDATA[精準撩動人心的戀愛人類學： 先觀察，後剖析，多練習，79個經典情境與實用技巧 阅读书本前 书评 评后感]]></summary></entry><entry><title type="html">书评-五种时间 :重建人生秩序..</title><link href="http://localhost:4000/review/2024/08/20/review03.html" rel="alternate" type="text/html" title="书评-五种时间 :重建人生秩序.." /><published>2024-08-20T11:24:29+08:00</published><updated>2024-08-20T11:24:29+08:00</updated><id>http://localhost:4000/review/2024/08/20/review03</id><content type="html" xml:base="http://localhost:4000/review/2024/08/20/review03.html"><![CDATA[<p>五种时间 : 重建人生秩序（畅销书作家王潇人生时间管理指南。在时间面前，你永远有选择。清华大学心理学主任彭凯平、经纬中国创始合伙人张颖…</p>
 
-<ol>
-  <li>
-    <p><strong>提高效率</strong>：利用计算机技术，量化交易可以在极短的时间内完成复杂的计算和交易执行，比人工交易更高效。</p>
-  </li>
-  <li>
-    <p><strong>降低情绪干扰</strong>：量化交易依赖于数据和算法，避免了人类情绪对交易决策的影响，减少了冲动交易的可能性。</p>
-  </li>
-  <li>
-    <p><strong>可重复性</strong>：量化策略可以在不同的市场和时间段内重复使用，增加了交易的一致性和可预测性。</p>
-  </li>
-  <li>
-    <p><strong>更好的风险管理</strong>：量化交易通常配有严格的风险管理机制，通过止损、对冲等手段，控制交易风险。</p>
-  </li>
-</ol>
+<h3 id="阅读书本前">阅读书本前</h3>
 
-<h3 id="如何开始量化交易">如何开始量化交易</h3>
+<p>可以学到什么有价值的东西,真的让我可以得到时间管理的秘策?</p>
 
-<ol>
-  <li>
-    <p><strong>学习基础知识</strong>：掌握金融市场的基本知识、统计学和编程技能是入门量化交易的第一步。</p>
-  </li>
-  <li>
-    <p><strong>选择工具与平台</strong>：使用专业的量化交易平台，如Python的Backtrader、freqtrade，或是金融行业专用的软件如Matlab等。</p>
-  </li>
-  <li>
-    <p><strong>开发交易策略</strong>：基于历史数据和市场分析，开发并测试你的交易策略，确保其在不同市场条件下都能表现良好。</p>
-  </li>
-  <li>
-    <p><strong>实时测试与优化</strong>：在实际市场中以小额资金进行策略测试，并根据结果不断优化模型。</p>
-  </li>
-  <li>
-    <p><strong>自动化执行</strong>：将优化后的策略编程为自动化交易系统，利用计算机执行交易。</p>
-  </li>
-</ol>
+<h3 id="书评">书评</h3>
 
-<!-- 量化交易通过结合技术与金融的优势，能够为投资者提供强大的交易工具，帮助他们在竞争激烈的市场中立于不败之地。 -->]]></content><author><name></name></author><category term="quant" /><summary type="html"><![CDATA[量化交易（Quantitative Trading）是一种通过数学模型和算法来进行金融市场交易的方式。它利用历史数据、统计分析、以及计算机技术来识别和执行交易机会，旨在最大化回报并最小化风险。量化交易在现代金融市场中扮演着越来越重要的角色，尤其是在高频交易和自动化交易领域。]]></summary></entry></feed>
+<p>要有足够的空白时间是由我做主的，在这段时间里，我要自由自在。</p>
+
+<p>应对失落，你要怎么做？</p>
+<ul>
+  <li>应对情绪，并觉知自己当下的位置</li>
+  <li>完成他律任务，变失落为积极</li>
+</ul>
+
+<h3 id="评后感">评后感</h3>
+
+<p>对于这些时间的定义对于我而言其实还好,有种以前学过的感觉。</p>]]></content><author><name></name></author><category term="review" /><summary type="html"><![CDATA[五种时间 : 重建人生秩序（畅销书作家王潇人生时间管理指南。在时间面前，你永远有选择。清华大学心理学主任彭凯平、经纬中国创始合伙人张颖… 阅读书本前 可以学到什么有价值的东西,真的让我可以得到时间管理的秘策? 书评 要有足够的空白时间是由我做主的，在这段时间里，我要自由自在。 应对失落，你要怎么做？ 应对情绪，并觉知自己当下的位置 完成他律任务，变失落为积极 评后感 对于这些时间的定义对于我而言其实还好,有种以前学过的感觉。]]></summary></entry><entry><title type="html">书评-最好的睡眠 :身兼三职名医..</title><link href="http://localhost:4000/review/2024/08/20/review02.html" rel="alternate" type="text/html" title="书评-最好的睡眠 :身兼三职名医.." /><published>2024-08-20T11:24:00+08:00</published><updated>2024-08-20T11:24:00+08:00</updated><id>http://localhost:4000/review/2024/08/20/review02</id><content type="html" xml:base="http://localhost:4000/review/2024/08/20/review02.html"><![CDATA[<p>最好的睡眠 : 身兼三职名医教你让大脑彻底休息,快速熟睡的32项高效睡眠术</p>
+
+<h3 id="阅读书本前">阅读书本前</h3>
+
+<p>通过阅读使得自己可以得到好的睡眠品质。</p>
+
+<h3 id="书评">书评</h3>
+
+<ul>
+  <li>不是以「確保睡眠時間」，而是以「獲得熟睡習慣」為目標</li>
+  <li>將一天的開始從「起床時」切換為「就寢時」</li>
+  <li>養成遇到緊急事態仍不影響工作表現的「因應法」</li>
+</ul>
+
+<p>「該睡幾小時才好」這個問題沒有一定的答案</p>
+
+<p>「肉體疲勞」疲勞物質還會在體內作怪。曾有一段時間流行「乳酸就是疲勞物質」的說法，根據近年的研究，光用乳酸來說明肌肉疲勞是錯誤的解釋。疲勞與倦怠、肌肉僵硬緊繃等症狀，事實上是由各種疲勞物質囤積而成的結果。</p>
+
+<p>「精神疲勞」。精神上的疲勞來自人際關係與各種煩惱造成的負擔及壓力，也就是現代人常說的「心累」。即使身體沒有任何問題，持續處於緊張或壓力下，整個人失去活力，這就是精神疲勞的徵兆。</p>
+
+<p>經常悶悶不樂、鬱鬱寡歡、焦慮煩躁、食慾不佳、睡不著、早上比預定時間早醒、情緒不安……以上都是精神疲勞的代表症狀。如果放著不管，有可能演變成「憂鬱症」。</p>
+
+<p>「神經疲勞」。從事長時間坐辦公桌或大量用眼的精密工作，由於工作時眼部神經與大腦持續處於緊繃狀態，最後就會引發「頭部的疲倦」神經性的疲勞一旦持續未決，將造成注意力逐漸渙散、記性不好等後果，工作表現自然跟著低落。對持續追求良好工作表現的職場工作者來說，這或許是最棘手的一種疲勞。</p>
+
+<p>上述三種疲勞彼此關係密切，若不趕緊解決，三者一旦聯手作怪，狀況將更形惡化，發展成更難消除的疲勞纏身。</p>
+
+<p>舉例來說，精神上的疲勞一旦變嚴重，很有可能以心悸或強烈暈眩等身體症狀顯現。這是因為人的心和身體的關係密不可分的緣故。
+針對肉體疲勞，按摩當然是個有效的緩解方法。針對精神上的疲勞，和朋友聚餐喝酒也有助於消除精神壓力。至於針對神經性的疲勞，運動或許是個不錯的主意。
+不可不知的是，睡眠發揮的效果，<b>具有同時消除這三種疲勞的作用。</b> 因此，若你也已感覺到「好像有點累」，比起任何對策，最該優先採取的既不是按摩，也不是聚餐喝酒，而是立刻改善你的睡眠習慣。</p>
+
+<p>白天若是活動過量，晚上就容易產生睏意，不必勉強也會很快入睡。這種自然導向睡眠的身體作用就稱為「睡眠壓」。加強不了睡眠壓的人，就無法獲得舒適好眠。假如不在白天提高清醒度，精力十足地度過一天，睡眠壓就很難提高。</p>
+
+<p><b>平均睡眠時間在七到八小時的人，罹患糖尿病、高血壓和憂鬱症的比例最低</b></p>
+
+<!-- 夜型人清爽醒來的五個訣竅. -->
+
+<h3 id="评后感">评后感</h3>
+
+<p>32很多都跟失眠有关,</p>
+
+<p>需要自我管控,不行需要看医生</p>
+
+<!-- 看到一半? 无厘头??? -->
+
+<!-- 每次用电脑看. -->]]></content><author><name></name></author><category term="review" /><summary type="html"><![CDATA[最好的睡眠 : 身兼三职名医教你让大脑彻底休息,快速熟睡的32项高效睡眠术 阅读书本前 通过阅读使得自己可以得到好的睡眠品质。 书评 不是以「確保睡眠時間」，而是以「獲得熟睡習慣」為目標 將一天的開始從「起床時」切換為「就寢時」 養成遇到緊急事態仍不影響工作表現的「因應法」 「該睡幾小時才好」這個問題沒有一定的答案 「肉體疲勞」疲勞物質還會在體內作怪。曾有一段時間流行「乳酸就是疲勞物質」的說法，根據近年的研究，光用乳酸來說明肌肉疲勞是錯誤的解釋。疲勞與倦怠、肌肉僵硬緊繃等症狀，事實上是由各種疲勞物質囤積而成的結果。 「精神疲勞」。精神上的疲勞來自人際關係與各種煩惱造成的負擔及壓力，也就是現代人常說的「心累」。即使身體沒有任何問題，持續處於緊張或壓力下，整個人失去活力，這就是精神疲勞的徵兆。 經常悶悶不樂、鬱鬱寡歡、焦慮煩躁、食慾不佳、睡不著、早上比預定時間早醒、情緒不安……以上都是精神疲勞的代表症狀。如果放著不管，有可能演變成「憂鬱症」。 「神經疲勞」。從事長時間坐辦公桌或大量用眼的精密工作，由於工作時眼部神經與大腦持續處於緊繃狀態，最後就會引發「頭部的疲倦」神經性的疲勞一旦持續未決，將造成注意力逐漸渙散、記性不好等後果，工作表現自然跟著低落。對持續追求良好工作表現的職場工作者來說，這或許是最棘手的一種疲勞。 上述三種疲勞彼此關係密切，若不趕緊解決，三者一旦聯手作怪，狀況將更形惡化，發展成更難消除的疲勞纏身。 舉例來說，精神上的疲勞一旦變嚴重，很有可能以心悸或強烈暈眩等身體症狀顯現。這是因為人的心和身體的關係密不可分的緣故。 針對肉體疲勞，按摩當然是個有效的緩解方法。針對精神上的疲勞，和朋友聚餐喝酒也有助於消除精神壓力。至於針對神經性的疲勞，運動或許是個不錯的主意。 不可不知的是，睡眠發揮的效果，具有同時消除這三種疲勞的作用。 因此，若你也已感覺到「好像有點累」，比起任何對策，最該優先採取的既不是按摩，也不是聚餐喝酒，而是立刻改善你的睡眠習慣。 白天若是活動過量，晚上就容易產生睏意，不必勉強也會很快入睡。這種自然導向睡眠的身體作用就稱為「睡眠壓」。加強不了睡眠壓的人，就無法獲得舒適好眠。假如不在白天提高清醒度，精力十足地度過一天，睡眠壓就很難提高。 平均睡眠時間在七到八小時的人，罹患糖尿病、高血壓和憂鬱症的比例最低 评后感 32很多都跟失眠有关, 需要自我管控,不行需要看医生]]></summary></entry><entry><title type="html">书评-为什么精英都是时间控</title><link href="http://localhost:4000/review/2024/08/19/review01.html" rel="alternate" type="text/html" title="书评-为什么精英都是时间控" /><published>2024-08-19T11:24:29+08:00</published><updated>2024-08-19T11:24:29+08:00</updated><id>http://localhost:4000/review/2024/08/19/review01</id><content type="html" xml:base="http://localhost:4000/review/2024/08/19/review01.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
+
+<p>可以成为精英一份子?</p>
+
+<h3 id="书评">书评</h3>
+
+<p style="color:purple;">输出是一种习惯从被动转成主动,可以玩游戏但是不过度看书是最有价值的事。</p>
+
+<h4 id="每个时段都相对应的技巧要学会">每个时段都相对应的技巧要学会</h4>
+
+<p>很多人都会好奇的想要怎么过目不忘怎么学习更加有效率等情况发生</p>
+
+<p>跟专注力相关的训练</p>
+
+<p>保留血清素,思考相关的</p>
+
+<p>创造出的时间属于自由时间 希望可以投入工作技巧或者自我投资</p>
+
+<p>主动性投资</p>
+<ul>
+  <li>读书 , 运动</li>
+</ul>
+
+<p>被动性投资</p>
+<ul>
+  <li>电视 , 玩游戏</li>
+</ul>
+
+<p>15-45-90分钟一单位学习</p>
+
+<p>下班不管工作的事情</p>
+
+<p>早上散步后慢慢吃东西不要太快咽下去</p>
+
+<p>排除杂念</p>
+
+<ul>
+  <li>不杂物在桌子</li>
+  <li>把心里惦记的事情写在草稿上</li>
+  <li>养成专注空间</li>
+</ul>
+
+<p>秒表工作法</p>
+<ul>
+  <li>任何情况下都不可以推迟出好的时间限制可设定都有缓冲时间</li>
+</ul>
+
+<h4 id="如何保持大脑黄金时间">如何保持大脑黄金时间…</h4>
+
+<ul>
+  <li>中午之前是书中定下的</li>
+  <li>拉窗帘让阳光照下来</li>
+  <li>不动明王 睁开眼睛没有睡意起床</li>
+  <li>散步 15~30 分钟</li>
+  <li>慢慢吃早餐</li>
+</ul>
+
+<p><b>不看手机在早上</b></p>
+
+<p>在工作前可以自我投资</p>
+
+<p>投入工作的第一步是建立 <code class="language-plaintext highlighter-rouge">to do list</code></p>
+
+<h4 id="修复专注力">修复专注力</h4>
+
+<p>午睡 , 阳光 , 散步 , 改变场所</p>
+
+<ul>
+  <li>运动1分钟 : 深蹲</li>
+  <li>穿插任务 : 不能多余频繁为了转换心情</li>
+  <li>冥想 : 回复</li>
+</ul>
+
+<p>需要两分钟就优先处理
+提供有目标期限的压力</p>
+
+<p>思考10分钟决定下一步</p>
+
+<h3 id="评后感">评后感</h3>
+
+<p>100%按照书中方法可能压力很大</p>
+
+<p>目前没有找到时间,懒床同时又健忘</p>]]></content><author><name></name></author><category term="review" /><summary type="html"><![CDATA[阅读书本前 可以成为精英一份子? 书评 输出是一种习惯从被动转成主动,可以玩游戏但是不过度看书是最有价值的事。 每个时段都相对应的技巧要学会 很多人都会好奇的想要怎么过目不忘怎么学习更加有效率等情况发生 跟专注力相关的训练 保留血清素,思考相关的 创造出的时间属于自由时间 希望可以投入工作技巧或者自我投资 主动性投资 读书 , 运动 被动性投资 电视 , 玩游戏 15-45-90分钟一单位学习 下班不管工作的事情 早上散步后慢慢吃东西不要太快咽下去 排除杂念 不杂物在桌子 把心里惦记的事情写在草稿上 养成专注空间 秒表工作法 任何情况下都不可以推迟出好的时间限制可设定都有缓冲时间 如何保持大脑黄金时间… 中午之前是书中定下的 拉窗帘让阳光照下来 不动明王 睁开眼睛没有睡意起床 散步 15~30 分钟 慢慢吃早餐 不看手机在早上 在工作前可以自我投资 投入工作的第一步是建立 to do list 修复专注力 午睡 , 阳光 , 散步 , 改变场所 运动1分钟 : 深蹲 穿插任务 : 不能多余频繁为了转换心情 冥想 : 回复 需要两分钟就优先处理 提供有目标期限的压力 思考10分钟决定下一步 评后感 100%按照书中方法可能压力很大 目前没有找到时间,懒床同时又健忘]]></summary></entry></feed>
