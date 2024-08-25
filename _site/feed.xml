@@ -1,4 +1,151 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-08-24T20:58:09+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">时巢</title><subtitle>Keep Write | Keep Life</subtitle><entry><title type="html">书评-快速捉重点,过目不忘的读书术</title><link href="http://localhost:4000/review/2024/08/24/review06.html" rel="alternate" type="text/html" title="书评-快速捉重点,过目不忘的读书术" /><published>2024-08-24T11:24:29+08:00</published><updated>2024-08-24T11:24:29+08:00</updated><id>http://localhost:4000/review/2024/08/24/review06</id><content type="html" xml:base="http://localhost:4000/review/2024/08/24/review06.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-08-25T12:18:32+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">书巢</title><subtitle>Keep Write | Keep Life</subtitle><entry><title type="html">antivirus software</title><link href="http://localhost:4000/linux/antivirus_software/2024/08/25/linux.html" rel="alternate" type="text/html" title="antivirus software" /><published>2024-08-25T11:24:29+08:00</published><updated>2024-08-25T11:24:29+08:00</updated><id>http://localhost:4000/linux/antivirus_software/2024/08/25/linux</id><content type="html" xml:base="http://localhost:4000/linux/antivirus_software/2024/08/25/linux.html"><![CDATA[<p>在 Linux 环境中添加防病毒软件是一种增强系统安全性的好方法。以下是一些常见的 Linux 防病毒软件及其安装步骤：</p>
+
+<h3 id="1-clamav">1. ClamAV</h3>
+
+<p><strong>ClamAV</strong> 是一个开源的防病毒引擎，广泛用于 Linux 系统。它可以检测多种类型的恶意软件，包括病毒、特洛伊木马和网络钓鱼攻击。</p>
+
+<h4 id="安装-clamav">安装 ClamAV</h4>
+
+<p>在 Kali Linux 上，你可以使用以下命令安装 ClamAV：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>clamav clamav-daemon
+</code></pre></div></div>
+
+<h4 id="更新病毒库">更新病毒库</h4>
+
+<p>安装完成后，第一步是更新 ClamAV 的病毒库：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>freshclam
+</code></pre></div></div>
+
+<h4 id="扫描系统">扫描系统</h4>
+
+<p>你可以使用 ClamAV 扫描整个系统或指定目录：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>clamscan <span class="nt">-r</span> /path/to/scan
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">-r</code> 参数用于递归扫描目录。如果希望扫描完成后自动删除感染文件，可以添加 <code class="language-plaintext highlighter-rouge">--remove</code> 参数：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>clamscan <span class="nt">-r</span> /path/to/scan <span class="nt">--remove</span>
+</code></pre></div></div>
+
+<h4 id="配置自动扫描">配置自动扫描</h4>
+
+<p>你可以使用 <code class="language-plaintext highlighter-rouge">cron</code> 作业来配置定期自动扫描：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>crontab <span class="nt">-e</span>
+</code></pre></div></div>
+
+<p>在 <code class="language-plaintext highlighter-rouge">crontab</code> 文件中添加以下行以每天凌晨 2 点扫描系统：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 2 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> /usr/bin/clamscan <span class="nt">-r</span> / <span class="nt">--log</span><span class="o">=</span>/var/log/clamav/scan.log
+</code></pre></div></div>
+
+<h3 id="2-sophos-antivirus-for-linux">2. Sophos Antivirus for Linux</h3>
+
+<p><strong>Sophos Antivirus</strong> 是另一个受欢迎的防病毒软件，它可以在 Linux 系统中检测和清除病毒、特洛伊木马、蠕虫等。</p>
+
+<h4 id="下载并安装-sophos">下载并安装 Sophos</h4>
+
+<ol>
+  <li>
+    <p><strong>注册并下载 Sophos</strong>：访问 Sophos 官方网站，注册并下载 Sophos Antivirus for Linux 的免费版本。</p>
+  </li>
+  <li>
+    <p><strong>安装 Sophos</strong>：</p>
+
+    <p>下载完成后，解压缩安装包并运行安装脚本：</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar</span> <span class="nt">-xvzf</span> sav-linux-free-9.tgz
+<span class="nb">cd </span>sophos-av
+<span class="nb">sudo</span> ./install.sh
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>配置和使用</strong>：</p>
+
+    <p>在安装过程中，选择合适的选项并配置 Sophos。安装完成后，Sophos 自动开启实时保护。</p>
+  </li>
+</ol>
+
+<h3 id="3-comodo-antivirus-for-linux">3. Comodo Antivirus for Linux</h3>
+
+<p><strong>Comodo Antivirus</strong> 也是一个免费且功能丰富的防病毒软件，适用于 Linux 用户。</p>
+
+<h4 id="安装-comodo">安装 Comodo</h4>
+
+<ol>
+  <li>
+    <p><strong>下载并安装</strong>：</p>
+
+    <p>从 Comodo 官方网站下载 <code class="language-plaintext highlighter-rouge">CAV_LINUX</code> 安装包，然后运行以下命令安装：</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>dpkg <span class="nt">-i</span> cav-linux.deb
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>启动 Comodo</strong>：</p>
+
+    <p>安装完成后，你可以通过以下命令启动 Comodo GUI：</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/COMODO/cav
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>更新病毒库和扫描</strong>：</p>
+
+    <p>使用 Comodo GUI 更新病毒库，并开始扫描你的系统。</p>
+  </li>
+</ol>
+
+<h3 id="4-eset-nod32-antivirus-for-linux">4. ESET NOD32 Antivirus for Linux</h3>
+
+<p><strong>ESET NOD32</strong> 是一款商业化的防病毒软件，提供 Linux 版本。</p>
+
+<h4 id="安装-eset-nod32">安装 ESET NOD32</h4>
+
+<ol>
+  <li>
+    <p><strong>下载并安装</strong>：</p>
+
+    <p>从 ESET 官方网站下载 NOD32 的 Linux 安装包，然后使用以下命令安装：</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>dpkg <span class="nt">-i</span> eset_nod32av_64bit_en.linux.deb
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>激活和配置</strong>：</p>
+
+    <p>安装完成后，启动 ESET NOD32 并按照提示进行激活和配置。</p>
+  </li>
+</ol>
+
+<h3 id="5-使用自带的防病毒工具">5. 使用自带的防病毒工具</h3>
+
+<p>一些 Linux 发行版自带简单的防病毒工具，如 <code class="language-plaintext highlighter-rouge">chkrootkit</code> 和 <code class="language-plaintext highlighter-rouge">rkhunter</code>，这些工具可以检测并清除系统中的 rootkit 和其他恶意软件。</p>
+
+<h4 id="安装和使用-chkrootkit-和-rkhunter">安装和使用 <code class="language-plaintext highlighter-rouge">chkrootkit</code> 和 <code class="language-plaintext highlighter-rouge">rkhunter</code>：</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>chkrootkit rkhunter
+<span class="nb">sudo </span>chkrootkit
+<span class="nb">sudo </span>rkhunter <span class="nt">--check</span>
+</code></pre></div></div>
+
+<h3 id="结论">结论</h3>
+
+<p>选择合适的防病毒软件取决于你的具体需求和环境。ClamAV 是最常用的开源选项，而 Sophos 和 Comodo 提供了更强大的功能。如果你有更多问题或需要进一步的帮助，请告诉我。</p>]]></content><author><name></name></author><category term="linux" /><category term="antivirus_software" /><summary type="html"><![CDATA[在 Linux 环境中添加防病毒软件是一种增强系统安全性的好方法。以下是一些常见的 Linux 防病毒软件及其安装步骤： 1. ClamAV ClamAV 是一个开源的防病毒引擎，广泛用于 Linux 系统。它可以检测多种类型的恶意软件，包括病毒、特洛伊木马和网络钓鱼攻击。 安装 ClamAV 在 Kali Linux 上，你可以使用以下命令安装 ClamAV： sudo apt-get update sudo apt-get install clamav clamav-daemon 更新病毒库 安装完成后，第一步是更新 ClamAV 的病毒库： sudo freshclam 扫描系统 你可以使用 ClamAV 扫描整个系统或指定目录： sudo clamscan -r /path/to/scan -r 参数用于递归扫描目录。如果希望扫描完成后自动删除感染文件，可以添加 --remove 参数： sudo clamscan -r /path/to/scan --remove 配置自动扫描 你可以使用 cron 作业来配置定期自动扫描： sudo crontab -e 在 crontab 文件中添加以下行以每天凌晨 2 点扫描系统： 0 2 * * * /usr/bin/clamscan -r / --log=/var/log/clamav/scan.log 2. Sophos Antivirus for Linux Sophos Antivirus 是另一个受欢迎的防病毒软件，它可以在 Linux 系统中检测和清除病毒、特洛伊木马、蠕虫等。 下载并安装 Sophos 注册并下载 Sophos：访问 Sophos 官方网站，注册并下载 Sophos Antivirus for Linux 的免费版本。 安装 Sophos： 下载完成后，解压缩安装包并运行安装脚本： tar -xvzf sav-linux-free-9.tgz cd sophos-av sudo ./install.sh 配置和使用： 在安装过程中，选择合适的选项并配置 Sophos。安装完成后，Sophos 自动开启实时保护。 3. Comodo Antivirus for Linux Comodo Antivirus 也是一个免费且功能丰富的防病毒软件，适用于 Linux 用户。 安装 Comodo 下载并安装： 从 Comodo 官方网站下载 CAV_LINUX 安装包，然后运行以下命令安装： sudo dpkg -i cav-linux.deb 启动 Comodo： 安装完成后，你可以通过以下命令启动 Comodo GUI： /opt/COMODO/cav 更新病毒库和扫描： 使用 Comodo GUI 更新病毒库，并开始扫描你的系统。 4. ESET NOD32 Antivirus for Linux ESET NOD32 是一款商业化的防病毒软件，提供 Linux 版本。 安装 ESET NOD32 下载并安装： 从 ESET 官方网站下载 NOD32 的 Linux 安装包，然后使用以下命令安装： sudo dpkg -i eset_nod32av_64bit_en.linux.deb 激活和配置： 安装完成后，启动 ESET NOD32 并按照提示进行激活和配置。 5. 使用自带的防病毒工具 一些 Linux 发行版自带简单的防病毒工具，如 chkrootkit 和 rkhunter，这些工具可以检测并清除系统中的 rootkit 和其他恶意软件。 安装和使用 chkrootkit 和 rkhunter： sudo apt-get install chkrootkit rkhunter sudo chkrootkit sudo rkhunter --check 结论 选择合适的防病毒软件取决于你的具体需求和环境。ClamAV 是最常用的开源选项，而 Sophos 和 Comodo 提供了更强大的功能。如果你有更多问题或需要进一步的帮助，请告诉我。]]></summary></entry><entry><title type="html">书评-用生活常识都能看懂财务报表</title><link href="http://localhost:4000/review/2024/08/25/notdone_review07.html" rel="alternate" type="text/html" title="书评-用生活常识都能看懂财务报表" /><published>2024-08-25T11:24:29+08:00</published><updated>2024-08-25T11:24:29+08:00</updated><id>http://localhost:4000/review/2024/08/25/notdone_review07</id><content type="html" xml:base="http://localhost:4000/review/2024/08/25/notdone_review07.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
+
+<p>通过程式完成选股,首先要学会先!</p>
+
+<h3 id="书评">书评</h3>
+
+<p>…</p>
+
+<h3 id="评后感">评后感</h3>
+
+<p>…</p>]]></content><author><name></name></author><category term="review" /><summary type="html"><![CDATA[阅读书本前 通过程式完成选股,首先要学会先! 书评 … 评后感 …]]></summary></entry><entry><title type="html">书评-快速捉重点,过目不忘的读书术</title><link href="http://localhost:4000/review/2024/08/24/review06.html" rel="alternate" type="text/html" title="书评-快速捉重点,过目不忘的读书术" /><published>2024-08-24T11:24:29+08:00</published><updated>2024-08-24T11:24:29+08:00</updated><id>http://localhost:4000/review/2024/08/24/review06</id><content type="html" xml:base="http://localhost:4000/review/2024/08/24/review06.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
 
 <p>…</p>
 
@@ -47,13 +194,37 @@
 
 <h3 id="评后感">评后感</h3>
 
-<p>介绍</p>]]></content><author><name></name></author><category term="review" /><summary type="html"><![CDATA[阿甘投資法︰不看盤、不選股、不挑買點也能穩穩賺 (闕又上) 阅读书本前 学会投资 书评 依靠ETF进行投资技巧 评后感 介绍]]></summary></entry><entry><title type="html">书评-精準撩動人心的戀愛人類學 :先觀察…</title><link href="http://localhost:4000/review/2024/08/22/notdone_review04.html" rel="alternate" type="text/html" title="书评-精準撩動人心的戀愛人類學 :先觀察…" /><published>2024-08-22T11:24:29+08:00</published><updated>2024-08-22T11:24:29+08:00</updated><id>http://localhost:4000/review/2024/08/22/notdone_review04</id><content type="html" xml:base="http://localhost:4000/review/2024/08/22/notdone_review04.html"><![CDATA[<p>精準撩動人心的戀愛人類學： 先觀察，後剖析，多練習，79個經典情境與實用技巧</p>
+<p>介绍…</p>]]></content><author><name></name></author><category term="review" /><summary type="html"><![CDATA[阿甘投資法︰不看盤、不選股、不挑買點也能穩穩賺 (闕又上) 阅读书本前 学会投资 书评 依靠ETF进行投资技巧 评后感 介绍…]]></summary></entry><entry><title type="html">书评-精準撩動人心的戀愛人類學 :先觀察…</title><link href="http://localhost:4000/review/2024/08/22/review04.html" rel="alternate" type="text/html" title="书评-精準撩動人心的戀愛人類學 :先觀察…" /><published>2024-08-22T11:24:29+08:00</published><updated>2024-08-22T11:24:29+08:00</updated><id>http://localhost:4000/review/2024/08/22/review04</id><content type="html" xml:base="http://localhost:4000/review/2024/08/22/review04.html"><![CDATA[<p>精準撩動人心的戀愛人類學： 先觀察，後剖析，多練習，79個經典情境與實用技巧</p>
 
 <h3 id="阅读书本前">阅读书本前</h3>
 
+<p>期待戀愛人类学教导怎么懂女生的声音做女生蛔虫</p>
+
 <h3 id="书评">书评</h3>
 
-<h3 id="评后感">评后感</h3>]]></content><author><name></name></author><category term="review" /><summary type="html"><![CDATA[精準撩動人心的戀愛人類學： 先觀察，後剖析，多練習，79個經典情境與實用技巧 阅读书本前 书评 评后感]]></summary></entry><entry><title type="html">书评-五种时间 :重建人生秩序..</title><link href="http://localhost:4000/review/2024/08/21/review03.html" rel="alternate" type="text/html" title="书评-五种时间 :重建人生秩序.." /><published>2024-08-21T11:24:29+08:00</published><updated>2024-08-21T11:24:29+08:00</updated><id>http://localhost:4000/review/2024/08/21/review03</id><content type="html" xml:base="http://localhost:4000/review/2024/08/21/review03.html"><![CDATA[<p>五种时间 : 重建人生秩序（畅销书作家王潇人生时间管理指南。在时间面前，你永远有选择。清华大学心理学主任彭凯平、经纬中国创始合伙人张颖…</p>
+<p>你开始喜欢的不是他,而是他恰好在那个气氛,当有暧昧了可以取小名</p>
+
+<p>制約就是成為對方的習慣，讓他下意識地習慣你的存在，
+繼而變得不能沒有你</p>
+
+<p>跟喜欢的人要有平常心</p>
+
+<p>把「你什麼時間有空？」變成「你星期六晚上方便嗎？」、把「你有想看的電影嗎？」變成「《哈利波特》跟《變形金剛》感覺都不錯，你對哪部比較有興趣？」或「我想去看《X戰警》啊，一起去吧！」
+或把「晚上想吃什麼？」變成「我知道有家日本料理餐廳不錯，還有一家美式漢堡，你喜歡哪種料理？」「要約哪裡？」變成「你坐捷運嗎？那我們約東區是不是比較方便？」或「方便的話，你給我地址我直接去接你吧！」</p>
+
+<p>最後講個心態問題：這個階段裡你不是要追她，只是想多認識她而已，放輕鬆一點。</p>
+
+<p>假如，假如假如，你真的非常想要知道，你非知道不可，你不知道的話就失去人生方向與前進目標，那就直接問吧。直接問絕對比所有不入流的假裝要不呆一點，问有没有男朋友</p>
+
+<p>你能觀察到的部分，多數看起來應該都沒什麼；也就是說，她可能不會做出會被你歸類在「喜歡你」的行為，但會做出「可以親近你或讓你親近」的行為。舉一些簡單的例子：比如說，關心你的私生活，願意把見面和相處的時間延長到夜晚。</p>
+
+<p>如果你的行為都得到正面的回饋，她嘴巴上所說的不過是掙扎與身段。</p>
+
+<p>要会接对话（聊天）</p>
+
+<h3 id="评后感">评后感</h3>
+
+<p>博弈再看一次,期待学习怎么追女生,制约可不能常常用,显得很廉价</p>]]></content><author><name></name></author><category term="review" /><summary type="html"><![CDATA[精準撩動人心的戀愛人類學： 先觀察，後剖析，多練習，79個經典情境與實用技巧 阅读书本前 期待戀愛人类学教导怎么懂女生的声音做女生蛔虫 书评 你开始喜欢的不是他,而是他恰好在那个气氛,当有暧昧了可以取小名 制約就是成為對方的習慣，讓他下意識地習慣你的存在， 繼而變得不能沒有你 跟喜欢的人要有平常心 把「你什麼時間有空？」變成「你星期六晚上方便嗎？」、把「你有想看的電影嗎？」變成「《哈利波特》跟《變形金剛》感覺都不錯，你對哪部比較有興趣？」或「我想去看《X戰警》啊，一起去吧！」 或把「晚上想吃什麼？」變成「我知道有家日本料理餐廳不錯，還有一家美式漢堡，你喜歡哪種料理？」「要約哪裡？」變成「你坐捷運嗎？那我們約東區是不是比較方便？」或「方便的話，你給我地址我直接去接你吧！」 最後講個心態問題：這個階段裡你不是要追她，只是想多認識她而已，放輕鬆一點。 假如，假如假如，你真的非常想要知道，你非知道不可，你不知道的話就失去人生方向與前進目標，那就直接問吧。直接問絕對比所有不入流的假裝要不呆一點，问有没有男朋友 你能觀察到的部分，多數看起來應該都沒什麼；也就是說，她可能不會做出會被你歸類在「喜歡你」的行為，但會做出「可以親近你或讓你親近」的行為。舉一些簡單的例子：比如說，關心你的私生活，願意把見面和相處的時間延長到夜晚。 如果你的行為都得到正面的回饋，她嘴巴上所說的不過是掙扎與身段。 要会接对话（聊天） 评后感 博弈再看一次,期待学习怎么追女生,制约可不能常常用,显得很廉价]]></summary></entry><entry><title type="html">书评-五种时间 :重建人生秩序..</title><link href="http://localhost:4000/review/2024/08/21/review03.html" rel="alternate" type="text/html" title="书评-五种时间 :重建人生秩序.." /><published>2024-08-21T11:24:29+08:00</published><updated>2024-08-21T11:24:29+08:00</updated><id>http://localhost:4000/review/2024/08/21/review03</id><content type="html" xml:base="http://localhost:4000/review/2024/08/21/review03.html"><![CDATA[<p>五种时间 : 重建人生秩序（畅销书作家王潇人生时间管理指南。在时间面前，你永远有选择。清华大学心理学主任彭凯平、经纬中国创始合伙人张颖…</p>
 
 <h3 id="阅读书本前">阅读书本前</h3>
 
