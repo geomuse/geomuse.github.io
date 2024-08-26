@@ -1,4 +1,166 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-08-25T22:02:18+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">巢</title><subtitle>Keep Write | Keep Life</subtitle><entry><title type="html">防毒软体的介绍</title><link href="http://localhost:4000/linux/antivirus_software/2024/08/25/linux.html" rel="alternate" type="text/html" title="防毒软体的介绍" /><published>2024-08-25T11:24:29+08:00</published><updated>2024-08-25T11:24:29+08:00</updated><id>http://localhost:4000/linux/antivirus_software/2024/08/25/linux</id><content type="html" xml:base="http://localhost:4000/linux/antivirus_software/2024/08/25/linux.html"><![CDATA[<p>在 Linux 环境中添加防病毒软件是一种增强系统安全性的好方法。以下是一些常见的 Linux 防病毒软件及其安装步骤：</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-08-26T11:35:45+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">巢</title><subtitle>Keep Write | Keep Life</subtitle><entry><title type="html">投资组合</title><link href="http://localhost:4000/python/2024/08/26/python.html" rel="alternate" type="text/html" title="投资组合" /><published>2024-08-26T11:24:29+08:00</published><updated>2024-08-26T11:24:29+08:00</updated><id>http://localhost:4000/python/2024/08/26/python</id><content type="html" xml:base="http://localhost:4000/python/2024/08/26/python.html"><![CDATA[<p>这篇文章主要分享怎么建立投资组合</p>
+
+<p>套用套件</p>
+
+<ul>
+  <li>
+    <p>yfinance 是 yahoo finance 网络爬虫的套件,作用于下载数据无论是股票还是报表都可以适用</p>
+  </li>
+  <li>
+    <p>pandas 数据处理必备套件</p>
+  </li>
+  <li>
+    <p>matplotlib 绘图工具</p>
+  </li>
+</ul>
+
+<pre><code class="language-py">import yfinance as yf
+import pandas as pd
+import numpy as np
+from matplotlib import style
+style.use('ggplot')
+</code></pre>
+
+<p>自定义要研究的股票,计算<code>cov</code>和<code>return</code></p>
+
+<pre><code class="language-py"># 定义股票代码
+tickers = ['AAPL', 'MSFT', 'GOOGL', 'AMZN']
+
+# 下载股票数据
+data = yf.download(tickers, start="2020-01-01", end="2024-01-01")['Adj Close']
+
+# 计算每日收益率
+returns = data.pct_change().dropna()
+
+# 查看前几行收益率数据
+# print(returns.head())
+
+# 计算协方差矩阵
+cov_matrix = returns.cov()
+
+# 打印协方差矩阵
+# print(cov_matrix)
+</code></pre>
+
+<pre><code class="language-py">from scipy.optimize import minimize
+
+# 计算投资组合的年化波动率
+def portfolio_volatility(weights, cov_matrix):
+    return np.sqrt(np.dot(weights.T, np.dot(cov_matrix * 252, weights)))
+
+# 定义优化目标：最小化波动率
+def min_volatility(weights):
+    return portfolio_volatility(weights, cov_matrix)
+
+# 初始猜测：假设均匀分配
+num_assets = len(tickers)
+init_guess = np.array(num_assets * [1. / num_assets])
+
+# 设置权重的边界和约束条件
+bounds = tuple((0, 1) for asset in range(num_assets))
+constraints = ({'type': 'eq', 'fun': lambda weights: np.sum(weights) - 1})
+
+# 进行优化
+optimized = minimize(min_volatility, init_guess, method='SLSQP', bounds=bounds, constraints=constraints)
+
+# 输出优化结果
+print("Optimized Weights:", optimized.x)
+print("Minimum Volatility:", optimized.fun)
+</code></pre>
+
+<pre><code class="language-py"># 计算投资组合的预期收益和年化波动率
+def portfolio_return(weights, returns):
+    return np.sum(returns.mean() * weights) * 252
+
+def portfolio_performance(weights, returns, cov_matrix):
+    port_return = portfolio_return(weights, returns)
+    port_volatility = portfolio_volatility(weights, cov_matrix)
+    return port_return, port_volatility
+
+opt_return, opt_volatility = portfolio_performance(optimized.x, returns, cov_matrix)
+
+print("Expected Portfolio Return:", opt_return)
+print("Expected Portfolio Volatility:", opt_volatility)
+</code></pre>
+
+<pre><code class="language-py">import numpy as np
+
+# 定义蒙特卡洛模拟的次数
+num_portfolios = 10000
+
+# 存储结果
+results = np.zeros((3, num_portfolios))
+
+for i in range(num_portfolios):
+    # 生成随机权重
+    weights = np.random.random(len(tickers))
+    weights /= np.sum(weights)
+    
+    # 计算投资组合的收益率和波动率
+    port_return = portfolio_return(weights, returns)
+    port_volatility = portfolio_volatility(weights, cov_matrix)
+    
+    # 存储结果
+    results[0,i] = port_return
+    results[1,i] = port_volatility
+    results[2,i] = port_return / port_volatility  # 夏普比率
+
+# 获取最高夏普比率的组合
+max_sharpe_idx = np.argmax(results[2])
+
+max_sharpe = results[2,max_sharpe_idx]
+
+sdp, rp = results[1,max_sharpe_idx], results[0,max_sharpe_idx]
+
+# 获取最小波动率的组合
+min_vol_idx = np.argmin(results[1])
+sdp_min, rp_min = results[1,min_vol_idx], results[0,min_vol_idx]
+
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 7))
+plt.scatter(results[1,:], results[0,:], c=results[2,:], cmap='YlGnBu', marker='x',alpha=0.7)
+plt.title('Monte Carlo Simulation of Portfolio Optimization')
+plt.xlabel('Volatility')
+plt.ylabel('Return')
+plt.colorbar(label='Sharpe Ratio')
+
+# 标记最高夏普比率组合和最小波动率组合
+plt.scatter(sdp, rp, marker='*', color='r', s=200, label='Maximum Sharpe Ratio')
+plt.scatter(sdp_min, rp_min, marker='*', color='g', s=200, label='Minimum Volatility')
+plt.legend(labelspacing=0.8)
+plt.show()
+
+print(f'returns : {sdp} , volatility : {rp} , sharpe ratio : {max_sharpe}')
+</code></pre>
+
+<pre><code class="language-py"># 定义无风险利率
+risk_free_rate = 0.02
+
+# 计算CAL斜率 (市场投资组合的夏普比率)
+slope_cal = (rp - risk_free_rate) / sdp
+
+# 生成CAL数据点
+x = np.linspace(0, 0.5, 100)
+cal_y = risk_free_rate + slope_cal * x
+
+# 绘制CAL
+plt.figure(figsize=(10, 7))
+plt.plot(x, cal_y, linestyle='--', color='orange', label='Capital Market Line (CAL)')
+
+plt.scatter(results[1,:], results[0,:], c=results[2,:], cmap='YlGnBu', marker='x',alpha=0.7)
+plt.scatter(sdp, rp, marker='*', color='r', s=200, label='Market Portfolio (Max Sharpe)')
+
+plt.title('Capital Market Line (CAL) and Monte Carlo Simulation')
+plt.xlabel('Volatility')
+plt.ylabel('Return')
+# plt.colorbar(label='Sharpe Ratio')
+plt.legend(labelspacing=0.8)
+plt.show()
+
+# max_sharpe = results[2,max_sharpe_idx]
+# print(max_sharpe)
+</code></pre>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[这篇文章主要分享怎么建立投资组合 套用套件 yfinance 是 yahoo finance 网络爬虫的套件,作用于下载数据无论是股票还是报表都可以适用 pandas 数据处理必备套件 matplotlib 绘图工具 import yfinance as yf import pandas as pd import numpy as np from matplotlib import style style.use('ggplot') 自定义要研究的股票,计算cov和return # 定义股票代码 tickers = ['AAPL', 'MSFT', 'GOOGL', 'AMZN'] # 下载股票数据 data = yf.download(tickers, start="2020-01-01", end="2024-01-01")['Adj Close'] # 计算每日收益率 returns = data.pct_change().dropna() # 查看前几行收益率数据 # print(returns.head()) # 计算协方差矩阵 cov_matrix = returns.cov() # 打印协方差矩阵 # print(cov_matrix) from scipy.optimize import minimize # 计算投资组合的年化波动率 def portfolio_volatility(weights, cov_matrix): return np.sqrt(np.dot(weights.T, np.dot(cov_matrix * 252, weights))) # 定义优化目标：最小化波动率 def min_volatility(weights): return portfolio_volatility(weights, cov_matrix) # 初始猜测：假设均匀分配 num_assets = len(tickers) init_guess = np.array(num_assets * [1. / num_assets]) # 设置权重的边界和约束条件 bounds = tuple((0, 1) for asset in range(num_assets)) constraints = ({'type': 'eq', 'fun': lambda weights: np.sum(weights) - 1}) # 进行优化 optimized = minimize(min_volatility, init_guess, method='SLSQP', bounds=bounds, constraints=constraints) # 输出优化结果 print("Optimized Weights:", optimized.x) print("Minimum Volatility:", optimized.fun) # 计算投资组合的预期收益和年化波动率 def portfolio_return(weights, returns): return np.sum(returns.mean() * weights) * 252 def portfolio_performance(weights, returns, cov_matrix): port_return = portfolio_return(weights, returns) port_volatility = portfolio_volatility(weights, cov_matrix) return port_return, port_volatility opt_return, opt_volatility = portfolio_performance(optimized.x, returns, cov_matrix) print("Expected Portfolio Return:", opt_return) print("Expected Portfolio Volatility:", opt_volatility) import numpy as np # 定义蒙特卡洛模拟的次数 num_portfolios = 10000 # 存储结果 results = np.zeros((3, num_portfolios)) for i in range(num_portfolios): # 生成随机权重 weights = np.random.random(len(tickers)) weights /= np.sum(weights) # 计算投资组合的收益率和波动率 port_return = portfolio_return(weights, returns) port_volatility = portfolio_volatility(weights, cov_matrix) # 存储结果 results[0,i] = port_return results[1,i] = port_volatility results[2,i] = port_return / port_volatility # 夏普比率 # 获取最高夏普比率的组合 max_sharpe_idx = np.argmax(results[2]) max_sharpe = results[2,max_sharpe_idx] sdp, rp = results[1,max_sharpe_idx], results[0,max_sharpe_idx] # 获取最小波动率的组合 min_vol_idx = np.argmin(results[1]) sdp_min, rp_min = results[1,min_vol_idx], results[0,min_vol_idx] import matplotlib.pyplot as plt plt.figure(figsize=(10, 7)) plt.scatter(results[1,:], results[0,:], c=results[2,:], cmap='YlGnBu', marker='x',alpha=0.7) plt.title('Monte Carlo Simulation of Portfolio Optimization') plt.xlabel('Volatility') plt.ylabel('Return') plt.colorbar(label='Sharpe Ratio') # 标记最高夏普比率组合和最小波动率组合 plt.scatter(sdp, rp, marker='*', color='r', s=200, label='Maximum Sharpe Ratio') plt.scatter(sdp_min, rp_min, marker='*', color='g', s=200, label='Minimum Volatility') plt.legend(labelspacing=0.8) plt.show() print(f'returns : {sdp} , volatility : {rp} , sharpe ratio : {max_sharpe}') # 定义无风险利率 risk_free_rate = 0.02 # 计算CAL斜率 (市场投资组合的夏普比率) slope_cal = (rp - risk_free_rate) / sdp # 生成CAL数据点 x = np.linspace(0, 0.5, 100) cal_y = risk_free_rate + slope_cal * x # 绘制CAL plt.figure(figsize=(10, 7)) plt.plot(x, cal_y, linestyle='--', color='orange', label='Capital Market Line (CAL)') plt.scatter(results[1,:], results[0,:], c=results[2,:], cmap='YlGnBu', marker='x',alpha=0.7) plt.scatter(sdp, rp, marker='*', color='r', s=200, label='Market Portfolio (Max Sharpe)') plt.title('Capital Market Line (CAL) and Monte Carlo Simulation') plt.xlabel('Volatility') plt.ylabel('Return') # plt.colorbar(label='Sharpe Ratio') plt.legend(labelspacing=0.8) plt.show() # max_sharpe = results[2,max_sharpe_idx] # print(max_sharpe)]]></summary></entry><entry><title type="html">防毒软体的介绍</title><link href="http://localhost:4000/linux/2024/08/25/linux.html" rel="alternate" type="text/html" title="防毒软体的介绍" /><published>2024-08-25T11:24:29+08:00</published><updated>2024-08-25T11:24:29+08:00</updated><id>http://localhost:4000/linux/2024/08/25/linux</id><content type="html" xml:base="http://localhost:4000/linux/2024/08/25/linux.html"><![CDATA[<p>在 Linux 环境中添加防病毒软件是一种增强系统安全性的好方法。以下是一些常见的 Linux 防病毒软件及其安装步骤：</p>
 
 <h3 id="1-clamav">1. ClamAV</h3>
 
@@ -8,40 +170,40 @@
 
 <p>在 Kali Linux 上，你可以使用以下命令安装 ClamAV：</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update
-<span class="nb">sudo </span>apt-get <span class="nb">install </span>clamav clamav-daemon
-</code></pre></div></div>
+<pre><code class="language-bash">sudo apt-get update
+sudo apt-get install clamav clamav-daemon
+</code></pre>
 
 <h4 id="更新病毒库">更新病毒库</h4>
 
 <p>安装完成后，第一步是更新 ClamAV 的病毒库：</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>freshclam
-</code></pre></div></div>
+<pre><code class="language-bash">sudo freshclam
+</code></pre>
 
 <h4 id="扫描系统">扫描系统</h4>
 
 <p>你可以使用 ClamAV 扫描整个系统或指定目录：</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>clamscan <span class="nt">-r</span> /path/to/scan
-</code></pre></div></div>
+<pre><code class="language-bash">sudo clamscan -r /path/to/scan
+</code></pre>
 
-<p><code class="language-plaintext highlighter-rouge">-r</code> 参数用于递归扫描目录。如果希望扫描完成后自动删除感染文件，可以添加 <code class="language-plaintext highlighter-rouge">--remove</code> 参数：</p>
+<p><code>-r</code> 参数用于递归扫描目录。如果希望扫描完成后自动删除感染文件，可以添加 <code>--remove</code> 参数：</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>clamscan <span class="nt">-r</span> /path/to/scan <span class="nt">--remove</span>
-</code></pre></div></div>
+<pre><code class="language-bash">sudo clamscan -r /path/to/scan --remove
+</code></pre>
 
 <h4 id="配置自动扫描">配置自动扫描</h4>
 
-<p>你可以使用 <code class="language-plaintext highlighter-rouge">cron</code> 作业来配置定期自动扫描：</p>
+<p>你可以使用 <code>cron</code> 作业来配置定期自动扫描：</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>crontab <span class="nt">-e</span>
-</code></pre></div></div>
+<pre><code class="language-bash">sudo crontab -e
+</code></pre>
 
-<p>在 <code class="language-plaintext highlighter-rouge">crontab</code> 文件中添加以下行以每天凌晨 2 点扫描系统：</p>
+<p>在 <code>crontab</code> 文件中添加以下行以每天凌晨 2 点扫描系统：</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 2 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> /usr/bin/clamscan <span class="nt">-r</span> / <span class="nt">--log</span><span class="o">=</span>/var/log/clamav/scan.log
-</code></pre></div></div>
+<pre><code class="language-bash">0 2 * * * /usr/bin/clamscan -r / --log=/var/log/clamav/scan.log
+</code></pre>
 
 <h3 id="2-sophos-antivirus-for-linux">2. Sophos Antivirus for Linux</h3>
 
@@ -58,10 +220,10 @@
 
     <p>下载完成后，解压缩安装包并运行安装脚本：</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar</span> <span class="nt">-xvzf</span> sav-linux-free-9.tgz
-<span class="nb">cd </span>sophos-av
-<span class="nb">sudo</span> ./install.sh
-</code></pre></div>    </div>
+    <pre><code class="language-bash">tar -xvzf sav-linux-free-9.tgz
+cd sophos-av
+sudo ./install.sh
+</code></pre>
   </li>
   <li>
     <p><strong>配置和使用</strong>：</p>
@@ -80,18 +242,18 @@
   <li>
     <p><strong>下载并安装</strong>：</p>
 
-    <p>从 Comodo 官方网站下载 <code class="language-plaintext highlighter-rouge">CAV_LINUX</code> 安装包，然后运行以下命令安装：</p>
+    <p>从 Comodo 官方网站下载 <code>CAV_LINUX</code> 安装包，然后运行以下命令安装：</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>dpkg <span class="nt">-i</span> cav-linux.deb
-</code></pre></div>    </div>
+    <pre><code class="language-bash">sudo dpkg -i cav-linux.deb
+</code></pre>
   </li>
   <li>
     <p><strong>启动 Comodo</strong>：</p>
 
     <p>安装完成后，你可以通过以下命令启动 Comodo GUI：</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/COMODO/cav
-</code></pre></div>    </div>
+    <pre><code class="language-bash">/opt/COMODO/cav
+</code></pre>
   </li>
   <li>
     <p><strong>更新病毒库和扫描</strong>：</p>
@@ -112,8 +274,8 @@
 
     <p>从 ESET 官方网站下载 NOD32 的 Linux 安装包，然后使用以下命令安装：</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>dpkg <span class="nt">-i</span> eset_nod32av_64bit_en.linux.deb
-</code></pre></div>    </div>
+    <pre><code class="language-bash">sudo dpkg -i eset_nod32av_64bit_en.linux.deb
+</code></pre>
   </li>
   <li>
     <p><strong>激活和配置</strong>：</p>
@@ -124,28 +286,18 @@
 
 <h3 id="5-使用自带的防病毒工具">5. 使用自带的防病毒工具</h3>
 
-<p>一些 Linux 发行版自带简单的防病毒工具，如 <code class="language-plaintext highlighter-rouge">chkrootkit</code> 和 <code class="language-plaintext highlighter-rouge">rkhunter</code>，这些工具可以检测并清除系统中的 rootkit 和其他恶意软件。</p>
+<p>一些 Linux 发行版自带简单的防病毒工具，如 <code>chkrootkit</code> 和 <code>rkhunter</code>，这些工具可以检测并清除系统中的 rootkit 和其他恶意软件。</p>
 
-<h4 id="安装和使用-chkrootkit-和-rkhunter">安装和使用 <code class="language-plaintext highlighter-rouge">chkrootkit</code> 和 <code class="language-plaintext highlighter-rouge">rkhunter</code>：</h4>
+<h4 id="安装和使用-chkrootkit-和-rkhunter">安装和使用 <code>chkrootkit</code> 和 <code>rkhunter</code>：</h4>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>chkrootkit rkhunter
-<span class="nb">sudo </span>chkrootkit
-<span class="nb">sudo </span>rkhunter <span class="nt">--check</span>
-</code></pre></div></div>
+<pre><code class="language-bash">sudo apt-get install chkrootkit rkhunter
+sudo chkrootkit
+sudo rkhunter --check
+</code></pre>
 
 <h3 id="结论">结论</h3>
 
-<p>选择合适的防病毒软件取决于你的具体需求和环境。ClamAV 是最常用的开源选项，而 Sophos 和 Comodo 提供了更强大的功能。如果你有更多问题或需要进一步的帮助，请告诉我。</p>]]></content><author><name></name></author><category term="linux" /><category term="antivirus_software" /><summary type="html"><![CDATA[在 Linux 环境中添加防病毒软件是一种增强系统安全性的好方法。以下是一些常见的 Linux 防病毒软件及其安装步骤： 1. ClamAV ClamAV 是一个开源的防病毒引擎，广泛用于 Linux 系统。它可以检测多种类型的恶意软件，包括病毒、特洛伊木马和网络钓鱼攻击。 安装 ClamAV 在 Kali Linux 上，你可以使用以下命令安装 ClamAV： sudo apt-get update sudo apt-get install clamav clamav-daemon 更新病毒库 安装完成后，第一步是更新 ClamAV 的病毒库： sudo freshclam 扫描系统 你可以使用 ClamAV 扫描整个系统或指定目录： sudo clamscan -r /path/to/scan -r 参数用于递归扫描目录。如果希望扫描完成后自动删除感染文件，可以添加 --remove 参数： sudo clamscan -r /path/to/scan --remove 配置自动扫描 你可以使用 cron 作业来配置定期自动扫描： sudo crontab -e 在 crontab 文件中添加以下行以每天凌晨 2 点扫描系统： 0 2 * * * /usr/bin/clamscan -r / --log=/var/log/clamav/scan.log 2. Sophos Antivirus for Linux Sophos Antivirus 是另一个受欢迎的防病毒软件，它可以在 Linux 系统中检测和清除病毒、特洛伊木马、蠕虫等。 下载并安装 Sophos 注册并下载 Sophos：访问 Sophos 官方网站，注册并下载 Sophos Antivirus for Linux 的免费版本。 安装 Sophos： 下载完成后，解压缩安装包并运行安装脚本： tar -xvzf sav-linux-free-9.tgz cd sophos-av sudo ./install.sh 配置和使用： 在安装过程中，选择合适的选项并配置 Sophos。安装完成后，Sophos 自动开启实时保护。 3. Comodo Antivirus for Linux Comodo Antivirus 也是一个免费且功能丰富的防病毒软件，适用于 Linux 用户。 安装 Comodo 下载并安装： 从 Comodo 官方网站下载 CAV_LINUX 安装包，然后运行以下命令安装： sudo dpkg -i cav-linux.deb 启动 Comodo： 安装完成后，你可以通过以下命令启动 Comodo GUI： /opt/COMODO/cav 更新病毒库和扫描： 使用 Comodo GUI 更新病毒库，并开始扫描你的系统。 4. ESET NOD32 Antivirus for Linux ESET NOD32 是一款商业化的防病毒软件，提供 Linux 版本。 安装 ESET NOD32 下载并安装： 从 ESET 官方网站下载 NOD32 的 Linux 安装包，然后使用以下命令安装： sudo dpkg -i eset_nod32av_64bit_en.linux.deb 激活和配置： 安装完成后，启动 ESET NOD32 并按照提示进行激活和配置。 5. 使用自带的防病毒工具 一些 Linux 发行版自带简单的防病毒工具，如 chkrootkit 和 rkhunter，这些工具可以检测并清除系统中的 rootkit 和其他恶意软件。 安装和使用 chkrootkit 和 rkhunter： sudo apt-get install chkrootkit rkhunter sudo chkrootkit sudo rkhunter --check 结论 选择合适的防病毒软件取决于你的具体需求和环境。ClamAV 是最常用的开源选项，而 Sophos 和 Comodo 提供了更强大的功能。如果你有更多问题或需要进一步的帮助，请告诉我。]]></summary></entry><entry><title type="html">书评-用生活常识都能看懂财务报表</title><link href="http://localhost:4000/review/2024/08/25/notdone_review07.html" rel="alternate" type="text/html" title="书评-用生活常识都能看懂财务报表" /><published>2024-08-25T11:24:29+08:00</published><updated>2024-08-25T11:24:29+08:00</updated><id>http://localhost:4000/review/2024/08/25/notdone_review07</id><content type="html" xml:base="http://localhost:4000/review/2024/08/25/notdone_review07.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
-
-<p>通过程式完成选股,首先要学会先!</p>
-
-<h3 id="书评">书评</h3>
-
-<p>…</p>
-
-<h3 id="评后感">评后感</h3>
-
-<p>…</p>]]></content><author><name></name></author><category term="review" /><summary type="html"><![CDATA[阅读书本前 通过程式完成选股,首先要学会先! 书评 … 评后感 …]]></summary></entry><entry><title type="html">书评-快速捉重点,过目不忘的读书术</title><link href="http://localhost:4000/review/2024/08/24/review.html" rel="alternate" type="text/html" title="书评-快速捉重点,过目不忘的读书术" /><published>2024-08-24T11:24:29+08:00</published><updated>2024-08-24T11:24:29+08:00</updated><id>http://localhost:4000/review/2024/08/24/review</id><content type="html" xml:base="http://localhost:4000/review/2024/08/24/review.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
+<p>选择合适的防病毒软件取决于你的具体需求和环境。ClamAV 是最常用的开源选项，而 Sophos 和 Comodo 提供了更强大的功能。如果你有更多问题或需要进一步的帮助，请告诉我。</p>]]></content><author><name></name></author><category term="linux" /><summary type="html"><![CDATA[在 Linux 环境中添加防病毒软件是一种增强系统安全性的好方法。以下是一些常见的 Linux 防病毒软件及其安装步骤： 1. ClamAV ClamAV 是一个开源的防病毒引擎，广泛用于 Linux 系统。它可以检测多种类型的恶意软件，包括病毒、特洛伊木马和网络钓鱼攻击。 安装 ClamAV 在 Kali Linux 上，你可以使用以下命令安装 ClamAV： sudo apt-get update sudo apt-get install clamav clamav-daemon 更新病毒库 安装完成后，第一步是更新 ClamAV 的病毒库： sudo freshclam 扫描系统 你可以使用 ClamAV 扫描整个系统或指定目录： sudo clamscan -r /path/to/scan -r 参数用于递归扫描目录。如果希望扫描完成后自动删除感染文件，可以添加 --remove 参数： sudo clamscan -r /path/to/scan --remove 配置自动扫描 你可以使用 cron 作业来配置定期自动扫描： sudo crontab -e 在 crontab 文件中添加以下行以每天凌晨 2 点扫描系统： 0 2 * * * /usr/bin/clamscan -r / --log=/var/log/clamav/scan.log 2. Sophos Antivirus for Linux Sophos Antivirus 是另一个受欢迎的防病毒软件，它可以在 Linux 系统中检测和清除病毒、特洛伊木马、蠕虫等。 下载并安装 Sophos 注册并下载 Sophos：访问 Sophos 官方网站，注册并下载 Sophos Antivirus for Linux 的免费版本。 安装 Sophos： 下载完成后，解压缩安装包并运行安装脚本： tar -xvzf sav-linux-free-9.tgz cd sophos-av sudo ./install.sh 配置和使用： 在安装过程中，选择合适的选项并配置 Sophos。安装完成后，Sophos 自动开启实时保护。 3. Comodo Antivirus for Linux Comodo Antivirus 也是一个免费且功能丰富的防病毒软件，适用于 Linux 用户。 安装 Comodo 下载并安装： 从 Comodo 官方网站下载 CAV_LINUX 安装包，然后运行以下命令安装： sudo dpkg -i cav-linux.deb 启动 Comodo： 安装完成后，你可以通过以下命令启动 Comodo GUI： /opt/COMODO/cav 更新病毒库和扫描： 使用 Comodo GUI 更新病毒库，并开始扫描你的系统。 4. ESET NOD32 Antivirus for Linux ESET NOD32 是一款商业化的防病毒软件，提供 Linux 版本。 安装 ESET NOD32 下载并安装： 从 ESET 官方网站下载 NOD32 的 Linux 安装包，然后使用以下命令安装： sudo dpkg -i eset_nod32av_64bit_en.linux.deb 激活和配置： 安装完成后，启动 ESET NOD32 并按照提示进行激活和配置。 5. 使用自带的防病毒工具 一些 Linux 发行版自带简单的防病毒工具，如 chkrootkit 和 rkhunter，这些工具可以检测并清除系统中的 rootkit 和其他恶意软件。 安装和使用 chkrootkit 和 rkhunter： sudo apt-get install chkrootkit rkhunter sudo chkrootkit sudo rkhunter --check 结论 选择合适的防病毒软件取决于你的具体需求和环境。ClamAV 是最常用的开源选项，而 Sophos 和 Comodo 提供了更强大的功能。如果你有更多问题或需要进一步的帮助，请告诉我。]]></summary></entry><entry><title type="html">书评-快速捉重点,过目不忘的读书术</title><link href="http://localhost:4000/review/2024/08/24/review.html" rel="alternate" type="text/html" title="书评-快速捉重点,过目不忘的读书术" /><published>2024-08-24T11:24:29+08:00</published><updated>2024-08-24T11:24:29+08:00</updated><id>http://localhost:4000/review/2024/08/24/review</id><content type="html" xml:base="http://localhost:4000/review/2024/08/24/review.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
 
 <p>…</p>
 
@@ -274,7 +426,7 @@
 
 <!-- 看到一半? 无厘头??? -->
 
-<!-- 每次用电脑看. -->]]></content><author><name></name></author><category term="review" /><summary type="html"><![CDATA[最好的睡眠 : 身兼三职名医教你让大脑彻底休息,快速熟睡的32项高效睡眠术 阅读书本前 通过阅读使得自己可以得到好的睡眠品质。 书评 不是以「確保睡眠時間」，而是以「獲得熟睡習慣」為目標 將一天的開始從「起床時」切換為「就寢時」 養成遇到緊急事態仍不影響工作表現的「因應法」 「該睡幾小時才好」這個問題沒有一定的答案 「肉體疲勞」疲勞物質還會在體內作怪。曾有一段時間流行「乳酸就是疲勞物質」的說法，根據近年的研究，光用乳酸來說明肌肉疲勞是錯誤的解釋。疲勞與倦怠、肌肉僵硬緊繃等症狀，事實上是由各種疲勞物質囤積而成的結果。 「精神疲勞」。精神上的疲勞來自人際關係與各種煩惱造成的負擔及壓力，也就是現代人常說的「心累」。即使身體沒有任何問題，持續處於緊張或壓力下，整個人失去活力，這就是精神疲勞的徵兆。 經常悶悶不樂、鬱鬱寡歡、焦慮煩躁、食慾不佳、睡不著、早上比預定時間早醒、情緒不安……以上都是精神疲勞的代表症狀。如果放著不管，有可能演變成「憂鬱症」。 「神經疲勞」。從事長時間坐辦公桌或大量用眼的精密工作，由於工作時眼部神經與大腦持續處於緊繃狀態，最後就會引發「頭部的疲倦」神經性的疲勞一旦持續未決，將造成注意力逐漸渙散、記性不好等後果，工作表現自然跟著低落。對持續追求良好工作表現的職場工作者來說，這或許是最棘手的一種疲勞。 上述三種疲勞彼此關係密切，若不趕緊解決，三者一旦聯手作怪，狀況將更形惡化，發展成更難消除的疲勞纏身。 舉例來說，精神上的疲勞一旦變嚴重，很有可能以心悸或強烈暈眩等身體症狀顯現。這是因為人的心和身體的關係密不可分的緣故。 針對肉體疲勞，按摩當然是個有效的緩解方法。針對精神上的疲勞，和朋友聚餐喝酒也有助於消除精神壓力。至於針對神經性的疲勞，運動或許是個不錯的主意。 不可不知的是，睡眠發揮的效果，具有同時消除這三種疲勞的作用。 因此，若你也已感覺到「好像有點累」，比起任何對策，最該優先採取的既不是按摩，也不是聚餐喝酒，而是立刻改善你的睡眠習慣。 白天若是活動過量，晚上就容易產生睏意，不必勉強也會很快入睡。這種自然導向睡眠的身體作用就稱為「睡眠壓」。加強不了睡眠壓的人，就無法獲得舒適好眠。假如不在白天提高清醒度，精力十足地度過一天，睡眠壓就很難提高。 平均睡眠時間在七到八小時的人，罹患糖尿病、高血壓和憂鬱症的比例最低 评后感 32很多都跟失眠有关, 需要自我管控,不行需要看医生]]></summary></entry><entry><title type="html">书评-为什么精英都是时间控</title><link href="http://localhost:4000/review/2024/08/19/review01.html" rel="alternate" type="text/html" title="书评-为什么精英都是时间控" /><published>2024-08-19T11:24:29+08:00</published><updated>2024-08-19T11:24:29+08:00</updated><id>http://localhost:4000/review/2024/08/19/review01</id><content type="html" xml:base="http://localhost:4000/review/2024/08/19/review01.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
+<!-- 每次用电脑看. -->]]></content><author><name></name></author><category term="review" /><summary type="html"><![CDATA[最好的睡眠 : 身兼三职名医教你让大脑彻底休息,快速熟睡的32项高效睡眠术 阅读书本前 通过阅读使得自己可以得到好的睡眠品质。 书评 不是以「確保睡眠時間」，而是以「獲得熟睡習慣」為目標 將一天的開始從「起床時」切換為「就寢時」 養成遇到緊急事態仍不影響工作表現的「因應法」 「該睡幾小時才好」這個問題沒有一定的答案 「肉體疲勞」疲勞物質還會在體內作怪。曾有一段時間流行「乳酸就是疲勞物質」的說法，根據近年的研究，光用乳酸來說明肌肉疲勞是錯誤的解釋。疲勞與倦怠、肌肉僵硬緊繃等症狀，事實上是由各種疲勞物質囤積而成的結果。 「精神疲勞」。精神上的疲勞來自人際關係與各種煩惱造成的負擔及壓力，也就是現代人常說的「心累」。即使身體沒有任何問題，持續處於緊張或壓力下，整個人失去活力，這就是精神疲勞的徵兆。 經常悶悶不樂、鬱鬱寡歡、焦慮煩躁、食慾不佳、睡不著、早上比預定時間早醒、情緒不安……以上都是精神疲勞的代表症狀。如果放著不管，有可能演變成「憂鬱症」。 「神經疲勞」。從事長時間坐辦公桌或大量用眼的精密工作，由於工作時眼部神經與大腦持續處於緊繃狀態，最後就會引發「頭部的疲倦」神經性的疲勞一旦持續未決，將造成注意力逐漸渙散、記性不好等後果，工作表現自然跟著低落。對持續追求良好工作表現的職場工作者來說，這或許是最棘手的一種疲勞。 上述三種疲勞彼此關係密切，若不趕緊解決，三者一旦聯手作怪，狀況將更形惡化，發展成更難消除的疲勞纏身。 舉例來說，精神上的疲勞一旦變嚴重，很有可能以心悸或強烈暈眩等身體症狀顯現。這是因為人的心和身體的關係密不可分的緣故。 針對肉體疲勞，按摩當然是個有效的緩解方法。針對精神上的疲勞，和朋友聚餐喝酒也有助於消除精神壓力。至於針對神經性的疲勞，運動或許是個不錯的主意。 不可不知的是，睡眠發揮的效果，具有同時消除這三種疲勞的作用。 因此，若你也已感覺到「好像有點累」，比起任何對策，最該優先採取的既不是按摩，也不是聚餐喝酒，而是立刻改善你的睡眠習慣。 白天若是活動過量，晚上就容易產生睏意，不必勉強也會很快入睡。這種自然導向睡眠的身體作用就稱為「睡眠壓」。加強不了睡眠壓的人，就無法獲得舒適好眠。假如不在白天提高清醒度，精力十足地度過一天，睡眠壓就很難提高。 平均睡眠時間在七到八小時的人，罹患糖尿病、高血壓和憂鬱症的比例最低 评后感 32很多都跟失眠有关, 需要自我管控,不行需要看医生]]></summary></entry><entry><title type="html">书评-为什么精英都是时间控</title><link href="http://localhost:4000/review/2024/08/19/review.html" rel="alternate" type="text/html" title="书评-为什么精英都是时间控" /><published>2024-08-19T11:24:29+08:00</published><updated>2024-08-19T11:24:29+08:00</updated><id>http://localhost:4000/review/2024/08/19/review</id><content type="html" xml:base="http://localhost:4000/review/2024/08/19/review.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
 
 <p>可以成为精英一份子?</p>
 
@@ -335,7 +487,7 @@
 
 <p>在工作前可以自我投资</p>
 
-<p>投入工作的第一步是建立 <code class="language-plaintext highlighter-rouge">to do list</code></p>
+<p>投入工作的第一步是建立 <code>to do list</code></p>
 
 <h4 id="修复专注力">修复专注力</h4>
 

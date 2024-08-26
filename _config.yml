@@ -34,6 +34,15 @@ plugins:
 
 version: "v1.0.0-{{ site.time | date: '%Y%m%d%H%M%S'}}"
 
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter_opts:
+    disable: true
+  math_engine_opts:
+    preview: false
+
+    
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
