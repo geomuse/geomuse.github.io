@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  书评-用生活常识都能看懂财务报表
+title:  用生活常识都能看懂财务报表
 date:   2024-08-30 11:24:29 +0800
 categories: review
 ---

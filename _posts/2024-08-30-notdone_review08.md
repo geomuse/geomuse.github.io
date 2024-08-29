@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  书评-那些伤人都不是真的
+title:  那些伤人都不是真的
 date:   2024-08-30 11:24:29 +0800
 categories: review
 ---
