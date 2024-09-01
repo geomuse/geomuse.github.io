@@ -4,15 +4,24 @@ title: About
 permalink: /about/
 ---
 
-<h1 class="post-title">geo</h1>
+<h3>geo</h3>
 
-<p>呼吸都是在浪费时间的废青,</p>
-<p>喜欢写程式码和金融相关理财</p>
-<p>目前涉略软体工程相关.</p>
-<br>
-<p>一名喜欢金融和资料科学的学生，</p>
-<p>善用资料科学和金融的工具解决问题，</p>
-<p>身上随时带着笔电，因为喜欢科技.</p>
+专业 : Financial Engineering \| Data Science
 
-<p><img align="left" width='300' height='195' src="https://github-readme-stats.vercel.app/api/top-langs/?username=geomuse&count_private=true&show_icons=true&layout=compact" alt="geo"/></p>
+喜欢发呆和研究哲学,心理学
 
+涉及金融工程和资料科学
+
+目前自学 `flask` 和 `flutterflow`
+
+量化交易 `freqtrade` 使用者
+
+管理工具 :
+
+- 时间管理
+- 决策管理
+- 健康管理
+
+<p>
+<img align="left" width='300' height='195' src="https://github-readme-stats.vercel.app/api/top-langs/?username=geomuse&count_private=true&show_icons=true&layout=compact" alt="geo"/>
+</p>
