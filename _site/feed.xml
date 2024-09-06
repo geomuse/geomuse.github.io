@@ -1,4 +1,492 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-09-01T14:38:44+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">g</title><subtitle>Keep Write | Keep Life</subtitle><entry><title type="html">书-跌倒没关系,没人看见就好</title><link href="http://localhost:4000/review/life/2024/09/01/review014.html" rel="alternate" type="text/html" title="书-跌倒没关系,没人看见就好" /><published>2024-09-01T11:24:29+08:00</published><updated>2024-09-01T11:24:29+08:00</updated><id>http://localhost:4000/review/life/2024/09/01/review014</id><content type="html" xml:base="http://localhost:4000/review/life/2024/09/01/review014.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-09-06T13:03:21+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">g</title><subtitle>Keep Write | Keep Life</subtitle><entry><title type="html">03/30-flask 模板介绍</title><link href="http://localhost:4000/python/flask/challenge/2024/09/06/pl_03.html" rel="alternate" type="text/html" title="03/30-flask 模板介绍" /><published>2024-09-06T11:24:29+08:00</published><updated>2024-09-06T11:24:29+08:00</updated><id>http://localhost:4000/python/flask/challenge/2024/09/06/pl_03</id><content type="html" xml:base="http://localhost:4000/python/flask/challenge/2024/09/06/pl_03.html"><![CDATA[<h3 id="1-模板系统">1. 模板系统</h3>
+
+<p>Flask 支持 Jinja2 模板引擎，可以用来生成 HTML 页面。</p>
+
+<ol>
+  <li>创建一个 <code>templates</code> 文件夹，在里面创建 <code>index.html</code> 文件：</li>
+</ol>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Flask App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;&lt;/h1&gt;
+    &lt;p&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<ol>
+  <li>修改 <code>app.py</code> 来渲染这个模板：</li>
+</ol>
+
+<pre><code class="language-python">from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('index.html', title='Welcome to Flask', message='This is a Flask web application.')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+</code></pre>
+
+<p>访问 <code>http://127.0.0.1:5000/</code> 将会显示渲染后的 HTML 页面，替换了模板中的 <code>和</code>。</p>
+
+<h3 id="2-表单处理">2. 表单处理</h3>
+
+<p>Flask 支持处理表单数据。</p>
+
+<ol>
+  <li>创建一个简单的表单页面，在 <code>templates</code> 文件夹中创建 <code>form.html</code> 文件：</li>
+</ol>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Flask Form&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form method="POST" action="/submit"&gt;
+        Name: &lt;input type="text" name="name"&gt;&lt;br&gt;
+        &lt;input type="submit" value="Submit"&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<ol>
+  <li>在 <code>app.py</code> 中添加处理表单提交的逻辑：</li>
+</ol>
+
+<pre><code class="language-python">from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('form.html')
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    name = request.form['name']
+    return f"Hello, {name}!"
+
+if __name__ == '__main__':
+    app.run(debug=True)
+</code></pre>
+
+<p>现在，当你访问 <code>http://127.0.0.1:5000/</code> 并提交表单时，会显示提交的名字。</p>
+
+<h3 id="3-静态文件">3. 静态文件</h3>
+
+<p>Flask 可以轻松提供静态文件（如 CSS、JS、图片等）。</p>
+
+<ol>
+  <li>创建一个 <code>static</code> 文件夹，在其中创建一个 <code>style.css</code> 文件：(不建立 <code>css/</code> ,不然 <code>filename</code> 需要更改 <code>css/style.css</code> )</li>
+</ol>
+
+<pre><code class="language-css">body {
+    background-color: #f0f0f0;
+}
+</code></pre>
+
+<ol>
+  <li>在模板中链接静态文件：</li>
+</ol>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Flask App&lt;/title&gt;
+    &lt;link rel="stylesheet" type="text/css" href=""&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;&lt;/h1&gt;
+    &lt;p&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Flask 会自动处理静态文件请求，你可以将 CSS 文件、图片等存放在 <code>static</code> 文件夹中。</p>]]></content><author><name></name></author><category term="python" /><category term="flask" /><category term="challenge" /><summary type="html"><![CDATA[1. 模板系统 Flask 支持 Jinja2 模板引擎，可以用来生成 HTML 页面。 创建一个 templates 文件夹，在里面创建 index.html 文件： &lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt; &lt;title&gt;Flask App&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;h1&gt;&lt;/h1&gt; &lt;p&gt;&lt;/p&gt; &lt;/body&gt; &lt;/html&gt; 修改 app.py 来渲染这个模板： from flask import Flask, render_template app = Flask(__name__) @app.route('/') def home(): return render_template('index.html', title='Welcome to Flask', message='This is a Flask web application.') if __name__ == '__main__': app.run(debug=True) 访问 http://127.0.0.1:5000/ 将会显示渲染后的 HTML 页面，替换了模板中的 和。 2. 表单处理 Flask 支持处理表单数据。 创建一个简单的表单页面，在 templates 文件夹中创建 form.html 文件： &lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt; &lt;title&gt;Flask Form&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;form method="POST" action="/submit"&gt; Name: &lt;input type="text" name="name"&gt;&lt;br&gt; &lt;input type="submit" value="Submit"&gt; &lt;/form&gt; &lt;/body&gt; &lt;/html&gt; 在 app.py 中添加处理表单提交的逻辑： from flask import Flask, render_template, request app = Flask(__name__) @app.route('/') def home(): return render_template('form.html') @app.route('/submit', methods=['POST']) def submit(): name = request.form['name'] return f"Hello, {name}!" if __name__ == '__main__': app.run(debug=True) 现在，当你访问 http://127.0.0.1:5000/ 并提交表单时，会显示提交的名字。 3. 静态文件 Flask 可以轻松提供静态文件（如 CSS、JS、图片等）。 创建一个 static 文件夹，在其中创建一个 style.css 文件：(不建立 css/ ,不然 filename 需要更改 css/style.css ) body { background-color: #f0f0f0; } 在模板中链接静态文件： &lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt; &lt;title&gt;Flask App&lt;/title&gt; &lt;link rel="stylesheet" type="text/css" href=""&gt; &lt;/head&gt; &lt;body&gt; &lt;h1&gt;&lt;/h1&gt; &lt;p&gt;&lt;/p&gt; &lt;/body&gt; &lt;/html&gt; Flask 会自动处理静态文件请求，你可以将 CSS 文件、图片等存放在 static 文件夹中。]]></summary></entry><entry><title type="html">书-超棒喜剧这样写</title><link href="http://localhost:4000/review/write/2024/09/06/review019.html" rel="alternate" type="text/html" title="书-超棒喜剧这样写" /><published>2024-09-06T11:24:29+08:00</published><updated>2024-09-06T11:24:29+08:00</updated><id>http://localhost:4000/review/write/2024/09/06/review019</id><content type="html" xml:base="http://localhost:4000/review/write/2024/09/06/review019.html"><![CDATA[<p>超棒喜剧这样写 好莱坞喜剧教父编剧技艺大解密</p>
+
+<h3 id="阅读书本前">阅读书本前</h3>
+
+<p>学习写一本小说和一本剧本</p>
+
+<h3 id="书评">书评</h3>
+
+<h4 id="书本框架">书本框架</h4>
+
+<p>艾　登：我是。</p>
+
+<p>　　坎达儿：（起身，移动到他面前站着）艾登，麦可不是我杀的。</p>
+
+<p>　　停顿。</p>
+
+<p>　　艾　登：（目不转睛地看着她）妳说了我就该相信吗？</p>
+
+<p>　　（镜头停留在艾登身上，音乐渐强，接着……）</p>
+
+<h4 id="喜剧方程式">喜剧方程式</h4>
+
+<p>一名平凡的男生或女生，面对难如登天的难关苦苦挣扎，虽缺乏许多获胜所需要的技能或工具，却从不会放弃希望。若除去上述元素的任何一项，你便失去或削弱了场景里头的喜剧动能。你会创造一个戏剧的片刻、场景或电影，而非喜剧。</p>
+
+<h4 id="工具">工具</h4>
+
+<p>你的选择是 E. 盲人吗？（是的话，你应该要感到羞耻！你有病，你知道吗？）</p>
+
+<p>这些不为人知的杠杆有助于调整一场戏、一出剧或一部电影里头的喜剧元素。</p>
+
+<p>　　这些工具包含了：</p>
+
+<ol>
+  <li>获胜（Winning）</li>
+</ol>
+
+<p>在方程式──一名平凡的男生或女生，面对难如登天的难关苦苦挣扎，虽缺乏许多获胜所需要的技能或工具，却从不会放弃希望。获胜这个想法指的是在喜剧中</p>
+
+<ol>
+  <li>非英雄（Non－Hero）</li>
+</ol>
+
+<p>非英雄便是缺乏许多获胜所需要的技能或工具的平凡男女。要注意，我们说的不是「喜剧英雄」，而是「非英雄」。</p>
+
+<ol>
+  <li>隐喻关系（Metaphorical Relationship）</li>
+</ol>
+
+<p>是用于感知的工具。隐喻关系背后的其中一个概念认为，在每段表层关系之下，有着一段真实的、纯粹的隐喻关系。每个角色会透过某种特定的、隐喻的方式，感知周围其他人以及世界本身。</p>
+
+<ol>
+  <li>正向（或自私）行为（Positive〔or Selfish〕Action）</li>
+</ol>
+
+<p>又称为自私行为（Selfish Action）──这个想法，指的是你的角色不管做什么事情，他（她）都相信这件事情行得通，不管这会让他（她）显得多愚蠢、傻气或天真皆然，他们会盼望行为所带来的结果是正向的</p>
+
+<ol>
+  <li>
+    <p>动态情绪（Active Emotion）</p>
+  </li>
+  <li>
+    <p>直线／波浪型曲线（Straight Line/ Wavy Line）</p>
+  </li>
+</ol>
+
+<p>　　以及剧本开发工具：</p>
+
+<ol>
+  <li>
+    <p>原型（Archetype）</p>
+  </li>
+  <li>
+    <p>喜剧前提（Comic Premise）</p>
+  </li>
+</ol>
+
+<p>前提本身越好，故事便越能夠在你的想像裡頭自己接著寫下去。</p>
+
+<p>工作坊裡的其中一組想出了以下前提：「一支輸到脫褲的大學足球隊發現，他們唯一能夠獲勝的方式，便是讓宅男們……有砲打。」短暫停頓之後，房間裡開始傳來陣陣偷笑。接下來我問了一個再簡單也不過的問題：這部電影裡可能會有哪些戲？」幾乎是同一時間，現場觀眾開始喊出一連串可能的場景：勝利的蒙太奇、慘敗的蒙太奇、協助宅男為約會做準備、兄弟會派對、幫宅男約妓女沒想到結果慘不忍睹、宅男變得有型，有型到簡直不像學生，搞得球隊得要去找新的宅男……就這樣持續下去。</p>
+
+<h3 id="评后感">评后感</h3>
+
+<p>不怎么看懂,但当有一天想要写作时,或许这是我写小说或者剧本的唯一教科书(工具书)</p>]]></content><author><name></name></author><category term="review" /><category term="write" /><summary type="html"><![CDATA[超棒喜剧这样写 好莱坞喜剧教父编剧技艺大解密 阅读书本前 学习写一本小说和一本剧本 书评 书本框架 艾　登：我是。 　　坎达儿：（起身，移动到他面前站着）艾登，麦可不是我杀的。 　　停顿。 　　艾　登：（目不转睛地看着她）妳说了我就该相信吗？ 　　（镜头停留在艾登身上，音乐渐强，接着……） 喜剧方程式 一名平凡的男生或女生，面对难如登天的难关苦苦挣扎，虽缺乏许多获胜所需要的技能或工具，却从不会放弃希望。若除去上述元素的任何一项，你便失去或削弱了场景里头的喜剧动能。你会创造一个戏剧的片刻、场景或电影，而非喜剧。 工具 你的选择是 E. 盲人吗？（是的话，你应该要感到羞耻！你有病，你知道吗？） 这些不为人知的杠杆有助于调整一场戏、一出剧或一部电影里头的喜剧元素。 　　这些工具包含了： 获胜（Winning） 在方程式──一名平凡的男生或女生，面对难如登天的难关苦苦挣扎，虽缺乏许多获胜所需要的技能或工具，却从不会放弃希望。获胜这个想法指的是在喜剧中 非英雄（Non－Hero） 非英雄便是缺乏许多获胜所需要的技能或工具的平凡男女。要注意，我们说的不是「喜剧英雄」，而是「非英雄」。 隐喻关系（Metaphorical Relationship） 是用于感知的工具。隐喻关系背后的其中一个概念认为，在每段表层关系之下，有着一段真实的、纯粹的隐喻关系。每个角色会透过某种特定的、隐喻的方式，感知周围其他人以及世界本身。 正向（或自私）行为（Positive〔or Selfish〕Action） 又称为自私行为（Selfish Action）──这个想法，指的是你的角色不管做什么事情，他（她）都相信这件事情行得通，不管这会让他（她）显得多愚蠢、傻气或天真皆然，他们会盼望行为所带来的结果是正向的 动态情绪（Active Emotion） 直线／波浪型曲线（Straight Line/ Wavy Line） 　　以及剧本开发工具： 原型（Archetype） 喜剧前提（Comic Premise） 前提本身越好，故事便越能夠在你的想像裡頭自己接著寫下去。 工作坊裡的其中一組想出了以下前提：「一支輸到脫褲的大學足球隊發現，他們唯一能夠獲勝的方式，便是讓宅男們……有砲打。」短暫停頓之後，房間裡開始傳來陣陣偷笑。接下來我問了一個再簡單也不過的問題：這部電影裡可能會有哪些戲？」幾乎是同一時間，現場觀眾開始喊出一連串可能的場景：勝利的蒙太奇、慘敗的蒙太奇、協助宅男為約會做準備、兄弟會派對、幫宅男約妓女沒想到結果慘不忍睹、宅男變得有型，有型到簡直不像學生，搞得球隊得要去找新的宅男……就這樣持續下去。 评后感 不怎么看懂,但当有一天想要写作时,或许这是我写小说或者剧本的唯一教科书(工具书)]]></summary></entry><entry><title type="html">02/30-flask 与 mongodb连接</title><link href="http://localhost:4000/python/flask/challenge/2024/09/05/pl_02.html" rel="alternate" type="text/html" title="02/30-flask 与 mongodb连接" /><published>2024-09-05T11:24:29+08:00</published><updated>2024-09-05T11:24:29+08:00</updated><id>http://localhost:4000/python/flask/challenge/2024/09/05/pl_02</id><content type="html" xml:base="http://localhost:4000/python/flask/challenge/2024/09/05/pl_02.html"><![CDATA[<p>要在 Flask 应用中连接 MongoDB，你可以使用 <code>PyMongo</code>，这是一个简单的库，它提供了与 MongoDB 交互的功能。以下是如何设置 Flask 和 MongoDB 连接的教程。</p>
+
+<h3 id="步骤-1-安装依赖">步骤 1: 安装依赖</h3>
+
+<p>首先，确保安装了 <code>flask</code> 和 <code>pymongo</code> 依赖库。你可以通过 pip 来安装这些库：</p>
+
+<pre><code class="language-bash">pip install Flask pymongo
+</code></pre>
+
+<h3 id="步骤-2-设置-mongodb-连接">步骤 2: 设置 MongoDB 连接</h3>
+
+<p>接下来，编写 Flask 应用代码，设置与 MongoDB 的连接。假设你已经在本地或者远程服务器上运行 MongoDB 实例。</p>
+
+<pre><code class="language-python">from flask import Flask, jsonify, request
+from pymongo import MongoClient
+
+app = Flask(__name__)
+
+# 连接 MongoDB
+client = MongoClient('mongodb://localhost:27017/')
+db = client['test_database']  # 使用 'test_database' 数据库
+
+# 示例集合（类似于表）
+collection = db['test_collection']
+
+# 插入数据的路由
+@app.route('/insert', methods=['POST'])
+def insert_data():
+    data = request.json
+    collection.insert_one(data)  # 将 JSON 数据插入到 MongoDB
+    return jsonify({"message": "数据已插入"}), 201
+
+# 获取数据的路由
+@app.route('/data', methods=['GET'])
+def get_data():
+    data = list(collection.find())  # 从 MongoDB 中获取数据
+    for item in data:
+        item['_id'] = str(item['_id'])  # 将 ObjectId 转换为字符串
+    return jsonify(data), 200
+
+if __name__ == '__main__':
+    app.run(debug=True)
+</code></pre>
+
+<h3 id="步骤-3-运行应用">步骤 3: 运行应用</h3>
+
+<ol>
+  <li>确保 MongoDB 已启动。</li>
+  <li>运行 Flask 应用程序：</li>
+</ol>
+
+<pre><code class="language-bash">python app.py
+</code></pre>
+
+<p>Flask 应用将运行在 <code>http://127.0.0.1:5000/</code> 上。你可以使用 Postman 或 curl 向 <code>/insert</code> 路由发送 POST 请求来插入数据，向 <code>/data</code> 路由发送 GET 请求来获取数据。</p>
+
+<h3 id="步骤-4-测试插入和获取数据">步骤 4: 测试插入和获取数据</h3>
+
+<p>使用以下命令测试插入数据：</p>
+
+<pre><code class="language-bash">curl -X POST -H "Content-Type: application/json" -d '{"name": "Alice", "age": 30}' http://127.0.0.1:5000/insert
+</code></pre>
+
+<p>测试获取数据：</p>
+
+<pre><code class="language-bash">curl http://127.0.0.1:5000/data
+</code></pre>
+
+<h3 id="注意事项">注意事项</h3>
+<ul>
+  <li>确保你的 MongoDB 连接字符串是正确的，尤其是在连接到远程数据库时，可能需要包含用户名和密码。</li>
+  <li>可以通过 MongoDB Atlas 来设置云端 MongoDB 数据库，连接方式相似。</li>
+</ul>
+
+<p>这样就能成功将 Flask 应用与 MongoDB 连接了！</p>]]></content><author><name></name></author><category term="python" /><category term="flask" /><category term="challenge" /><summary type="html"><![CDATA[要在 Flask 应用中连接 MongoDB，你可以使用 PyMongo，这是一个简单的库，它提供了与 MongoDB 交互的功能。以下是如何设置 Flask 和 MongoDB 连接的教程。 步骤 1: 安装依赖 首先，确保安装了 flask 和 pymongo 依赖库。你可以通过 pip 来安装这些库： pip install Flask pymongo 步骤 2: 设置 MongoDB 连接 接下来，编写 Flask 应用代码，设置与 MongoDB 的连接。假设你已经在本地或者远程服务器上运行 MongoDB 实例。 from flask import Flask, jsonify, request from pymongo import MongoClient app = Flask(__name__) # 连接 MongoDB client = MongoClient('mongodb://localhost:27017/') db = client['test_database'] # 使用 'test_database' 数据库 # 示例集合（类似于表） collection = db['test_collection'] # 插入数据的路由 @app.route('/insert', methods=['POST']) def insert_data(): data = request.json collection.insert_one(data) # 将 JSON 数据插入到 MongoDB return jsonify({"message": "数据已插入"}), 201 # 获取数据的路由 @app.route('/data', methods=['GET']) def get_data(): data = list(collection.find()) # 从 MongoDB 中获取数据 for item in data: item['_id'] = str(item['_id']) # 将 ObjectId 转换为字符串 return jsonify(data), 200 if __name__ == '__main__': app.run(debug=True) 步骤 3: 运行应用 确保 MongoDB 已启动。 运行 Flask 应用程序： python app.py Flask 应用将运行在 http://127.0.0.1:5000/ 上。你可以使用 Postman 或 curl 向 /insert 路由发送 POST 请求来插入数据，向 /data 路由发送 GET 请求来获取数据。 步骤 4: 测试插入和获取数据 使用以下命令测试插入数据： curl -X POST -H "Content-Type: application/json" -d '{"name": "Alice", "age": 30}' http://127.0.0.1:5000/insert 测试获取数据： curl http://127.0.0.1:5000/data 注意事项 确保你的 MongoDB 连接字符串是正确的，尤其是在连接到远程数据库时，可能需要包含用户名和密码。 可以通过 MongoDB Atlas 来设置云端 MongoDB 数据库，连接方式相似。 这样就能成功将 Flask 应用与 MongoDB 连接了！]]></summary></entry><entry><title type="html">书-过劳脑</title><link href="http://localhost:4000/review/life/2024/09/05/review018.html" rel="alternate" type="text/html" title="书-过劳脑" /><published>2024-09-05T11:24:29+08:00</published><updated>2024-09-05T11:24:29+08:00</updated><id>http://localhost:4000/review/life/2024/09/05/review018</id><content type="html" xml:base="http://localhost:4000/review/life/2024/09/05/review018.html"><![CDATA[<p>过劳脑:让大脑一例一休让情绪排毒的8周正念计划</p>
+
+<h3 id="阅读书本前">阅读书本前</h3>
+
+<p>学习冥想</p>
+
+<h3 id="书评">书评</h3>
+
+<p>透过冥想达到放松的用途</p>
+
+<p>學習正念，可以讓我們具備旁觀者清的能力，也可以正念行动</p>
+
+<p>第一個層面是將你的意念固定在一個點上</p>
+
+<p>第二層面是廣泛的打開所有感官去察覺你的內外</p>
+
+<p>正念是以不評判的態度，學習觀察自我內在與外在世界的練習，所以正念可以增加人們對別人的同理心。許多研究證實，人們在經過正念訓練後，明顯較訓練前產生更高的同理心。</p>
+
+<p>你要觀察自己是不是專注在自身的呼吸上，萬一發現自己的注意力渙散，已經離開了呼吸，就請再一次把注意力拉回呼吸，這就是集中式覺察</p>
+
+<p>專心走路，專心吃飯，專注力越來越高。</p>
+
+<p>人即便在生气时,乃能做出理性的回应,要控制好自己的情绪<code>10秒法则</code></p>
+
+<p>它認為憂鬱的情緒來自於人有錯誤扭曲的認知，因此只要改變認知，就可以戰勝憂鬱。</p>
+
+<p>如果事情不能改變，我煩惱又有何用？如果事情可以改變，我又何需煩惱呢？</p>
+
+<p>我們要學習讓事實停留在事實的層面，而不是用我們的念頭來概括事實。</p>
+
+<p>新的狀態是面對它、接受它。當心裡有負面情緒，要先承認它的存在，不用先急著對抗或逃避；我要跟我的不舒服在一起，看看它到底是什麼樣子，經驗它、接納它。關照它之後，再來想想要怎麼處理它。</p>
+
+<p>練習覺察自己的念頭是否專注在當下所做的事，還是偏離了當下，神遊在不同時空。當你覺察到念頭偏離，那就溫柔堅定的再次將念頭專注於現在，重新把你的精力放在當下要做的事情上。</p>
+
+<h3 id="评后感">评后感</h3>
+
+<p>还以为是领袖社设定的规则,看完后调整很多有意义的事情</p>
+
+<p>洗澡后学习正念10分钟以上</p>
+
+<p>顺便运动,腹式呼吸</p>
+
+<p>正念带来的是一样的人生</p>]]></content><author><name></name></author><category term="review" /><category term="life" /><summary type="html"><![CDATA[过劳脑:让大脑一例一休让情绪排毒的8周正念计划 阅读书本前 学习冥想 书评 透过冥想达到放松的用途 學習正念，可以讓我們具備旁觀者清的能力，也可以正念行动 第一個層面是將你的意念固定在一個點上 第二層面是廣泛的打開所有感官去察覺你的內外 正念是以不評判的態度，學習觀察自我內在與外在世界的練習，所以正念可以增加人們對別人的同理心。許多研究證實，人們在經過正念訓練後，明顯較訓練前產生更高的同理心。 你要觀察自己是不是專注在自身的呼吸上，萬一發現自己的注意力渙散，已經離開了呼吸，就請再一次把注意力拉回呼吸，這就是集中式覺察 專心走路，專心吃飯，專注力越來越高。 人即便在生气时,乃能做出理性的回应,要控制好自己的情绪10秒法则 它認為憂鬱的情緒來自於人有錯誤扭曲的認知，因此只要改變認知，就可以戰勝憂鬱。 如果事情不能改變，我煩惱又有何用？如果事情可以改變，我又何需煩惱呢？ 我們要學習讓事實停留在事實的層面，而不是用我們的念頭來概括事實。 新的狀態是面對它、接受它。當心裡有負面情緒，要先承認它的存在，不用先急著對抗或逃避；我要跟我的不舒服在一起，看看它到底是什麼樣子，經驗它、接納它。關照它之後，再來想想要怎麼處理它。 練習覺察自己的念頭是否專注在當下所做的事，還是偏離了當下，神遊在不同時空。當你覺察到念頭偏離，那就溫柔堅定的再次將念頭專注於現在，重新把你的精力放在當下要做的事情上。 评后感 还以为是领袖社设定的规则,看完后调整很多有意义的事情 洗澡后学习正念10分钟以上 顺便运动,腹式呼吸 正念带来的是一样的人生]]></summary></entry><entry><title type="html">01/30-flask 路由</title><link href="http://localhost:4000/python/flask/challenge/2024/09/04/pl_01.html" rel="alternate" type="text/html" title="01/30-flask 路由" /><published>2024-09-04T11:24:29+08:00</published><updated>2024-09-04T11:24:29+08:00</updated><id>http://localhost:4000/python/flask/challenge/2024/09/04/pl_01</id><content type="html" xml:base="http://localhost:4000/python/flask/challenge/2024/09/04/pl_01.html"><![CDATA[<p>Flask 是一个轻量级的 Python Web 框架，适合构建简单到中型的 Web 应用程序。它非常灵活，并且通过插件可以扩展。以下是 Flask 基本的教学步骤：</p>
+
+<h3 id="1-安装-flask">1. 安装 Flask</h3>
+
+<p>首先，确保你已经安装了 Flask。你可以通过 <code>pip</code> 安装它：</p>
+
+<pre><code class="language-bash">pip install Flask
+</code></pre>
+
+<h3 id="2-创建一个-flask-项目">2. 创建一个 Flask 项目</h3>
+
+<ol>
+  <li>
+    <p><strong>创建项目文件夹</strong>:
+创建一个文件夹来存放项目文件，比如 <code>flask_project</code>。</p>
+  </li>
+  <li>
+    <p><strong>创建 Python 文件</strong>:
+在文件夹中创建一个 Python 文件，例如 <code>app.py</code>。</p>
+  </li>
+  <li>
+    <p><strong>编写基本 Flask 应用代码</strong>:</p>
+  </li>
+</ol>
+
+<pre><code class="language-python">from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello, Flask!"
+
+if __name__ == '__main__':
+    app.run(debug=True)
+</code></pre>
+
+<ul>
+  <li><strong>app = Flask(__name__)</strong>: 初始化 Flask 应用程序。</li>
+  <li><strong>@app.route(‘/’)</strong>: 定义了一个路由，<code>/</code> 表示网站的根 URL。</li>
+  <li><strong>def home()</strong>: 这是一个视图函数，当用户访问根 URL 时会调用此函数并返回 “Hello, Flask!”。</li>
+  <li><strong>app.run(debug=True)</strong>: 以调试模式运行 Flask 应用程序。</li>
+</ul>
+
+<h3 id="3-运行应用程序">3. 运行应用程序</h3>
+
+<p>在项目文件夹下，使用终端运行以下命令：</p>
+
+<pre><code class="language-bash">python app.py
+</code></pre>
+
+<p>你会看到类似下面的输出：</p>
+
+<pre><code> * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+</code></pre>
+
+<p>打开浏览器，访问 <code>http://127.0.0.1:5000/</code>，你应该会看到 “Hello, Flask!”。</p>
+
+<h3 id="4-路由和视图">4. 路由和视图</h3>
+
+<p>你可以定义更多的路由和视图函数。比如：</p>
+
+<pre><code class="language-python">@app.route('/about')
+def about():
+    return "This is the about page."
+</code></pre>
+
+<p>访问 <code>http://127.0.0.1:5000/about</code> 将显示 “This is the about page.”。</p>
+
+<h3 id="4-其他功能">4. 其他功能</h3>
+
+<ul>
+  <li><strong>URL 参数</strong>: 你可以在路由中捕获 URL 参数：</li>
+</ul>
+
+<pre><code class="language-python">@app.route('/user/&lt;name&gt;')
+def user(name):
+    return f"Hello, {name}!"
+</code></pre>
+
+<ul>
+  <li><strong>Flask 插件</strong>: Flask 有很多插件，如 <code>Flask-SQLAlchemy</code> 进行数据库操作，<code>Flask-WTF</code> 进行表单验证等。</li>
+</ul>
+
+<h3 id="5-总结">5. 总结</h3>
+
+<p>这是 Flask 的基本操作流程，接下来你可以扩展学习以下内容：</p>
+
+<ul>
+  <li>使用数据库（例如 SQLite、PostgreSQL）</li>
+  <li>使用 Flask-WTF 处理复杂表单</li>
+  <li>用户认证和登录系统</li>
+  <li>使用蓝图组织代码</li>
+  <li>部署 Flask 应用到生产环境（例如 Heroku、AWS）</li>
+</ul>
+
+<h3 id="推荐资源">推荐资源</h3>
+<ul>
+  <li>Flask 官方文档: https://flask.palletsprojects.com/</li>
+  <li>Flask Mega Tutorial: https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world</li>
+</ul>]]></content><author><name></name></author><category term="python" /><category term="flask" /><category term="challenge" /><summary type="html"><![CDATA[Flask 是一个轻量级的 Python Web 框架，适合构建简单到中型的 Web 应用程序。它非常灵活，并且通过插件可以扩展。以下是 Flask 基本的教学步骤： 1. 安装 Flask 首先，确保你已经安装了 Flask。你可以通过 pip 安装它： pip install Flask 2. 创建一个 Flask 项目 创建项目文件夹: 创建一个文件夹来存放项目文件，比如 flask_project。 创建 Python 文件: 在文件夹中创建一个 Python 文件，例如 app.py。 编写基本 Flask 应用代码: from flask import Flask app = Flask(__name__) @app.route('/') def home(): return "Hello, Flask!" if __name__ == '__main__': app.run(debug=True) app = Flask(__name__): 初始化 Flask 应用程序。 @app.route(‘/’): 定义了一个路由，/ 表示网站的根 URL。 def home(): 这是一个视图函数，当用户访问根 URL 时会调用此函数并返回 “Hello, Flask!”。 app.run(debug=True): 以调试模式运行 Flask 应用程序。 3. 运行应用程序 在项目文件夹下，使用终端运行以下命令： python app.py 你会看到类似下面的输出： * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit) 打开浏览器，访问 http://127.0.0.1:5000/，你应该会看到 “Hello, Flask!”。 4. 路由和视图 你可以定义更多的路由和视图函数。比如： @app.route('/about') def about(): return "This is the about page." 访问 http://127.0.0.1:5000/about 将显示 “This is the about page.”。 4. 其他功能 URL 参数: 你可以在路由中捕获 URL 参数： @app.route('/user/&lt;name&gt;') def user(name): return f"Hello, {name}!" Flask 插件: Flask 有很多插件，如 Flask-SQLAlchemy 进行数据库操作，Flask-WTF 进行表单验证等。 5. 总结 这是 Flask 的基本操作流程，接下来你可以扩展学习以下内容： 使用数据库（例如 SQLite、PostgreSQL） 使用 Flask-WTF 处理复杂表单 用户认证和登录系统 使用蓝图组织代码 部署 Flask 应用到生产环境（例如 Heroku、AWS） 推荐资源 Flask 官方文档: https://flask.palletsprojects.com/ Flask Mega Tutorial: https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world]]></summary></entry><entry><title type="html">书-选3哲学</title><link href="http://localhost:4000/review/life/2024/09/04/review017.html" rel="alternate" type="text/html" title="书-选3哲学" /><published>2024-09-04T11:24:29+08:00</published><updated>2024-09-04T11:24:29+08:00</updated><id>http://localhost:4000/review/life/2024/09/04/review017</id><content type="html" xml:base="http://localhost:4000/review/life/2024/09/04/review017.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
+
+<p>期待三的选项的书,因为我也是3流派</p>
+
+<h3 id="书评">书评</h3>
+
+<p>众多主题只选择3个,每日3个主题围绕行动目标</p>
+
+<p><code>list</code>通过<code>10秒</code>行动和结束前处理</p>
+
+<p>有人說，人在成長的過程裡會失去很多小時候擁有的東西，
+像是純真、誠實、熱情，還有勇氣。小時候的我們跌倒了，
+哭一哭，眼淚擦乾就急著去找吃的、玩的，很少會糾結在自己有沒有流血，或是掉了幾塊皮。
+而我們在不斷長大的過程裡，看似在進化但也不斷退化，丟了那個向前看的人生態度。</p>
+
+<p>平衡？不是我的事
+我寧願投入
+追求我的夢想
+　
+你不能擁有全部
+至少是，不能在一天之中
+我？我就只選三項
+　
+無論我選擇工作
+朋友、運動、睡眠、家庭
+我都是在選擇我自己</p>
+
+<h3 id="评后感">评后感</h3>
+
+<p>定主题选3个,其他不在意</p>
+
+<p style="color:blue">平衡生活</p>]]></content><author><name></name></author><category term="review" /><category term="life" /><summary type="html"><![CDATA[阅读书本前 期待三的选项的书,因为我也是3流派 书评 众多主题只选择3个,每日3个主题围绕行动目标 list通过10秒行动和结束前处理 有人說，人在成長的過程裡會失去很多小時候擁有的東西， 像是純真、誠實、熱情，還有勇氣。小時候的我們跌倒了， 哭一哭，眼淚擦乾就急著去找吃的、玩的，很少會糾結在自己有沒有流血，或是掉了幾塊皮。 而我們在不斷長大的過程裡，看似在進化但也不斷退化，丟了那個向前看的人生態度。 平衡？不是我的事 我寧願投入 追求我的夢想 　 你不能擁有全部 至少是，不能在一天之中 我？我就只選三項 　 無論我選擇工作 朋友、運動、睡眠、家庭 我都是在選擇我自己 评后感 定主题选3个,其他不在意 平衡生活]]></summary></entry><entry><title type="html">书-一本终结给你的拖延症</title><link href="http://localhost:4000/review/life/2024/09/03/review016.html" rel="alternate" type="text/html" title="书-一本终结给你的拖延症" /><published>2024-09-03T11:24:29+08:00</published><updated>2024-09-03T11:24:29+08:00</updated><id>http://localhost:4000/review/life/2024/09/03/review016</id><content type="html" xml:base="http://localhost:4000/review/life/2024/09/03/review016.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
+
+<p>希望解决自己的坏习惯,成为一名成功人士</p>
+
+<h3 id="书评">书评</h3>
+
+<p>10秒行动 ~ 2分钟 (2分钟要解决的事情快点处理)</p>
+
+<p>前一天解决一点点或者定方向</p>
+
+<p>初步行动,运动健身在家里先,再考虑其他问题</p>
+
+<p>新习惯与习惯一起训练</p>
+
+<ul>
+  <li>洗澡当作是每天早起例事</li>
+  <li>被打断看回要做的事情，要每时刻编写 10秒定律 写下来 10秒指令笔记🤣</li>
+  <li>结束前把明天要做的事全部理一篇，找出可行性和执行效率</li>
+  <li>弹性时间，把计划定宽松，确保没有风险</li>
+  <li>把每件事情的风险写出来（做风险管理）确保具体化</li>
+</ul>
+
+<h3 id="评后感">评后感</h3>
+
+<p>学习结束前计划明天的事情,不要一早定义明天干的事情</p>
+
+<p>学会定计划,初级行动,学习高效率</p>
+
+<!-- 高效学习,决定计划,融合经验和知识 -->]]></content><author><name></name></author><category term="review" /><category term="life" /><summary type="html"><![CDATA[阅读书本前 希望解决自己的坏习惯,成为一名成功人士 书评 10秒行动 ~ 2分钟 (2分钟要解决的事情快点处理) 前一天解决一点点或者定方向 初步行动,运动健身在家里先,再考虑其他问题 新习惯与习惯一起训练 洗澡当作是每天早起例事 被打断看回要做的事情，要每时刻编写 10秒定律 写下来 10秒指令笔记🤣 结束前把明天要做的事全部理一篇，找出可行性和执行效率 弹性时间，把计划定宽松，确保没有风险 把每件事情的风险写出来（做风险管理）确保具体化 评后感 学习结束前计划明天的事情,不要一早定义明天干的事情 学会定计划,初级行动,学习高效率]]></summary></entry><entry><title type="html">书-运动改造大脑</title><link href="http://localhost:4000/review/life/2024/09/02/review015.html" rel="alternate" type="text/html" title="书-运动改造大脑" /><published>2024-09-02T11:24:29+08:00</published><updated>2024-09-02T11:24:29+08:00</updated><id>http://localhost:4000/review/life/2024/09/02/review015</id><content type="html" xml:base="http://localhost:4000/review/life/2024/09/02/review015.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
+
+<p>从youtube上看到的</p>
+
+<h3 id="书评">书评</h3>
+
+<p>0时体育计划</p>
+
+<p>过去信息和现有的记忆混合产生创造力和记忆</p>
+
+<p>没有使用的功能会退化或者用不了</p>
+
+<p>有氧运动是稳固的自己,技术性运动是把神经元扩张属于微运动</p>
+
+<p>焦虑症是只记忆最坏的回忆</p>
+
+<h3 id="评后感">评后感</h3>
+
+<p>听书坏处在于没有感觉,好像只为了高效看书而产生的,没有任何的说服力</p>]]></content><author><name></name></author><category term="review" /><category term="life" /><summary type="html"><![CDATA[阅读书本前 从youtube上看到的 书评 0时体育计划 过去信息和现有的记忆混合产生创造力和记忆 没有使用的功能会退化或者用不了 有氧运动是稳固的自己,技术性运动是把神经元扩张属于微运动 焦虑症是只记忆最坏的回忆 评后感 听书坏处在于没有感觉,好像只为了高效看书而产生的,没有任何的说服力]]></summary></entry><entry><title type="html">书-跌倒没关系,没人看见就好</title><link href="http://localhost:4000/review/life/2024/09/01/review014.html" rel="alternate" type="text/html" title="书-跌倒没关系,没人看见就好" /><published>2024-09-01T11:24:29+08:00</published><updated>2024-09-01T11:24:29+08:00</updated><id>http://localhost:4000/review/life/2024/09/01/review014</id><content type="html" xml:base="http://localhost:4000/review/life/2024/09/01/review014.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
 
 <p>一本散文书籍</p>
 
@@ -47,307 +535,4 @@
     - 决策
 - 四方形
     - 策略 -->
-<!-- 需要回去再了解,看的不是很懂,可能自己身体生病了 -->]]></content><author><name></name></author><category term="review" /><category term="financial" /><summary type="html"><![CDATA[阅读书本前 一本纸质书 书评 金融赛局 : financial theory of game 简单从来不是一件简单的事,引用艾伊斯坦的想法,简单可以但是不要过于简单,如果解释可以更简单表示你真的懂了 适当的资产配置是投资成功的关键,也就是不要一味的投资股票和债券 由自己的人生做出适合的配置(投资组合) : 理解投資組合會有波動，預先設定情緒控管方式與應對策略 评后感 2019年的一本书,教导我关于资金的想法，使用几何学的观念]]></summary></entry><entry><title type="html">极简生活家的日常</title><link href="http://localhost:4000/life/2024/08/30/life.html" rel="alternate" type="text/html" title="极简生活家的日常" /><published>2024-08-30T11:24:29+08:00</published><updated>2024-08-30T11:24:29+08:00</updated><id>http://localhost:4000/life/2024/08/30/life</id><content type="html" xml:base="http://localhost:4000/life/2024/08/30/life.html"><![CDATA[<p>当我有读<code>&lt;&lt;简单丰富的生活提案&gt;&gt;</code>时,立志要成为一名极简生活家,但也不怎么极简到极致,曾经想过要买一个睡袋来代替床,但不理智有点过度追求极简.</p>
-
-<p>极简生活家要购买奢侈品吗?这也是一种想法,但是看完<code>&lt;&lt;精準購買&gt;&gt;</code>就发现可以买但是天花板的高度要掌握,不然将会成为一个一般人.</p>
-
-<p>引用叔本华的观念 : 人一直都在追求欲望过程从新欲望中带来的痛苦,受虐狂?</p>
-
-<p>从居住自由,购物自由,思想自由(学习自由)等都能从中找到作者要的极简生活家的态度但时要修正</p>
-
-<p>我的极简生活很单调,只为了学习无论是什么只要有兴趣都想尝试学习</p>
-
-<p style="color:blue;">期待未来一年后的自己,当然必须是有学习的开始.</p>]]></content><author><name></name></author><category term="life" /><summary type="html"><![CDATA[当我有读&lt;&lt;简单丰富的生活提案&gt;&gt;时,立志要成为一名极简生活家,但也不怎么极简到极致,曾经想过要买一个睡袋来代替床,但不理智有点过度追求极简. 极简生活家要购买奢侈品吗?这也是一种想法,但是看完&lt;&lt;精準購買&gt;&gt;就发现可以买但是天花板的高度要掌握,不然将会成为一个一般人. 引用叔本华的观念 : 人一直都在追求欲望过程从新欲望中带来的痛苦,受虐狂? 从居住自由,购物自由,思想自由(学习自由)等都能从中找到作者要的极简生活家的态度但时要修正 我的极简生活很单调,只为了学习无论是什么只要有兴趣都想尝试学习 期待未来一年后的自己,当然必须是有学习的开始.]]></summary></entry><entry><title type="html">书-我简单丰富的生活提案</title><link href="http://localhost:4000/review/minimalist/2024/08/30/review010.html" rel="alternate" type="text/html" title="书-我简单丰富的生活提案" /><published>2024-08-30T11:24:29+08:00</published><updated>2024-08-30T11:24:29+08:00</updated><id>http://localhost:4000/review/minimalist/2024/08/30/review010</id><content type="html" xml:base="http://localhost:4000/review/minimalist/2024/08/30/review010.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
-
-<p>极简主义的极简生活家? 名誉高?</p>
-
-<h3 id="书评">书评</h3>
-
-<ul>
-  <li>一个人生活
-    <ul>
-      <li>一个睡袋</li>
-      <li>一个枕头</li>
-      <li>一个小桌子</li>
-      <li>一个洗衣篮</li>
-      <li>一个收纳盒</li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="居住自由">居住自由</h4>
-<p>一旦決定「錢要花在哪裡、不花在哪裡」，也等於弄清楚，「對自己來說，什麼才是幸福的。」</p>
-
-<p>還有，我們應該刪減的「無用」，不只是金錢花費或者物品的數量，還應該全面拓展至人生，包括：生活形態，甚至是人際關係。
-　
-錢．極簡（花費）
-物．極簡（物質）
-時．極簡（時間）
-人．極簡（人際關係）
-事．極簡（思考、行動）</p>
-
-<p>極簡生活的開端，可以是任何的原因。不單單只是物品，而是能將極簡主義應用到人生所有的面向，才稱得上是極簡生活家。</p>
-
-<p>同时极简生活成本</p>
-
-<h4 id="物品自由">物品自由</h4>
-
-<p>我認為，現今這個時代，社會潮流已經從「持有」物品，轉向了租借或共用等，「暫時使用」的服務系統。</p>
-
-<p>一個人的必需品會隨著內心「無法妥協的部分」，或者身處的環境而改變。最重要的是，你要將「必要的最低限度」鎖定在自己在乎的地方，以及判斷「為什麼選它擔任必需品」的能力。不是堅持「東西愈少愈好」，就是正確的。</p>
-
-<p>不持有也可以租借</p>
-
-<p>「是否真的需要」，再來購買。然後，購買時請選擇「不用的話，可以賣得掉」的物品，發現自己用不到的時候，請儘快脫手。將不用的東西囤積到年底再出清，不僅浪費空間也浪費了時間。</p>
-
-<p>不知道要不要丟掉的東西，就丟掉吧！</p>
-
-<p>將嗜好轉化為寫文章、拍照或影片，分享在社群網站
-在部落格紓發對於書本或電影的感想</p>
-
-<p>那麼，想從「靠購物，紓解壓力」的狀況中解脫，又該怎麼做呢。
-答案是，「從消費者變成生產者」。</p>
-
-<p>消費行為：花錢成為「被賦予」的一方
-生產行為：自己生產成為「給予」的一方</p>
-
-<h4 id="身体自由">身体自由</h4>
-
-<p>【早餐】起床時，喝一杯混入食物纖維「菊粉」粉末的水。
-【午餐】喝一杯以補充蛋白質為主、像是豆漿這類的飲品。外出的話，就在咖啡廳點咖啡之類的飲品。
-【晚餐】主食是糙米或地瓜，蛋白質來源則是鯖魚罐頭、鮭魚等新鮮魚類，以及酪梨之類的水果、蔬菜湯等等。</p>
-
-<p>儘管「一日一餐」的好處多多，然而突然就要實踐的話，可能還是會有人覺得很困難吧。建議你，不妨從「一日兩餐」開始挑戰。免去的那一餐可用蔬菜汁或者豆漿替換。減少卡路里攝取量的同時，還可以消除飢餓感。
-突然改變長年以來的飲食習慣是有危險的，我的建議是，最好一點一點的改變。只因為「午休時間到了」，明明不餓總之還是吃點什麼吧。如果你有這樣的習慣，那麼還是立刻戒除這種有負擔的飲食習慣吧。
-　
-不拘泥於每天一定要吃足三餐，
-解放你的身體和心靈。
-极简饮食</p>
-
-<h4 id="时间自由">时间自由</h4>
-
-<p>不過，一旦習慣了「生產」，之前的「消費」也會轉化成「為了生產而消費」。</p>
-
-<p>早上 营养品
-午餐 吃
-晚餐 吃</p>
-
-<p>以时间(工作时间)看价格</p>
-
-<h4 id="思想自由">思想自由</h4>
-
-<p>連不需要的物品都「不想失去」，老是緊握著一切不想放手，也難怪會陷入杞人憂天的困境了。請試著摒棄雜念，過著「一身輕盈」的生活吧。</p>
-
-<p>必需品可以花,有天花板</p>
-
-<p>時刻警惕，
-避免習慣浪費或奢侈。</p>
-
-<p>連不需要的物品都「不想失去」，老是緊握著一切不想放手，也難怪會陷入杞人憂天的困境了。請試著摒棄雜念，過著「一身輕盈」的生活吧。</p>
-
-<h3 id="评后感">评后感</h3>
-
-<p>期待一个人生活</p>]]></content><author><name></name></author><category term="review" /><category term="minimalist" /><summary type="html"><![CDATA[阅读书本前 极简主义的极简生活家? 名誉高? 书评 一个人生活 一个睡袋 一个枕头 一个小桌子 一个洗衣篮 一个收纳盒 居住自由 一旦決定「錢要花在哪裡、不花在哪裡」，也等於弄清楚，「對自己來說，什麼才是幸福的。」 還有，我們應該刪減的「無用」，不只是金錢花費或者物品的數量，還應該全面拓展至人生，包括：生活形態，甚至是人際關係。 　 錢．極簡（花費） 物．極簡（物質） 時．極簡（時間） 人．極簡（人際關係） 事．極簡（思考、行動） 極簡生活的開端，可以是任何的原因。不單單只是物品，而是能將極簡主義應用到人生所有的面向，才稱得上是極簡生活家。 同时极简生活成本 物品自由 我認為，現今這個時代，社會潮流已經從「持有」物品，轉向了租借或共用等，「暫時使用」的服務系統。 一個人的必需品會隨著內心「無法妥協的部分」，或者身處的環境而改變。最重要的是，你要將「必要的最低限度」鎖定在自己在乎的地方，以及判斷「為什麼選它擔任必需品」的能力。不是堅持「東西愈少愈好」，就是正確的。 不持有也可以租借 「是否真的需要」，再來購買。然後，購買時請選擇「不用的話，可以賣得掉」的物品，發現自己用不到的時候，請儘快脫手。將不用的東西囤積到年底再出清，不僅浪費空間也浪費了時間。 不知道要不要丟掉的東西，就丟掉吧！ 將嗜好轉化為寫文章、拍照或影片，分享在社群網站 在部落格紓發對於書本或電影的感想 那麼，想從「靠購物，紓解壓力」的狀況中解脫，又該怎麼做呢。 答案是，「從消費者變成生產者」。 消費行為：花錢成為「被賦予」的一方 生產行為：自己生產成為「給予」的一方 身体自由 【早餐】起床時，喝一杯混入食物纖維「菊粉」粉末的水。 【午餐】喝一杯以補充蛋白質為主、像是豆漿這類的飲品。外出的話，就在咖啡廳點咖啡之類的飲品。 【晚餐】主食是糙米或地瓜，蛋白質來源則是鯖魚罐頭、鮭魚等新鮮魚類，以及酪梨之類的水果、蔬菜湯等等。 儘管「一日一餐」的好處多多，然而突然就要實踐的話，可能還是會有人覺得很困難吧。建議你，不妨從「一日兩餐」開始挑戰。免去的那一餐可用蔬菜汁或者豆漿替換。減少卡路里攝取量的同時，還可以消除飢餓感。 突然改變長年以來的飲食習慣是有危險的，我的建議是，最好一點一點的改變。只因為「午休時間到了」，明明不餓總之還是吃點什麼吧。如果你有這樣的習慣，那麼還是立刻戒除這種有負擔的飲食習慣吧。 　 不拘泥於每天一定要吃足三餐， 解放你的身體和心靈。 极简饮食 时间自由 不過，一旦習慣了「生產」，之前的「消費」也會轉化成「為了生產而消費」。 早上 营养品 午餐 吃 晚餐 吃 以时间(工作时间)看价格 思想自由 連不需要的物品都「不想失去」，老是緊握著一切不想放手，也難怪會陷入杞人憂天的困境了。請試著摒棄雜念，過著「一身輕盈」的生活吧。 必需品可以花,有天花板 時刻警惕， 避免習慣浪費或奢侈。 連不需要的物品都「不想失去」，老是緊握著一切不想放手，也難怪會陷入杞人憂天的困境了。請試著摒棄雜念，過著「一身輕盈」的生活吧。 评后感 期待一个人生活]]></summary></entry><entry><title type="html">书-获利3公式</title><link href="http://localhost:4000/review/financial/2024/08/30/review011.html" rel="alternate" type="text/html" title="书-获利3公式" /><published>2024-08-30T11:24:29+08:00</published><updated>2024-08-30T11:24:29+08:00</updated><id>http://localhost:4000/review/financial/2024/08/30/review011</id><content type="html" xml:base="http://localhost:4000/review/financial/2024/08/30/review011.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
-
-<p>看完是否可以财富自由?</p>
-
-<h3 id="书评">书评</h3>
-
-<p>薩繆森比例策略?</p>
-
-<p>槓桿投資工具</p>
-
-<ul>
-  <li>要實現槓桿投資，可以使用以下三種工具：
-    <ul>
-      <li>股票指數選擇權</li>
-      <li>股票指數期貨</li>
-      <li>槓桿ETF</li>
-    </ul>
-  </li>
-</ul>
-
-<p>SPY Leap實例</p>
-
-<p>• 作者喜歡兩年期、美國S&amp;P500 ETF – SPY的 LEAP 看漲期權，買履約價為當前指數價格一半的期權，實現 2：1 的槓桿比例。</p>
-
-<p>• 筆者實際舉例：2/9/2024的SPY報價$499.34。1/16/2026年到期的SPY 履約價 250 Call選擇權報價$263。買入一口Call的總資金是$263，未來履約還要支付$250，總成本是$263+$250=$513。目前SPY價值$499.34，多付出的$513-$499.34=$13.66就是持有選擇權的成本。借貸金額是$499.34-$263=$236.34。換算成年化利息成本就是13.66/236.34/2年=2.89% (這與書中計算的0.8%相差頗大)。但持有選擇權無法獲得股息。交易成本約$2。</p>
-
-<p>ES期貨實例</p>
-
-<p>• 指數期貨建議使用E-mini S&amp;P 500 Futures 小標普500指數期貨 (ES)，保證金約為$13000</p>
-
-<p>• 筆者實際舉例：2/9/2024的3月/2024 ES期貨保證金$12980(浮動)，Multiplier 50 (指數一點等同$50)，目前指數5025×50=$251,250(每口期貨等同價值)。槓桿倍數約19倍。若買入近期期貨，每季要轉倉到下一季，全部要進行8次的買與賣，交易成本約為$2×16=$32。缺點是每口的價值很大，無法切割成更小的單位來交易。持有期貨也無法獲得股息。如果期貨下跌，需要捕交保證金。</p>
-
-<p>2倍槓桿ETF實例</p>
-
-<p>• 2倍槓桿的S&amp;P 500指數ETF – <strong>ProShares Ultra S&amp;P500 (</strong>SSO)，管理費0.91%/年。因為ETF每日都透過再平衡讓槓桿保持在2倍。若以一年績效來看，槓桿ETF總收益並不會等同於S&amp;P500指數的2倍。有時收益會更高，也可能較低。以2023年為例，SPY獲利為26.19%，SSO獲利為46.66%，少了5.72%利潤。</p>
-
-<p>重新調整槓桿比例</p>
-
-<p>• 因為重新調整需要交易成本，只有在市場超過10%左右的波動才值得調整。調整的頻率不要超過一個季度一次。</p>
-
-<p>投資TIPS ETF</p>
-
-<p>• TIPS 的優勢在於它是與實際利率掛鈎的，這也正是投資債券的金錢應該都投在 TIPS 中的原因。可以利用TIPS的ETF來投資，參考iShares TIPS Bond ETF (TIP)。</p>
-
-<p>「按照一生的財富來分配投資比例，而不是你當前的存款。」是本書反覆倡導的核心思想。</p>
-
-<h3 id="评后感">评后感</h3>
-
-<p>「按照一生的財富來分配投資比例，而不是你當前的存款。」是本書反覆倡導的核心思想。</p>]]></content><author><name></name></author><category term="review" /><category term="financial" /><summary type="html"><![CDATA[阅读书本前 看完是否可以财富自由? 书评 薩繆森比例策略? 槓桿投資工具 要實現槓桿投資，可以使用以下三種工具： 股票指數選擇權 股票指數期貨 槓桿ETF SPY Leap實例 • 作者喜歡兩年期、美國S&amp;P500 ETF – SPY的 LEAP 看漲期權，買履約價為當前指數價格一半的期權，實現 2：1 的槓桿比例。 • 筆者實際舉例：2/9/2024的SPY報價$499.34。1/16/2026年到期的SPY 履約價 250 Call選擇權報價$263。買入一口Call的總資金是$263，未來履約還要支付$250，總成本是$263+$250=$513。目前SPY價值$499.34，多付出的$513-$499.34=$13.66就是持有選擇權的成本。借貸金額是$499.34-$263=$236.34。換算成年化利息成本就是13.66/236.34/2年=2.89% (這與書中計算的0.8%相差頗大)。但持有選擇權無法獲得股息。交易成本約$2。 ES期貨實例 • 指數期貨建議使用E-mini S&amp;P 500 Futures 小標普500指數期貨 (ES)，保證金約為$13000 • 筆者實際舉例：2/9/2024的3月/2024 ES期貨保證金$12980(浮動)，Multiplier 50 (指數一點等同$50)，目前指數5025×50=$251,250(每口期貨等同價值)。槓桿倍數約19倍。若買入近期期貨，每季要轉倉到下一季，全部要進行8次的買與賣，交易成本約為$2×16=$32。缺點是每口的價值很大，無法切割成更小的單位來交易。持有期貨也無法獲得股息。如果期貨下跌，需要捕交保證金。 2倍槓桿ETF實例 • 2倍槓桿的S&amp;P 500指數ETF – ProShares Ultra S&amp;P500 (SSO)，管理費0.91%/年。因為ETF每日都透過再平衡讓槓桿保持在2倍。若以一年績效來看，槓桿ETF總收益並不會等同於S&amp;P500指數的2倍。有時收益會更高，也可能較低。以2023年為例，SPY獲利為26.19%，SSO獲利為46.66%，少了5.72%利潤。 重新調整槓桿比例 • 因為重新調整需要交易成本，只有在市場超過10%左右的波動才值得調整。調整的頻率不要超過一個季度一次。 投資TIPS ETF • TIPS 的優勢在於它是與實際利率掛鈎的，這也正是投資債券的金錢應該都投在 TIPS 中的原因。可以利用TIPS的ETF來投資，參考iShares TIPS Bond ETF (TIP)。 「按照一生的財富來分配投資比例，而不是你當前的存款。」是本書反覆倡導的核心思想。 评后感 「按照一生的財富來分配投資比例，而不是你當前的存款。」是本書反覆倡導的核心思想。]]></summary></entry><entry><title type="html">书-精準購買</title><link href="http://localhost:4000/review/minimalist/2024/08/30/review012.html" rel="alternate" type="text/html" title="书-精準購買" /><published>2024-08-30T11:24:29+08:00</published><updated>2024-08-30T11:24:29+08:00</updated><id>http://localhost:4000/review/minimalist/2024/08/30/review012</id><content type="html" xml:base="http://localhost:4000/review/minimalist/2024/08/30/review012.html"><![CDATA[<p>精準購買：比「斷捨離」更極簡、永續的究極之道 (塔拉．巴頓(Tara Button))</p>
-
-<h3 id="阅读书本前">阅读书本前</h3>
-
-<p>购物的想法认识?</p>
-
-<h3 id="书评">书评</h3>
-
-<p>我們會納悶什麼才是符合極簡生活的物品，也常會因為不知道某個物品是否真的必要，而陷入買與不買的矛盾中。</p>
-
-<p>广告和计划性报废决定购买欲望
-不需要就抛弃或者脱手
-需要对自己定义很多事情，很多时候把奢侈品定义为必需品。</p>
-
-<p>發掘人生的目的
-每個人的精力都有限，不可能樣樣精通。你想窮一生之力去實現的理想是什麼？你在有生之年最想創造的是什麼？請回答下列問題，並不假思索地寫下答案。
-• 你上次感嘆時間過得好快時是什麼時候？
-• 你會為了什麼而不惜付出任何代價？
-• 你小時候對什麼最有興趣？
-• 如果你有必定成功的把握，你最想做什麼？
-• 有什麼事是你就算沒成功的把握，也願意去做的？
-• 你想幫忙解決世上哪些問題？
-• 有什麼事會讓你得到平靜和力量？</p>
-
-<p>购物是人必要的事，但是通过”合理”购买（看品质，成本）。</p>
-
-<p>成為精挑細選高手的十個祕訣</p>
-<ol>
-  <li>看清各種蠱惑人心，讓你盲目消費，無法精挑細選的花招。</li>
-  <li>利用我教的技巧，擺脫外界操控，獨立自主地細心選擇。</li>
-  <li>找出自己人生的理想。</li>
-  <li>找出能讓你達成人生理想的長期優先考量因素。</li>
-  <li>你不必考慮你要購買的東西，是否能彰顯出你身分。你只需要想想哪些東西符合這些考量，又能讓你過得舒適。</li>
-  <li>找出你最基本的美學觀、自我風格，和適合你需求的物品。</li>
-  <li>找出你的價值觀，和最能反映出這種價值觀的品牌。</li>
-  <li>列出你擁有的物品清單，以便了解自己的品味、優先考量因素和購物習慣。</li>
-  <li>丟掉多餘的東西，並認清哪些是你不需要的東西。</li>
-  <li>你已經知道自己的長期優先考量因素和品味了，在購買每個新物品時，一定要考慮到它們。</li>
-</ol>
-
-<h3 id="评后感">评后感</h3>
-
-<p>一开始介绍外界的干扰,后提出自己的想法,看完后有对于购物有一定的想法,在于家电和长期的使用物品例如节能和耐久</p>]]></content><author><name></name></author><category term="review" /><category term="minimalist" /><summary type="html"><![CDATA[精準購買：比「斷捨離」更極簡、永續的究極之道 (塔拉．巴頓(Tara Button)) 阅读书本前 购物的想法认识? 书评 我們會納悶什麼才是符合極簡生活的物品，也常會因為不知道某個物品是否真的必要，而陷入買與不買的矛盾中。 广告和计划性报废决定购买欲望 不需要就抛弃或者脱手 需要对自己定义很多事情，很多时候把奢侈品定义为必需品。 發掘人生的目的 每個人的精力都有限，不可能樣樣精通。你想窮一生之力去實現的理想是什麼？你在有生之年最想創造的是什麼？請回答下列問題，並不假思索地寫下答案。 • 你上次感嘆時間過得好快時是什麼時候？ • 你會為了什麼而不惜付出任何代價？ • 你小時候對什麼最有興趣？ • 如果你有必定成功的把握，你最想做什麼？ • 有什麼事是你就算沒成功的把握，也願意去做的？ • 你想幫忙解決世上哪些問題？ • 有什麼事會讓你得到平靜和力量？ 购物是人必要的事，但是通过”合理”购买（看品质，成本）。 成為精挑細選高手的十個祕訣 看清各種蠱惑人心，讓你盲目消費，無法精挑細選的花招。 利用我教的技巧，擺脫外界操控，獨立自主地細心選擇。 找出自己人生的理想。 找出能讓你達成人生理想的長期優先考量因素。 你不必考慮你要購買的東西，是否能彰顯出你身分。你只需要想想哪些東西符合這些考量，又能讓你過得舒適。 找出你最基本的美學觀、自我風格，和適合你需求的物品。 找出你的價值觀，和最能反映出這種價值觀的品牌。 列出你擁有的物品清單，以便了解自己的品味、優先考量因素和購物習慣。 丟掉多餘的東西，並認清哪些是你不需要的東西。 你已經知道自己的長期優先考量因素和品味了，在購買每個新物品時，一定要考慮到它們。 评后感 一开始介绍外界的干扰,后提出自己的想法,看完后有对于购物有一定的想法,在于家电和长期的使用物品例如节能和耐久]]></summary></entry><entry><title type="html">书-时间管理(简单有趣的个人管理)</title><link href="http://localhost:4000/review/time%20management/2024/08/29/review009.html" rel="alternate" type="text/html" title="书-时间管理(简单有趣的个人管理)" /><published>2024-08-29T11:24:29+08:00</published><updated>2024-08-29T11:24:29+08:00</updated><id>http://localhost:4000/review/time%20management/2024/08/29/review009</id><content type="html" xml:base="http://localhost:4000/review/time%20management/2024/08/29/review009.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
-
-<p>又是时间管理…</p>
-
-<h3 id="书评">书评</h3>
-
-<p>时间花到哪里?</p>
-
-<p>决策正确?</p>
-
-<p>过去72小时怎么花费时间?</p>
-
-<p>针对时间花费从而管理时间以到达目标</p>
-
-<p>期待所拥有时间发挥最大效用</p>
-
-<p>在拖延时即时计划并执行打破拖延</p>
-
-<p>不能懒床</p>
-
-<h3 id="评后感">评后感</h3>
-
-<p>不能懒床需要努力,毕竟现在生活很没有挑战性</p>
-
-<p>拖延即时处理的方向,需要思考,要怎么才能避免浪费时间</p>]]></content><author><name></name></author><category term="review" /><category term="time management" /><summary type="html"><![CDATA[阅读书本前 又是时间管理… 书评 时间花到哪里? 决策正确? 过去72小时怎么花费时间? 针对时间花费从而管理时间以到达目标 期待所拥有时间发挥最大效用 在拖延时即时计划并执行打破拖延 不能懒床 评后感 不能懒床需要努力,毕竟现在生活很没有挑战性 拖延即时处理的方向,需要思考,要怎么才能避免浪费时间]]></summary></entry><entry><title type="html">书-遇见你之前</title><link href="http://localhost:4000/review/novel/2024/08/28/review008.html" rel="alternate" type="text/html" title="书-遇见你之前" /><published>2024-08-28T11:24:29+08:00</published><updated>2024-08-28T11:24:29+08:00</updated><id>http://localhost:4000/review/novel/2024/08/28/review008</id><content type="html" xml:base="http://localhost:4000/review/novel/2024/08/28/review008.html"><![CDATA[<p>me before you</p>
-
-<h3 id="阅读书本前">阅读书本前</h3>
-
-<p>爱情小说?</p>
-
-<h3 id="书评">书评</h3>
-
-<p>讨论安乐死和四肢瘫痪患者与全新女性的故事,</p>
-
-<p>女的魅力在于活泼可爱</p>
-
-<p>心路历程从成功的企业家变成不得意的青年</p>
-
-<p>最大的遗憾没有办法真正的爱一个人</p>
-
-<h3 id="评后感">评后感</h3>
-
-<p>一部悲喜剧,探讨不能行动的人和积极复健同时讨论安乐死的议题</p>
-
-<p>如果是我,会承担种种不快乐</p>
-
-<p>专心研究自己的身体</p>
-
-<p>并把一切转成学习的热诚</p>
-
-<p>而不是自杀?</p>
-
-<p>真的有能力做到吗?</p>]]></content><author><name></name></author><category term="review" /><category term="novel" /><summary type="html"><![CDATA[me before you 阅读书本前 爱情小说? 书评 讨论安乐死和四肢瘫痪患者与全新女性的故事, 女的魅力在于活泼可爱 心路历程从成功的企业家变成不得意的青年 最大的遗憾没有办法真正的爱一个人 评后感 一部悲喜剧,探讨不能行动的人和积极复健同时讨论安乐死的议题 如果是我,会承担种种不快乐 专心研究自己的身体 并把一切转成学习的热诚 而不是自杀? 真的有能力做到吗?]]></summary></entry><entry><title type="html">书-不熬夜,不死背睡前一分钟</title><link href="http://localhost:4000/review/sleep/2024/08/27/review007.html" rel="alternate" type="text/html" title="书-不熬夜,不死背睡前一分钟" /><published>2024-08-27T11:24:29+08:00</published><updated>2024-08-27T11:24:29+08:00</updated><id>http://localhost:4000/review/sleep/2024/08/27/review007</id><content type="html" xml:base="http://localhost:4000/review/sleep/2024/08/27/review007.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
-
-<p>期待怎么掌握睡前一分钟</p>
-
-<h3 id="书评">书评</h3>
-
-<p><img src="img/note.png" alt="view" /></p>
-
-<p>不要太多书页: 1分钟</p>
-
-<p>一直看下去不要回头看 翻阅读书
-os : 适合小说</p>
-
-<p>先理解再记忆,比起死背大致理解更重要</p>
-
-<p>重点纸卡随身放进口袋</p>
-
-<p>给予大脑刺激,大脑就会了解”它很重要”,要记忆
-睡前比早起更重要</p>
-
-<p>夜晚不是一天的结束,而是一天的开始</p>
-
-<h3 id="评后感">评后感</h3>
-
-<p>重点很少,看完了</p>]]></content><author><name></name></author><category term="review" /><category term="sleep" /><summary type="html"><![CDATA[阅读书本前 期待怎么掌握睡前一分钟 书评 不要太多书页: 1分钟 一直看下去不要回头看 翻阅读书 os : 适合小说 先理解再记忆,比起死背大致理解更重要 重点纸卡随身放进口袋 给予大脑刺激,大脑就会了解”它很重要”,要记忆 睡前比早起更重要 夜晚不是一天的结束,而是一天的开始 评后感 重点很少,看完了]]></summary></entry><entry><title type="html">书-快速捉重点,过目不忘的读书术</title><link href="http://localhost:4000/review/learn/2024/08/24/review006.html" rel="alternate" type="text/html" title="书-快速捉重点,过目不忘的读书术" /><published>2024-08-24T11:24:29+08:00</published><updated>2024-08-24T11:24:29+08:00</updated><id>http://localhost:4000/review/learn/2024/08/24/review006</id><content type="html" xml:base="http://localhost:4000/review/learn/2024/08/24/review006.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
-
-<p>了解中</p>
-
-<h3 id="书评">书评</h3>
-
-<p>阅读行为</p>
-
-<p>旧时阅读 慢看,效率低
-新式阅读 快看,不过脑</p>
-
-<p>经过小说渲染通常都以新式阅读习惯干扰</p>
-
-<p style="color: purple;">阅读是一种习惯不能被作为特别的事情</p>
-
-<p style="color: purple;">决定明天要读什么书,与昨天不一样的书</p>
-
-<p>书分类 :</p>
-<ul>
-  <li>快速阅读</li>
-  <li>非快速阅读</li>
-  <li>不看也可以</li>
-</ul>
-
-<p>晨间阅读 :</p>
-<ul>
-  <li>打开窗口</li>
-  <li>上班前</li>
-  <li>咖啡馆</li>
-</ul>
-
-<p>记得引用作者的想法作为笔记一种.</p>
-
-<p>一小时读书 : 分两类阅读,每次 30/30</p>
-
-<h3 id="评后感">评后感</h3>
-
-<p>试看看享受阅读时间就1小时!</p>]]></content><author><name></name></author><category term="review" /><category term="learn" /><summary type="html"><![CDATA[阅读书本前 了解中 书评 阅读行为 旧时阅读 慢看,效率低 新式阅读 快看,不过脑 经过小说渲染通常都以新式阅读习惯干扰 阅读是一种习惯不能被作为特别的事情 决定明天要读什么书,与昨天不一样的书 书分类 : 快速阅读 非快速阅读 不看也可以 晨间阅读 : 打开窗口 上班前 咖啡馆 记得引用作者的想法作为笔记一种. 一小时读书 : 分两类阅读,每次 30/30 评后感 试看看享受阅读时间就1小时!]]></summary></entry></feed>
+<!-- 需要回去再了解,看的不是很懂,可能自己身体生病了 -->]]></content><author><name></name></author><category term="review" /><category term="financial" /><summary type="html"><![CDATA[阅读书本前 一本纸质书 书评 金融赛局 : financial theory of game 简单从来不是一件简单的事,引用艾伊斯坦的想法,简单可以但是不要过于简单,如果解释可以更简单表示你真的懂了 适当的资产配置是投资成功的关键,也就是不要一味的投资股票和债券 由自己的人生做出适合的配置(投资组合) : 理解投資組合會有波動，預先設定情緒控管方式與應對策略 评后感 2019年的一本书,教导我关于资金的想法，使用几何学的观念]]></summary></entry></feed>
