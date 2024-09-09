@@ -1,117 +1,188 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-09-06T13:03:21+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">g</title><subtitle>Keep Write | Keep Life</subtitle><entry><title type="html">03/30-flask 模板介绍</title><link href="http://localhost:4000/python/flask/challenge/2024/09/06/pl_03.html" rel="alternate" type="text/html" title="03/30-flask 模板介绍" /><published>2024-09-06T11:24:29+08:00</published><updated>2024-09-06T11:24:29+08:00</updated><id>http://localhost:4000/python/flask/challenge/2024/09/06/pl_03</id><content type="html" xml:base="http://localhost:4000/python/flask/challenge/2024/09/06/pl_03.html"><![CDATA[<h3 id="1-模板系统">1. 模板系统</h3>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-09-09T15:53:21+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">g</title><subtitle>Keep Write | Keep Life</subtitle><entry><title type="html">books-整理想法的技术</title><link href="http://localhost:4000/review/collect/2024/09/09/review022.html" rel="alternate" type="text/html" title="books-整理想法的技术" /><published>2024-09-09T11:24:29+08:00</published><updated>2024-09-09T11:24:29+08:00</updated><id>http://localhost:4000/review/collect/2024/09/09/review022</id><content type="html" xml:base="http://localhost:4000/review/collect/2024/09/09/review022.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
 
-<p>Flask 支持 Jinja2 模板引擎，可以用来生成 HTML 页面。</p>
+<p>思考怎么把脑中的想法输出</p>
 
-<ol>
-  <li>创建一个 <code>templates</code> 文件夹，在里面创建 <code>index.html</code> 文件：</li>
-</ol>
+<h3 id="书评">书评</h3>
 
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;Flask App&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;&lt;/h1&gt;
-    &lt;p&gt;&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<p><img src="img/SmartSelect_1.jpg" alt="想法1" /></p>
 
-<ol>
-  <li>修改 <code>app.py</code> 来渲染这个模板：</li>
-</ol>
+<p>通过曼陀罗图整理想法</p>
 
-<pre><code class="language-python">from flask import Flask, render_template
+<p><img src="img/SmartSelect_2.jpg" alt="想法2" /></p>
 
-app = Flask(__name__)
+<p>演说要准备的内容</p>
 
-@app.route('/')
-def home():
-    return render_template('index.html', title='Welcome to Flask', message='This is a Flask web application.')
+<p><img src="img/SmartSelect_3.jpg" alt="演讲" /></p>
 
-if __name__ == '__main__':
-    app.run(debug=True)
-</code></pre>
+<h3 id="评后感">评后感</h3>
 
-<p>访问 <code>http://127.0.0.1:5000/</code> 将会显示渲染后的 HTML 页面，替换了模板中的 <code>和</code>。</p>
+<p>图表</p>
+<ul>
+  <li>曼陀罗图</li>
+  <li>心智图</li>
+  <li>3逻辑图</li>
+</ul>
 
-<h3 id="2-表单处理">2. 表单处理</h3>
+<p>3张图就结束了,算有收获和演讲也可以利用
+阅读就还好</p>
 
-<p>Flask 支持处理表单数据。</p>
+<p>3个重点复习</p>
+<ul>
+  <li>阅读书本前</li>
+  <li>书评</li>
+  <li>评后感</li>
+</ul>
 
-<ol>
-  <li>创建一个简单的表单页面，在 <code>templates</code> 文件夹中创建 <code>form.html</code> 文件：</li>
-</ol>
+<p>演讲内容通过子弹笔记法</p>]]></content><author><name></name></author><category term="review" /><category term="collect" /><summary type="html"><![CDATA[阅读书本前 思考怎么把脑中的想法输出 书评 通过曼陀罗图整理想法 演说要准备的内容 评后感 图表 曼陀罗图 心智图 3逻辑图 3张图就结束了,算有收获和演讲也可以利用 阅读就还好 3个重点复习 阅读书本前 书评 评后感 演讲内容通过子弹笔记法]]></summary></entry><entry><title type="html">书-疯狂行销</title><link href="http://localhost:4000/review/marketing/2024/09/08/review021.html" rel="alternate" type="text/html" title="书-疯狂行销" /><published>2024-09-08T11:24:29+08:00</published><updated>2024-09-08T11:24:29+08:00</updated><id>http://localhost:4000/review/marketing/2024/09/08/review021</id><content type="html" xml:base="http://localhost:4000/review/marketing/2024/09/08/review021.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
 
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;Flask Form&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;form method="POST" action="/submit"&gt;
-        Name: &lt;input type="text" name="name"&gt;&lt;br&gt;
-        &lt;input type="submit" value="Submit"&gt;
-    &lt;/form&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<p>疯狂的行销想法,遵守6大原则就能做行销</p>
 
-<ol>
-  <li>在 <code>app.py</code> 中添加处理表单提交的逻辑：</li>
-</ol>
+<h3 id="书评">书评</h3>
 
-<pre><code class="language-python">from flask import Flask, render_template, request
+<p>原則一──社交身價 Social Currency</p>
 
-app = Flask(__name__)
+<blockquote>
+  <p>分享自我,创造话题:黑色卫生纸,内在不可思议的</p>
+</blockquote>
 
-@app.route('/')
-def home():
-    return render_template('form.html')
+<p>人們在侃侃而談一項產品、創意或理念時，會讓自己看起來怎樣？大部分的人喜歡自己看起來很聰明，不要像笨蛋；有錢，不要像窮光蛋；很酷，不要像麻瓜。就像服飾與車子，我們談論的事情也會影響別人對我們的看法。這就是「社交身價」。知道很酷的事情，例如一台可以打碎iPhone的調理機，會讓人看起來很厲害，而且神通廣大。所以要讓人們談論，我們必須精心打造訊息，以達到這些他們想留給別人的印象。我們必須找出產品、創意或理念的內在不可思議性，讓別人覺得自己像個「內行人」。我們必須運用遊戲機制，讓人們有辦法獲致地位象徵，展現給別人看。 　</p>
 
-@app.route('/submit', methods=['POST'])
-def submit():
-    name = request.form['name']
-    return f"Hello, {name}!"
+<p>原則二──觸發物 Triggers 　</p>
 
-if __name__ == '__main__':
-    app.run(debug=True)
-</code></pre>
+<blockquote>
+  <p>联想</p>
+</blockquote>
 
-<p>现在，当你访问 <code>http://127.0.0.1:5000/</code> 并提交表单时，会显示提交的名字。</p>
+<p>要如何提醒人們談論我們的產品、創意或理念？觸發物是喚起人們聯想到相關事物的刺激物。花生醬會讓我們想到果醬，狗會讓我們想到貓。如果你住在費城，看到乳酪牛排三明治，可能會想到巴克利牛排餐廳那道一百塊美金的黃金頂級三明治。人們通常想到什麼就會聊什麼，所以當他們愈常想到一件產品、創意或理念，就愈會聊起它。我們必須設計會在環境上觸發人們聯想到的產品、創意或理念，並將我們的產品與該環境的流行事物連結起來，以創造出新的觸發物。心口相通，我們心中想到什麼，很容易就從嘴巴說出。 　</p>
 
-<h3 id="3-静态文件">3. 静态文件</h3>
+<p>原則三──情緒 Emotion 　</p>
 
-<p>Flask 可以轻松提供静态文件（如 CSS、JS、图片等）。</p>
+<p>當我們在意，我們就會分享。所以要怎麼打造訊息和理念，讓人們有感覺？富感染力的內容本來就比較能激發某種情緒。一支iPhone被攪碎令人大感吃驚，增稅的消息則讓人聽了怒火中燒。激發情緒的事物通常會被分享出去。所以與其反覆強調功能，不如專注在人們的感受上。但正如我們會在後文中談到的，有些情緒能促進分享行為，有些可能會降低。所以，我們必須選擇正確的情緒，來喚醒人們。我們必須點燃人們心中的那把火。有時候，甚至連負面情緒也會奏效。 　</p>
 
-<ol>
-  <li>创建一个 <code>static</code> 文件夹，在其中创建一个 <code>style.css</code> 文件：(不建立 <code>css/</code> ,不然 <code>filename</code> 需要更改 <code>css/style.css</code> )</li>
-</ol>
+<p>原則四──曝光 Public 　</p>
 
-<pre><code class="language-css">body {
-    background-color: #f0f0f0;
-}
-</code></pre>
+<p>有人在使用我們的產品，或做出我們期望的行為時，其他人會看見嗎？俗話「有樣學樣」一語，道出人類的模仿傾向，這句話同時也道出了，眼不見就難以效法。讓事物更容易被看見，就會有更多人起而效尤，也就更可能蔚為流行。所以，我們必須讓我們的產品、創意或理念更廣為人知。我們必須把自己的產品、創意或理念加以設計，讓它們本身成為活廣告，還要創造行為痕跡（behavior residue），使得人們即使已經買了產品或支持了我們的行動，行為痕跡仍然久久不散。 　</p>
 
-<ol>
-  <li>在模板中链接静态文件：</li>
-</ol>
+<p>原則五──實用價值 Practical Value 　</p>
 
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;Flask App&lt;/title&gt;
-    &lt;link rel="stylesheet" type="text/css" href=""&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;&lt;/h1&gt;
-    &lt;p&gt;&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<p>怎樣才能打造出看起來實用的內容？人們樂於好善助人，如果可以讓他們看到我們的產品、創意或理念能夠怎樣節省時間、改善健康或省荷包，他們就會開始口耳相傳。但有鑑於現在資訊氾濫，我們必須設法讓自己的訊息脫穎而出。我們必須瞭解讓某項產品或服務看起來格外實惠的原因為何。我們必須強調產品或服務令人難以置信的價值，也許是金錢，也許是其他方面。我們也必須把我們的知識和專業緊密結合，好讓人們更容易一直傳遞下去。 　</p>
 
-<p>Flask 会自动处理静态文件请求，你可以将 CSS 文件、图片等存放在 <code>static</code> 文件夹中。</p>]]></content><author><name></name></author><category term="python" /><category term="flask" /><category term="challenge" /><summary type="html"><![CDATA[1. 模板系统 Flask 支持 Jinja2 模板引擎，可以用来生成 HTML 页面。 创建一个 templates 文件夹，在里面创建 index.html 文件： &lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt; &lt;title&gt;Flask App&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;h1&gt;&lt;/h1&gt; &lt;p&gt;&lt;/p&gt; &lt;/body&gt; &lt;/html&gt; 修改 app.py 来渲染这个模板： from flask import Flask, render_template app = Flask(__name__) @app.route('/') def home(): return render_template('index.html', title='Welcome to Flask', message='This is a Flask web application.') if __name__ == '__main__': app.run(debug=True) 访问 http://127.0.0.1:5000/ 将会显示渲染后的 HTML 页面，替换了模板中的 和。 2. 表单处理 Flask 支持处理表单数据。 创建一个简单的表单页面，在 templates 文件夹中创建 form.html 文件： &lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt; &lt;title&gt;Flask Form&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;form method="POST" action="/submit"&gt; Name: &lt;input type="text" name="name"&gt;&lt;br&gt; &lt;input type="submit" value="Submit"&gt; &lt;/form&gt; &lt;/body&gt; &lt;/html&gt; 在 app.py 中添加处理表单提交的逻辑： from flask import Flask, render_template, request app = Flask(__name__) @app.route('/') def home(): return render_template('form.html') @app.route('/submit', methods=['POST']) def submit(): name = request.form['name'] return f"Hello, {name}!" if __name__ == '__main__': app.run(debug=True) 现在，当你访问 http://127.0.0.1:5000/ 并提交表单时，会显示提交的名字。 3. 静态文件 Flask 可以轻松提供静态文件（如 CSS、JS、图片等）。 创建一个 static 文件夹，在其中创建一个 style.css 文件：(不建立 css/ ,不然 filename 需要更改 css/style.css ) body { background-color: #f0f0f0; } 在模板中链接静态文件： &lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt; &lt;title&gt;Flask App&lt;/title&gt; &lt;link rel="stylesheet" type="text/css" href=""&gt; &lt;/head&gt; &lt;body&gt; &lt;h1&gt;&lt;/h1&gt; &lt;p&gt;&lt;/p&gt; &lt;/body&gt; &lt;/html&gt; Flask 会自动处理静态文件请求，你可以将 CSS 文件、图片等存放在 static 文件夹中。]]></summary></entry><entry><title type="html">书-超棒喜剧这样写</title><link href="http://localhost:4000/review/write/2024/09/06/review019.html" rel="alternate" type="text/html" title="书-超棒喜剧这样写" /><published>2024-09-06T11:24:29+08:00</published><updated>2024-09-06T11:24:29+08:00</updated><id>http://localhost:4000/review/write/2024/09/06/review019</id><content type="html" xml:base="http://localhost:4000/review/write/2024/09/06/review019.html"><![CDATA[<p>超棒喜剧这样写 好莱坞喜剧教父编剧技艺大解密</p>
+<p>原則六──故事 Stories 　</p>
+
+<p>我們的創意或理念可以包裝成更動聽的故事嗎？我們除了分享資訊，也愛說故事。但就像史詩特洛伊木馬，故事只是承載諸如道德與教訓的工具。資訊在看似閒話家常的偽裝外表下，傳播出去。所以我們必須建造自己的特洛伊木馬，將產品、創意或理念深植到大家會想跟別人說的故事之中。但我們要做的不僅僅只是講一個很棒的故事而已，還必須傳播得有價值。我們必須把我們的訊息與故事融為一體，讓大家沒了它故事就說不下去。 感染力有六大原則，也就是產品、創意或理念具有社交身價、可被觸發聯想、能激發情緒、曝光、具實用價值，並用故事加以包裝。接下來，各章將逐一專門探討一種原則，我們會從科學角度提出相關的研究結果與案例，並介紹實際運用該原則而聲名大噪的個人、公司和組織。</p>
+
+<p>找出內在不可思議性
+　
+想像在一個酷熱的日子，你和朋友去便利商店買飲料。你喝膩了汽水，但又想喝比水有味道、一種既清爽又暢快解渴的東西。當你搜尋冰涼飲料區時，思樂寶（Snapple）粉紅檸檬果汁吸引了你的目光。太棒了！你拿了一瓶到櫃檯結帳。
+一走出店門口，你馬上開瓶喝上一大口，整個人頓覺清涼舒暢極了。就在要坐進朋友的車時，你注意到思樂寶果汁的瓶蓋內印了些字：
+科學真相#27：玻璃球彈得比橡皮球高。
+哇塞！真的假的？
+你大概會很吃驚，而且印象深刻（我們說不定連玻璃球可以彈跳起來都不知道），想想你接下來會做什麼事。對於這個新發現的冷知識，你會怎麼做？你會隱藏在自己心裡，還是告訴你的朋友？</p>
+
+<p>他們在電視上做了一系列主題為「思樂寶女士」（Snapple Lady）的搞怪廣告，就是一個精力充沛的中年婦人，用她濃濃的紐約腔回覆思樂寶果汁粉絲的來信。</p>
+
+<p>一個鐵錚錚的事實就是，當一樣東西無法隨手可得，就能讓人們覺得它更加彌足珍貴，而且還會告訴別人，因為知道或擁有這件東西，可以展現自己的社交身價。</p>
+
+<p>讓我們的產品、創意或理念蔚為「瘋」潮？一個方法是打造社交身價。人們喜歡留給人好印象，所以我們必須讓自家產品有辦法做到這一點。</p>
+
+<p>就像布蘭德科調理機「這會被攪碎嗎？」的影片一樣，我們必須找到產品的內在不可思議性；
+就像Foursquare社群網站或航空公司對貴賓會員一樣，我們必須善用遊戲機制；
+就像璐拉拉一樣，我們必須利用稀有性與獨享的誘惑，讓人們覺得自己是內行人。</p>
+
+<h3 id="评后感">评后感</h3>
+
+<p>一本工具书,下次学习行销就靠这本书了</p>]]></content><author><name></name></author><category term="review" /><category term="marketing" /><summary type="html"><![CDATA[阅读书本前 疯狂的行销想法,遵守6大原则就能做行销 书评 原則一──社交身價 Social Currency 分享自我,创造话题:黑色卫生纸,内在不可思议的 人們在侃侃而談一項產品、創意或理念時，會讓自己看起來怎樣？大部分的人喜歡自己看起來很聰明，不要像笨蛋；有錢，不要像窮光蛋；很酷，不要像麻瓜。就像服飾與車子，我們談論的事情也會影響別人對我們的看法。這就是「社交身價」。知道很酷的事情，例如一台可以打碎iPhone的調理機，會讓人看起來很厲害，而且神通廣大。所以要讓人們談論，我們必須精心打造訊息，以達到這些他們想留給別人的印象。我們必須找出產品、創意或理念的內在不可思議性，讓別人覺得自己像個「內行人」。我們必須運用遊戲機制，讓人們有辦法獲致地位象徵，展現給別人看。 　 原則二──觸發物 Triggers 　 联想 要如何提醒人們談論我們的產品、創意或理念？觸發物是喚起人們聯想到相關事物的刺激物。花生醬會讓我們想到果醬，狗會讓我們想到貓。如果你住在費城，看到乳酪牛排三明治，可能會想到巴克利牛排餐廳那道一百塊美金的黃金頂級三明治。人們通常想到什麼就會聊什麼，所以當他們愈常想到一件產品、創意或理念，就愈會聊起它。我們必須設計會在環境上觸發人們聯想到的產品、創意或理念，並將我們的產品與該環境的流行事物連結起來，以創造出新的觸發物。心口相通，我們心中想到什麼，很容易就從嘴巴說出。 　 原則三──情緒 Emotion 　 當我們在意，我們就會分享。所以要怎麼打造訊息和理念，讓人們有感覺？富感染力的內容本來就比較能激發某種情緒。一支iPhone被攪碎令人大感吃驚，增稅的消息則讓人聽了怒火中燒。激發情緒的事物通常會被分享出去。所以與其反覆強調功能，不如專注在人們的感受上。但正如我們會在後文中談到的，有些情緒能促進分享行為，有些可能會降低。所以，我們必須選擇正確的情緒，來喚醒人們。我們必須點燃人們心中的那把火。有時候，甚至連負面情緒也會奏效。 　 原則四──曝光 Public 　 有人在使用我們的產品，或做出我們期望的行為時，其他人會看見嗎？俗話「有樣學樣」一語，道出人類的模仿傾向，這句話同時也道出了，眼不見就難以效法。讓事物更容易被看見，就會有更多人起而效尤，也就更可能蔚為流行。所以，我們必須讓我們的產品、創意或理念更廣為人知。我們必須把自己的產品、創意或理念加以設計，讓它們本身成為活廣告，還要創造行為痕跡（behavior residue），使得人們即使已經買了產品或支持了我們的行動，行為痕跡仍然久久不散。 　 原則五──實用價值 Practical Value 　 怎樣才能打造出看起來實用的內容？人們樂於好善助人，如果可以讓他們看到我們的產品、創意或理念能夠怎樣節省時間、改善健康或省荷包，他們就會開始口耳相傳。但有鑑於現在資訊氾濫，我們必須設法讓自己的訊息脫穎而出。我們必須瞭解讓某項產品或服務看起來格外實惠的原因為何。我們必須強調產品或服務令人難以置信的價值，也許是金錢，也許是其他方面。我們也必須把我們的知識和專業緊密結合，好讓人們更容易一直傳遞下去。 　 原則六──故事 Stories 　 我們的創意或理念可以包裝成更動聽的故事嗎？我們除了分享資訊，也愛說故事。但就像史詩特洛伊木馬，故事只是承載諸如道德與教訓的工具。資訊在看似閒話家常的偽裝外表下，傳播出去。所以我們必須建造自己的特洛伊木馬，將產品、創意或理念深植到大家會想跟別人說的故事之中。但我們要做的不僅僅只是講一個很棒的故事而已，還必須傳播得有價值。我們必須把我們的訊息與故事融為一體，讓大家沒了它故事就說不下去。 感染力有六大原則，也就是產品、創意或理念具有社交身價、可被觸發聯想、能激發情緒、曝光、具實用價值，並用故事加以包裝。接下來，各章將逐一專門探討一種原則，我們會從科學角度提出相關的研究結果與案例，並介紹實際運用該原則而聲名大噪的個人、公司和組織。 找出內在不可思議性 　 想像在一個酷熱的日子，你和朋友去便利商店買飲料。你喝膩了汽水，但又想喝比水有味道、一種既清爽又暢快解渴的東西。當你搜尋冰涼飲料區時，思樂寶（Snapple）粉紅檸檬果汁吸引了你的目光。太棒了！你拿了一瓶到櫃檯結帳。 一走出店門口，你馬上開瓶喝上一大口，整個人頓覺清涼舒暢極了。就在要坐進朋友的車時，你注意到思樂寶果汁的瓶蓋內印了些字： 科學真相#27：玻璃球彈得比橡皮球高。 哇塞！真的假的？ 你大概會很吃驚，而且印象深刻（我們說不定連玻璃球可以彈跳起來都不知道），想想你接下來會做什麼事。對於這個新發現的冷知識，你會怎麼做？你會隱藏在自己心裡，還是告訴你的朋友？ 他們在電視上做了一系列主題為「思樂寶女士」（Snapple Lady）的搞怪廣告，就是一個精力充沛的中年婦人，用她濃濃的紐約腔回覆思樂寶果汁粉絲的來信。 一個鐵錚錚的事實就是，當一樣東西無法隨手可得，就能讓人們覺得它更加彌足珍貴，而且還會告訴別人，因為知道或擁有這件東西，可以展現自己的社交身價。 讓我們的產品、創意或理念蔚為「瘋」潮？一個方法是打造社交身價。人們喜歡留給人好印象，所以我們必須讓自家產品有辦法做到這一點。 就像布蘭德科調理機「這會被攪碎嗎？」的影片一樣，我們必須找到產品的內在不可思議性； 就像Foursquare社群網站或航空公司對貴賓會員一樣，我們必須善用遊戲機制； 就像璐拉拉一樣，我們必須利用稀有性與獨享的誘惑，讓人們覺得自己是內行人。 评后感 一本工具书,下次学习行销就靠这本书了]]></summary></entry><entry><title type="html">书-吃掉那只青蛙</title><link href="http://localhost:4000/review/time/2024/09/07/review020.html" rel="alternate" type="text/html" title="书-吃掉那只青蛙" /><published>2024-09-07T11:24:29+08:00</published><updated>2024-09-07T11:24:29+08:00</updated><id>http://localhost:4000/review/time/2024/09/07/review020</id><content type="html" xml:base="http://localhost:4000/review/time/2024/09/07/review020.html"><![CDATA[<p>吃掉那只青蛙：博恩·崔西的高效时间管理法则（原书第3版）</p>
+
+<h3 id="阅读书本前">阅读书本前</h3>
+
+<p>时间管理 Up Up Up</p>
+
+<h3 id="书评">书评</h3>
+
+<p>要计划未来的事项,这样可以节省很多时间,当然清单一定是必要的</p>
+
+<p>20/80法则加上<code>&lt;&lt;选三哲学&gt;&gt;</code>这本书提出的想法选3个主题完成2~3个记得是最重要的 <code>1 &gt; sum(4)</code></p>
+
+<p style="color:blue;">写上不做会导致的坏处做好风险管理(引用另外一本书的观点)</p>
+
+<p>当你开始工作前，首先要问问自己：“在我所有的活动中，这项任务属于最重要的那20%吗？”</p>
+
+<p>定计划遵守期限(不能Delay,务必跳出专注力模式)跟另外一本书提出的秒表工作法相同</p>
+
+<p>你要记住，不管你选择先完成什么任务，久而久之都会形成一种固化的习惯。如果你选择每天先做低价值的任务，你将很快养成先做低价值任务的习惯。这一定不是你希望养成或保持的习惯。</p>
+
+<p>你的任务就是，对那些优先级低的任务进行拖延，从而可以腾出更多的时间来做那些改变你的工作和生活的任务。</p>
+
+<p>确定哪些任务和活动要耗费大量时间，同时放弃它又不会给你带来什么实际的损失，对这些你可以直接放弃。</p>
+
+<p>一直删除不重要的任务直到完成最重要任务为止~<code>归零法则</code></p>
+
+<p>ABCD优先法则 ( A-1,A-2,B,C )</p>
+
+<p>KRA (关键领域)工作核心能力简报力,表达力,逻辑力</p>
+
+<p>他把那些对我来说琐碎的、无关紧要的工作交给了别人去做，这样，我就能专心致志地做擅长的工作了。我也没有让他失望，在接下来的30天里，我完成的工作量翻了一番。公司也付了我双倍的工资。</p>
+
+<p>“如果我每天只能完成1项任务，哪项任务对我的工作贡献最大？”</p>
+
+<p>平衡。
+1.找出工作中最重要的1项任务。你可以问自己：“如果我每天只能完成1项任务，哪项任务对我的工作贡献最大？”然后重复两遍同样的问题。</p>
+
+<p>按照这种方法找到工作中最重要的3项任务之后，每天把所有的精力全部放在这3项任务上。</p>
+
+<p>2.确定生活中最重要的3个目标，然后根据优先级别进行排序。针对这些目标制订相应的计划，然后全力以赴去实现。</p>
+
+<p>持续几个月至若干年之后，你会为自己取得的成就感到惊讶。</p>
+
+<p>你可以从清理办公桌开始，以便于你接下来一次只处理一件事情。如果有必要的话，你可以把所有需要的东西都放在地板上，或放在你身后的桌子上。</p>
+
+<p>将所有与完成工作有关的信息、报告、详图、文件等资料收集在一起，全部放在手边，当你需要的时候，不需要起身或离开座位去找它们。确保你收集齐了所有的书面资料，包括登录信息、密码、邮箱地址，以及从工作开始到完成所需的都已经准备妥当。</p>
+
+<p>为自己布置出舒适、方便、适于长期工作的办公环境。最重要的是，要给自己准备一把舒适的椅子，这样你可以把后背靠在椅背上，还可以把双腿伸直，把双脚平放在地板上。</p>
+
+<p>任意选择一个曾经被你拖延的目标、任务或项目，从现在就开始迈出第一步。有时候，要开始一件事情并不难，你只需坐下来，把所有必要的步骤都列出来就足够了。</p>
+
+<p>你越擅长吃某个特定类型的“青蛙”，你就越容易投入并完成此项工作。</p>
+
+<p><code>导致拖延的一个主要原因是在某一核心领域缺乏自信</code>，认为自己不能胜任这项工作，或认为自己在能力上有所欠缺。只要在其中一个方面感觉自己难以胜任，你就会缺乏处理整个工作的勇气。</p>
+
+<p>限制因素工作带来的问题或者受限于自己能力的,例如程式码有bug或者不知道的知识点</p>
+
+<p>在任何一项工作中，如果能精确地找出那个限制因素，并且以后专心地解决该问题，那么通常就能在更短的时间里取得更大的进展。</p>
+
+<p><code>制约我解决问题:那为什么我还没开始呢?</code></p>
+
+<p>一旦明确了自己最重要的目标，你可以问自己这些问题：“是什么制约了我实现这个目标？为什么我还没有实现自己的目标？是什么制约着我的进步？”找到答案后，立刻行动起来解决这些问题。你想做什么都可以，但必须要行动起来。</p>
+
+<p>开始之前准备明天的事(另外一本书提出结束前计划明天的事情)</p>
+
+<p>训练自己的KRA</p>
+
+<h4 id="创造压力自我建造而非工作">创造压力(自我建造而非工作)</h4>
+
+<p>不依赖手机,早上起来开机,睡前关机</p>
+
+<p>我教给他80/20法则，以及如何把该法则用于电子邮件的管理。他删掉并取消订阅了80%没有价值的邮件。在剩下的20%的邮件中，只有大约4%的邮件需要立即处理，其余16%的邮件可以放入行动文件夹里，留待以后处理。</p>
+
+<p>每周都给自己安排一整天时间。在这一天里，不开电脑，不用手机，也不使用任何方式与外界联系。到一天结束的时候，你会发现自己的心灵异常平静，思路格外清晰。当你腾出时间重塑精神能量之后，你吃青蛙会更有效率。</p>
+
+<p>邮件不查看不干扰</p>
+
+<p>高度的专注力是高绩效的关键。电子设备和其他中断注意力的事情对你的诱惑，会吸引你的注意力，使你的注意力分散到各处，导致思维散漫、难以集中精神、成绩低下，做事最终以失败告终。 当今的研究结果证实，不断回复邮件、接听电话、回信息、处理即时消息会对大脑产生消极的作用，会缩短注意力维持的时间，使你难以集中注意力去完成关乎你未来和决定你成功的任务。</p>
+
+<p>第一，每天提前制订一整天的计划，选择出你最重要的任务，然后开始完成该任务，直到全部结束为止，在彻底完成该任务之后，再开始做其他的工作。</p>
+
+<p>第二，持续不间断地连续工作90分钟，期间不要有任何的干扰和注意力的分散，然后让自己休息15分钟。</p>
+
+<p>第三，投入全部精力再次开始下一个90分钟的工作。</p>
+
+<p>第四，完成了为期三小时的工作后，你终于可以奖励自己查看邮件，刺激多巴胺冲击你的大脑了。</p>
+
+<p>生产力高的人愿意花费时间去思考、制订计划、确定事件的优先级。</p>
+
+<h3 id="评后感">评后感</h3>
+
+<p>做自律的自己</p>]]></content><author><name></name></author><category term="review" /><category term="time" /><summary type="html"><![CDATA[吃掉那只青蛙：博恩·崔西的高效时间管理法则（原书第3版） 阅读书本前 时间管理 Up Up Up 书评 要计划未来的事项,这样可以节省很多时间,当然清单一定是必要的 20/80法则加上&lt;&lt;选三哲学&gt;&gt;这本书提出的想法选3个主题完成2~3个记得是最重要的 1 &gt; sum(4) 写上不做会导致的坏处做好风险管理(引用另外一本书的观点) 当你开始工作前，首先要问问自己：“在我所有的活动中，这项任务属于最重要的那20%吗？” 定计划遵守期限(不能Delay,务必跳出专注力模式)跟另外一本书提出的秒表工作法相同 你要记住，不管你选择先完成什么任务，久而久之都会形成一种固化的习惯。如果你选择每天先做低价值的任务，你将很快养成先做低价值任务的习惯。这一定不是你希望养成或保持的习惯。 你的任务就是，对那些优先级低的任务进行拖延，从而可以腾出更多的时间来做那些改变你的工作和生活的任务。 确定哪些任务和活动要耗费大量时间，同时放弃它又不会给你带来什么实际的损失，对这些你可以直接放弃。 一直删除不重要的任务直到完成最重要任务为止~归零法则 ABCD优先法则 ( A-1,A-2,B,C ) KRA (关键领域)工作核心能力简报力,表达力,逻辑力 他把那些对我来说琐碎的、无关紧要的工作交给了别人去做，这样，我就能专心致志地做擅长的工作了。我也没有让他失望，在接下来的30天里，我完成的工作量翻了一番。公司也付了我双倍的工资。 “如果我每天只能完成1项任务，哪项任务对我的工作贡献最大？” 平衡。 1.找出工作中最重要的1项任务。你可以问自己：“如果我每天只能完成1项任务，哪项任务对我的工作贡献最大？”然后重复两遍同样的问题。 按照这种方法找到工作中最重要的3项任务之后，每天把所有的精力全部放在这3项任务上。 2.确定生活中最重要的3个目标，然后根据优先级别进行排序。针对这些目标制订相应的计划，然后全力以赴去实现。 持续几个月至若干年之后，你会为自己取得的成就感到惊讶。 你可以从清理办公桌开始，以便于你接下来一次只处理一件事情。如果有必要的话，你可以把所有需要的东西都放在地板上，或放在你身后的桌子上。 将所有与完成工作有关的信息、报告、详图、文件等资料收集在一起，全部放在手边，当你需要的时候，不需要起身或离开座位去找它们。确保你收集齐了所有的书面资料，包括登录信息、密码、邮箱地址，以及从工作开始到完成所需的都已经准备妥当。 为自己布置出舒适、方便、适于长期工作的办公环境。最重要的是，要给自己准备一把舒适的椅子，这样你可以把后背靠在椅背上，还可以把双腿伸直，把双脚平放在地板上。 任意选择一个曾经被你拖延的目标、任务或项目，从现在就开始迈出第一步。有时候，要开始一件事情并不难，你只需坐下来，把所有必要的步骤都列出来就足够了。 你越擅长吃某个特定类型的“青蛙”，你就越容易投入并完成此项工作。 导致拖延的一个主要原因是在某一核心领域缺乏自信，认为自己不能胜任这项工作，或认为自己在能力上有所欠缺。只要在其中一个方面感觉自己难以胜任，你就会缺乏处理整个工作的勇气。 限制因素工作带来的问题或者受限于自己能力的,例如程式码有bug或者不知道的知识点 在任何一项工作中，如果能精确地找出那个限制因素，并且以后专心地解决该问题，那么通常就能在更短的时间里取得更大的进展。 制约我解决问题:那为什么我还没开始呢? 一旦明确了自己最重要的目标，你可以问自己这些问题：“是什么制约了我实现这个目标？为什么我还没有实现自己的目标？是什么制约着我的进步？”找到答案后，立刻行动起来解决这些问题。你想做什么都可以，但必须要行动起来。 开始之前准备明天的事(另外一本书提出结束前计划明天的事情) 训练自己的KRA 创造压力(自我建造而非工作) 不依赖手机,早上起来开机,睡前关机 我教给他80/20法则，以及如何把该法则用于电子邮件的管理。他删掉并取消订阅了80%没有价值的邮件。在剩下的20%的邮件中，只有大约4%的邮件需要立即处理，其余16%的邮件可以放入行动文件夹里，留待以后处理。 每周都给自己安排一整天时间。在这一天里，不开电脑，不用手机，也不使用任何方式与外界联系。到一天结束的时候，你会发现自己的心灵异常平静，思路格外清晰。当你腾出时间重塑精神能量之后，你吃青蛙会更有效率。 邮件不查看不干扰 高度的专注力是高绩效的关键。电子设备和其他中断注意力的事情对你的诱惑，会吸引你的注意力，使你的注意力分散到各处，导致思维散漫、难以集中精神、成绩低下，做事最终以失败告终。 当今的研究结果证实，不断回复邮件、接听电话、回信息、处理即时消息会对大脑产生消极的作用，会缩短注意力维持的时间，使你难以集中注意力去完成关乎你未来和决定你成功的任务。 第一，每天提前制订一整天的计划，选择出你最重要的任务，然后开始完成该任务，直到全部结束为止，在彻底完成该任务之后，再开始做其他的工作。 第二，持续不间断地连续工作90分钟，期间不要有任何的干扰和注意力的分散，然后让自己休息15分钟。 第三，投入全部精力再次开始下一个90分钟的工作。 第四，完成了为期三小时的工作后，你终于可以奖励自己查看邮件，刺激多巴胺冲击你的大脑了。 生产力高的人愿意花费时间去思考、制订计划、确定事件的优先级。 评后感 做自律的自己]]></summary></entry><entry><title type="html">书-超棒喜剧这样写</title><link href="http://localhost:4000/review/write/2024/09/06/review019.html" rel="alternate" type="text/html" title="书-超棒喜剧这样写" /><published>2024-09-06T11:24:29+08:00</published><updated>2024-09-06T11:24:29+08:00</updated><id>http://localhost:4000/review/write/2024/09/06/review019</id><content type="html" xml:base="http://localhost:4000/review/write/2024/09/06/review019.html"><![CDATA[<p>超棒喜剧这样写 好莱坞喜剧教父编剧技艺大解密</p>
 
 <h3 id="阅读书本前">阅读书本前</h3>
 
@@ -193,81 +264,76 @@ if __name__ == '__main__':
 
 <h3 id="评后感">评后感</h3>
 
-<p>不怎么看懂,但当有一天想要写作时,或许这是我写小说或者剧本的唯一教科书(工具书)</p>]]></content><author><name></name></author><category term="review" /><category term="write" /><summary type="html"><![CDATA[超棒喜剧这样写 好莱坞喜剧教父编剧技艺大解密 阅读书本前 学习写一本小说和一本剧本 书评 书本框架 艾　登：我是。 　　坎达儿：（起身，移动到他面前站着）艾登，麦可不是我杀的。 　　停顿。 　　艾　登：（目不转睛地看着她）妳说了我就该相信吗？ 　　（镜头停留在艾登身上，音乐渐强，接着……） 喜剧方程式 一名平凡的男生或女生，面对难如登天的难关苦苦挣扎，虽缺乏许多获胜所需要的技能或工具，却从不会放弃希望。若除去上述元素的任何一项，你便失去或削弱了场景里头的喜剧动能。你会创造一个戏剧的片刻、场景或电影，而非喜剧。 工具 你的选择是 E. 盲人吗？（是的话，你应该要感到羞耻！你有病，你知道吗？） 这些不为人知的杠杆有助于调整一场戏、一出剧或一部电影里头的喜剧元素。 　　这些工具包含了： 获胜（Winning） 在方程式──一名平凡的男生或女生，面对难如登天的难关苦苦挣扎，虽缺乏许多获胜所需要的技能或工具，却从不会放弃希望。获胜这个想法指的是在喜剧中 非英雄（Non－Hero） 非英雄便是缺乏许多获胜所需要的技能或工具的平凡男女。要注意，我们说的不是「喜剧英雄」，而是「非英雄」。 隐喻关系（Metaphorical Relationship） 是用于感知的工具。隐喻关系背后的其中一个概念认为，在每段表层关系之下，有着一段真实的、纯粹的隐喻关系。每个角色会透过某种特定的、隐喻的方式，感知周围其他人以及世界本身。 正向（或自私）行为（Positive〔or Selfish〕Action） 又称为自私行为（Selfish Action）──这个想法，指的是你的角色不管做什么事情，他（她）都相信这件事情行得通，不管这会让他（她）显得多愚蠢、傻气或天真皆然，他们会盼望行为所带来的结果是正向的 动态情绪（Active Emotion） 直线／波浪型曲线（Straight Line/ Wavy Line） 　　以及剧本开发工具： 原型（Archetype） 喜剧前提（Comic Premise） 前提本身越好，故事便越能夠在你的想像裡頭自己接著寫下去。 工作坊裡的其中一組想出了以下前提：「一支輸到脫褲的大學足球隊發現，他們唯一能夠獲勝的方式，便是讓宅男們……有砲打。」短暫停頓之後，房間裡開始傳來陣陣偷笑。接下來我問了一個再簡單也不過的問題：這部電影裡可能會有哪些戲？」幾乎是同一時間，現場觀眾開始喊出一連串可能的場景：勝利的蒙太奇、慘敗的蒙太奇、協助宅男為約會做準備、兄弟會派對、幫宅男約妓女沒想到結果慘不忍睹、宅男變得有型，有型到簡直不像學生，搞得球隊得要去找新的宅男……就這樣持續下去。 评后感 不怎么看懂,但当有一天想要写作时,或许这是我写小说或者剧本的唯一教科书(工具书)]]></summary></entry><entry><title type="html">02/30-flask 与 mongodb连接</title><link href="http://localhost:4000/python/flask/challenge/2024/09/05/pl_02.html" rel="alternate" type="text/html" title="02/30-flask 与 mongodb连接" /><published>2024-09-05T11:24:29+08:00</published><updated>2024-09-05T11:24:29+08:00</updated><id>http://localhost:4000/python/flask/challenge/2024/09/05/pl_02</id><content type="html" xml:base="http://localhost:4000/python/flask/challenge/2024/09/05/pl_02.html"><![CDATA[<p>要在 Flask 应用中连接 MongoDB，你可以使用 <code>PyMongo</code>，这是一个简单的库，它提供了与 MongoDB 交互的功能。以下是如何设置 Flask 和 MongoDB 连接的教程。</p>
+<p>不怎么看懂,但当有一天想要写作时,或许这是我写小说或者剧本的唯一教科书(工具书)</p>]]></content><author><name></name></author><category term="review" /><category term="write" /><summary type="html"><![CDATA[超棒喜剧这样写 好莱坞喜剧教父编剧技艺大解密 阅读书本前 学习写一本小说和一本剧本 书评 书本框架 艾　登：我是。 　　坎达儿：（起身，移动到他面前站着）艾登，麦可不是我杀的。 　　停顿。 　　艾　登：（目不转睛地看着她）妳说了我就该相信吗？ 　　（镜头停留在艾登身上，音乐渐强，接着……） 喜剧方程式 一名平凡的男生或女生，面对难如登天的难关苦苦挣扎，虽缺乏许多获胜所需要的技能或工具，却从不会放弃希望。若除去上述元素的任何一项，你便失去或削弱了场景里头的喜剧动能。你会创造一个戏剧的片刻、场景或电影，而非喜剧。 工具 你的选择是 E. 盲人吗？（是的话，你应该要感到羞耻！你有病，你知道吗？） 这些不为人知的杠杆有助于调整一场戏、一出剧或一部电影里头的喜剧元素。 　　这些工具包含了： 获胜（Winning） 在方程式──一名平凡的男生或女生，面对难如登天的难关苦苦挣扎，虽缺乏许多获胜所需要的技能或工具，却从不会放弃希望。获胜这个想法指的是在喜剧中 非英雄（Non－Hero） 非英雄便是缺乏许多获胜所需要的技能或工具的平凡男女。要注意，我们说的不是「喜剧英雄」，而是「非英雄」。 隐喻关系（Metaphorical Relationship） 是用于感知的工具。隐喻关系背后的其中一个概念认为，在每段表层关系之下，有着一段真实的、纯粹的隐喻关系。每个角色会透过某种特定的、隐喻的方式，感知周围其他人以及世界本身。 正向（或自私）行为（Positive〔or Selfish〕Action） 又称为自私行为（Selfish Action）──这个想法，指的是你的角色不管做什么事情，他（她）都相信这件事情行得通，不管这会让他（她）显得多愚蠢、傻气或天真皆然，他们会盼望行为所带来的结果是正向的 动态情绪（Active Emotion） 直线／波浪型曲线（Straight Line/ Wavy Line） 　　以及剧本开发工具： 原型（Archetype） 喜剧前提（Comic Premise） 前提本身越好，故事便越能夠在你的想像裡頭自己接著寫下去。 工作坊裡的其中一組想出了以下前提：「一支輸到脫褲的大學足球隊發現，他們唯一能夠獲勝的方式，便是讓宅男們……有砲打。」短暫停頓之後，房間裡開始傳來陣陣偷笑。接下來我問了一個再簡單也不過的問題：這部電影裡可能會有哪些戲？」幾乎是同一時間，現場觀眾開始喊出一連串可能的場景：勝利的蒙太奇、慘敗的蒙太奇、協助宅男為約會做準備、兄弟會派對、幫宅男約妓女沒想到結果慘不忍睹、宅男變得有型，有型到簡直不像學生，搞得球隊得要去找新的宅男……就這樣持續下去。 评后感 不怎么看懂,但当有一天想要写作时,或许这是我写小说或者剧本的唯一教科书(工具书)]]></summary></entry><entry><title type="html">algorithm-基本演算法观念</title><link href="http://localhost:4000/python/algorithm/2024/09/05/algorithm001.html" rel="alternate" type="text/html" title="algorithm-基本演算法观念" /><published>2024-09-05T11:24:29+08:00</published><updated>2024-09-05T11:24:29+08:00</updated><id>http://localhost:4000/python/algorithm/2024/09/05/algorithm001</id><content type="html" xml:base="http://localhost:4000/python/algorithm/2024/09/05/algorithm001.html"><![CDATA[<p>判断算法或代码的时间复杂度是分析算法性能的重要部分。时间复杂度主要是通过估计算法运行时间相对于输入数据规模的增长率来进行评估的。以下是一些基于Python判断时间复杂度的步骤和方法：</p>
 
-<h3 id="步骤-1-安装依赖">步骤 1: 安装依赖</h3>
-
-<p>首先，确保安装了 <code>flask</code> 和 <code>pymongo</code> 依赖库。你可以通过 pip 来安装这些库：</p>
-
-<pre><code class="language-bash">pip install Flask pymongo
-</code></pre>
-
-<h3 id="步骤-2-设置-mongodb-连接">步骤 2: 设置 MongoDB 连接</h3>
-
-<p>接下来，编写 Flask 应用代码，设置与 MongoDB 的连接。假设你已经在本地或者远程服务器上运行 MongoDB 实例。</p>
-
-<pre><code class="language-python">from flask import Flask, jsonify, request
-from pymongo import MongoClient
-
-app = Flask(__name__)
-
-# 连接 MongoDB
-client = MongoClient('mongodb://localhost:27017/')
-db = client['test_database']  # 使用 'test_database' 数据库
-
-# 示例集合（类似于表）
-collection = db['test_collection']
-
-# 插入数据的路由
-@app.route('/insert', methods=['POST'])
-def insert_data():
-    data = request.json
-    collection.insert_one(data)  # 将 JSON 数据插入到 MongoDB
-    return jsonify({"message": "数据已插入"}), 201
-
-# 获取数据的路由
-@app.route('/data', methods=['GET'])
-def get_data():
-    data = list(collection.find())  # 从 MongoDB 中获取数据
-    for item in data:
-        item['_id'] = str(item['_id'])  # 将 ObjectId 转换为字符串
-    return jsonify(data), 200
-
-if __name__ == '__main__':
-    app.run(debug=True)
-</code></pre>
-
-<h3 id="步骤-3-运行应用">步骤 3: 运行应用</h3>
-
-<ol>
-  <li>确保 MongoDB 已启动。</li>
-  <li>运行 Flask 应用程序：</li>
-</ol>
-
-<pre><code class="language-bash">python app.py
-</code></pre>
-
-<p>Flask 应用将运行在 <code>http://127.0.0.1:5000/</code> 上。你可以使用 Postman 或 curl 向 <code>/insert</code> 路由发送 POST 请求来插入数据，向 <code>/data</code> 路由发送 GET 请求来获取数据。</p>
-
-<h3 id="步骤-4-测试插入和获取数据">步骤 4: 测试插入和获取数据</h3>
-
-<p>使用以下命令测试插入数据：</p>
-
-<pre><code class="language-bash">curl -X POST -H "Content-Type: application/json" -d '{"name": "Alice", "age": 30}' http://127.0.0.1:5000/insert
-</code></pre>
-
-<p>测试获取数据：</p>
-
-<pre><code class="language-bash">curl http://127.0.0.1:5000/data
-</code></pre>
-
-<h3 id="注意事项">注意事项</h3>
+<h3 id="1-基本原则">1. <strong>基本原则</strong></h3>
 <ul>
-  <li>确保你的 MongoDB 连接字符串是正确的，尤其是在连接到远程数据库时，可能需要包含用户名和密码。</li>
-  <li>可以通过 MongoDB Atlas 来设置云端 MongoDB 数据库，连接方式相似。</li>
+  <li><strong>常量时间</strong>: O(1)，执行时间不随输入规模变化，如访问数组的某个元素 <code>arr[i]</code>。</li>
+  <li><strong>线性时间</strong>: O(n)，执行时间与输入规模成正比，如遍历一个长度为 <code>n</code> 的数组。</li>
+  <li><strong>对数时间</strong>: O(log n)，执行时间与输入规模的对数成正比，如二分查找。</li>
+  <li><strong>线性对数时间</strong>: O(n log n)，如快速排序或合并排序。</li>
+  <li><strong>平方时间</strong>: O(n^2)，如嵌套的循环操作。</li>
 </ul>
 
-<p>这样就能成功将 Flask 应用与 MongoDB 连接了！</p>]]></content><author><name></name></author><category term="python" /><category term="flask" /><category term="challenge" /><summary type="html"><![CDATA[要在 Flask 应用中连接 MongoDB，你可以使用 PyMongo，这是一个简单的库，它提供了与 MongoDB 交互的功能。以下是如何设置 Flask 和 MongoDB 连接的教程。 步骤 1: 安装依赖 首先，确保安装了 flask 和 pymongo 依赖库。你可以通过 pip 来安装这些库： pip install Flask pymongo 步骤 2: 设置 MongoDB 连接 接下来，编写 Flask 应用代码，设置与 MongoDB 的连接。假设你已经在本地或者远程服务器上运行 MongoDB 实例。 from flask import Flask, jsonify, request from pymongo import MongoClient app = Flask(__name__) # 连接 MongoDB client = MongoClient('mongodb://localhost:27017/') db = client['test_database'] # 使用 'test_database' 数据库 # 示例集合（类似于表） collection = db['test_collection'] # 插入数据的路由 @app.route('/insert', methods=['POST']) def insert_data(): data = request.json collection.insert_one(data) # 将 JSON 数据插入到 MongoDB return jsonify({"message": "数据已插入"}), 201 # 获取数据的路由 @app.route('/data', methods=['GET']) def get_data(): data = list(collection.find()) # 从 MongoDB 中获取数据 for item in data: item['_id'] = str(item['_id']) # 将 ObjectId 转换为字符串 return jsonify(data), 200 if __name__ == '__main__': app.run(debug=True) 步骤 3: 运行应用 确保 MongoDB 已启动。 运行 Flask 应用程序： python app.py Flask 应用将运行在 http://127.0.0.1:5000/ 上。你可以使用 Postman 或 curl 向 /insert 路由发送 POST 请求来插入数据，向 /data 路由发送 GET 请求来获取数据。 步骤 4: 测试插入和获取数据 使用以下命令测试插入数据： curl -X POST -H "Content-Type: application/json" -d '{"name": "Alice", "age": 30}' http://127.0.0.1:5000/insert 测试获取数据： curl http://127.0.0.1:5000/data 注意事项 确保你的 MongoDB 连接字符串是正确的，尤其是在连接到远程数据库时，可能需要包含用户名和密码。 可以通过 MongoDB Atlas 来设置云端 MongoDB 数据库，连接方式相似。 这样就能成功将 Flask 应用与 MongoDB 连接了！]]></summary></entry><entry><title type="html">书-过劳脑</title><link href="http://localhost:4000/review/life/2024/09/05/review018.html" rel="alternate" type="text/html" title="书-过劳脑" /><published>2024-09-05T11:24:29+08:00</published><updated>2024-09-05T11:24:29+08:00</updated><id>http://localhost:4000/review/life/2024/09/05/review018</id><content type="html" xml:base="http://localhost:4000/review/life/2024/09/05/review018.html"><![CDATA[<p>过劳脑:让大脑一例一休让情绪排毒的8周正念计划</p>
+<h3 id="2-逐行分析代码">2. <strong>逐行分析代码</strong></h3>
+<p>对于Python代码，可以通过逐行分析代码的执行情况来判断时间复杂度：</p>
+
+<pre><code class="language-python">   def example_function(arr):
+       n = len(arr)               # O(1)
+       for i in range(n):         # O(n)
+           for j in range(i, n):  # O(n)
+               print(arr[i] + arr[j])  # O(1)
+</code></pre>
+
+<ul>
+  <li><code>len(arr)</code> 是 O(1)。</li>
+  <li><code>for i in range(n)</code> 是 O(n)。</li>
+  <li>内部的 <code>for j in range(i, n)</code> 是 $O(n)$，因为 <code>i</code> 在 0 到 <code>n</code> 之间变化，总体上内层循环仍然执行 $O(n)$ 次。</li>
+  <li>因此，该函数的时间复杂度为$O(n^2)$。</li>
+</ul>
+
+<p>所以这个函数基于虚拟码计算为$O(n^2)$</p>
+
+<h3 id="3-使用计时工具来验证">3. <strong>使用计时工具来验证</strong></h3>
+<p>可以使用Python中的 <code>time</code> 模块来测量不同输入规模下的运行时间，从而验证理论上的时间复杂度。例如：</p>
+
+<pre><code class="language-python">   import time
+
+   def example_function(n):
+       start_time = time.time()
+       total = 0
+       for i in range(n):
+           for j in range(i, n):
+               total += i + j
+       end_time = time.time()
+       print(f"Time taken for input size {n}: {end_time - start_time} seconds")
+
+   example_function(100)
+   example_function(1000)
+   example_function(10000)
+</code></pre>
+
+<p>运行这个代码，观察不同输入规模（<code>n</code>）时的执行时间，判断时间复杂度是否符合预期。</p>
+
+<h3 id="4-渐近分析">4. <strong>渐近分析</strong></h3>
+<p>使用大O符号来描述算法的时间复杂度，忽略常数项和低阶项。例如：</p>
+
+<ul>
+  <li><code>O(2n + 3)</code> 简化为 <code>O(n)</code>。</li>
+  <li><code>O(n^2 + 100n + 20)</code> 简化为 <code>O(n^2)</code>。</li>
+</ul>
+
+<h3 id="5-实际应用中常见的时间复杂度">5. <strong>实际应用中常见的时间复杂度</strong></h3>
+<ul>
+  <li><strong>O(1)</strong>: 数组的索引操作，常数级别操作。</li>
+  <li><strong>O(n)</strong>: 单一遍历数组或链表。</li>
+  <li><strong>O(n log n)</strong>: 高效排序算法，如快速排序、合并排序。</li>
+  <li><strong>O(n^2)</strong>: 双重嵌套循环，如暴力求解二维数组中的每对元素。</li>
+  <li><strong>O(2^n)</strong>: 递归算法，如解决子集问题的递归回溯法。</li>
+  <li><strong>O(n!)</strong>: 全排列问题。</li>
+</ul>
+
+<p>通过结合理论分析和实际代码测量，可以有效判断Python代码的时间复杂度。如果你有具体的代码片段或算法需要分析，我可以帮助你进行详细的时间复杂度分析。</p>]]></content><author><name></name></author><category term="python" /><category term="algorithm" /><summary type="html"><![CDATA[判断算法或代码的时间复杂度是分析算法性能的重要部分。时间复杂度主要是通过估计算法运行时间相对于输入数据规模的增长率来进行评估的。以下是一些基于Python判断时间复杂度的步骤和方法：]]></summary></entry><entry><title type="html">书-过劳脑</title><link href="http://localhost:4000/review/life/2024/09/05/review018.html" rel="alternate" type="text/html" title="书-过劳脑" /><published>2024-09-05T11:24:29+08:00</published><updated>2024-09-05T11:24:29+08:00</updated><id>http://localhost:4000/review/life/2024/09/05/review018</id><content type="html" xml:base="http://localhost:4000/review/life/2024/09/05/review018.html"><![CDATA[<p>过劳脑:让大脑一例一休让情绪排毒的8周正念计划</p>
 
 <h3 id="阅读书本前">阅读书本前</h3>
 
@@ -309,107 +375,7 @@ if __name__ == '__main__':
 
 <p>顺便运动,腹式呼吸</p>
 
-<p>正念带来的是一样的人生</p>]]></content><author><name></name></author><category term="review" /><category term="life" /><summary type="html"><![CDATA[过劳脑:让大脑一例一休让情绪排毒的8周正念计划 阅读书本前 学习冥想 书评 透过冥想达到放松的用途 學習正念，可以讓我們具備旁觀者清的能力，也可以正念行动 第一個層面是將你的意念固定在一個點上 第二層面是廣泛的打開所有感官去察覺你的內外 正念是以不評判的態度，學習觀察自我內在與外在世界的練習，所以正念可以增加人們對別人的同理心。許多研究證實，人們在經過正念訓練後，明顯較訓練前產生更高的同理心。 你要觀察自己是不是專注在自身的呼吸上，萬一發現自己的注意力渙散，已經離開了呼吸，就請再一次把注意力拉回呼吸，這就是集中式覺察 專心走路，專心吃飯，專注力越來越高。 人即便在生气时,乃能做出理性的回应,要控制好自己的情绪10秒法则 它認為憂鬱的情緒來自於人有錯誤扭曲的認知，因此只要改變認知，就可以戰勝憂鬱。 如果事情不能改變，我煩惱又有何用？如果事情可以改變，我又何需煩惱呢？ 我們要學習讓事實停留在事實的層面，而不是用我們的念頭來概括事實。 新的狀態是面對它、接受它。當心裡有負面情緒，要先承認它的存在，不用先急著對抗或逃避；我要跟我的不舒服在一起，看看它到底是什麼樣子，經驗它、接納它。關照它之後，再來想想要怎麼處理它。 練習覺察自己的念頭是否專注在當下所做的事，還是偏離了當下，神遊在不同時空。當你覺察到念頭偏離，那就溫柔堅定的再次將念頭專注於現在，重新把你的精力放在當下要做的事情上。 评后感 还以为是领袖社设定的规则,看完后调整很多有意义的事情 洗澡后学习正念10分钟以上 顺便运动,腹式呼吸 正念带来的是一样的人生]]></summary></entry><entry><title type="html">01/30-flask 路由</title><link href="http://localhost:4000/python/flask/challenge/2024/09/04/pl_01.html" rel="alternate" type="text/html" title="01/30-flask 路由" /><published>2024-09-04T11:24:29+08:00</published><updated>2024-09-04T11:24:29+08:00</updated><id>http://localhost:4000/python/flask/challenge/2024/09/04/pl_01</id><content type="html" xml:base="http://localhost:4000/python/flask/challenge/2024/09/04/pl_01.html"><![CDATA[<p>Flask 是一个轻量级的 Python Web 框架，适合构建简单到中型的 Web 应用程序。它非常灵活，并且通过插件可以扩展。以下是 Flask 基本的教学步骤：</p>
-
-<h3 id="1-安装-flask">1. 安装 Flask</h3>
-
-<p>首先，确保你已经安装了 Flask。你可以通过 <code>pip</code> 安装它：</p>
-
-<pre><code class="language-bash">pip install Flask
-</code></pre>
-
-<h3 id="2-创建一个-flask-项目">2. 创建一个 Flask 项目</h3>
-
-<ol>
-  <li>
-    <p><strong>创建项目文件夹</strong>:
-创建一个文件夹来存放项目文件，比如 <code>flask_project</code>。</p>
-  </li>
-  <li>
-    <p><strong>创建 Python 文件</strong>:
-在文件夹中创建一个 Python 文件，例如 <code>app.py</code>。</p>
-  </li>
-  <li>
-    <p><strong>编写基本 Flask 应用代码</strong>:</p>
-  </li>
-</ol>
-
-<pre><code class="language-python">from flask import Flask
-
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return "Hello, Flask!"
-
-if __name__ == '__main__':
-    app.run(debug=True)
-</code></pre>
-
-<ul>
-  <li><strong>app = Flask(__name__)</strong>: 初始化 Flask 应用程序。</li>
-  <li><strong>@app.route(‘/’)</strong>: 定义了一个路由，<code>/</code> 表示网站的根 URL。</li>
-  <li><strong>def home()</strong>: 这是一个视图函数，当用户访问根 URL 时会调用此函数并返回 “Hello, Flask!”。</li>
-  <li><strong>app.run(debug=True)</strong>: 以调试模式运行 Flask 应用程序。</li>
-</ul>
-
-<h3 id="3-运行应用程序">3. 运行应用程序</h3>
-
-<p>在项目文件夹下，使用终端运行以下命令：</p>
-
-<pre><code class="language-bash">python app.py
-</code></pre>
-
-<p>你会看到类似下面的输出：</p>
-
-<pre><code> * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-</code></pre>
-
-<p>打开浏览器，访问 <code>http://127.0.0.1:5000/</code>，你应该会看到 “Hello, Flask!”。</p>
-
-<h3 id="4-路由和视图">4. 路由和视图</h3>
-
-<p>你可以定义更多的路由和视图函数。比如：</p>
-
-<pre><code class="language-python">@app.route('/about')
-def about():
-    return "This is the about page."
-</code></pre>
-
-<p>访问 <code>http://127.0.0.1:5000/about</code> 将显示 “This is the about page.”。</p>
-
-<h3 id="4-其他功能">4. 其他功能</h3>
-
-<ul>
-  <li><strong>URL 参数</strong>: 你可以在路由中捕获 URL 参数：</li>
-</ul>
-
-<pre><code class="language-python">@app.route('/user/&lt;name&gt;')
-def user(name):
-    return f"Hello, {name}!"
-</code></pre>
-
-<ul>
-  <li><strong>Flask 插件</strong>: Flask 有很多插件，如 <code>Flask-SQLAlchemy</code> 进行数据库操作，<code>Flask-WTF</code> 进行表单验证等。</li>
-</ul>
-
-<h3 id="5-总结">5. 总结</h3>
-
-<p>这是 Flask 的基本操作流程，接下来你可以扩展学习以下内容：</p>
-
-<ul>
-  <li>使用数据库（例如 SQLite、PostgreSQL）</li>
-  <li>使用 Flask-WTF 处理复杂表单</li>
-  <li>用户认证和登录系统</li>
-  <li>使用蓝图组织代码</li>
-  <li>部署 Flask 应用到生产环境（例如 Heroku、AWS）</li>
-</ul>
-
-<h3 id="推荐资源">推荐资源</h3>
-<ul>
-  <li>Flask 官方文档: https://flask.palletsprojects.com/</li>
-  <li>Flask Mega Tutorial: https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world</li>
-</ul>]]></content><author><name></name></author><category term="python" /><category term="flask" /><category term="challenge" /><summary type="html"><![CDATA[Flask 是一个轻量级的 Python Web 框架，适合构建简单到中型的 Web 应用程序。它非常灵活，并且通过插件可以扩展。以下是 Flask 基本的教学步骤： 1. 安装 Flask 首先，确保你已经安装了 Flask。你可以通过 pip 安装它： pip install Flask 2. 创建一个 Flask 项目 创建项目文件夹: 创建一个文件夹来存放项目文件，比如 flask_project。 创建 Python 文件: 在文件夹中创建一个 Python 文件，例如 app.py。 编写基本 Flask 应用代码: from flask import Flask app = Flask(__name__) @app.route('/') def home(): return "Hello, Flask!" if __name__ == '__main__': app.run(debug=True) app = Flask(__name__): 初始化 Flask 应用程序。 @app.route(‘/’): 定义了一个路由，/ 表示网站的根 URL。 def home(): 这是一个视图函数，当用户访问根 URL 时会调用此函数并返回 “Hello, Flask!”。 app.run(debug=True): 以调试模式运行 Flask 应用程序。 3. 运行应用程序 在项目文件夹下，使用终端运行以下命令： python app.py 你会看到类似下面的输出： * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit) 打开浏览器，访问 http://127.0.0.1:5000/，你应该会看到 “Hello, Flask!”。 4. 路由和视图 你可以定义更多的路由和视图函数。比如： @app.route('/about') def about(): return "This is the about page." 访问 http://127.0.0.1:5000/about 将显示 “This is the about page.”。 4. 其他功能 URL 参数: 你可以在路由中捕获 URL 参数： @app.route('/user/&lt;name&gt;') def user(name): return f"Hello, {name}!" Flask 插件: Flask 有很多插件，如 Flask-SQLAlchemy 进行数据库操作，Flask-WTF 进行表单验证等。 5. 总结 这是 Flask 的基本操作流程，接下来你可以扩展学习以下内容： 使用数据库（例如 SQLite、PostgreSQL） 使用 Flask-WTF 处理复杂表单 用户认证和登录系统 使用蓝图组织代码 部署 Flask 应用到生产环境（例如 Heroku、AWS） 推荐资源 Flask 官方文档: https://flask.palletsprojects.com/ Flask Mega Tutorial: https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world]]></summary></entry><entry><title type="html">书-选3哲学</title><link href="http://localhost:4000/review/life/2024/09/04/review017.html" rel="alternate" type="text/html" title="书-选3哲学" /><published>2024-09-04T11:24:29+08:00</published><updated>2024-09-04T11:24:29+08:00</updated><id>http://localhost:4000/review/life/2024/09/04/review017</id><content type="html" xml:base="http://localhost:4000/review/life/2024/09/04/review017.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
+<p>正念带来的是一样的人生</p>]]></content><author><name></name></author><category term="review" /><category term="life" /><summary type="html"><![CDATA[过劳脑:让大脑一例一休让情绪排毒的8周正念计划 阅读书本前 学习冥想 书评 透过冥想达到放松的用途 學習正念，可以讓我們具備旁觀者清的能力，也可以正念行动 第一個層面是將你的意念固定在一個點上 第二層面是廣泛的打開所有感官去察覺你的內外 正念是以不評判的態度，學習觀察自我內在與外在世界的練習，所以正念可以增加人們對別人的同理心。許多研究證實，人們在經過正念訓練後，明顯較訓練前產生更高的同理心。 你要觀察自己是不是專注在自身的呼吸上，萬一發現自己的注意力渙散，已經離開了呼吸，就請再一次把注意力拉回呼吸，這就是集中式覺察 專心走路，專心吃飯，專注力越來越高。 人即便在生气时,乃能做出理性的回应,要控制好自己的情绪10秒法则 它認為憂鬱的情緒來自於人有錯誤扭曲的認知，因此只要改變認知，就可以戰勝憂鬱。 如果事情不能改變，我煩惱又有何用？如果事情可以改變，我又何需煩惱呢？ 我們要學習讓事實停留在事實的層面，而不是用我們的念頭來概括事實。 新的狀態是面對它、接受它。當心裡有負面情緒，要先承認它的存在，不用先急著對抗或逃避；我要跟我的不舒服在一起，看看它到底是什麼樣子，經驗它、接納它。關照它之後，再來想想要怎麼處理它。 練習覺察自己的念頭是否專注在當下所做的事，還是偏離了當下，神遊在不同時空。當你覺察到念頭偏離，那就溫柔堅定的再次將念頭專注於現在，重新把你的精力放在當下要做的事情上。 评后感 还以为是领袖社设定的规则,看完后调整很多有意义的事情 洗澡后学习正念10分钟以上 顺便运动,腹式呼吸 正念带来的是一样的人生]]></summary></entry><entry><title type="html">书-选3哲学</title><link href="http://localhost:4000/review/life/2024/09/04/review017.html" rel="alternate" type="text/html" title="书-选3哲学" /><published>2024-09-04T11:24:29+08:00</published><updated>2024-09-04T11:24:29+08:00</updated><id>http://localhost:4000/review/life/2024/09/04/review017</id><content type="html" xml:base="http://localhost:4000/review/life/2024/09/04/review017.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
 
 <p>期待三的选项的书,因为我也是3流派</p>
 
@@ -511,28 +477,4 @@ def user(name):
 
 <p>不管什么事情做就对了,对自己人生负责</p>
 
-<p>一本散文书籍,但是现代化的没有简简单单的语录,有的是一篇对于社会的善意</p>]]></content><author><name></name></author><category term="review" /><category term="life" /><summary type="html"><![CDATA[阅读书本前 一本散文书籍 书评 「陪伴」是需要花費力氣、精神、時間的，所以十分貴重，應該好好珍惜；無法擁有的時候也很正常，不必覺得自己特別可憐。 她們美的應該是態度和思維，也許還有因為環境培養出來的生活方式和美感，不是靠穿搭和造型就能模仿出來的。 別做一個CP值高的人，要做一個價值高的人。因為這個世界不會虧待有價值的人，但CP值高的就不一定了。 所以，我的建議就是：不管怎樣，先讀、先寫就對了。 　希望我這樣有解答到這兩萬名粉絲的問題。 不必因為「為錢工作」或「棄夢想不顧」而氣餒。把自己餵飽了，生活過好了，才有力氣吟詩作對，走到遠方。 有人說，人在成長的過程裡會失去很多小時候擁有的東西，像是純真、誠實、熱情，還有勇氣。小時候的我們跌倒了，哭一哭，眼淚擦乾就急著去找吃的、玩的，很少會糾結在自己有沒有流血，或是掉了幾塊皮。而我們在不斷長大的過程裡，看似在進化卻也不斷退化，丟了那個向前看的人生態度。 希望我們仍有玩屎的勇氣和幽默感，跌倒了也有馬上爬起來的勇氣，不要活輸了小時候的自己；別因為自己曾和屎攪和過，或是跌得灰頭土臉而感到丟臉，畢竟你不說，世界上知道的人不過幾個，過去種種譬如昨日死，今天活得漂亮就夠了。 评后感 不管什么事情做就对了,对自己人生负责 一本散文书籍,但是现代化的没有简简单单的语录,有的是一篇对于社会的善意]]></summary></entry><entry><title type="html">书-财富几何学</title><link href="http://localhost:4000/review/financial/2024/08/31/review013.html" rel="alternate" type="text/html" title="书-财富几何学" /><published>2024-08-31T11:24:29+08:00</published><updated>2024-08-31T11:24:29+08:00</updated><id>http://localhost:4000/review/financial/2024/08/31/review013</id><content type="html" xml:base="http://localhost:4000/review/financial/2024/08/31/review013.html"><![CDATA[<h3 id="阅读书本前">阅读书本前</h3>
-
-<p>一本纸质书</p>
-
-<h3 id="书评">书评</h3>
-
-<p>金融赛局 : <code>financial theory of game</code></p>
-
-<p>简单从来不是一件简单的事,引用<code>艾伊斯坦</code>的想法,简单可以但是不要过于简单,如果解释可以更简单表示你真的懂了</p>
-
-<p>适当的资产配置是投资成功的关键,也就是不要一味的投资股票和债券</p>
-
-<p>由自己的人生做出适合的配置(投资组合) : 理解投資組合會有波動，預先設定情緒控管方式與應對策略</p>
-
-<h3 id="评后感">评后感</h3>
-
-<p>2019年的一本书,教导我关于资金的想法，使用几何学的观念</p>
-
-<!-- - 圆形
-    - 目的
-- 三角方块
-    - 决策
-- 四方形
-    - 策略 -->
-<!-- 需要回去再了解,看的不是很懂,可能自己身体生病了 -->]]></content><author><name></name></author><category term="review" /><category term="financial" /><summary type="html"><![CDATA[阅读书本前 一本纸质书 书评 金融赛局 : financial theory of game 简单从来不是一件简单的事,引用艾伊斯坦的想法,简单可以但是不要过于简单,如果解释可以更简单表示你真的懂了 适当的资产配置是投资成功的关键,也就是不要一味的投资股票和债券 由自己的人生做出适合的配置(投资组合) : 理解投資組合會有波動，預先設定情緒控管方式與應對策略 评后感 2019年的一本书,教导我关于资金的想法，使用几何学的观念]]></summary></entry></feed>
+<p>一本散文书籍,但是现代化的没有简简单单的语录,有的是一篇对于社会的善意</p>]]></content><author><name></name></author><category term="review" /><category term="life" /><summary type="html"><![CDATA[阅读书本前 一本散文书籍 书评 「陪伴」是需要花費力氣、精神、時間的，所以十分貴重，應該好好珍惜；無法擁有的時候也很正常，不必覺得自己特別可憐。 她們美的應該是態度和思維，也許還有因為環境培養出來的生活方式和美感，不是靠穿搭和造型就能模仿出來的。 別做一個CP值高的人，要做一個價值高的人。因為這個世界不會虧待有價值的人，但CP值高的就不一定了。 所以，我的建議就是：不管怎樣，先讀、先寫就對了。 　希望我這樣有解答到這兩萬名粉絲的問題。 不必因為「為錢工作」或「棄夢想不顧」而氣餒。把自己餵飽了，生活過好了，才有力氣吟詩作對，走到遠方。 有人說，人在成長的過程裡會失去很多小時候擁有的東西，像是純真、誠實、熱情，還有勇氣。小時候的我們跌倒了，哭一哭，眼淚擦乾就急著去找吃的、玩的，很少會糾結在自己有沒有流血，或是掉了幾塊皮。而我們在不斷長大的過程裡，看似在進化卻也不斷退化，丟了那個向前看的人生態度。 希望我們仍有玩屎的勇氣和幽默感，跌倒了也有馬上爬起來的勇氣，不要活輸了小時候的自己；別因為自己曾和屎攪和過，或是跌得灰頭土臉而感到丟臉，畢竟你不說，世界上知道的人不過幾個，過去種種譬如昨日死，今天活得漂亮就夠了。 评后感 不管什么事情做就对了,对自己人生负责 一本散文书籍,但是现代化的没有简简单单的语录,有的是一篇对于社会的善意]]></summary></entry></feed>
