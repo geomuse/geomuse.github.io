@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  challenge-11/30-Flask-Login ⽤户认证
+title:  challenge-11/30-Flask-Login 用户认证
 date:   2024-09-15 11:24:29 +0800
 categories: 
     - python 
@@ -85,7 +85,6 @@ def login():
 @login_required
 def protected():
     return f'Hello, {current_user.username}! You are logged in.'
-
 
 # 登出路由
 @app.route('/logout')
