@@ -19,30 +19,21 @@
 # in the templates via {{ site.myvariable }}.
 
 title: g
-email: boonhong56789@gmail.com
+email: boonhong565059@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Keep Write | Keep Life
+  stay hungry, stay foolish
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-# twitter_username: jekyllrb
-github_username: geomuse
+twitter_username: geo
+github_username:  geomuse
 
 # Build settings
 theme: minima
 plugins:
   - jekyll-feed
 
-version: "v1.0.0-{{ site.time | date: '%Y%m%d%H%M%S'}}"
+permalink: /:categories/:title/
 
-markdown: kramdown
-kramdown:
-  math_engine: mathjax
-  syntax_highlighter_opts:
-    disable: true
-  math_engine_opts:
-    preview: false
-
-    
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
