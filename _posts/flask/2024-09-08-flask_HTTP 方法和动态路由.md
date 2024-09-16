@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  challenge-04/30-flask 和动态路由
+title:  flask 和动态路由
 date:   2024-09-08 11:24:29 +0800
 categories: 
     - python 
     - flask
-    - challenge
 ---
 
 ### 动态路由

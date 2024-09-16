@@ -1,12 +1,11 @@
 ---
 layout: post
-title:  challenge-07/30-flask mongodb
+title:  flask mongodb
 date:   2024-09-12 11:24:29 +0800
 categories: 
     - python 
     - flask
     - mongodb
-    - challenge
 ---
 
 ```html

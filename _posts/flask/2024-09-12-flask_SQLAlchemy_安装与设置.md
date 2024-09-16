@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  challenge-08/30-Flask-SQLAlchemy 安装与设置
+title:  flask-sqlalchemy 安装与设置
 date:   2024-09-12 11:24:29 +0800
 categories: 
     - python 
     - flask
-    - challenge
 ---
 
 要在 Flask 中建立资料库并进行基本的数据库操作，你可以使用 Flask-SQLAlchemy 作为 ORM（对象关系映射），这使得操作数据库变得更加直观和简便。以下是一个基本的 Flask 项目设置和数据库操作的教程：

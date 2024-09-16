@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  challenge-11/30-Flask-Login 用户认证
+title:  flask login 用户认证
 date:   2024-09-15 11:24:29 +0800
 categories: 
     - python 
     - flask
-    - challenge
 ---
 
 Flask-Login 是一个非常流行的 Flask 扩展，专门用于用户认证和管理用户登录状态。下面是一个基本的指南，帮助你学习如何使用 Flask-Login 实现用户登录、登出和访问保护。

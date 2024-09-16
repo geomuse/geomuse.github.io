@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  challenge-09/30-flask 资料库操作（CRUD)
+title:  flask 资料库操作（CRUD)
 date:   2024-09-13 11:24:29 +0800
 categories: 
     - python 
     - flask
-    - challenge
 ---
 
 ### 设定数据与代码做结合

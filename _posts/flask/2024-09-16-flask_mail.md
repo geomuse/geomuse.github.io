@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  challenge-25/30-Flask-Mail
+title:  flask mail
 date:   2024-09-16 11:24:29 +0800
 categories: 
     - python 
     - flask
-    - challenge
 ---
 
 要使用 Flask-Mail 发送邮件，你可以按照以下步骤来安装并配置 Flask-Mail 扩展，并学习如何发送邮件：

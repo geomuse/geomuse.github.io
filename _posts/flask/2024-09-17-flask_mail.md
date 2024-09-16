@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  challenge-25/30-Flask-Mail
+title:  flask mail
 date:   2024-09-17 11:24:29 +0800
 categories: 
     - python 
     - flask
-    - challenge
 ---
 
 Flask-Mail 与 Python 内置的发送邮件套件（如 `smtplib`）在功能和使用上有一些区别，主要体现在封装、功能集成以及开发者体验等方面。以下是两者的主要区别：

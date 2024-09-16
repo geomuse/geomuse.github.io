@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  challenge-09/30-flask 数据库操作（CRUD)
+title:  flask 数据库操作（CRUD)
 date:   2024-09-13 11:24:29 +0800
 categories: 
     - python 
     - flask
-    - challenge
 ---
 
 了解如何在 Flask 应用中进行数据库的 CRUD（创建、读取、更新、删除）操作是开发动态 Web 应用的基础。以下是一个详细的教程，指导你如何使用 Flask 和 Flask-SQLAlchemy 实现这些操作。
