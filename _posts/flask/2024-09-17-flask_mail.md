@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  challenge-25/30-Flask-Mail
-date:   2024-09-16 11:24:29 +0800
+date:   2024-09-17 11:24:29 +0800
 categories: 
     - python 
     - flask
