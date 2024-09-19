@@ -25,6 +25,8 @@ categories:
 </html>
 ```
 
+后端就负责把数据全部丢到 `index.html`
+
 ```py
 from flask import Flask, request, render_template
 import smtplib

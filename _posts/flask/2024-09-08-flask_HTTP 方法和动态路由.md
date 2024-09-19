@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  flask 和动态路由
+title:  flask 动态路由和 http 方法
 date:   2024-09-08 11:24:29 +0800
 categories: 
     - python 
@@ -30,6 +30,7 @@ if __name__ == "__main__":
 Flask 通过 `methods` 参数来指定处理的 HTTP 请求类型。常用的 HTTP 方法包括 `GET` 和 `POST`。
 
 #### **GET 请求**
+
 默认情况下，Flask 处理 `GET` 请求。你可以通过 URL 传递查询参数，并在视图函数中使用 `request.args` 获取这些参数。
 
 ```python
@@ -49,6 +50,7 @@ if __name__ == "__main__":
 访问 `/search?q=Flask` 将显示 "Search results for: Flask"。
 
 #### **POST 请求**
+
 `POST` 请求通常用于表单提交。你可以通过 `methods` 参数指定路由处理 `POST` 请求，并通过 `request.form` 访问表单数据。
 
 ```python
