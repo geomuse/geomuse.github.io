@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  flask-sqlalchemy 安装与设置
+title:  flask sqlalchemy 安装与设置
 date:   2024-09-12 11:24:29 +0800
 categories: 
     - python 

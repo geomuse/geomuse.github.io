@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  flask mongodb
+title:  flask mongodb设置
 date:   2024-09-12 11:24:29 +0800
 categories: 
     - python 
