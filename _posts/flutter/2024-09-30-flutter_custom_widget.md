@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  flutter custom widget
-date:   2024-09-19 11:24:29 +0800
+date:   2024-09-30 11:24:29 +0800
 categories:
     - flutter
 ---
 
-在 **Day 7**，我们将进一步深入到 Flutter 的**自定义 Widget**，这是构建复杂和可重用用户界面的关键步骤。通过自定义 Widget，你可以实现独特的 UI 组件，提升应用的可维护性和扩展性。
+**自定义 Widget**，这是构建复杂和可重用用户界面的关键步骤。通过自定义 Widget，你可以实现独特的 UI 组件，提升应用的可维护性和扩展性。
 
 ### 1. **什么是自定义 Widget？**
 在 Flutter 中，几乎所有内容都是 Widget，包括按钮、文本、布局等。通过创建自定义 Widget，可以将复杂的界面逻辑封装起来，从而更容易复用和管理。Flutter 支持两种主要类型的自定义 Widget：
@@ -275,13 +275,3 @@ class ProfileCard extends StatelessWidget {
 #### 解释：
 - **ProfileCard**：这是一个组合的自定义组件，将头像、姓名和年龄等信息组合成一个用户卡片。
 - **组合**：我们通过 `CircleAvatar`、`Text`、`Card` 等现有的 Flutter 组件来创建更复杂的 `ProfileCard` 组件。
-
-### 6. **总结与练习建议**
-
-在 Day 7 的学习中，你学习了如何通过自定义 `StatelessWidget` 和 `StatefulWidget` 来构建复杂、可复用的 UI 组件。理解自定义组件的设计和实现，可以帮助你在构建复杂应用时保持代码简洁和结构清晰。
-
-#### 练习建议：
-- 创建一个带有图片、标题和描述的自定义卡片组件，并在多个地方复用它。
-- 尝试构建一个包含表单输入和按钮的自定义登录组件，使用 `StatefulWidget` 来管理输入框的状态。
-
-继续练习这些内容，你将能够更加灵活地构建自定义的 Flutter 组件，提高开发效率和代码的可维护性。

@@ -1,12 +1,12 @@
 ---
 layout: post
 title: flutter UI
-date: 2024-09-19 11:24:29 +0800
+date: 2024-09-21 11:24:29 +0800
 categories:
     - flutter
 ---
 
-在**Day 4**，我们将深入学习 Flutter 中的布局系统。布局是 UI 开发的基础，通过使用布局组件（Widget），可以轻松地创建复杂的 UI 界面。
+布局是 UI 开发的基础，通过使用布局组件（Widget），可以轻松地创建复杂的 UI 界面。
 
 ### 1. **常用布局Widget**
 Flutter提供了多个布局组件，以下是几个常用的：
