@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  react props 和状态管理
-date:   2024-09-23 11:24:29 +0800
+date:   2024-09-21 11:24:29 +0800
 categories:
     - react
 ---
