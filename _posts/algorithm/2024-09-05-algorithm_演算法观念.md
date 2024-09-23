@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  基本演算法观念
+title:  演算法观念
 date:   2024-09-05 11:24:29 +0800
 categories: 
     - python 
