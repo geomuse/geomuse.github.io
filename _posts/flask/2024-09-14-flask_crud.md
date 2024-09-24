@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  flask mongodb 资料库操作(CRUD)
+title:  flask mongodb crud
 date:   2024-09-14 11:24:29 +0800
 categories: 
     - python 
