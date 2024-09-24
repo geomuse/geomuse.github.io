@@ -3,7 +3,7 @@ layout: post
 title:  app script 发送邮件与插入数值
 date:   2024-09-24 11:24:29 +0800
 categories: 
-    - app script 
+    - app_script 
 ---
 
 把文档发送邮件到邮件上
