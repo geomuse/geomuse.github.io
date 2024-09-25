@@ -8,7 +8,7 @@ categories:
 
 flutter 一切皆组件
 
-![widget_1](img/widget_1.png)
+<!-- ![widget_1](img/widget_1.png)
 
 `HOME` 分两个 `AppBar` 和 `Body`
 
@@ -31,7 +31,7 @@ main() {
 
 ![widget_1](img/widget_2.png)
 
-整体框架
+整体框架 -->
 
 ```dart
 import 'package:flutter/material.dart';
