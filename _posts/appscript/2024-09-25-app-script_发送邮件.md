@@ -22,8 +22,8 @@ function myFunction() {
 
 ```js
 let content = [
-  {"email": "boonhong565059@gmail.com", "message": "Hello User 1"},
-  {"email": "boonhong565059@gmail.com", "message": "Hello User 2"}
+  {"email": "boonhong565059@gmail.com", "message": "本文将用通俗易懂的方式讲解分类问题的混淆矩阵和各种评估指标的计算公式。将要给大家介绍的评估指标有：准确率、精准率、召回率、F1、ROC曲线、AUC曲线"},
+  {"email": "boonhong565059@gmail.com", "message": "机器学习有很多评估的指标。有了这些指标我们就横向的比较哪些模型的表现更好。我们先从整体上来看看主流的评估指标都有哪"}
 ]
 
 function sendEmailsFromExternalJson(){
@@ -36,5 +36,3 @@ function sendEmailsFromExternalJson(){
   Logger.log('Emails sent successfully.');
 }
 ```
-
-填写问卷后
