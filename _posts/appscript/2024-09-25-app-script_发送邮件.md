@@ -18,7 +18,7 @@ function myFunction() {
 }
 ```
 
-复制邮件
+发送邮件
 
 ```js
 let content = [
