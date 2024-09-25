@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  经济学人的104的大解惑
+title:  app script 填写问卷后自动发送信息
 date:   2024-09-25 11:24:29 +0800
 categories: 
-    - review 
+    - script 
 ---
 
-...
+
