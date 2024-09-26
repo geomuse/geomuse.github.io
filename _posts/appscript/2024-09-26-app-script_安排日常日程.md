@@ -7,37 +7,30 @@ categories:
 ---
 
 ```js
-// Google Calendar 的 ID (可以是 'primary' 代表默认日历)
-var calendarId = 'primary';  // 或替换为其他日历 ID
-var calendar = CalendarApp.getCalendarById(calendarId);
-
-// 读取 Google Sheets 中的任务并创建日历事件
-function createTaskEvents() {
+function sendTasksToGoogleCalendar() {
+  // 获取当前活跃的 Sheet
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var dataRange = sheet.getDataRange();
+  var data = dataRange.getValues();
+  // 获取 Google Calendar 的对象 (指定的日历ID，如果是默认日历可以用 getDefaultCalendar)
+  var calendar = CalendarApp.getDefaultCalendar();
   
-  // 获取所有数据
-  var data = sheet.getDataRange().getValues();
-
-  // 遍历每一行数据，从第二行（跳过标题）
+  // 从第二行开始读取，假设第一行是标题
   for (var i = 1; i < data.length; i++) {
-    var taskTitle = data[i][0];  // 任务名称
-    var taskDate = data[i][1];   // 任务日期
-    var startTime = data[i][2];  // 开始时间
-    var endTime = data[i][3];    // 结束时间
-    var taskDescription = data[i][4]; // 描述（可选）
-    var priority = data[i][5];   // 优先级（可选）
-    
-    // 合并日期和时间生成事件的开始和结束时间
-    var startDateTime = new Date(taskDate + " " + startTime);
-    var endDateTime = new Date(taskDate + " " + endTime);
-
-    // 创建 Google Calendar 事件
-    var event = calendar.createEvent(taskTitle, startDateTime, endDateTime)
-                        .setDescription(taskDescription)
-                        .addEmailReminder(10);  // 可根据需要设置提醒（如提前10分钟）
-
-    // 打印日志，方便查看任务创建情况
-    Logger.log('创建了任务事件：' + taskTitle + '，优先级：' + priority);
+    var taskName = data[i][0];  // 任务名称
+    var taskDescription = data[i][1];  // 任务描述
+    var taskDate = new Date(data[i][2]);  // 任务日期
+    var taskTime = data[i][3];  // 任务时间
+    // 将时间字符串转化为日期对象
+    var startTime = new Date(taskDate);
+    startTime.setHours(taskTime.getHours());
+    startTime.setMinutes(taskTime.getMinutes());
+    // 创建日历事件
+    calendar.createEvent(taskName, startTime, startTime, {
+      description: taskDescription
+    });
+    // 可选：在 Sheets 中标记任务已发送
+    sheet.getRange(i + 1, 6).setValue('已发送');
   }
 }
 ```
