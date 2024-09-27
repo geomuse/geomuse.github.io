@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  app script 建立清单定时发送
-date:   2024-09-28 11:24:29 +0800
+date:   2024-09-27 11:24:29 +0800
 categories: 
     - script 
 ---
