@@ -12,7 +12,7 @@ permalink: /about/
 
 涉及金融工程和资料科学
 
-目前自学 `flask` 和 `flutterflow`
+目前自学 `flask` 和 `flutter` 以及 `react`
 
 量化交易 `freqtrade` 使用者
 
