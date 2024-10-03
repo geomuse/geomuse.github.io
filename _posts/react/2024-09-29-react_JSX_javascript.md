@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  react JSX JAVA SCRIPT
+title:  react JSX (Java script)
 date:   2024-09-29 11:24:29 +0800
 categories:
     - react
