@@ -6,7 +6,7 @@ permalink: /about/
 
 <h3>geo</h3>
 
-专业 : Financial Engineering \| Data Science
+专业 : `Financial Engineering` \| `Data Science`
 
 喜欢发呆和研究哲学,心理学
 
