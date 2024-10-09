@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  演算法观念
+title:  al 演算法观念
 date:   2024-09-05 11:24:29 +0800
 categories: 
     - python 
