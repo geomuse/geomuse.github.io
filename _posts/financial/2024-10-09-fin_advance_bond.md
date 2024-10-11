@@ -1,4 +1,11 @@
-以下是各种债券的定价方法和对应的Python代码示例，包括解释：
+---
+layout: post
+title:  fe bond 进阶
+date:   2024-10-08 11:24:29 +0800
+categories: 
+    - financial 
+    - python
+---
 
 ---
 
