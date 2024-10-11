@@ -9,7 +9,7 @@ categories:
 
 `sabr model` `heston model`
 
-#### 随机波动率
+### 随机波动率 stochastic volatility 
 
 波动率本身是随机过程
 
@@ -23,3 +23,6 @@ categories:
 
 存在波动率微笑曲面 `volatlity surface`
 
+### local volatility
+
+...
