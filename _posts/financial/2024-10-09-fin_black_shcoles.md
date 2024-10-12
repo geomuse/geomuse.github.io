@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  fe black scholes model
-date:   2024-10-08 11:24:29 +0800
+date:   2024-10-09 11:24:29 +0800
 categories: 
     - financial 
     - python
