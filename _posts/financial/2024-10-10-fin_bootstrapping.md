@@ -5,6 +5,7 @@ date:   2024-10-10 11:24:29 +0800
 categories: 
     - financial 
     - python
+    - bootstrapping
 ---
 
 <script type="text/javascript" async
