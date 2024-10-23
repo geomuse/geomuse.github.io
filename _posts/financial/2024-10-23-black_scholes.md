@@ -3,8 +3,8 @@ layout: post
 title:  option pricing 
 date:   2024-10-23 11:24:29 +0800
 categories: 
-    - option
     - financial
+    - option
 ---
 
 ```py

@@ -3,8 +3,8 @@ layout: post
 title:  ns model and svensson model
 date:   2024-10-23 11:24:29 +0800
 categories: 
-    - bootstrapping
     - financial
+    - bootstrapping
 ---
 
 <!-- 
@@ -41,26 +41,16 @@ true_rates = np.array([0.01, 0.015, 0.02, 0.022, 0.025, 0.027, 0.03, 0.032, 0.03
 
 # 初始猜测参数
 initial_params_ns = [0.03, -0.02, 0.02, 1.0]  # beta0, beta1, beta2, lambd
-
-# 拟合 Nelson-Siegel 模型
 params_ns, _ = curve_fit(nelson_siegel, times, true_rates, p0=initial_params_ns)
 
 # 预测拟合结果
 fitted_ns_rates = nelson_siegel(times, *params_ns)
-
-# 打印拟合参数
 print("Nelson-Siegel 模型拟合参数: ", params_ns)
 
 # 初始猜测参数
 initial_params_sv = [0.03, -0.02, 0.02, 0.01, 1.0, 3.0]  # beta0, beta1, beta2, beta3, lambd1, lambd2
-
-# 拟合 Svensson 模型
 params_sv, _ = curve_fit(svensson, times, true_rates, p0=initial_params_sv)
-
-# 预测拟合结果
 fitted_sv_rates = svensson(times, *params_sv)
-
-# 打印拟合参数
 print("Svensson 模型拟合参数: ", params_sv)
 
 # 绘制拟合曲线
