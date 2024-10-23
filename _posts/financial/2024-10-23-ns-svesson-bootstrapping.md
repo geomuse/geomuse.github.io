@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  ns model and svensson model
+title:  nelson siegel model and svensson model
 date:   2024-10-23 11:24:29 +0800
 categories: 
     - financial
@@ -42,24 +42,22 @@ true_rates = np.array([0.01, 0.015, 0.02, 0.022, 0.025, 0.027, 0.03, 0.032, 0.03
 # 初始猜测参数
 initial_params_ns = [0.03, -0.02, 0.02, 1.0]  # beta0, beta1, beta2, lambd
 params_ns, _ = curve_fit(nelson_siegel, times, true_rates, p0=initial_params_ns)
-
-# 预测拟合结果
 fitted_ns_rates = nelson_siegel(times, *params_ns)
-print("Nelson-Siegel 模型拟合参数: ", params_ns)
+print("nelson-Siegel params : ", params_ns)
 
 # 初始猜测参数
 initial_params_sv = [0.03, -0.02, 0.02, 0.01, 1.0, 3.0]  # beta0, beta1, beta2, beta3, lambd1, lambd2
 params_sv, _ = curve_fit(svensson, times, true_rates, p0=initial_params_sv)
 fitted_sv_rates = svensson(times, *params_sv)
-print("Svensson 模型拟合参数: ", params_sv)
+print("svensson params : ", params_sv)
 
 # 绘制拟合曲线
-pt.plot(times, true_rates, 'o', label="市场数据")
-pt.plot(times, fitted_ns_rates, label="Nelson-Siegel 拟合")
-pt.plot(times, fitted_sv_rates, label="Svensson 拟合")
-pt.xlabel("到期期限 (年)")
-pt.ylabel("利率")
-pt.title("Nelson-Siegel 和 Svensson 模型拟合")
+pt.plot(times, true_rates, 'o', label="market value")
+pt.plot(times, fitted_ns_rates, label="nelson-Siegel")
+pt.plot(times, fitted_sv_rates, label="svensson")
+pt.xlabel("time to maturity")
+pt.ylabel("interest rate")
+pt.title("nelson-Siegel and svensson model opt")
 pt.legend()
 pt.show()
 ```
