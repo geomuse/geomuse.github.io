@@ -12,15 +12,24 @@ permalink: /about/
 
 涉及金融工程和资料科学
 
-目前自学 `flask` 和 `flutter` 以及 `react`
+<!-- 目前自学 `flask` 和 `flutter` 以及 `react` -->
+
+目前自学 `flutter`
 
 量化交易 `freqtrade` 使用者
 
-管理工具 :
+擅长的领域
+
+- Financial :
+    - 隐含波动率
+    - 投资组合
+
+
+<!-- 管理工具 :
 
 - 时间管理
 - 决策管理
-- 健康管理
+- 健康管理 -->
 
 <p>
 <img align="left" width='300' height='195' src="https://github-readme-stats.vercel.app/api/top-langs/?username=geomuse&count_private=true&show_icons=true&layout=compact" alt="geo"/>
