@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  volatility smile 
-date:   2024-10-27 11:24:29 +0800
+date:   2024-10-28 11:24:29 +0800
 categories: 
     - financial
     - volatilly
