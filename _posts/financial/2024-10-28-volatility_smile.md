@@ -19,7 +19,7 @@ categories:
 
 除了对市场的波动率进行插值后得到相对应的非标准期限的隐含波动率外 , 还有3个随机波动率模型可以针对隐含波动率
 
-目前市场上最流行的模型是 `bates model` 且在代码中只针对期权价格,可用`black scholes model`对于隐含波动率的求解
+目前市场上最流行的模型是 `bates model` 且在代码中只针对期权价格,可用`black scholes model`对于隐含波动率的求根
 
 ### bates model
 

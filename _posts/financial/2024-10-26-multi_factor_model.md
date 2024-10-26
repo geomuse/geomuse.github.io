@@ -97,3 +97,125 @@ categories:
 多因子模型的因子处理流程是一个系统而循环的过程，需要在每个环节进行细致的分析和优化。
 
 通过科学的方法和严谨的流程，可以构建出具有预测能力和稳健性的多因子模型，为投资决策和风险管理提供有力支持。
+
+```py
+import pandas as pd
+import numpy as np
+import yfinance as yf
+from scipy.stats import zscore
+import talib as ta
+
+# 获取数据
+tickers = ['AAPL', 'MSFT', 'GOOGL']  # 示例股票代码，可以替换成你的标的
+data = yf.download(tickers, start="2020-01-01", end="2023-01-01")
+
+close = data['Adj Close']
+high = data['High']
+low = data['Low']
+volume = data['Volume']
+
+# 生成技术分析因子
+factors = pd.DataFrame(index=data.index)
+
+# 示例技术因子：移动平均、相对强弱指数(RSI)、布林带
+for ticker in tickers:
+    factors[f'{ticker}_SMA20'] = ta.SMA(close[ticker], timeperiod=20)
+    factors[f'{ticker}_RSI14'] = ta.RSI(close[ticker], timeperiod=14)
+    factors[f'{ticker}_BB_upper'], factors[f'{ticker}_BB_middle'], factors[f'{ticker}_BB_lower'] = ta.BBANDS(close[ticker], timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
+
+# 计算简单移动平均线（SMA）
+    factors[f'{ticker}_SMA20'] = ta.SMA(close[ticker], timeperiod=20)
+    factors[f'{ticker}_SMA50'] = ta.SMA(close[ticker], timeperiod=50)
+    
+    # 计算指数移动平均线（EMA）
+    factors[f'{ticker}_EMA20'] = ta.EMA(close[ticker], timeperiod=20)
+    factors[f'{ticker}_EMA50'] = ta.EMA(close[ticker], timeperiod=50)
+    
+    # 计算相对强弱指数（RSI）
+    factors[f'{ticker}_RSI14'] = ta.RSI(close[ticker], timeperiod=14)
+    
+    # 计算布林带（Bollinger Bands）
+    upperband, middleband, lowerband = ta.BBANDS(
+        close[ticker], timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
+    factors[f'{ticker}_BB_upper'] = upperband
+    factors[f'{ticker}_BB_middle'] = middleband
+    factors[f'{ticker}_BB_lower'] = lowerband
+    
+    # 计算移动平均收敛散度（MACD）
+    macd, macdsignal, macdhist = ta.MACD(
+        close[ticker], fastperiod=12, slowperiod=26, signalperiod=9)
+    factors[f'{ticker}_MACD'] = macd
+    factors[f'{ticker}_MACD_signal'] = macdsignal
+    factors[f'{ticker}_MACD_hist'] = macdhist
+    
+    # 计算随机指标（Stochastic Oscillator）
+    slowk, slowd = ta.STOCH(
+        high[ticker], low[ticker], close[ticker],
+        fastk_period=14, slowk_period=3, slowk_matype=0,
+        slowd_period=3, slowd_matype=0)
+    factors[f'{ticker}_Stoch_slowk'] = slowk
+    factors[f'{ticker}_Stoch_slowd'] = slowd
+    
+    # 计算平均真实波幅（ATR）
+    factors[f'{ticker}_ATR14'] = ta.ATR(
+        high[ticker], low[ticker], close[ticker], timeperiod=14)
+    
+    # 计算威廉姆斯指标（Williams %R）
+    factors[f'{ticker}_WilliamsR14'] = ta.WILLR(
+        high[ticker], low[ticker], close[ticker], timeperiod=14)
+    
+    # 计算动量指标（Momentum）
+    factors[f'{ticker}_Momentum10'] = ta.MOM(close[ticker], timeperiod=10)
+    
+    # 计算商品通道指数（CCI）
+    factors[f'{ticker}_CCI14'] = ta.CCI(
+        high[ticker], low[ticker], close[ticker], timeperiod=14)
+    
+    # 计算三重指数平滑平均线（TRIX）
+    factors[f'{ticker}_TRIX15'] = ta.TRIX(close[ticker], timeperiod=15)
+    
+    # 计算平滑异同移动平均线（PPO）
+    factors[f'{ticker}_PPO'] = ta.PPO(close[ticker], fastperiod=12, slowperiod=26, matype=0)
+    
+    # 计算加权移动平均线（WMA）
+    factors[f'{ticker}_WMA20'] = ta.WMA(close[ticker], timeperiod=20)
+    
+    # 计算平均动向指数（ADX）
+    factors[f'{ticker}_ADX14'] = ta.ADX(high[ticker], low[ticker], close[ticker], timeperiod=14)
+    
+    # 计算价格通道指标（Donchian Channel）
+    factors[f'{ticker}_Donchian_upper'] = high[ticker].rolling(window=20).max()
+    factors[f'{ticker}_Donchian_lower'] = low[ticker].rolling(window=20).min()
+    
+    # 计算累积/派发线（A/D Line）
+    factors[f'{ticker}_AD'] = ta.AD(high[ticker], low[ticker], close[ticker], volume[ticker])
+
+# 删除空值
+factors.dropna(inplace=True)
+
+# 标准化因子（Z-Score）
+factors = factors.apply(zscore)
+
+# 计算相关性矩阵
+correlation_matrix = factors.corr().abs()
+
+# 去除高度相关的因子
+# 设置相关性阈值
+correlation_threshold = 0.8
+columns_to_remove = set()
+
+for i in range(len(correlation_matrix.columns)):
+    for j in range(i+1, len(correlation_matrix.columns)):
+        if correlation_matrix.iloc[i, j] > correlation_threshold:
+            columns_to_remove.add(correlation_matrix.columns[j])
+
+# 保留不相关的因子
+filtered_factors = factors.drop(columns=columns_to_remove)
+
+# 输出筛选后的因子
+print("筛选后的因子列表：")
+print(filtered_factors.columns)
+
+# 使用筛选后的因子构建模型（这里只是示例，你可以进一步应用这些因子）
+# 比如可以应用线性回归、XGBoost等模型
+```
