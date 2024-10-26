@@ -21,7 +21,6 @@ categories:
 
 1. 设置目标函数：根据期权定价公式（如 Black-Scholes），计算理论价格，并将理论价格与市场实际价格的差异作为目标函数。
 
-
 2. 实现方法：分别使用二分法、割线法、牛顿法求取使目标函数等于零的隐含波动率。
 
 1. 设置 Black-Scholes 公式的目标函数
@@ -43,6 +42,7 @@ def objective_function(sigma, S, K, T, r, market_price):
     bs_price = black_scholes_call_price(S, K, T, r, sigma)
     return bs_price - market_price
 ```
+
 2. 二分法求解隐含波动率
 
 二分法需要初始的上下限，我们可以用 0.0001 和 5 作为波动率的范围。
@@ -61,9 +61,11 @@ def implied_volatility_bisection(S, K, T, r, market_price, tol=1e-6, max_iterati
             lower = mid
     return (lower + upper) / 2  # 超过迭代次数后返回中间值
 ```
+
 3. 割线法求解隐含波动率
 
 割线法需要两个初始猜测，我们可以用 0.0001 和 0.5 作为初始猜测值。
+
 ```py
 def implied_volatility_secant(S, K, T, r, market_price, tol=1e-6, max_iterations=100):
     x0, x1 = 0.0001, 0.5
