@@ -1,11 +1,11 @@
 ---  
 layout : post
-title  : multi factor model
+title  : multi-factor model
 date   : 2024-10-26 11:24:29 +0800
 author : geo
 categories: 
     - financial
-    - option
+    - factor
 ---
 
 多因子模型在金融投资和风险管理中扮演着重要角色，通过多个因子的组合来解释和预测资产的收益和风险。
@@ -176,11 +176,15 @@ import pandas as pd
 import numpy as np
 import yfinance as yf
 from scipy.stats import zscore
+
+import statsmodels.api as sm
+
 import talib as ta
 
 # 获取数据
 tickers = ['AAPL', 'MSFT', 'GOOGL']  # 示例股票代码，可以替换成你的标的
 data = yf.download(tickers, start="2020-01-01", end="2023-01-01")
+sp500 = yf.download('^GSPC', start='2020-01-01', end='2023-01-01')
 
 close = data['Adj Close']
 high = data['High']
@@ -192,7 +196,6 @@ factors = pd.DataFrame(index=data.index)
 
 # 示例技术因子：移动平均、相对强弱指数(RSI)、布林带
 for ticker in tickers:
-    factors[f'{ticker}_SMA20'] = ta.SMA(close[ticker], timeperiod=20)
     factors[f'{ticker}_RSI14'] = ta.RSI(close[ticker], timeperiod=14)
     factors[f'{ticker}_BB_upper'], factors[f'{ticker}_BB_middle'], factors[f'{ticker}_BB_lower'] = ta.BBANDS(close[ticker], timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
 
@@ -263,6 +266,11 @@ for ticker in tickers:
     # 计算累积/派发线（A/D Line）
     factors[f'{ticker}_AD'] = ta.AD(high[ticker], low[ticker], close[ticker], volume[ticker])
 
+    factors[f'{ticker}_AdjClose'] = close[ticker]
+
+    factors['Return_'] = sp500['Adj Close']
+    # factors.drop(f'{ticker}_AdjClose',axis=1,inplace=True)
+
 # 删除空值
 factors.dropna(inplace=True)
 
@@ -282,6 +290,7 @@ for i in range(len(correlation_matrix.columns)):
         if correlation_matrix.iloc[i, j] > correlation_threshold:
             columns_to_remove.add(correlation_matrix.columns[j])
 
+# print(factors)
 # 保留不相关的因子
 filtered_factors = factors.drop(columns=columns_to_remove)
 
@@ -289,10 +298,12 @@ filtered_factors = factors.drop(columns=columns_to_remove)
 print("筛选后的因子列表：")
 print(filtered_factors.columns)
 
+# print(filtered_factors)
+
 # 使用筛选后的因子构建模型（这里只是示例，你可以进一步应用这些因子）
 # 比如可以应用线性回归、XGBoost等模型
 
-print(y:=factors['Return_'].pct_change().dropna())
+print(y:=factors['Return'].pct_change().dropna())
 X = sm.add_constant(filtered_factors.iloc[1:,:])  # 添加常数项
 
 # 4. 建立线性回归模型
