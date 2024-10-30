@@ -1,4 +1,5 @@
 ---
+layout: post
 title : vasicek model
 author : geo
 date : 2024-10-25 11:24:29 +0800

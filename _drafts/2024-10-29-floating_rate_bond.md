@@ -1,4 +1,5 @@
 ---
+layout: post
 title : floating rate bond 
 date : 2024-10-29 11:24:29 +0800
 categories: 

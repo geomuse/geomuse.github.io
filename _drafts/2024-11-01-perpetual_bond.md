@@ -1,4 +1,5 @@
 ---
+layout: post
 title : perpetual bond
 date : 2024-11-01 11:24:29 +0800
 categories: 

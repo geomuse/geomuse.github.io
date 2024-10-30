@@ -1,4 +1,5 @@
 ---
+layout: post
 title : puttable bond
 date : 2024-11-02 11:24:29 +0800
 categories: 

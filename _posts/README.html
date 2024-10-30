@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Goh Boon Hong</title>
+    <style>
+        /* 通用样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: #fff;
+            display: flex;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 左侧栏样式 */
+        .left-column {
+            width: 30%;
+            background-color: #f4f4f4;
+            padding: 30px;
+            border-right: 2px solid #ddd;
+        }
+
+        .left-column h2 {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .contact-info p,
+        .expertise p,
+        .references p {
+            font-size: 0.9em;
+            margin: 8px 0;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* 右侧栏样式 */
+        .right-column {
+            width: 70%;
+            padding: 30px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            letter-spacing: 3px;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 1em;
+            color: #777;
+            letter-spacing: 2px;
+            margin-top: 5px;
+            font-weight: normal;
+            text-transform: uppercase;
+        }
+
+        /* 工作经验和教育部分样式 */
+        .section-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            text-transform: uppercase;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .job-item,
+        .education-item {
+            margin-bottom: 20px;
+        }
+
+        .job-title {
+            font-weight: bold;
+            font-size: 1em;
+            margin: 0;
+        }
+
+        .company-name {
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .job-duration {
+            font-size: 0.9em;
+            color: #555;
+            float: right;
+        }
+
+        .job-description ul {
+            padding-left: 20px;
+            list-style-type: disc;
+            color: #555;
+        }
+
+        .job-description ul li {
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- 左侧栏 -->
+        <div class="left-column">
+
+            <div class="header">
+                <h1>GOH BOON HONG</h1>
+                <h2>Finance Engineer | Information Technology</h2>
+            </div>
+
+            <div class="contact-info">
+                <h2>Contact</h2>
+                <p>(+60)1114363283</p>
+                <p>boonhong556059@gmail.com</p>
+                <p>geomuse.github.io</p>
+            </div>
+
+            <div class="expertise">
+                <h2>Expertise</h2>
+                <p>• Web Development (React , html , js)</p>
+                <p>• Python Flask | Nodejs (Back End)</p>
+                <p>• Python</p>
+                <p>• R Studio </p>
+                <p>• SQL | NoSQL </p>
+                <p>• Machine Learning Techniques</p>
+            </div>
+
+        </div>
+
+        <!-- 右侧栏 -->
+        <div class="right-column">
+            <div class="work-experience">
+                <h3 class="section-title">Work Experience</h3>
+
+                <div class="job-item">
+                    <p class="job-title">Quant</p>
+                    <span class="company-name">Xiamen RSC Fintech Co., Ltd.</span>
+                    <div class="job-description">
+                        <!-- <ul>
+                            <li>...</li>
+                        </ul> -->
+                    </div>
+                </div>
+
+                <div class="job-item">
+                    <p class="job-title">研究助理</p>
+                    <span class="company-name">University of Providence</span>
+                    <div class="job-description">
+                    </div>
+                </div>
+
+                <div class="job-item">
+                    <p class="job-title">數值分析助教</p>
+                    <span class="company-name">University of Providence</span>
+                    <div class="job-description">
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="job-item">
+                    <p class="job-title">微積分助教</p>
+                    <span class="company-name">University of Providence</span>
+                </div>
+
+                <div class="job-item">
+                    <p class="job-title">網⾴設計</p>
+                    <span class="company-name">University of Tokai University</span>
+                    <!-- <span class="job-duration">2020 - 2022</span> -->
+                    
+                </div>
+
+                <div class="job-item">
+                    <p class="job-title">社企⼩編</p>
+                    <span class="company-name">University of Providence</span>
+                </div>
+                
+                <div class="job-item">
+                    <p class="job-title">⾏政助理</p>
+                    <span class="company-name">University of Providence</span>
+                    <!-- <span class="job-duration">2018 - 2020</span> -->
+                </div>
+
+                <h3 class="section-title">Project Experience</h3>
+
+                <div class="job-item">
+                    <p class="job-title">爬取中国证交所财报数据</p>
+                    <span class="company-name">设计一套不同等级的爬虫全自动化爬取评价报告</span>
+                    <!-- <span class="job-duration">2018 - 2020</span> -->
+                </div>
+
+                <div class="job-item">
+                    <p class="job-title">投资组合</p>
+                    <span class="company-name">建立效率前缘线,CAL,无异曲线和多目标优化</span>
+                    <!-- <span class="job-duration">2018 - 2020</span> -->
+                </div>
+
+                <div class="job-item">
+                    <p class="job-title">隐含波动率</p>
+                    <span class="company-name">sabr , heston , bates model</span>
+                    <!-- <span class="job-duration">2018 - 2020</span> -->
+                </div>
+
+                <div class="job-item">
+                    <p class="job-title">衍生品定价相关</p>
+                    <span class="company-name">利率衍生品,奇艺期权和零息利率曲线(利率期间结构)</span>
+                    <!-- <span class="job-duration">2018 - 2020</span> -->
+                </div>
+
+                <div class="job-item">
+                    <p class="job-title">信用卡违约</p>
+                    <span class="company-name">EDA > 机器学习</span>
+                    <!-- <span class="job-duration">2018 - 2020</span> -->
+                </div>
+
+                <div class="job-item">
+                    <p class="job-title">FRTB</p>
+                    <span class="company-name">符合base3的标准法</span>
+                    <!-- <span class="job-duration">2018 - 2020</span> -->
+                </div>
+
+            </div>
+            
+            <div class="education">
+                <h3 class="section-title">Education</h3>
+                <div class="education-item">
+                    <p class="job-title">Master's in Data Science Degree Program (Quit)</p>
+                    <span class="company-name">National University of Taiwan</span>
+                    <!-- <span class="job-duration">2016 - 2018</span> -->
+                </div>
+                <div class="education-item">
+                    <p class="job-title">Bachelor's in Financial Engineer</p>
+                    <span class="company-name">University of Providence</span>
+                    <!-- <span class="job-duration">2012 - 2016</span> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,4 +1,5 @@
 ---  
+layout: post
 title : Shout , Forward Start , Quanto Options
 date : 2024-10-29 11:24:29 +0800
 categories: 

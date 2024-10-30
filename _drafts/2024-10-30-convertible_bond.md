@@ -1,4 +1,5 @@
 ---
+layout: post
 title : convertible bond
 date : 2024-10-30 11:24:29 +0800
 categories: 

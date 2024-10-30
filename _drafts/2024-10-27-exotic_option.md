@@ -1,4 +1,5 @@
 ---
+layout: post
 title : exotic option
 date : 2024-10-27 11:24:29 +0800
 categories: 
