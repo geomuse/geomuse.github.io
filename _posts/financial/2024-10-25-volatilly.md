@@ -4,7 +4,7 @@ title:  volatility
 date:   2024-10-25 11:24:29 +0800
 categories: 
     - financial
-    - volatilly
+    - volatility
 ---
 
 <script>

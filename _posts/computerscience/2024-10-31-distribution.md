@@ -55,15 +55,15 @@ categories:
 
 ```py
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as pt
 import scipy.stats as stats
 from matplotlib import style
 style.use('ggplot')
 
 # 设置图形布局
-fig, axs = plt.subplots(5, 3, figsize=(15, 20))
+fig, axs = pt.subplots(5, 3, figsize=(15, 20))
 fig.suptitle("Major Statistical Distributions", fontsize=20)
-plt.subplots_adjust(hspace=0.5, wspace=0.3)
+pt.subplots_adjust(hspace=0.5, wspace=0.3)
 
 # 定义分布的名称、数据和设置
 distributions = [
@@ -91,5 +91,5 @@ for ax, (name, x, y, title) in zip(axs.ravel(), distributions):
     ax.legend()
     ax.grid()
 
-plt.show()
+pt.show()
 ```
