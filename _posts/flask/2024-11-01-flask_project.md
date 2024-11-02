@@ -1,6 +1,10 @@
 ---
-title : 简单的图书管理 API
-author : geo
+layout: post
+title : 简单的图书管理 api
+date:   2024-11-01 11:24:29 +0800
+categories: 
+    - python 
+    - flask
 ---
 
 # 练习：创建一个简单的图书管理 API

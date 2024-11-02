@@ -4,6 +4,7 @@ title : different cubehelix palettes
 date : 2024-11-01 11:24:29 +0800
 categories: 
     - stats
+    - visualization
 ---
 
 ![Image Description](/assets/images/output1.png)

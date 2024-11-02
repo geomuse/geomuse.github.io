@@ -7,6 +7,16 @@ categories:
     - risk
 ---
 
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 VaR 是用于量化投资组合或单个资产在特定置信水平下的最大潜在损失。计算方法主要包括历史法、方差-协方差法和蒙特卡洛模拟法。
 
 查看`chatgpt`
@@ -136,3 +146,41 @@ component_VaR = weights * (z_score * np.sqrt(np.diag(cov_matrix)))
 component_contributions = component_VaR / portfolio_VaR
 print("成分 VaR 贡献：", component_contributions)
 ```
+
+成分VaR和边际VaR是用于风险分解和风险管理的两种重要方法，特别是在多资产组合中。这两者与总体VaR有关，通过它们可以更好地理解每个资产或资产类别对组合总体VaR的贡献。
+
+### 1. 总体VaR (Total VaR)
+总体VaR是衡量整个投资组合在特定置信水平和持有期内可能面临的最大损失。例如，一个95%置信水平的VaR表示在最坏的5%的情况下，组合可能损失的最大金额。
+
+### 2. 成分VaR (Component VaR)
+成分VaR表示每个资产（或资产类别）对投资组合总体VaR的贡献。它通过分解组合的VaR，帮助投资者了解每个资产对组合总体风险的具体影响。
+
+**计算成分VaR**：
+成分VaR可以通过以下公式计算：
+$$
+\text{成分VaR}_i = \frac{\partial \text{组合VaR}}{\partial w_i} \cdot w_i
+$$
+其中 \( \frac{\partial \text{组合VaR}}{\partial w_i} \) 是边际VaR，\( w_i \) 是资产i在组合中的权重。成分VaR反映了资产i对组合VaR的加权贡献。
+
+成分VaR的求和等于组合总体VaR：
+$$
+\text{组合VaR} = \sum_{i} \text{成分VaR}_i
+$$
+
+### 3. 边际VaR (Marginal VaR)
+边际VaR是每个资产在当前组合权重下对总体VaR的边际贡献。具体来说，边际VaR表示如果增加该资产的权重，组合VaR将增加的风险量。它衡量每个资产的“额外风险贡献”。
+
+**计算边际VaR**：
+边际VaR的公式为：
+$$
+\text{边际VaR}_i = \frac{\partial \text{组合VaR}}{\partial w_i}
+$$
+
+边际VaR可以通过计算组合的VaR对资产权重的偏导数获得。
+
+### 成分VaR、边际VaR与总体VaR的关系
+- 总体VaR是整个组合在特定置信水平下的潜在最大损失。
+- 成分VaR通过每个资产的边际VaR和其组合权重衡量该资产对总体VaR的具体贡献。
+- 边际VaR代表单个资产对组合总体VaR的“边际”影响，通常用于判断在组合中增加或减少某一资产权重的风险变化。
+
+这种关系帮助投资者在分散风险时进行组合优化，例如减少高成分VaR的资产权重，从而降低组合的总体VaR。

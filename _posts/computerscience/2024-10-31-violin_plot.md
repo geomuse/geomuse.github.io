@@ -4,6 +4,7 @@ title : violin plot
 date : 2024-10-31 11:24:29 +0800
 categories: 
     - stats
+    - visualization
 ---
 
 <script>
