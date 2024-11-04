@@ -63,3 +63,5 @@ collection.delete_one({"name": "Charlie"})
 # 删除多条数据
 collection.delete_many({"age": {"$lt": 30}})
 ```
+
+https://learn.mongodb.com/pages/mongodb-associate-developer-exam
