@@ -1,6 +1,6 @@
 ---
 layout: post
-title : stats (seaborn) basic visualization
+title : visualization
 date : 2024-11-04 11:24:29 +0800
 categories: 
     - stats
