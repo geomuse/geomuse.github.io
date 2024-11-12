@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  非线性方程求解 - 牛顿-拉夫森法
-date:   2024-11-07 11:24:29 +0800
+title:  非线性方程求解 牛顿-拉夫森法
+date:   2024-11-08 11:24:29 +0800
 categories:
     - python
     - na
