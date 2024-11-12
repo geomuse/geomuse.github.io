@@ -17,11 +17,15 @@ categories:
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-要建立通用的期权收益图代码，可以使用 Python 的 matplotlib 库进行绘图。下面的代码支持绘制看涨期权（call）、看跌期权（put）、向上敲出期权（up-and-out）、向下敲出期权（down-and-out）等不同类型的期权收益图。
+要建立通用的期权收益图代码，可以使用 Python 的 matplotlib 库进行绘图。下面的代码支持绘制看涨期权（call）、看跌期权（put）等不同类型的期权收益图。
+
+![Image Description](/assets/images/_1.png)
 
 ```py
 import numpy as np
 import matplotlib.pyplot as pt
+from matplotlib import style
+style.use('ggplot')
 
 # 定义期权参数
 K = 50  # 行权价
@@ -36,16 +40,6 @@ def call_payoff(S, K, C):
 def put_payoff(S, K, C):
     return np.maximum(K - S, 0) - C
 
-def up_and_out_call(S, K, B, C):
-    payoff = np.maximum(S - K, 0)
-    payoff[S >= B] = 0  # 超过敲出价格收益为0
-    return payoff - C
-
-def down_and_out_put(S, K, B, C):
-    payoff = np.maximum(K - S, 0)
-    payoff[S <= B] = 0  # 低于敲出价格收益为0
-    return payoff - C
-
 # 绘制图像
 pt.figure(figsize=(10, 6))
 
@@ -53,10 +47,6 @@ pt.figure(figsize=(10, 6))
 pt.plot(S, call_payoff(S, K, C), label="Call Option", color="blue")
 # 看跌期权
 pt.plot(S, put_payoff(S, K, C), label="Put Option", color="red")
-# 向上敲出看涨期权
-pt.plot(S, up_and_out_call(S, K, B, C), label="Up-and-Out Call", color="green")
-# 向下敲出看跌期权
-pt.plot(S, down_and_out_put(S, K, B, C), label="Down-and-Out Put", color="purple")
 
 # 设置图像标签和标题
 pt.xlabel("Stock Price at Expiration")

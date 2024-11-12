@@ -17,6 +17,9 @@ categories:
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+
+![Image Description](/assets/images/_2.png)
+
 ```py
 import numpy as np
 from scipy.optimize import curve_fit
