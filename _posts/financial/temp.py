@@ -1,125 +1,56 @@
 import numpy as np
+import numpy as np
+from scipy.integrate import quad
+from scipy.optimize import minimize, brentq
 from scipy.stats import norm
 
-def black_scholes_greeks(S, K, T, r, sigma, option_type="call"):
-    d1 = (np.log(S / K) + (r + 0.5 * sigma ** 2) * T) / (sigma * np.sqrt(T))
-    d2 = d1 - sigma * np.sqrt(T)
+class bates_model :
+    # Bates 模型特征函数（包含跳跃项）
+    def bates_characteristic_function(self,u, params, S0, r, q, T):
+        kappa, theta, sigma, rho, v0, lambd, muJ, sigmaJ = params
+        D1 = np.sqrt((rho * sigma * 1j * u - kappa) ** 2 + sigma ** 2 * (1j * u + u ** 2))
+        G = (kappa - rho * sigma * 1j * u - D1) / (kappa - rho * sigma * 1j * u + D1)
+        eDT = np.exp(-D1 * T)
+        C = kappa * theta / sigma ** 2 * ((kappa - rho * sigma * 1j * u - D1) * T - 2 * np.log((1 - G * eDT) / (1 - G)))
+        D = (kappa - rho * sigma * 1j * u - D1) / sigma ** 2 * ((1 - eDT) / (1 - G * eDT))
+        M = np.exp(1j * u * (np.log(S0) + (r - q - lambd * (np.exp(muJ + 0.5 * sigmaJ ** 2) - 1)) * T))
+        J = np.exp(lambd * T * (np.exp(1j * u * muJ - 0.5 * u ** 2 * sigmaJ ** 2) - 1))
+        return M * np.exp(C + D * v0) * J
 
-    delta = norm.cdf(d1) if option_type == "call" else -norm.cdf(-d1)
-    gamma = norm.pdf(d1) / (S * sigma * np.sqrt(T))
-    vega = S * norm.pdf(d1) * np.sqrt(T)
-    theta = (-S * norm.pdf(d1) * sigma / (2 * np.sqrt(T))
-             - r * K * np.exp(-r * T) * norm.cdf(d2) if option_type == "call"
-             else -S * norm.pdf(d1) * sigma / (2 * np.sqrt(T)) + r * K * np.exp(-r * T) * norm.cdf(-d2))
-    rho = K * T * np.exp(-r * T) * norm.cdf(d2) if option_type == "call" else -K * T * np.exp(-r * T) * norm.cdf(-d2)
-    
-    return {"Delta": delta, "Gamma": gamma, "Vega": vega, "Theta": theta, "Rho": rho}
+    # 期权价格积分（与 Heston 类似）
+    def bates_option_price(self,K, params, S0, r, q, T):
+        # 类似于 Heston 模型的定价，但使用 Bates 的特征函数
+        def integrand(u):
+            cf = model.bates_characteristic_function(u - 1j * 0.5, params, S0, r, q, T)
+            numerator = np.exp(-1j * u * np.log(K)) * cf
+            return numerator / (u ** 2 + 0.25)
+        integral = quad(lambda u: integrand(u).real, 0, np.inf, limit=100)[0]
+        price = S0 * np.exp(-q * T) - (np.sqrt(S0 * K) / np.pi) * np.exp(-r * T) * integral
+        return price
 
-def monte_carlo_greeks(S, K, T, r, sigma, simulations=10000):
-    Z = np.random.standard_normal(simulations)
-    S_T = S * np.exp((r - 0.5 * sigma ** 2) * T + sigma * np.sqrt(T) * Z)
-    payoff = np.maximum(S_T - K, 0)
-    option_price = np.exp(-r * T) * np.mean(payoff)
-    
-    dS = 0.01
-    S_T_up = (S + dS) * np.exp((r - 0.5 * sigma ** 2) * T + sigma * np.sqrt(T) * Z)
-    payoff_up = np.maximum(S_T_up - K, 0)
-    option_price_up = np.exp(-r * T) * np.mean(payoff_up)
-    delta = (option_price_up - option_price) / dS
-    
-    d_sigma = 0.01
-    S_T_vega = S * np.exp((r - 0.5 * (sigma + d_sigma) ** 2) * T + (sigma + d_sigma) * np.sqrt(T) * Z)
-    payoff_vega = np.maximum(S_T_vega - K, 0)
-    option_price_vega = np.exp(-r * T) * np.mean(payoff_vega)
-    vega = (option_price_vega - option_price) / d_sigma
-    
-    return {"Delta": delta, "Vega": vega}
+    # 目标函数
+    def bates_calibration_error(self,params):
+        kappa, theta, sigma, rho, v0, lambd, muJ, sigmaJ = params
+        model_prices = [self.bates_option_price(K, params, S0, r, q, T) for K in market_strikes]
+        error = np.sum((model_prices - market_prices) ** 2)
+        return error
 
-def finite_difference_gamma(S, K, T, r, sigma):
-    dS = 0.01
-    price_up = black_scholes_greeks(S + dS, K, T, r, sigma)["Delta"]
-    price_down = black_scholes_greeks(S - dS, K, T, r, sigma)["Delta"]
-    gamma = (price_up - price_down) / (2 * dS)
-    
-    return gamma
+# 市场数据（假设）
+market_strikes = np.array([80, 90, 100, 110, 120])
+market_prices = np.array([22, 14, 8, 5, 3])
+S0 = 100
+r = 0.05
+q = 0.02
+T = 1
 
-import numpy as np
+# 初始猜测和参数边界
+initial_guess = [1.0, 0.05, 0.5, -0.5, 0.05, 0.1, -0.1, 0.2]
+bounds = [(0.0001, 10), (0.0001, 1), (0.0001, 5), (-0.999, 0.999), (0.0001, 1), (0.0001, 1), (-1, 1), (0.0001, 1)]
 
-def finite_difference_option_price(S, K, T, r, sigma, M, N, option_type="call"):
-    dt = T / M
-    dS = S / N
-    grid = np.zeros((N + 1, M + 1))
-    
-    # 资产价格离散值
-    S_vals = np.linspace(0, S * 2, N + 1)
-    
-    # 终值条件和边界条件
-    if option_type == "call":
-        grid[:, -1] = np.maximum(S_vals - K, 0)
-        grid[-1, :] = S_vals[-1] - K * np.exp(-r * np.linspace(0, T, M + 1))
-    else:
-        grid[:, -1] = np.maximum(K - S_vals, 0)
-        grid[0, :] = K * np.exp(-r * np.linspace(0, T, M + 1))
-    
-    # 系数计算
-    alpha = 0.5 * dt * ((sigma ** 2) * (np.arange(N) ** 2) - r * np.arange(N))
-    beta = 1 - dt * ((sigma ** 2) * (np.arange(N) ** 2) + r)
-    gamma = 0.5 * dt * ((sigma ** 2) * (np.arange(N) ** 2) + r * np.arange(N))
+model = bates_model()
+# 优化
+result = minimize(model.bates_calibration_error, initial_guess, bounds=bounds, method='L-BFGS-B')
 
-    for j in range(M - 1, -1, -1):
-        for i in range(1, N):
-            grid[i, j] = alpha[i] * grid[i - 1, j + 1] + beta[i] * grid[i, j + 1] + gamma[i] * grid[i + 1, j + 1]
-
-    # 返回期权初始价格
-    return np.interp(S, S_vals, grid[:, 0])
-
-# Greeks 计算函数
-def finite_difference_greeks(S, K, T, r, sigma, M, N, option_type="call"):
-    epsilon = 1e-4  # 微小变化值
-
-    # 计算初始期权价格
-    price = finite_difference_option_price(S, K, T, r, sigma, M, N, option_type)
-
-    # Delta
-    price_up = finite_difference_option_price(S + epsilon, K, T, r, sigma, M, N, option_type)
-    delta = (price_up - price) / epsilon
-
-    # Gamma
-    price_down = finite_difference_option_price(S - epsilon, K, T, r, sigma, M, N, option_type)
-    gamma = (price_up - 2 * price + price_down) / (epsilon ** 2)
-
-    # Theta
-    price_theta = finite_difference_option_price(S, K, T - epsilon, r, sigma, M, N, option_type)
-    theta = (price_theta - price) / epsilon
-
-    # Vega
-    price_vega = finite_difference_option_price(S, K, T, r, sigma + epsilon, M, N, option_type)
-    vega = (price_vega - price) / epsilon
-
-    # Rho
-    price_rho = finite_difference_option_price(S, K, T, r + epsilon, sigma, M, N, option_type)
-    rho = (price_rho - price) / epsilon
-
-    return {"Delta": delta, "Gamma": gamma, "Theta": theta, "Vega": vega, "Rho": rho}
-
-# 参数设置
-S = 100
-K = 100  
-T = 1    
-r = 0.05 
-sigma = 0.2 
-M = 1000    # 时间步数
-N = 100     # 空间步数
-
-# 计算 Greeks
-greeks = finite_difference_greeks(S, K, T, r, sigma, M, N, option_type="call")
-print("Greeks:", greeks)
-
-greeks = black_scholes_greeks(S, K, T, r, sigma, option_type="call")
-print("Greeks:", greeks)
-
-greeks_monte_carlo = monte_carlo_greeks(S, K, T, r, sigma)
-print("Monte Carlo Greeks:", greeks_monte_carlo)
-
-gamma_fd = finite_difference_gamma(S, K, T, r, sigma)
-print("Finite Difference Gamma:", gamma_fd)
+# 校准结果
+params_calibrated = result.x
+print(f"Calibrated parameters:\nKappa: {params_calibrated[0]}\nTheta: {params_calibrated[1]}\nSigma: {params_calibrated[2]}\nRho: {params_calibrated[3]}\nv0: {params_calibrated[4]}\nLambda: {params_calibrated[5]}\nMuJ: {params_calibrated[6]}\nSigmaJ: {params_calibrated[7]}")
