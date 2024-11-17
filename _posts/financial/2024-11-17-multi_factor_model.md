@@ -4,6 +4,7 @@ title : multi-factor model
 date : 2024-11-17 11:24:29 +0800
 categories: 
     - financial
+    - multi_facor_model
 ---
 
 多因子模型
