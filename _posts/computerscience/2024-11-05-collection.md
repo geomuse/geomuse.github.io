@@ -4,7 +4,7 @@ title : basic data collection
 date : 2024-11-05 11:24:29 +0800
 categories: 
     - stats
-    - collection
+    - scrapy
 ---
 
 - 静态网页使用 requests。
