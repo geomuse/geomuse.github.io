@@ -1,10 +1,10 @@
 ---
 layout: post
-title : 再平衡策略 rebalancing
+title : rebalancing 再平衡策略 
 date : 2024-11-12 11:24:29 +0800
 categories: 
     - financial
-    - stock
+    - portfolio
 ---
 
 ```

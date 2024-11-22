@@ -214,5 +214,3 @@ def get_post(post_id):
 1. RESTful API 使用 HTTP 动词（如 GET、POST、PUT、DELETE）操作资源。
 2. Flask 提供了便捷的 `jsonify` 方法和路由支持，快速构建 API。
 3. 使用 `request.json` 获取客户端发送的 JSON 数据，动态处理数据。
-
-明天将学习如何通过 **Flask-RESTful** 提供更结构化的 API 开发工具集。

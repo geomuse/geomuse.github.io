@@ -1,6 +1,6 @@
 ---
 layout: post
-title : markowiz and  portfolio management
+title : markowiz and portfolio management
 date : 2024-10-26 11:24:29 +0800
 categories: 
     - financial
