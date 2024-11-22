@@ -1,13 +1,3 @@
----
-layout: post
-title:  flask 登入界面
-date:   2024-10-06 11:24:29 +0800
-categories: 
-    - python 
-    - flask
----
-
-```py
 from flask import Flask, render_template, request, redirect, url_for, session
 
 app = Flask(__name__)
@@ -42,45 +32,5 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
+    
     app.run(debug=True)
-```
-
-`home.html`
-
-```html
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <title>主页</title>
-</head>
-<body>
-    <h2>欢迎，{{ username }}！</h2>
-    <p>您已成功登录。</p>
-    <a href="{{ url_for('logout') }}">注销</a>
-</body>
-</html>
-```
-
-`login.html`
-
-```html
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <title>登录</title>
-</head>
-<body>
-    <h2>登录页面</h2>
-    {% if error %}
-        <p style="color:red;">{{ error }}</p>
-    {% endif %}
-    <form method="post">
-        <label>用户名：</label><input type="text" name="username"><br><br>
-        <label>密码：</label><input type="password" name="password"><br><br>
-        <input type="submit" value="登录">
-    </form>
-</body>
-</html>
-```
