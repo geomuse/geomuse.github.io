@@ -7,6 +7,31 @@ categories:
     - volatility
 ---
 
+在金融衍生品中，使用碟式 (Butterfly)、ATM (At-the-Money) 和风险逆转 (Risk Reversal, RR) 数据来计算隐含波动率是一种常见的方法
+
+```py
+def calculate_volatility(atm_vol, risk_reversal, butterfly):
+    # ATM volatility
+    sigma_atm = atm_vol
+    
+    # Calculate 25 Delta Call and Put volatility
+    sigma_25_delta_call = sigma_atm + (risk_reversal / 2) + butterfly
+    sigma_25_delta_put = sigma_atm - (risk_reversal / 2) + butterfly
+    
+    return sigma_25_delta_call, sigma_25_delta_put
+
+# 示例数据
+atm_vol = 0.20  # ATM volatility (20%)
+risk_reversal = 0.02  # Risk reversal (2%)
+butterfly = 0.01  # Butterfly (1%)
+
+# 计算隐含波动率
+sigma_25_call, sigma_25_put = calculate_volatility(atm_vol, risk_reversal, butterfly)
+
+print(f"25 Delta Call Volatility: {sigma_25_call:.2%}")
+print(f"25 Delta Put Volatility: {sigma_25_put:.2%}")
+```
+
 **25 Delta Put 波动率**是隐含波动率的一个特定值，表示期权交易市场中 Delta 为 -25% 的看跌期权的隐含波动率。以下是详细解释：
 
 ---
