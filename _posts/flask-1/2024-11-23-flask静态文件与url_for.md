@@ -51,6 +51,10 @@ h1 {
 </html>
 ```
 
+```md
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+```
+
 任务：
 
 - 创建一个页面 /about，显示带有 CSS 样式的自定义消息。
