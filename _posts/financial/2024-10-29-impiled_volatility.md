@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  impiled_volatility
+title:  impiled volatility
 date:   2024-10-29 11:24:29 +0800
 categories: 
     - financial
