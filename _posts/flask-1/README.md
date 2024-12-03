@@ -66,7 +66,7 @@
 - 练习：
   - 创建一个多表应用（如用户和文章关联）。
 
-#### **Day 10:** API 基础 <!-- processing -->
+#### **Day 10:** API 基础  <!-- done -->
 - 学习内容：
   - RESTful API 概念
   - 使用 Flask 创建 API 路由
