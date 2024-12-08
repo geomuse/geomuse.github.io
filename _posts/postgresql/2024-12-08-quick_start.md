@@ -7,6 +7,10 @@ categories:
     - postgresql
 ---
 
+### 安装postgresql
+
+https://www.postgresql.org/download/linux/ubuntu/
+
 ### 连接数据库
 
 切换到 PostgreSQL 管理员用户：
@@ -41,6 +45,7 @@ categories:
 退出 psql：
 
     \q
+    
 <!-- 
 设置 postgres 用户密码：
 
