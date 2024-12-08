@@ -4,6 +4,7 @@ title : mongodb crub
 date : 2024-11-03 11:24:29 +0800
 categories: 
     - mongodb
+    - database
 ---
 
 ```py

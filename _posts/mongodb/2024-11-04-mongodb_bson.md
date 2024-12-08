@@ -4,6 +4,7 @@ title : mongodb bson 与 json 差别
 date : 2024-11-04 11:24:29 +0800
 categories: 
     - mongodb
+    - database
 ---
 
 BSON（Binary JSON）和 JSON（JavaScript Object Notation）都是数据格式，但它们在结构、存储方式和使用场景上有一些关键的差异。

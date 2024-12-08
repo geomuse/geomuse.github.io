@@ -4,6 +4,7 @@ title : mongodb 基本认知
 date : 2024-11-02 11:24:29 +0800
 categories: 
     - mongodb
+    - database
 ---
 
 学习 MongoDB 的基本概念：数据库、集合、文档。
