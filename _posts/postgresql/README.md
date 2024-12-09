@@ -15,7 +15,7 @@
 - 学习 `psql` 命令行工具的基本使用。
 - 创建第一个数据库并连接。
 
-#### **Day 3: 数据库与表** 
+#### **Day 3: 数据库与表**  <!-- done -->
 - 创建、删除数据库：`CREATE DATABASE` 和 `DROP DATABASE`。
 - 创建、修改、删除表：`CREATE TABLE`、`ALTER TABLE` 和 `DROP TABLE`。
 - 了解 PostgreSQL 数据类型：`INT`、`VARCHAR`、`TEXT`、`BOOLEAN`、`DATE` 等。
