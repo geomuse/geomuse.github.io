@@ -20,13 +20,13 @@
 - 创建、修改、删除表：`CREATE TABLE`、`ALTER TABLE` 和 `DROP TABLE`。
 - 了解 PostgreSQL 数据类型：`INT`、`VARCHAR`、`TEXT`、`BOOLEAN`、`DATE` 等。
 
-#### **Day 4: 数据操作（CRUD 操作）**
+#### **Day 4: 数据操作（CRUD 操作）**  <!-- done -->
 - 插入数据：`INSERT INTO`。
 - 查询数据：`SELECT`。
 - 更新数据：`UPDATE`。
 - 删除数据：`DELETE`。
 
-#### **Day 5: 基本查询**
+#### **Day 5: 基本查询** <!-- done -->
 - 选择特定列：`SELECT column1, column2 FROM table`。
 - 添加条件：`WHERE` 子句。
 - 排序：`ORDER BY` 子句。

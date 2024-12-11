@@ -45,6 +45,8 @@ https://www.postgresql.org/download/linux/ubuntu/
 退出 psql：
 
     \q
+
+`select * from users ;`
     
 <!-- 
 设置 postgres 用户密码：

@@ -13,6 +13,16 @@ categories:
 pandoc -o output.docx -f markdown -t docx input.md
 ``` -->
 
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 # 基本性质
 
 给定标底物的动态走势(随机方程式) $\Rightarrow$ 衍生品的随机方程式
