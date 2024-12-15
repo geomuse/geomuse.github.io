@@ -32,7 +32,7 @@
 - 排序：`ORDER BY` 子句。
 - 限制行数：`LIMIT` 和 `OFFSET`。
 
-#### **Day 6: 索引**
+#### **Day 6: 索引** 
 - 理解索引的作用。
 - 创建、删除索引：`CREATE INDEX` 和 `DROP INDEX`。
 - 了解 PostgreSQL 的索引类型（`B-tree`、`GIN`、`GiST`、`BRIN`）。
@@ -43,17 +43,17 @@
 
 ---
 
-### **第 2 周：查询与高级操作**
+### **第 2 周：查询与高级操作** <!-- done -->
 #### **Day 8: 多表查询（JOIN）**
 - 理解表之间的关系：一对一、一对多、多对多。
 - 使用 `INNER JOIN`、`LEFT JOIN`、`RIGHT JOIN` 和 `FULL OUTER JOIN`。
 - 实践常见的多表查询场景。
 
-#### **Day 9: 聚合函数**
+#### **Day 9: 聚合函数** <!-- done -->
 - 学习聚合函数：`COUNT`、`SUM`、`AVG`、`MIN`、`MAX`。
 - 使用 `GROUP BY` 和 `HAVING` 子句。
 
-#### **Day 10: 子查询**
+#### **Day 10: 子查询** <!-- done -->
 - 简单子查询：`SELECT ... FROM (subquery)`。
 - 相关子查询：`EXISTS` 和 `NOT EXISTS`。
 - 使用子查询优化复杂查询。

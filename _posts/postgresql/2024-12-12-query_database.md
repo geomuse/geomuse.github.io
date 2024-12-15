@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  postgresql basic query database
+title:  postgresql 基本查询 database
 date:   2024-12-12 11:24:29 +0800
 categories: 
     - database
