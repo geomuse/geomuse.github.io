@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  安装 postgresql
+title:  postgresql 安装
 date:   2024-12-07 11:24:29 +0800
 categories: 
     - database
