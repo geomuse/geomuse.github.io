@@ -326,98 +326,119 @@ print("Minimum Volatility with Bounds:", optimized_with_bounds.fun)
 ```
 
 ```py
+import yfinance as yf
+import pandas as pd
+import numpy as np
+from matplotlib import style
 from scipy.optimize import minimize
+import matplotlib.pyplot as pt
+style.use('ggplot')
 
-# 计算平均收益率和协方差矩阵
-mean_returns = returns.mean() * 252  # 年化收益
-cov_matrix = returns.cov() * 252     # 年化协方差
+class markowiz :
 
-# 无风险利率
-risk_free_rate = 0.03
+    # 计算投资组合的预期收益和年化波动率
+    def portfolio_return(self, weights, returns):
+        return np.sum(returns.mean() * weights) * 252
 
-# 多目标优化函数
-def objective_function(weights, mean_returns, cov_matrix, risk_free_rate, alpha=0.5):
-    portfolio_return = np.dot(weights, mean_returns)  # 组合收益
-    portfolio_risk = np.sqrt(np.dot(weights.T, np.dot(cov_matrix, weights)))  # 组合风险
-    sharpe_ratio = (portfolio_return - risk_free_rate) / portfolio_risk  # 夏普比率
+    # 计算投资组合的年化波动率
+    def portfolio_volatility(self, weights, cov_matrix):
+        return np.sqrt(np.dot(weights.T, np.dot(cov_matrix * 252, weights)))
 
-    # 目标：平衡收益和风险，alpha 控制权重
-    return alpha * (-portfolio_return) + (1 - alpha) * portfolio_risk
+    # 定义优化目标：最小化波动率
+    def min_volatility(self, weights, cov_matrix):
+        return self.portfolio_volatility(weights, cov_matrix)
 
-# 权重和约束
-def weight_sum_constraint(weights):
-    return np.sum(weights) - 1
+    # 多目标优化函数
+    def objective_function(self, weights, returns, cov_matrix, risk_free_rate, alpha=0.5):
+        # portfolio_return = np.dot(weights, mean_returns)  # 组合收益
+        portfolio_return = self.portfolio_return(weights,returns)
+        
+        # portfolio_risk = np.sqrt(np.dot(weights.T, np.dot(cov_matrix, weights)))  # 组合风险
+        portfolio_risk = self.portfolio_volatility(weights,cov_matrix)
+        
+        sharpe_ratio = (portfolio_return - risk_free_rate) / portfolio_risk  # 夏普比率
 
-# 权重非负约束
-bounds = [(0, 1) for _ in range(len(tickers))]
+        # 目标：平衡收益和风险，alpha 控制权重
+        return alpha * (-portfolio_return) + (1 - alpha) * portfolio_risk
 
-# 初始权重
-initial_weights = np.ones(len(tickers)) / len(tickers)
+    # 权重和约束
+    def weight_sum_constraint(self, weights):
+        return np.sum(weights) - 1
 
-# 优化
-constraints = {'type': 'eq', 'fun': weight_sum_constraint}
-alpha = 0.5  # 平衡系数
-result = minimize(
-    objective_function,
-    initial_weights,
-    args=(mean_returns, cov_matrix, risk_free_rate, alpha),
-    method='SLSQP',
-    bounds=bounds,
-    constraints=constraints
-)
+if __name__ == '__main__' :
 
-# 输出结果
-optimal_weights = result.x
-portfolio_return = np.dot(optimal_weights, mean_returns)
-portfolio_risk = np.sqrt(np.dot(optimal_weights.T, np.dot(cov_matrix, optimal_weights)))
-sharpe_ratio = (portfolio_return - risk_free_rate) / portfolio_risk
+    # 定义股票代码
+    tickers = ['AAPL', 'MSFT', 'GOOGL', 'AMZN']
 
-# 打印结果
-print("Optimal Weights:")
-for ticker, weight in zip(tickers, optimal_weights):
-    print(f"{ticker}: {weight:.4f}")
+    # 下载股票数据
+    data = yf.download(tickers, start="2020-01-01", end="2024-01-01")['Adj Close']
 
-print(f"\nExpected Portfolio Return: {portfolio_return:.4f}")
-print(f"Portfolio Risk: {portfolio_risk:.4f}")
-print(f"Sharpe Ratio: {sharpe_ratio:.4f}")
+    risk_free_rate = 0.03 
+    
+    # 计算每日收益率
+    returns = data.pct_change().dropna()
+
+    # 计算协方差矩阵
+    cov_matrix = returns.cov()
+
+    # 初始猜测：假设均匀分配
+    num_assets = len(tickers)
+    init_guess = np.array(num_assets * [1. / num_assets])
+
+    # 设置权重的边界和约束条件
+    bounds = tuple((0, 1) for asset in range(num_assets))
+    constraints = ({'type': 'eq', 'fun': lambda weights: np.sum(weights) - 1})
+
+    optimized = minimize(markowiz().min_volatility, init_guess, args=(cov_matrix),method='SLSQP', bounds=bounds, constraints=constraints)
+
+    print("Optimized Weights: ", optimized.x)
+    print("\nExpected Portfolio Return: ", portfolio_return := markowiz().portfolio_return(optimized.x,returns))
+    print("Minimum Volatility: ", optimized.fun)
+    sharpe_ratio = (portfolio_return - risk_free_rate) / optimized.fun
+    print(f"Sharpe Ratio: {sharpe_ratio}\n")
+    # 权重非负约束
+    bounds = [(0, 1) for _ in range(len(tickers))]
+
+    # 优化
+    constraints = {'type': 'eq', 'fun': markowiz().weight_sum_constraint}
+    alpha = 0.5  # 平衡系数
+    result = minimize(
+        markowiz().objective_function,
+        optimized.x,
+        args=(returns, cov_matrix, risk_free_rate, alpha),
+        method='SLSQP',
+        bounds=bounds,
+        constraints=constraints
+    )
+
+    # 输出结果
+    optimal_weights = result.x
+    portfolio_return = markowiz().portfolio_return(optimal_weights,returns)
+    portfolio_risk = markowiz().portfolio_volatility(optimal_weights,cov_matrix)  
+    sharpe_ratio = (portfolio_return - risk_free_rate) / portfolio_risk
+
+    print(f"Optimal Weights: {optimal_weights}")
+    print(f"\nExpected Portfolio Return: {portfolio_return:.4f}")
+    print(f"Portfolio Risk: {portfolio_risk:.4f}")
+    print(f"Sharpe Ratio: {sharpe_ratio:.4f}")
 ```
 
 ```py
-Optimal Weights:
-AAPL: 0.5823
-MSFT: 0.0000
-GOOGL: 0.0110
-AMZN: 0.4067
+Optimized Weights:  [0.30085163 0.13994133 0.28229909 0.27690795]
+
+Expected Portfolio Return:  0.2591958475852417
+Minimum Volatility:  0.3007599529050759
+Sharpe Ratio: 0.7620557370468108
+
+Optimal Weights: [0.58245443 0.         0.0107118  0.40683377]
 
 Expected Portfolio Return: 0.2889
 Portfolio Risk: 0.3128
 Sharpe Ratio: 0.8276
 ```
 
-### **投资组合的原理**
+### **现代投资组合理论（Modern Portfolio Theory, MPT）**
 
-投资组合理论（Portfolio Theory）是金融学的重要组成部分，旨在通过资产的合理配置，平衡风险和收益，从而实现财富的优化增长。以下是投资组合的核心原理：
-
----
-
-### **1. 投资组合的基本概念**
-
-- **投资组合**：由多种资产（如股票、债券、基金等）组成的资产组合，旨在通过多样化分散风险并实现目标收益。
-  
-- **目标**：
-  - **收益最大化**：通过选择高回报的资产，实现资产增值。
-  - **风险最小化**：通过分散投资，降低单一资产波动对整体资产的影响。
-
----
-
-### **2. 现代投资组合理论（Modern Portfolio Theory, MPT）**
-
-由哈里·马科维茨（Harry Markowitz）于1952年提出，是投资组合管理的奠基理论。
-
-#### **核心思想：分散投资**
-- 将资产分布在多个类别或个体中，避免将所有资金集中在一个高风险资产上。
-
-#### **数学模型：**
 1. **收益**：
    - 组合的期望收益：  
      $$
@@ -468,50 +489,3 @@ Sharpe Ratio: 0.8276
 
 4. **贝塔系数（Beta）**：
    衡量投资组合对市场波动的敏感性。
-
----
-
-### **4. 分散化的作用**
-
-- **核心原理**：不完全相关的资产组合可以降低总风险。
-- **分散化效果**：
-  - 高相关性资产：分散效果较差。
-  - 低相关性或负相关性资产：显著降低组合风险。
-
----
-
-### **5. 实际应用**
-
-1. **资产配置**：
-   - 根据投资者的风险偏好，将资产分配到股票、债券、房地产等类别。
-
-2. **动态调整**：
-   - 随着市场环境和投资者目标的变化，定期重新平衡组合。
-
-3. **风险管理**：
-   - 通过对冲策略（如期权、期货）降低潜在风险。
-
----
-
-### **6. 新趋势：智能投资组合**
-
-1. **多因子模型**：
-   - 结合财务因子（如价值、动量）构建投资组合。
-
-2. **量化模型**：
-   - 使用机器学习算法选择资产并优化组合。
-
-3. **ESG 投资**：
-   - 加入环境、社会和治理（ESG）因素，平衡投资回报与社会责任。
-
----
-
-### **7. 投资组合的优劣势**
-
-#### **优点**：
-- 降低单一资产波动风险。
-- 提供稳健的长期回报。
-
-#### **缺点**：
-- 过度分散可能降低收益。
-- 构建和管理复杂性较高。
