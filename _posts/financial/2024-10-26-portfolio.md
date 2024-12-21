@@ -7,6 +7,16 @@ categories:
     - portfolio
 ---
 
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 下载数据
 
 ```py
@@ -313,6 +323,75 @@ optimized_with_bounds = minimize(min_volatility, init_guess, method='SLSQP', bou
 # 输出优化结果
 print("Optimized Weights with Bounds:", optimized_with_bounds.x)
 print("Minimum Volatility with Bounds:", optimized_with_bounds.fun)
+```
+
+```py
+from scipy.optimize import minimize
+
+# 计算平均收益率和协方差矩阵
+mean_returns = returns.mean() * 252  # 年化收益
+cov_matrix = returns.cov() * 252     # 年化协方差
+
+# 无风险利率
+risk_free_rate = 0.03
+
+# 多目标优化函数
+def objective_function(weights, mean_returns, cov_matrix, risk_free_rate, alpha=0.5):
+    portfolio_return = np.dot(weights, mean_returns)  # 组合收益
+    portfolio_risk = np.sqrt(np.dot(weights.T, np.dot(cov_matrix, weights)))  # 组合风险
+    sharpe_ratio = (portfolio_return - risk_free_rate) / portfolio_risk  # 夏普比率
+
+    # 目标：平衡收益和风险，alpha 控制权重
+    return alpha * (-portfolio_return) + (1 - alpha) * portfolio_risk
+
+# 权重和约束
+def weight_sum_constraint(weights):
+    return np.sum(weights) - 1
+
+# 权重非负约束
+bounds = [(0, 1) for _ in range(len(tickers))]
+
+# 初始权重
+initial_weights = np.ones(len(tickers)) / len(tickers)
+
+# 优化
+constraints = {'type': 'eq', 'fun': weight_sum_constraint}
+alpha = 0.5  # 平衡系数
+result = minimize(
+    objective_function,
+    initial_weights,
+    args=(mean_returns, cov_matrix, risk_free_rate, alpha),
+    method='SLSQP',
+    bounds=bounds,
+    constraints=constraints
+)
+
+# 输出结果
+optimal_weights = result.x
+portfolio_return = np.dot(optimal_weights, mean_returns)
+portfolio_risk = np.sqrt(np.dot(optimal_weights.T, np.dot(cov_matrix, optimal_weights)))
+sharpe_ratio = (portfolio_return - risk_free_rate) / portfolio_risk
+
+# 打印结果
+print("Optimal Weights:")
+for ticker, weight in zip(tickers, optimal_weights):
+    print(f"{ticker}: {weight:.4f}")
+
+print(f"\nExpected Portfolio Return: {portfolio_return:.4f}")
+print(f"Portfolio Risk: {portfolio_risk:.4f}")
+print(f"Sharpe Ratio: {sharpe_ratio:.4f}")
+```
+
+```py
+Optimal Weights:
+AAPL: 0.5823
+MSFT: 0.0000
+GOOGL: 0.0110
+AMZN: 0.4067
+
+Expected Portfolio Return: 0.2889
+Portfolio Risk: 0.3128
+Sharpe Ratio: 0.8276
 ```
 
 ### **投资组合的原理**
