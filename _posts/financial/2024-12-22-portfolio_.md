@@ -5,6 +5,7 @@ date : 2024-12-22 11:24:29 +0800
 categories: 
     - financial
     - portfolio
+    - python
 ---
 
 <script>
@@ -70,13 +71,13 @@ categories:
 <!-- 4. **贝塔系数（Beta）**：
    衡量投资组合对市场波动的敏感性。 -->
 
-![Image Description](pic.png)
+![Image Description](/assets/images/pic.png)
 
-![Image Description](pic1.png)
+![Image Description](/assets/images/pic1.png)
 
-![Image Description](pic2.png)
+![Image Description](/assets/images/pic2.png)
 
-![Image Description](pic3.png)
+![Image Description](/assets/images/pic3.png)
 
 
 ```py

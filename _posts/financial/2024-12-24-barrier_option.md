@@ -1,9 +1,11 @@
 ---
+layout: post
 title : barrier option monte carlo method (updated) 
 date : 2024-12-24 11:24:29 +0800
 categories: 
     - financial
     - option
+    - python
 ---
 
 以下是基于蒙特卡洛模拟的 Python 代码，用于计算障碍期权（Barrier Option）的价格。
