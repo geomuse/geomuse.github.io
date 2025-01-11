@@ -1,0 +1,16 @@
+---
+layout: post
+title:  forex 每日一句
+date:   2025-01-12 11:01:30 +0800
+categories: 
+    - forex
+    - review
+---
+
+![](/assets/marketing/2025-01-13.jpg)
+
+Monday｜13/365
+
+ You can't blend in when you were born to stand out.
+
+你天生与众不同，注定不会被淹没在人群中。

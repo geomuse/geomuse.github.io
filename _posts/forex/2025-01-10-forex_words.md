@@ -7,9 +7,9 @@ categories:
     - review
 ---
 
-![](/assets/marketing/xw8gO_OF.jpg)
+![](/assets/marketing/2025-01-10.jpg)
 
-Thusday｜10/365
+Friday｜10/365
 
 Nothing is impossible; the word itself says 'I'm possible!
 
