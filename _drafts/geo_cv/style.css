@@ -8,7 +8,7 @@ body {
 
 .container {
     width: 90%;
-    max-width: 900px;
+    max-width: 1000px;
     margin: 30px auto;
     background-color: #fff;
     border-radius: 8px;
@@ -26,9 +26,8 @@ body {
     margin-left: 80px;
     padding: 20px 20px 40px;
     position: relative;
-
     padding: 10px 0;
-    max-width: 900px; /* 限制 header 的宽度 */
+    max-width: 1000px; /* 限制 header 的宽度 */
     margin: 0 auto;
 }
 
@@ -86,7 +85,7 @@ body {
     color: rgb(67, 67, 104);
     font-size: 1.5em;
     margin-bottom: 10px;
-    border-bottom: 2px solid rgb(67, 67, 104);
+    /* border-bottom: 2px solid rgb(67, 67, 104); */
     padding-bottom: 5px;
 }
 
