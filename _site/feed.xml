@@ -1,524 +1,340 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-11-04T17:02:24+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">g</title><subtitle>stay hungry, stay foolish</subtitle><entry><title type="html">visualization</title><link href="http://localhost:4000/stats/visualization/visualization/" rel="alternate" type="text/html" title="visualization" /><published>2024-11-04T11:24:29+08:00</published><updated>2024-11-04T11:24:29+08:00</updated><id>http://localhost:4000/stats/visualization/visualization</id><content type="html" xml:base="http://localhost:4000/stats/visualization/visualization/"><![CDATA[<p>统一设定</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-25T23:40:05+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">g</title><subtitle>keep it simple</subtitle><entry><title type="html">金钱心理学</title><link href="http://localhost:4000/review/learning/review118/" rel="alternate" type="text/html" title="金钱心理学" /><published>2025-01-25T13:01:30+08:00</published><updated>2025-01-25T13:01:30+08:00</updated><id>http://localhost:4000/review/learning/review118</id><content type="html" xml:base="http://localhost:4000/review/learning/review118/"><![CDATA[<p>你可以选择一份虽然工资低但对你而言更有价值的工作,存钱的价值</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
-<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="n">sns</span><span class="p">.</span><span class="nf">set_style</span><span class="p">(</span><span class="sh">"</span><span class="s">whitegrid</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="nf">load_dataset</span><span class="p">(</span><span class="sh">"</span><span class="s">tips</span><span class="sh">"</span><span class="p">)[</span><span class="sh">"</span><span class="s">total_bill</span><span class="sh">"</span><span class="p">]</span>
-</code></pre></div></div>
+<p>选择与时间是一个通用的货币
+<br />
+<br /></p>
 
-<ul>
-  <li>
-    <h3 id="分布图distribution-plot">分布图（Distribution Plot）</h3>
+<p>在你负担得起的范围内舒适地生活，不产生过多欲望，</p>
 
-    <p><code class="language-plaintext highlighter-rouge">sns.distplot()</code>: 绘制数据的分布图（包含直方图和核密度估计曲线），用于观察数据的分布特征。</p>
+<p>你会避免现代西方世界中许多人要承受的巨大社会压力</p>
 
-    <p><img src="/assets/images/output5.png" alt="Image Description" /></p>
+<p><br />
+获得一定程度的生活自主性并不需要你拿到医生那么高的薪水。</p>
 
-    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">sns</span><span class="p">.</span><span class="nf">distplot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</code></pre></div>    </div>
+<p>最主要的秘诀是控制你的欲望，在能力范围内尽可能节俭地生活。</p>
 
-    <p><code class="language-plaintext highlighter-rouge">sns.kdeplot()</code>: 核密度估计图，用于显示数据的概率密度。</p>
+<p>长期的投资手法–低成本的指数基金。</p>]]></content><author><name></name></author><category term="review" /><category term="learning" /><summary type="html"><![CDATA[你可以选择一份虽然工资低但对你而言更有价值的工作,存钱的价值]]></summary></entry><entry><title type="html">有点忧郁倾向的自己(2)</title><link href="http://localhost:4000/review/diary/diary007/" rel="alternate" type="text/html" title="有点忧郁倾向的自己(2)" /><published>2025-01-24T13:01:30+08:00</published><updated>2025-01-24T13:01:30+08:00</updated><id>http://localhost:4000/review/diary/diary007</id><content type="html" xml:base="http://localhost:4000/review/diary/diary007/"><![CDATA[<p>每天记录自己的生活一点点滴滴，无论负面或者正面也好</p>
 
-    <p><img src="/assets/images/output6.png" alt="Image Description" /></p>
+<table>
+  <thead>
+    <tr>
+      <th>正面</th>
+      <th>负面</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>爱我的家人</td>
+      <td>坚持不了自己的兴趣</td>
+    </tr>
+    <tr>
+      <td>富足的财富</td>
+      <td>没有有价值的未来</td>
+    </tr>
+    <tr>
+      <td>健康的财务</td>
+      <td>有一身病的躯壳</td>
+    </tr>
+  </tbody>
+</table>]]></content><author><name></name></author><category term="review" /><category term="diary" /><summary type="html"><![CDATA[每天记录自己的生活一点点滴滴，无论负面或者正面也好]]></summary></entry><entry><title type="html">有点忧郁倾向的自己(1)</title><link href="http://localhost:4000/review/diary/diary006/" rel="alternate" type="text/html" title="有点忧郁倾向的自己(1)" /><published>2025-01-23T13:01:30+08:00</published><updated>2025-01-23T13:01:30+08:00</updated><id>http://localhost:4000/review/diary/diary006</id><content type="html" xml:base="http://localhost:4000/review/diary/diary006/"><![CDATA[<p>忧郁倾向，会思考负面的回忆一一直直循环。</p>]]></content><author><name></name></author><category term="review" /><category term="diary" /><summary type="html"><![CDATA[忧郁倾向，会思考负面的回忆一一直直循环。]]></summary></entry><entry><title type="html">把力氣花在你想要的生活上</title><link href="http://localhost:4000/review/life/review117/" rel="alternate" type="text/html" title="把力氣花在你想要的生活上" /><published>2025-01-22T13:01:30+08:00</published><updated>2025-01-22T13:01:30+08:00</updated><id>http://localhost:4000/review/life/review117</id><content type="html" xml:base="http://localhost:4000/review/life/review117/"><![CDATA[<p>物慾不是壞事，控制不了的物慾才是壞事。</p>
 
-    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">sns</span><span class="p">.</span><span class="nf">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="sh">"</span><span class="s">black</span><span class="sh">"</span><span class="p">)</span>
-</code></pre></div>    </div>
+<p>每個人都有自己享樂的權利，只要自己開心自己覺得值，別人的質疑都通通與我無關
+活得比我好的我只有羨慕，比我差的我也不會指指點點，反正死的時候一切清零。</p>
 
-    <p><code class="language-plaintext highlighter-rouge">sns.histplot()</code>: 仅绘制直方图，可以控制柱的宽度、数量等。</p>
+<p>记得购买医疗保险和紧急备用金</p>
 
-    <p><img src="/assets/images/output7.png" alt="Image Description" /></p>
+<p>一輩子還長著，沒什麼花掉的錢是賺不回來的。</p>
 
-    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">sns</span><span class="p">.</span><span class="nf">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <h3 id="散点图scatter-plot">散点图（Scatter Plot）</h3>
+<p>成为一个有趣的灵魂</p>]]></content><author><name></name></author><category term="review" /><category term="life" /><summary type="html"><![CDATA[物慾不是壞事，控制不了的物慾才是壞事。]]></summary></entry><entry><title type="html">程式做单元测试的重要性</title><link href="http://localhost:4000/review/diary/diary005/" rel="alternate" type="text/html" title="程式做单元测试的重要性" /><published>2025-01-21T13:01:30+08:00</published><updated>2025-01-21T13:01:30+08:00</updated><id>http://localhost:4000/review/diary/diary005</id><content type="html" xml:base="http://localhost:4000/review/diary/diary005/"><![CDATA[<p>当程式变得复杂后，可能需要编写一些测试，并不是孤立检查各个模块，而是要验证模块之间是否能正确地互动。</p>
 
-    <p><code class="language-plaintext highlighter-rouge">sns.scatterplot()</code>: 用于展示两变量之间的关系，适用于连续型数据。</p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">unittest</span>
 
-    <p><code class="language-plaintext highlighter-rouge">sns.jointplot()</code>: 结合散点图和分布图，展示两个变量的关系及其各自的分布。</p>
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
 
-    <p><code class="language-plaintext highlighter-rouge">sns.pairplot()</code>: 用于探索数据集中所有数值列之间的关系，生成成对的散点图。</p>
-  </li>
-  <li>
-    <h3 id="类别图categorical-plot">类别图（Categorical Plot）</h3>
+<span class="k">def</span> <span class="nf">minus</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">-</span><span class="n">b</span>
 
-    <p><code class="language-plaintext highlighter-rouge">sns.barplot()</code>: 条形图，展示类别数据的平均值或总和。</p>
+<span class="k">def</span> <span class="nf">times</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span> 
 
-    <p><code class="language-plaintext highlighter-rouge">sns.boxplot()</code>: 箱型图，用于显示数据的分布情况及其离散值。</p>
+<span class="k">def</span> <span class="nf">divided</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span><span class="o">/</span><span class="n">b</span>
+    <span class="k">else</span> <span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+    
+<span class="k">class</span> <span class="nc">test_math_operation</span><span class="p">(</span><span class="n">unittest</span><span class="p">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_add</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">assertEqual</span><span class="p">(</span><span class="nf">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">assertEqual</span><span class="p">(</span><span class="nf">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">assertEqual</span><span class="p">(</span><span class="nf">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span><span class="mi">11</span><span class="p">)</span>
 
-    <p><code class="language-plaintext highlighter-rouge">sns.violinplot()</code>: 小提琴图，是箱型图的扩展，用于展示数据分布的整体形态。</p>
-  </li>
-  <li>
-    <h3 id="线图line-plot">线图（Line Plot）</h3>
+    <span class="k">def</span> <span class="nf">test_minus</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">assertEqual</span><span class="p">(</span><span class="nf">minus</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">assertEqual</span><span class="p">(</span><span class="nf">minus</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">assertEqual</span><span class="p">(</span><span class="nf">minus</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">9</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">test_times</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">assertEqual</span><span class="p">(</span><span class="nf">times</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">test_divied</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">assertEqual</span><span class="p">(</span><span class="nf">divided</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">assertEqual</span><span class="p">(</span><span class="nf">divided</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">assertEqual</span><span class="p">(</span><span class="nf">divided</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">10</span><span class="p">)</span>
 
-    <p><code class="language-plaintext highlighter-rouge">sns.lineplot()</code>: 用于展示数据的趋势，尤其适合时间序列数据。</p>
-  </li>
-  <li>
-    <h3 id="热图heatmap">热图（Heatmap）</h3>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
 
-    <p><code class="language-plaintext highlighter-rouge">sns.heatmap()</code>: 通常用于展示二维数据的矩阵热力图，如相关系数矩阵。</p>
-  </li>
-  <li>
-    <h3 id="回归图regression-plot">回归图（Regression Plot）</h3>
+    <span class="n">unittest</span><span class="p">.</span><span class="nf">main</span><span class="p">()</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="review" /><category term="diary" /><summary type="html"><![CDATA[当程式变得复杂后，可能需要编写一些测试，并不是孤立检查各个模块，而是要验证模块之间是否能正确地互动。]]></summary></entry><entry><title type="html">关于LSTM的模型建构(2)</title><link href="http://localhost:4000/review/diary/diary004/" rel="alternate" type="text/html" title="关于LSTM的模型建构(2)" /><published>2025-01-20T13:01:30+08:00</published><updated>2025-01-20T13:01:30+08:00</updated><id>http://localhost:4000/review/diary/diary004</id><content type="html" xml:base="http://localhost:4000/review/diary/diary004/"><![CDATA[<p>LSTM 是一种广泛用于时间序列预测和序列数据建模的深度学习模型。</p>
 
-    <p><code class="language-plaintext highlighter-rouge">sns.regplot()</code>: 绘制带有回归线的散点图，用于展示数据之间的线性关系。</p>
-  </li>
-</ul>]]></content><author><name></name></author><category term="stats" /><category term="visualization" /><summary type="html"><![CDATA[统一设定 import seaborn as sns import matplotlib.pyplot as plt sns.set_style("whitegrid") data = sns.load_dataset("tips")["total_bill"] 分布图（Distribution Plot） sns.distplot(): 绘制数据的分布图（包含直方图和核密度估计曲线），用于观察数据的分布特征。 sns.distplot(data) sns.kdeplot(): 核密度估计图，用于显示数据的概率密度。 sns.kdeplot(data,color="black") sns.histplot(): 仅绘制直方图，可以控制柱的宽度、数量等。 sns.histplot(data) 散点图（Scatter Plot） sns.scatterplot(): 用于展示两变量之间的关系，适用于连续型数据。 sns.jointplot(): 结合散点图和分布图，展示两个变量的关系及其各自的分布。 sns.pairplot(): 用于探索数据集中所有数值列之间的关系，生成成对的散点图。 类别图（Categorical Plot） sns.barplot(): 条形图，展示类别数据的平均值或总和。 sns.boxplot(): 箱型图，用于显示数据的分布情况及其离散值。 sns.violinplot(): 小提琴图，是箱型图的扩展，用于展示数据分布的整体形态。 线图（Line Plot） sns.lineplot(): 用于展示数据的趋势，尤其适合时间序列数据。 热图（Heatmap） sns.heatmap(): 通常用于展示二维数据的矩阵热力图，如相关系数矩阵。 回归图（Regression Plot） sns.regplot(): 绘制带有回归线的散点图，用于展示数据之间的线性关系。]]></summary></entry><entry><title type="html">mongodb bson 与 json 差别</title><link href="http://localhost:4000/mongodb/mongodb_bson/" rel="alternate" type="text/html" title="mongodb bson 与 json 差别" /><published>2024-11-04T11:24:29+08:00</published><updated>2024-11-04T11:24:29+08:00</updated><id>http://localhost:4000/mongodb/mongodb_bson</id><content type="html" xml:base="http://localhost:4000/mongodb/mongodb_bson/"><![CDATA[<p>BSON（Binary JSON）和 JSON（JavaScript Object Notation）都是数据格式，但它们在结构、存储方式和使用场景上有一些关键的差异。</p>
+<hr />
 
-<h3 id="bson-与-json-的差别">BSON 与 JSON 的差别</h3>
-
+<h3 id="1-怎么建模"><strong>1. 怎么建模？</strong></h3>
+<h4 id="步骤"><strong>步骤：</strong></h4>
 <ol>
-  <li><strong>数据格式</strong>：
+  <li><strong>准备数据：</strong>
     <ul>
-      <li><strong>JSON</strong> 是一种轻量级的文本数据格式，以纯文本表示，主要用于数据交换。它由键值对组成，支持简单的数据类型（如字符串、数值、布尔、数组和嵌套对象）。</li>
-      <li><strong>BSON</strong> 是 JSON 的二进制格式，专为 MongoDB 设计，使用二进制编码来提高解析速度和效率。它比 JSON 更加紧凑，适合在网络传输中使用。</li>
+      <li>确保数据按时间序列排序。</li>
+      <li>标准化或归一化数据，使其在相似的数值范围内。</li>
+      <li>划分训练集、验证集和测试集。</li>
     </ul>
   </li>
-  <li><strong>支持的数据类型</strong>：
+  <li><strong>定义 LSTM 模型架构：</strong>
+使用 Python 的 <code class="language-plaintext highlighter-rouge">Keras</code> 或 <code class="language-plaintext highlighter-rouge">PyTorch</code> 构建 LSTM：
     <ul>
-      <li><strong>JSON</strong> 的数据类型相对简单，只支持字符串、数字、布尔值、数组和对象。</li>
-      <li><strong>BSON</strong> 除了 JSON 支持的数据类型，还支持更多类型（如 <code class="language-plaintext highlighter-rouge">Date</code>、<code class="language-plaintext highlighter-rouge">Binary Data</code>、<code class="language-plaintext highlighter-rouge">Decimal128</code>、<code class="language-plaintext highlighter-rouge">ObjectId</code> 等），这些类型对数据库操作更有用。</li>
+      <li><strong>输入层：</strong> 定义时间步长和特征数量。</li>
+      <li><strong>LSTM 层：</strong> 定义 LSTM 单元的数量（即隐层维度）。</li>
+      <li><strong>全连接层：</strong> 用于生成预测结果。</li>
+      <li><strong>输出层：</strong> 输出时间序列预测值或分类结果。</li>
+    </ul>
+
+    <p><strong>Keras 示例：</strong></p>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="n">keras.layers</span> <span class="kn">import</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">Dense</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="nc">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="nc">LSTM</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">time_steps</span><span class="p">,</span> <span class="n">features</span><span class="p">)))</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># 输出单值预测
+</span><span class="n">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="sh">'</span><span class="s">adam</span><span class="sh">'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="sh">'</span><span class="s">mse</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+    <p><strong>PyTorch 示例：</strong></p>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">torch.nn</span> <span class="k">as</span> <span class="n">nn</span>
+
+<span class="k">class</span> <span class="nc">LSTMModel</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">num_layers</span><span class="p">,</span> <span class="n">output_size</span><span class="p">):</span>
+        <span class="nf">super</span><span class="p">(</span><span class="n">LSTMModel</span><span class="p">,</span> <span class="n">self</span><span class="p">).</span><span class="nf">__init__</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">lstm</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">LSTM</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">num_layers</span><span class="p">,</span> <span class="n">batch_first</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)</span>
+       
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">out</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">lstm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">fc</span><span class="p">(</span><span class="n">out</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>  <span class="c1"># 获取最后一个时间步
+</span>        <span class="k">return</span> <span class="n">out</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>训练模型：</strong>
+    <ul>
+      <li>使用梯度下降算法（如 Adam 或 RMSprop）。</li>
+      <li>定义损失函数（MSE、MAE 等）。</li>
+      <li>设置早停机制，避免过拟合。</li>
     </ul>
   </li>
-  <li><strong>数据大小</strong>：
+  <li><strong>测试和验证：</strong>
     <ul>
-      <li><strong>JSON</strong> 使用纯文本，所以通常占用的存储空间较大。</li>
-      <li><strong>BSON</strong> 采用二进制编码，可以压缩数据，提高存储和传输效率。</li>
-    </ul>
-  </li>
-  <li><strong>易读性</strong>：
-    <ul>
-      <li><strong>JSON</strong> 是可读的文本格式，便于人类直接理解和编辑。</li>
-      <li><strong>BSON</strong> 是二进制格式，主要供机器使用，因此需要工具进行解析。</li>
-    </ul>
-  </li>
-  <li><strong>性能</strong>：
-    <ul>
-      <li><strong>JSON</strong> 的解析速度较慢，因为它需要逐字符解析。</li>
-      <li><strong>BSON</strong> 由于使用二进制存储，解析速度更快，尤其在处理大量数据时效果显著。</li>
+      <li>用验证集评估模型性能。</li>
+      <li>调整模型架构和参数。</li>
     </ul>
   </li>
 </ol>
 
-<h4 id="bson-数据">BSON 数据</h4>
+<hr />
 
-<p>在 MongoDB 中，BSON 是自动生成的。当你在 MongoDB 中插入一个 JSON 文档时，MongoDB 会自动将其转换为 BSON 格式进行存储。BSON 格式的文档可以使用 <code class="language-plaintext highlighter-rouge">bson</code> 库在 Node.js 或 Python 等环境中手动创建。</p>
-
-<p>在 Python 中，可以使用 <code class="language-plaintext highlighter-rouge">pymongo</code> 库的 <code class="language-plaintext highlighter-rouge">bson</code> 模块生成 BSON 数据：</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">bson</span> <span class="kn">import</span> <span class="n">BSON</span>
-
-<span class="n">person</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Alice</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">age</span><span class="sh">"</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">city</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">New York</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">skills</span><span class="sh">"</span><span class="p">:</span> <span class="p">[</span><span class="sh">"</span><span class="s">JavaScript</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Python</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">MongoDB</span><span class="sh">"</span><span class="p">]</span>
-<span class="p">}</span>
-
-<span class="c1"># 将字典转换为 BSON
-</span><span class="n">bson_data</span> <span class="o">=</span> <span class="n">BSON</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">bson_data</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h3 id="总结">总结</h3>
-
+<h3 id="2-怎么调整"><strong>2. 怎么调整？</strong></h3>
+<h4 id="模型调整"><strong>模型调整：</strong></h4>
 <ul>
-  <li>JSON 是易读的文本格式，适合小数据量传输和存储。</li>
-  <li>BSON 是紧凑、高效的二进制格式，适合在 MongoDB 等数据库中存储和传输大数据量。</li>
-</ul>]]></content><author><name></name></author><category term="mongodb" /><summary type="html"><![CDATA[BSON（Binary JSON）和 JSON（JavaScript Object Notation）都是数据格式，但它们在结构、存储方式和使用场景上有一些关键的差异。 BSON 与 JSON 的差别 数据格式： JSON 是一种轻量级的文本数据格式，以纯文本表示，主要用于数据交换。它由键值对组成，支持简单的数据类型（如字符串、数值、布尔、数组和嵌套对象）。 BSON 是 JSON 的二进制格式，专为 MongoDB 设计，使用二进制编码来提高解析速度和效率。它比 JSON 更加紧凑，适合在网络传输中使用。 支持的数据类型： JSON 的数据类型相对简单，只支持字符串、数字、布尔值、数组和对象。 BSON 除了 JSON 支持的数据类型，还支持更多类型（如 Date、Binary Data、Decimal128、ObjectId 等），这些类型对数据库操作更有用。 数据大小： JSON 使用纯文本，所以通常占用的存储空间较大。 BSON 采用二进制编码，可以压缩数据，提高存储和传输效率。 易读性： JSON 是可读的文本格式，便于人类直接理解和编辑。 BSON 是二进制格式，主要供机器使用，因此需要工具进行解析。 性能： JSON 的解析速度较慢，因为它需要逐字符解析。 BSON 由于使用二进制存储，解析速度更快，尤其在处理大量数据时效果显著。 BSON 数据 在 MongoDB 中，BSON 是自动生成的。当你在 MongoDB 中插入一个 JSON 文档时，MongoDB 会自动将其转换为 BSON 格式进行存储。BSON 格式的文档可以使用 bson 库在 Node.js 或 Python 等环境中手动创建。 在 Python 中，可以使用 pymongo 库的 bson 模块生成 BSON 数据： from bson import BSON person = { "name": "Alice", "age": 30, "city": "New York", "skills": ["JavaScript", "Python", "MongoDB"] } # 将字典转换为 BSON bson_data = BSON.encode(person) print(bson_data) 总结 JSON 是易读的文本格式，适合小数据量传输和存储。 BSON 是紧凑、高效的二进制格式，适合在 MongoDB 等数据库中存储和传输大数据量。]]></summary></entry><entry><title type="html">逻辑思维</title><link href="http://localhost:4000/review/marketing/logic/" rel="alternate" type="text/html" title="逻辑思维" /><published>2024-11-04T11:24:29+08:00</published><updated>2024-11-04T11:24:29+08:00</updated><id>http://localhost:4000/review/marketing/logic</id><content type="html" xml:base="http://localhost:4000/review/marketing/logic/"><![CDATA[<p>理解自己的逻辑盲点,通过框架来解决问题</p>
-
-<p>① 将结论明确为“是／否”  要有决策力</p>
-
-<p>② 通过”因为”“所以”来思考</p>
-
-<p>以之前提到的销售渠道问题为例：</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>“A公司没有既有销售渠道【根据】。所以，可以大胆开拓新渠道【结论】。”
-
-或者：
-
-“A公司可以大胆开拓新渠道【结论】。因为，它不具备既有销售渠道【根据】。”
-
-像这样将根据与结论挂钩，是展开逻辑的基础。
-</code></pre></div></div>
-
-<p>③ 结合事实 : 用数据作为依据</p>
-
-<p>④ 切中论点，顾及整体平衡 : 现在自己应该思考的要素?</p>
-
-<p><code class="language-plaintext highlighter-rouge">SWOT</code>和其他框架来辅助决策</p>]]></content><author><name></name></author><category term="review" /><category term="marketing" /><summary type="html"><![CDATA[理解自己的逻辑盲点,通过框架来解决问题 ① 将结论明确为“是／否” 要有决策力 ② 通过”因为”“所以”来思考 以之前提到的销售渠道问题为例： “A公司没有既有销售渠道【根据】。所以，可以大胆开拓新渠道【结论】。” 或者： “A公司可以大胆开拓新渠道【结论】。因为，它不具备既有销售渠道【根据】。” 像这样将根据与结论挂钩，是展开逻辑的基础。 ③ 结合事实 : 用数据作为依据 ④ 切中论点，顾及整体平衡 : 现在自己应该思考的要素? SWOT和其他框架来辅助决策]]></summary></entry><entry><title type="html">财务自由的条件</title><link href="http://localhost:4000/review/economy/review067/" rel="alternate" type="text/html" title="财务自由的条件" /><published>2024-11-04T11:24:29+08:00</published><updated>2024-11-04T11:24:29+08:00</updated><id>http://localhost:4000/review/economy/review067</id><content type="html" xml:base="http://localhost:4000/review/economy/review067/"><![CDATA[<p>一本给投资小白的入门书</p>]]></content><author><name></name></author><category term="review" /><category term="economy" /><summary type="html"><![CDATA[一本给投资小白的入门书]]></summary></entry><entry><title type="html">split data</title><link href="http://localhost:4000/stats/split_data/" rel="alternate" type="text/html" title="split data" /><published>2024-11-03T11:24:29+08:00</published><updated>2024-11-03T11:24:29+08:00</updated><id>http://localhost:4000/stats/split_data</id><content type="html" xml:base="http://localhost:4000/stats/split_data/"><![CDATA[<h3 id="使用-train_test_split-多次划分数据">使用 train_test_split 多次划分数据</h3>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-
-<span class="c1"># 假设有数据 X 和标签 y
-</span><span class="n">X</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]]</span>
-<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-
-<span class="c1"># 第一次划分
-</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="nf">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">第一次划分:</span><span class="sh">"</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">X_train:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_train</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">X_test:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
-
-<span class="c1"># 第二次划分，设置不同的 random_state
-</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="nf">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">第二次划分:</span><span class="sh">"</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">X_train:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_train</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">X_test:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h3 id="使用-kfold-进行交叉验证划分">使用 KFold 进行交叉验证划分</h3>
-
-<p>KFold 将数据分成 k 份，用于交叉验证</p>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
-<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
-
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-
-<span class="n">kf</span> <span class="o">=</span> <span class="nc">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># 将数据分成3份
-</span><span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">kf</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
-    <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Train Index:</span><span class="sh">"</span><span class="p">,</span> <span class="n">train_index</span><span class="p">,</span> <span class="sh">"</span><span class="s">Test Index:</span><span class="sh">"</span><span class="p">,</span> <span class="n">test_index</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">X_train:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="sh">"</span><span class="s">X_test:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h3 id="使用-stratifiedkfold-保证分布一致的交叉验证划分">使用 StratifiedKFold 保证分布一致的交叉验证划分</h3>
-
-<p>StratifiedKFold 保证每个划分中的类别分布一致。</p>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span>
-
-<span class="n">skf</span> <span class="o">=</span> <span class="nc">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">skf</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
-    <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Train Index:</span><span class="sh">"</span><span class="p">,</span> <span class="n">train_index</span><span class="p">,</span> <span class="sh">"</span><span class="s">Test Index:</span><span class="sh">"</span><span class="p">,</span> <span class="n">test_index</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">X_train:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="sh">"</span><span class="s">X_test:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h3 id="使用时间序列划分-timeseriessplit">使用时间序列划分 (TimeSeriesSplit)</h3>
-
-<p>在时间序列数据上，使用普通的 KFold 划分会导致未来的数据泄漏。TimeSeriesSplit 是一种适用于时间序列数据的交叉验证方法，通过滚动划分方式来保持数据顺序。</p>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">TimeSeriesSplit</span>
-<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
-
-<span class="c1"># 假设有时间序列数据 X
-</span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-
-<span class="n">tscv</span> <span class="o">=</span> <span class="nc">TimeSeriesSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">tscv</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Train:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="sh">"</span><span class="s">Test:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h3 id="使用留一法交叉验证-leaveoneout">使用留一法交叉验证 (LeaveOneOut)</h3>
-
-<p>LeaveOneOut 将数据集中的每一个样本都单独当作测试集，其他的样本用作训练集。这适合数据集非常小的情况，但计算量较大。</p>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">LeaveOneOut</span>
-<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
-
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-
-<span class="n">loo</span> <span class="o">=</span> <span class="nc">LeaveOneOut</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">loo</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
-    <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Train:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="sh">"</span><span class="s">Test:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h3 id="使用留p法交叉验证-leavepout">使用留P法交叉验证 (LeavePOut)</h3>
-
-<p>LeavePOut 是 LeaveOneOut 的扩展，将 P 个样本留作测试集，其他样本作为训练集。P 越大，划分组合越多，因此计算量较大。</p>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">LeavePOut</span>
-
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
-<span class="n">lpo</span> <span class="o">=</span> <span class="nc">LeavePOut</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">lpo</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Train:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="sh">"</span><span class="s">Test:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h3 id="使用分层洗牌划分-stratifiedshufflesplit">使用分层洗牌划分 (StratifiedShuffleSplit)</h3>
-
-<p>StratifiedShuffleSplit 是 StratifiedKFold 和 ShuffleSplit 的组合，它通过分层抽样保证训练集和测试集中类别分布一致，适合分类问题中数据分布不均的情况。</p>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedShuffleSplit</span>
-
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-
-<span class="n">sss</span> <span class="o">=</span> <span class="nc">StratifiedShuffleSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">sss</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
-    <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Train:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="sh">"</span><span class="s">Test:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h3 id="使用bootstrap-采样-bootstrap">使用Bootstrap 采样 (Bootstrap)</h3>
-
-<p>Bootstrap 方法通过重复采样的方式创建多个训练集，常用于估计模型在不同数据样本上的稳定性</p>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.utils</span> <span class="kn">import</span> <span class="n">resample</span>
-
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-
-<span class="c1"># 使用随机重采样生成 Bootstrap 数据
-</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>  <span class="c1"># 重复生成3个不同的样本
-</span>    <span class="n">X_resample</span><span class="p">,</span> <span class="n">y_resample</span> <span class="o">=</span> <span class="nf">resample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Bootstrap Sample</span><span class="sh">"</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">X_resample:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_resample</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">y_resample:</span><span class="sh">"</span><span class="p">,</span> <span class="n">y_resample</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h3 id="使用随机分割交叉验证-shufflesplit">使用随机分割交叉验证 (ShuffleSplit)</h3>
-
-<p>ShuffleSplit 适用于数据较多时的交叉验证，通过随机抽样多次生成训练集和测试集，以随机化的方式覆盖数据集。</p>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">ShuffleSplit</span>
-
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-
-<span class="n">ss</span> <span class="o">=</span> <span class="nc">ShuffleSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">ss</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
-    <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Train:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="sh">"</span><span class="s">Test:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h3 id="使用分层时间序列划分-stratifiedgroupkfold">使用分层时间序列划分 (StratifiedGroupKFold)</h3>
-
-<p>对于包含群组或分层特性的时间序列数据，可以使用 <code class="language-plaintext highlighter-rouge">StratifiedGroupKFold</code> 进行分层组划分，这样可以在不打乱时间顺序的情况下划分数据集。</p>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedGroupKFold</span>
-
-<span class="c1"># 示例数据集，包含样本的特征、类别标签和分组信息
-</span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">groups</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1"># 假设有分组特性
-</span>
-<span class="n">sgkf</span> <span class="o">=</span> <span class="nc">StratifiedGroupKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">sgkf</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="n">groups</span><span class="p">):</span>
-    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
-    <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Train:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="sh">"</span><span class="s">Test:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="stats" /><summary type="html"><![CDATA[使用 train_test_split 多次划分数据 from sklearn.model_selection import train_test_split # 假设有数据 X 和标签 y X = [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]] y = [0, 1, 0, 1, 0] # 第一次划分 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42) print("第一次划分:") print("X_train:", X_train) print("X_test:", X_test) # 第二次划分，设置不同的 random_state X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1) print("\n第二次划分:") print("X_train:", X_train) print("X_test:", X_test) 使用 KFold 进行交叉验证划分 KFold 将数据分成 k 份，用于交叉验证 from sklearn.model_selection import KFold import numpy as np X = np.array([[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]) y = np.array([0, 1, 0, 1, 0]) kf = KFold(n_splits=3) # 将数据分成3份 for train_index, test_index in kf.split(X): X_train, X_test = X[train_index], X[test_index] y_train, y_test = y[train_index], y[test_index] print("Train Index:", train_index, "Test Index:", test_index) print("X_train:", X_train, "X_test:", X_test) 使用 StratifiedKFold 保证分布一致的交叉验证划分 StratifiedKFold 保证每个划分中的类别分布一致。 from sklearn.model_selection import StratifiedKFold skf = StratifiedKFold(n_splits=3) for train_index, test_index in skf.split(X, y): X_train, X_test = X[train_index], X[test_index] y_train, y_test = y[train_index], y[test_index] print("Train Index:", train_index, "Test Index:", test_index) print("X_train:", X_train, "X_test:", X_test) 使用时间序列划分 (TimeSeriesSplit) 在时间序列数据上，使用普通的 KFold 划分会导致未来的数据泄漏。TimeSeriesSplit 是一种适用于时间序列数据的交叉验证方法，通过滚动划分方式来保持数据顺序。 from sklearn.model_selection import TimeSeriesSplit import numpy as np # 假设有时间序列数据 X X = np.arange(10) tscv = TimeSeriesSplit(n_splits=3) for train_index, test_index in tscv.split(X): X_train, X_test = X[train_index], X[test_index] print("Train:", X_train, "Test:", X_test) 使用留一法交叉验证 (LeaveOneOut) LeaveOneOut 将数据集中的每一个样本都单独当作测试集，其他的样本用作训练集。这适合数据集非常小的情况，但计算量较大。 from sklearn.model_selection import LeaveOneOut import numpy as np X = np.array([[1, 2], [3, 4], [5, 6]]) y = np.array([0, 1, 0]) loo = LeaveOneOut() for train_index, test_index in loo.split(X): X_train, X_test = X[train_index], X[test_index] y_train, y_test = y[train_index], y[test_index] print("Train:", X_train, "Test:", X_test) 使用留P法交叉验证 (LeavePOut) LeavePOut 是 LeaveOneOut 的扩展，将 P 个样本留作测试集，其他样本作为训练集。P 越大，划分组合越多，因此计算量较大。 from sklearn.model_selection import LeavePOut X = np.array([[1, 2], [3, 4], [5, 6]]) lpo = LeavePOut(p=2) for train_index, test_index in lpo.split(X): X_train, X_test = X[train_index], X[test_index] print("Train:", X_train, "Test:", X_test) 使用分层洗牌划分 (StratifiedShuffleSplit) StratifiedShuffleSplit 是 StratifiedKFold 和 ShuffleSplit 的组合，它通过分层抽样保证训练集和测试集中类别分布一致，适合分类问题中数据分布不均的情况。 from sklearn.model_selection import StratifiedShuffleSplit X = np.array([[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]) y = np.array([0, 0, 1, 1, 1]) sss = StratifiedShuffleSplit(n_splits=3, test_size=0.4, random_state=42) for train_index, test_index in sss.split(X, y): X_train, X_test = X[train_index], X[test_index] y_train, y_test = y[train_index], y[test_index] print("Train:", X_train, "Test:", X_test) 使用Bootstrap 采样 (Bootstrap) Bootstrap 方法通过重复采样的方式创建多个训练集，常用于估计模型在不同数据样本上的稳定性 from sklearn.utils import resample X = np.array([[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]) y = np.array([0, 0, 1, 1, 1]) # 使用随机重采样生成 Bootstrap 数据 for i in range(3): # 重复生成3个不同的样本 X_resample, y_resample = resample(X, y, n_samples=4, random_state=i) print("Bootstrap Sample", i+1) print("X_resample:", X_resample) print("y_resample:", y_resample) 使用随机分割交叉验证 (ShuffleSplit) ShuffleSplit 适用于数据较多时的交叉验证，通过随机抽样多次生成训练集和测试集，以随机化的方式覆盖数据集。 from sklearn.model_selection import ShuffleSplit X = np.array([[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]) y = np.array([0, 0, 1, 1, 1]) ss = ShuffleSplit(n_splits=3, test_size=0.4, random_state=42) for train_index, test_index in ss.split(X, y): X_train, X_test = X[train_index], X[test_index] y_train, y_test = y[train_index], y[test_index] print("Train:", X_train, "Test:", X_test) 使用分层时间序列划分 (StratifiedGroupKFold) 对于包含群组或分层特性的时间序列数据，可以使用 StratifiedGroupKFold 进行分层组划分，这样可以在不打乱时间顺序的情况下划分数据集。 from sklearn.model_selection import StratifiedGroupKFold # 示例数据集，包含样本的特征、类别标签和分组信息 X = np.array([[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]) y = np.array([0, 0, 1, 1, 1]) groups = np.array([1, 1, 2, 2, 3]) # 假设有分组特性 sgkf = StratifiedGroupKFold(n_splits=3) for train_index, test_index in sgkf.split(X, y, groups=groups): X_train, X_test = X[train_index], X[test_index] y_train, y_test = y[train_index], y[test_index] print("Train:", X_train, "Test:", X_test)]]></summary></entry><entry><title type="html">mongodb crub</title><link href="http://localhost:4000/mongodb/mongodb_crub/" rel="alternate" type="text/html" title="mongodb crub" /><published>2024-11-03T11:24:29+08:00</published><updated>2024-11-03T11:24:29+08:00</updated><id>http://localhost:4000/mongodb/mongodb_crub</id><content type="html" xml:base="http://localhost:4000/mongodb/mongodb_crub/"><![CDATA[<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">pymongo</span> <span class="kn">import</span> <span class="n">MongoClient</span>
-
-<span class="n">client</span> <span class="o">=</span> <span class="nc">MongoClient</span><span class="p">(</span><span class="sh">'</span><span class="s">mongodb://localhost:27017</span><span class="sh">'</span><span class="p">)</span>
-<span class="n">db</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="sh">'</span><span class="s">fundamental</span><span class="sh">'</span><span class="p">]</span>
-<span class="n">collection</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="sh">'</span><span class="s">statment</span><span class="sh">'</span><span class="p">]</span>
-</code></pre></div></div>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 插入单条数据
-</span><span class="n">document</span> <span class="o">=</span> <span class="p">{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Alice</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">age</span><span class="sh">"</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="sh">"</span><span class="s">city</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">New York</span><span class="sh">"</span><span class="p">}</span>
-<span class="n">collection</span><span class="p">.</span><span class="nf">insert_one</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
-
-<span class="c1"># 插入多条数据
-</span><span class="n">documents</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Bob</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">age</span><span class="sh">"</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="sh">"</span><span class="s">city</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Chicago</span><span class="sh">"</span><span class="p">},</span>
-    <span class="p">{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Charlie</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">age</span><span class="sh">"</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span> <span class="sh">"</span><span class="s">city</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">San Francisco</span><span class="sh">"</span><span class="p">}</span>
-<span class="p">]</span>
-<span class="n">collection</span><span class="p">.</span><span class="nf">insert_many</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
-</code></pre></div></div>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 读取单条数据
-</span><span class="n">result</span> <span class="o">=</span> <span class="n">collection</span><span class="p">.</span><span class="nf">find_one</span><span class="p">({</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Alice</span><span class="sh">"</span><span class="p">})</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</code></pre></div></div>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 读取所有数据
-</span><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="p">.</span><span class="nf">find</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
-</code></pre></div></div>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 条件查询数据
-</span><span class="n">age_query</span> <span class="o">=</span> <span class="p">{</span><span class="sh">"</span><span class="s">age</span><span class="sh">"</span><span class="p">:</span> <span class="p">{</span><span class="sh">"</span><span class="s">$gt</span><span class="sh">"</span><span class="p">:</span> <span class="mi">25</span><span class="p">}}</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">age_query</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
-</code></pre></div></div>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 更新单条数据
-</span><span class="n">collection</span><span class="p">.</span><span class="nf">update_one</span><span class="p">({</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Alice</span><span class="sh">"</span><span class="p">},</span> <span class="p">{</span><span class="sh">"</span><span class="s">$set</span><span class="sh">"</span><span class="p">:</span> <span class="p">{</span><span class="sh">"</span><span class="s">age</span><span class="sh">"</span><span class="p">:</span> <span class="mi">26</span><span class="p">}})</span>
-
-<span class="c1"># 更新多条数据
-</span><span class="n">collection</span><span class="p">.</span><span class="nf">update_many</span><span class="p">({</span><span class="sh">"</span><span class="s">age</span><span class="sh">"</span><span class="p">:</span> <span class="p">{</span><span class="sh">"</span><span class="s">$gt</span><span class="sh">"</span><span class="p">:</span> <span class="mi">30</span><span class="p">}},</span> <span class="p">{</span><span class="sh">"</span><span class="s">$set</span><span class="sh">"</span><span class="p">:</span> <span class="p">{</span><span class="sh">"</span><span class="s">status</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">senior</span><span class="sh">"</span><span class="p">}})</span>
-</code></pre></div></div>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 删除单条数据
-</span><span class="n">collection</span><span class="p">.</span><span class="nf">delete_one</span><span class="p">({</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Charlie</span><span class="sh">"</span><span class="p">})</span>
-
-<span class="c1"># 删除多条数据
-</span><span class="n">collection</span><span class="p">.</span><span class="nf">delete_many</span><span class="p">({</span><span class="sh">"</span><span class="s">age</span><span class="sh">"</span><span class="p">:</span> <span class="p">{</span><span class="sh">"</span><span class="s">$lt</span><span class="sh">"</span><span class="p">:</span> <span class="mi">30</span><span class="p">}})</span>
-</code></pre></div></div>
-
-<p>https://learn.mongodb.com/pages/mongodb-associate-developer-exam</p>]]></content><author><name></name></author><category term="mongodb" /><summary type="html"><![CDATA[from pymongo import MongoClient client = MongoClient('mongodb://localhost:27017') db = client['fundamental'] collection = db['statment'] # 插入单条数据 document = {"name": "Alice", "age": 25, "city": "New York"} collection.insert_one(document) # 插入多条数据 documents = [ {"name": "Bob", "age": 30, "city": "Chicago"}, {"name": "Charlie", "age": 35, "city": "San Francisco"} ] collection.insert_many(documents) # 读取单条数据 result = collection.find_one({"name": "Alice"}) print(result) # 读取所有数据 results = collection.find() for doc in results: print(doc) # 条件查询数据 age_query = {"age": {"$gt": 25}} results = collection.find(age_query) for doc in results: print(doc) # 更新单条数据 collection.update_one({"name": "Alice"}, {"$set": {"age": 26}}) # 更新多条数据 collection.update_many({"age": {"$gt": 30}}, {"$set": {"status": "senior"}}) # 删除单条数据 collection.delete_one({"name": "Charlie"}) # 删除多条数据 collection.delete_many({"age": {"$lt": 30}}) https://learn.mongodb.com/pages/mongodb-associate-developer-exam]]></summary></entry><entry><title type="html">市场营销</title><link href="http://localhost:4000/review/marketing/marketing/" rel="alternate" type="text/html" title="市场营销" /><published>2024-11-03T11:24:29+08:00</published><updated>2024-11-03T11:24:29+08:00</updated><id>http://localhost:4000/review/marketing/marketing</id><content type="html" xml:base="http://localhost:4000/review/marketing/marketing/"><![CDATA[<h3 id="定义">定义</h3>
-
-<p>因为市场营销是创造“让他人购买的机制”，所以当面对“进行/不进行市场营销”这一论题时，结论应该是“当然要进行市场营销”。准确来说，市场营销所承担的责任就是“创造出能产生有效且持续性销售和利润的状况”。</p>
-
-<h3 id="市场营销体系">市场营销体系</h3>
-
-<p>“作为削减成本的一环，不再提供机舱内服务”
-切实地降低航空运费，给顾客提供价格福利</p>
-
-<p>哪个方案较好?</p>
-
-<h3 id="产品分析价值大致可分为两种">产品分析：价值大致可分为两种</h3>
-
-<p>“将不平稳的状态恢复正常状态(由负到零)”，也就是解决问题型。
-“将正常状态进一步提升为高昂状态(从零到正)”，也就是提高心灵满足感。</p>
-
-<h3 id="市场营销20">市场营销2.0</h3>
-
-<p>STP市场营销。
-所谓STP就是指细分(Segmentation)、目标(Targeting)、定位(Positioning)</p>
-
-<p>定位一般是指决定“让顾客如何认识本公司商品”的行为。在例子中，就是将目标顾客定为大学生和上班族，定位（P）与其配合进行设定的行为。</p>
-
-<h3 id="市场营销组合">市场营销组合</h3>
-
-<p>4P (product/产品、Price/定价、place/渠道、promotion/宣传)</p>
-
-<!-- “差异化”的界限 -->
-
-<p>流行变迁可能带来“负遗产”</p>
-
-<p>太过于顺应主流的流行趋势的话，当流行风向转变时，该品牌印象就有可能变为“负遗产（Legacy）</p>
-
-<h3 id="周哈里窗的模式">“周哈里窗”的模式</h3>
-
-<p><img src="/assets/images/k.png" alt="Image Description" /></p>
-
-<p>A状况为企业明白自己能提供什么，以及顾客了解自己想要什么。</p>
-
-<p>B状况为企业虽然明白自己能提供什么，但顾客却不了解自己应该购买什么。</p>
-
-<p>C状况为企业不明白自己能提供什么，但顾客了解自己想要购买什么。</p>
-
-<p>D状况为企业不明白自己能提供什么，顾客也不了解自己想要购买什么。</p>
-
-<h3 id="新型的营销">新型的营销</h3>
-
-<p>利用数据进行分析 :</p>
+  <li><strong>时间步长 (Time Steps):</strong>
+增减输入的时间步长，影响模型捕获历史信息的能力。</li>
+  <li><strong>隐藏单元数 (Hidden Units):</strong>
+增加 LSTM 层的神经元数量，提高模型的表达能力。</li>
+  <li><strong>LSTM 层数 (Stacked LSTMs):</strong>
+增加 LSTM 层数以提高非线性建模能力。</li>
+</ul>
+
+<h4 id="正则化手段"><strong>正则化手段：</strong></h4>
 <ul>
-  <li>大数据分析</li>
-  <li>大数据挖掘</li>
-  <li>文本挖掘</li>
-</ul>]]></content><author><name></name></author><category term="review" /><category term="marketing" /><summary type="html"><![CDATA[定义 因为市场营销是创造“让他人购买的机制”，所以当面对“进行/不进行市场营销”这一论题时，结论应该是“当然要进行市场营销”。准确来说，市场营销所承担的责任就是“创造出能产生有效且持续性销售和利润的状况”。 市场营销体系 “作为削减成本的一环，不再提供机舱内服务” 切实地降低航空运费，给顾客提供价格福利 哪个方案较好? 产品分析：价值大致可分为两种 “将不平稳的状态恢复正常状态(由负到零)”，也就是解决问题型。 “将正常状态进一步提升为高昂状态(从零到正)”，也就是提高心灵满足感。 市场营销2.0 STP市场营销。 所谓STP就是指细分(Segmentation)、目标(Targeting)、定位(Positioning) 定位一般是指决定“让顾客如何认识本公司商品”的行为。在例子中，就是将目标顾客定为大学生和上班族，定位（P）与其配合进行设定的行为。 市场营销组合 4P (product/产品、Price/定价、place/渠道、promotion/宣传) 流行变迁可能带来“负遗产” 太过于顺应主流的流行趋势的话，当流行风向转变时，该品牌印象就有可能变为“负遗产（Legacy） “周哈里窗”的模式 A状况为企业明白自己能提供什么，以及顾客了解自己想要什么。 B状况为企业虽然明白自己能提供什么，但顾客却不了解自己应该购买什么。 C状况为企业不明白自己能提供什么，但顾客了解自己想要购买什么。 D状况为企业不明白自己能提供什么，顾客也不了解自己想要购买什么。 新型的营销 利用数据进行分析 : 大数据分析 大数据挖掘 文本挖掘]]></summary></entry><entry><title type="html">horizontal boxplot</title><link href="http://localhost:4000/stats/visualization/h_boxplot/" rel="alternate" type="text/html" title="horizontal boxplot" /><published>2024-11-02T11:24:29+08:00</published><updated>2024-11-02T11:24:29+08:00</updated><id>http://localhost:4000/stats/visualization/h_boxplot</id><content type="html" xml:base="http://localhost:4000/stats/visualization/h_boxplot/"><![CDATA[<p><img src="/assets/images/output4.png" alt="Image Description" /></p>
+  <li>添加 Dropout：
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">keras.layers</span> <span class="kn">import</span> <span class="n">Dropout</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="nc">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>  <span class="c1"># 20%丢弃率
+</span></code></pre></div>    </div>
+  </li>
+  <li>使用权重正则化防止过拟合。</li>
+</ul>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
-<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">pt</span>
+<hr />
 
-<span class="n">sns</span><span class="p">.</span><span class="nf">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="sh">"</span><span class="s">ticks</span><span class="sh">"</span><span class="p">)</span>
-
-<span class="c1"># Initialize the figure with a logarithmic x axis
-</span><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">pt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">ax</span><span class="p">.</span><span class="nf">set_xscale</span><span class="p">(</span><span class="sh">"</span><span class="s">log</span><span class="sh">"</span><span class="p">)</span>
-
-<span class="c1"># Load the example planets dataset
-</span><span class="n">planets</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="nf">load_dataset</span><span class="p">(</span><span class="sh">"</span><span class="s">planets</span><span class="sh">"</span><span class="p">)</span>
-
-<span class="c1"># Plot the orbital period with horizontal boxes
-</span><span class="n">sns</span><span class="p">.</span><span class="nf">boxplot</span><span class="p">(</span>
-    <span class="n">planets</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="sh">"</span><span class="s">distance</span><span class="sh">"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="sh">"</span><span class="s">method</span><span class="sh">"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="sh">"</span><span class="s">method</span><span class="sh">"</span><span class="p">,</span>
-    <span class="n">whis</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="p">.</span><span class="mi">6</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="sh">"</span><span class="s">vlag</span><span class="sh">"</span>
-<span class="p">)</span>
-
-<span class="c1"># Add in points to show each observation
-</span><span class="n">sns</span><span class="p">.</span><span class="nf">stripplot</span><span class="p">(</span><span class="n">planets</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="sh">"</span><span class="s">distance</span><span class="sh">"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="sh">"</span><span class="s">method</span><span class="sh">"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="sh">"</span><span class="s">.3</span><span class="sh">"</span><span class="p">)</span>
-
-<span class="c1"># Tweak the visual presentation
-</span><span class="n">ax</span><span class="p">.</span><span class="n">xaxis</span><span class="p">.</span><span class="nf">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="sh">""</span><span class="p">)</span>
-<span class="n">sns</span><span class="p">.</span><span class="nf">despine</span><span class="p">(</span><span class="n">trim</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="stats" /><category term="visualization" /><summary type="html"><![CDATA[import seaborn as sns import matplotlib.pyplot as pt sns.set_theme(style="ticks") # Initialize the figure with a logarithmic x axis f, ax = pt.subplots(figsize=(7, 6)) ax.set_xscale("log") # Load the example planets dataset planets = sns.load_dataset("planets") # Plot the orbital period with horizontal boxes sns.boxplot( planets, x="distance", y="method", hue="method", whis=[0, 100], width=.6, palette="vlag" ) # Add in points to show each observation sns.stripplot(planets, x="distance", y="method", size=4, color=".3") # Tweak the visual presentation ax.xaxis.grid(True) ax.set(ylabel="") sns.despine(trim=True, left=True)]]></summary></entry><entry><title type="html">overlapping densities (‘ridge plot’)</title><link href="http://localhost:4000/stats/visualization/ridge_plot/" rel="alternate" type="text/html" title="overlapping densities (‘ridge plot’)" /><published>2024-11-02T11:24:29+08:00</published><updated>2024-11-02T11:24:29+08:00</updated><id>http://localhost:4000/stats/visualization/ridge_plot</id><content type="html" xml:base="http://localhost:4000/stats/visualization/ridge_plot/"><![CDATA[<p><img src="/assets/images/output3.png" alt="Image Description" /></p>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-<span class="kn">import</span> <span class="n">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
-<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="n">sns</span><span class="p">.</span><span class="nf">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="sh">"</span><span class="s">white</span><span class="sh">"</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="sh">"</span><span class="s">axes.facecolor</span><span class="sh">"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)})</span>
-
-<span class="c1"># Create the data
-</span><span class="n">rs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nc">RandomState</span><span class="p">(</span><span class="mi">1979</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
-<span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">tile</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="sh">"</span><span class="s">ABCDEFGHIJ</span><span class="sh">"</span><span class="p">),</span> <span class="mi">50</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">(</span><span class="nf">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="n">g</span><span class="p">))</span>
-<span class="n">m</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">g</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nb">ord</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="sh">"</span><span class="s">x</span><span class="sh">"</span><span class="p">]</span> <span class="o">+=</span> <span class="n">m</span>
-
-<span class="c1"># Initialize the FacetGrid object
-</span><span class="n">pal</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="nf">cubehelix_palette</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">rot</span><span class="o">=-</span><span class="p">.</span><span class="mi">25</span><span class="p">,</span> <span class="n">light</span><span class="o">=</span><span class="p">.</span><span class="mi">7</span><span class="p">)</span>
-<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="nc">FacetGrid</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="sh">"</span><span class="s">g</span><span class="sh">"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="sh">"</span><span class="s">g</span><span class="sh">"</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">pal</span><span class="p">)</span>
-
-<span class="c1"># Draw the densities in a few steps
-</span><span class="n">g</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="n">sns</span><span class="p">.</span><span class="n">kdeplot</span><span class="p">,</span> <span class="sh">"</span><span class="s">x</span><span class="sh">"</span><span class="p">,</span>
-      <span class="n">bw_adjust</span><span class="o">=</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-      <span class="n">fill</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
-<span class="n">g</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="n">sns</span><span class="p">.</span><span class="n">kdeplot</span><span class="p">,</span> <span class="sh">"</span><span class="s">x</span><span class="sh">"</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="sh">"</span><span class="s">w</span><span class="sh">"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">bw_adjust</span><span class="o">=</span><span class="p">.</span><span class="mi">5</span><span class="p">)</span>
-
-<span class="c1"># passing color=None to refline() uses the hue mapping
-</span><span class="n">g</span><span class="p">.</span><span class="nf">refline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="sh">"</span><span class="s">-</span><span class="sh">"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-
-
-<span class="c1"># Define and use a simple function to label the plot in axes coordinates
-</span><span class="k">def</span> <span class="nf">label</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">gca</span><span class="p">()</span>
-    <span class="n">ax</span><span class="p">.</span><span class="nf">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">.</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="sh">"</span><span class="s">bold</span><span class="sh">"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
-            <span class="n">ha</span><span class="o">=</span><span class="sh">"</span><span class="s">left</span><span class="sh">"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="sh">"</span><span class="s">center</span><span class="sh">"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">.</span><span class="n">transAxes</span><span class="p">)</span>
-
-<span class="n">g</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="sh">"</span><span class="s">x</span><span class="sh">"</span><span class="p">)</span>
-
-<span class="c1"># Set the subplots to overlap
-</span><span class="n">g</span><span class="p">.</span><span class="n">figure</span><span class="p">.</span><span class="nf">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=-</span><span class="p">.</span><span class="mi">25</span><span class="p">)</span>
-
-<span class="c1"># Remove axes details that don't play well with overlap
-</span><span class="n">g</span><span class="p">.</span><span class="nf">set_titles</span><span class="p">(</span><span class="sh">""</span><span class="p">)</span>
-<span class="n">g</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="n">yticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">ylabel</span><span class="o">=</span><span class="sh">""</span><span class="p">)</span>
-<span class="n">g</span><span class="p">.</span><span class="nf">despine</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="stats" /><category term="visualization" /><summary type="html"><![CDATA[import numpy as np import pandas as pd import seaborn as sns import matplotlib.pyplot as plt sns.set_theme(style="white", rc={"axes.facecolor": (0, 0, 0, 0)}) # Create the data rs = np.random.RandomState(1979) x = rs.randn(500) g = np.tile(list("ABCDEFGHIJ"), 50) df = pd.DataFrame(dict(x=x, g=g)) m = df.g.map(ord) df["x"] += m # Initialize the FacetGrid object pal = sns.cubehelix_palette(10, rot=-.25, light=.7) g = sns.FacetGrid(df, row="g", hue="g", aspect=15, height=.5, palette=pal) # Draw the densities in a few steps g.map(sns.kdeplot, "x", bw_adjust=.5, clip_on=False, fill=True, alpha=1, linewidth=1.5) g.map(sns.kdeplot, "x", clip_on=False, color="w", lw=2, bw_adjust=.5) # passing color=None to refline() uses the hue mapping g.refline(y=0, linewidth=2, linestyle="-", color=None, clip_on=False) # Define and use a simple function to label the plot in axes coordinates def label(x, color, label): ax = plt.gca() ax.text(0, .2, label, fontweight="bold", color=color, ha="left", va="center", transform=ax.transAxes) g.map(label, "x") # Set the subplots to overlap g.figure.subplots_adjust(hspace=-.25) # Remove axes details that don't play well with overlap g.set_titles("") g.set(yticks=[], ylabel="") g.despine(bottom=True, left=True)]]></summary></entry><entry><title type="html">mongodb 基本认知</title><link href="http://localhost:4000/mongodb/mongodb_learn/" rel="alternate" type="text/html" title="mongodb 基本认知" /><published>2024-11-02T11:24:29+08:00</published><updated>2024-11-02T11:24:29+08:00</updated><id>http://localhost:4000/mongodb/mongodb_learn</id><content type="html" xml:base="http://localhost:4000/mongodb/mongodb_learn/"><![CDATA[<p>学习 MongoDB 的基本概念：数据库、集合、文档。</p>
-
-<p>MongoDB 是一种基于文档的 NoSQL 数据库，采用灵活的文档模型来存储数据。理解 MongoDB，首先需要掌握以下三个基本概念：</p>
-
-<ul>
-  <li>数据库（Database）：
+<h3 id="3-怎么调参"><strong>3. 怎么调参？</strong></h3>
+<h4 id="常见超参数"><strong>常见超参数：</strong></h4>
+<ol>
+  <li><strong>学习率 (Learning Rate)：</strong>
     <ul>
-      <li>定义：数据库是数据的逻辑容器，类似于传统关系型数据库中的数据库概念。</li>
-      <li>特点：一个 MongoDB 实例可以包含多个独立的数据库，每个数据库都有自己的集合和权限设置。</li>
+      <li>调整学习率大小，常用范围：<code class="language-plaintext highlighter-rouge">0.001</code> 到 <code class="language-plaintext highlighter-rouge">0.0001</code>。</li>
     </ul>
   </li>
-  <li>集合（Collection）：
+  <li><strong>Batch Size：</strong>
     <ul>
-      <li>定义：集合是一组文档的容器，类似于关系型数据库中的表。</li>
-      <li>特点：
-      集合存在于数据库中。
-      同一集合中的文档可以有不同的结构，但通常具有相似的用途或功能。
-      不需要预先定义模式（Schema），这提供了高度的灵活性。</li>
+      <li>通常选择 <code class="language-plaintext highlighter-rouge">32</code>, <code class="language-plaintext highlighter-rouge">64</code>, <code class="language-plaintext highlighter-rouge">128</code>。</li>
     </ul>
   </li>
-  <li>文档（Document）：
+  <li><strong>时间步长 (Sequence Length)：</strong>
     <ul>
-      <li>定义：文档是 MongoDB 中数据的基本单元，采用类似 JSON 的格式来表示数据。</li>
-      <li>特点：
-  文档由键值对组成，键是字符串，值可以是多种数据类型，如字符串、数字、日期、数组、嵌套文档等。
-  使用 BSON（二进制 JSON）格式进行存储，提升了数据的处理效率。</li>
+      <li>选择 <code class="language-plaintext highlighter-rouge">10-100</code> 的时间步，视具体问题而定。</li>
+    </ul>
+  </li>
+  <li><strong>隐藏单元数 (Hidden Units)：</strong>
+    <ul>
+      <li>通常范围为 <code class="language-plaintext highlighter-rouge">32</code> 到 <code class="language-plaintext highlighter-rouge">512</code>。</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="调参工具"><strong>调参工具：</strong></h4>
+<ul>
+  <li><strong>手动调整：</strong> 修改模型代码中的超参数。</li>
+  <li><strong>自动调参：</strong> 使用 <code class="language-plaintext highlighter-rouge">Optuna</code> 或 <code class="language-plaintext highlighter-rouge">GridSearchCV</code> 等工具。</li>
+  <li><strong>Optuna 示例：</strong>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">optuna</span>
+
+<span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
+    <span class="n">hidden_size</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="nf">suggest_int</span><span class="p">(</span><span class="sh">'</span><span class="s">hidden_size</span><span class="sh">'</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+    <span class="n">learning_rate</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="nf">suggest_float</span><span class="p">(</span><span class="sh">'</span><span class="s">lr</span><span class="sh">'</span><span class="p">,</span> <span class="mf">1e-5</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="nc">LSTMModel</span><span class="p">(</span><span class="n">input_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">hidden_size</span><span class="o">=</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">output_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 训练代码省略...
+</span>    <span class="k">return</span> <span class="n">validation_loss</span>
+
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="p">.</span><span class="nf">create_study</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="sh">'</span><span class="s">minimize</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">study</span><span class="p">.</span><span class="nf">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="4-怎么即时输出参数"><strong>4. 怎么即时输出参数？</strong></h3>
+<h4 id="方法"><strong>方法：</strong></h4>
+<ol>
+  <li><strong>通过回调函数实时监控：</strong>
+    <ul>
+      <li>使用 Keras 的 <code class="language-plaintext highlighter-rouge">Callback</code> 机制：
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">keras.callbacks</span> <span class="kn">import</span> <span class="n">LambdaCallback</span>
+
+<span class="k">def</span> <span class="nf">on_epoch_end</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">logs</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Epoch </span><span class="si">{</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s">: Loss=</span><span class="si">{</span><span class="n">logs</span><span class="p">[</span><span class="sh">'</span><span class="s">loss</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="s">, Val_Loss=</span><span class="si">{</span><span class="n">logs</span><span class="p">[</span><span class="sh">'</span><span class="s">val_loss</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">callback</span> <span class="o">=</span> <span class="nc">LambdaCallback</span><span class="p">(</span><span class="n">on_epoch_end</span><span class="o">=</span><span class="n">on_epoch_end</span><span class="p">)</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">),</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">callback</span><span class="p">])</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>保存参数：</strong>
+    <ul>
+      <li>保存模型权重：
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="p">.</span><span class="nf">save_weights</span><span class="p">(</span><span class="sh">'</span><span class="s">model_weights.h5</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div>        </div>
+      </li>
+      <li>在 PyTorch 中保存：
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">torch</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="nf">state_dict</span><span class="p">(),</span> <span class="sh">'</span><span class="s">model.pth</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>输出中间层结果：</strong>
+    <ul>
+      <li>定义模型输出中间层的操作，例如获取 LSTM 输出状态。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="5-怎么改进"><strong>5. 怎么改进？</strong></h3>
+<h4 id="模型架构改进"><strong>模型架构改进：</strong></h4>
+<ol>
+  <li><strong>双向 LSTM (BiLSTM)：</strong>
+提高捕获前后上下文信息的能力。
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">keras.layers</span> <span class="kn">import</span> <span class="n">Bidirectional</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="nc">Bidirectional</span><span class="p">(</span><span class="nc">LSTM</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">time_steps</span><span class="p">,</span> <span class="n">features</span><span class="p">)))</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>引入注意力机制 (Attention)：</strong>
+增强模型对重要时间步的关注能力。
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">keras.layers</span> <span class="kn">import</span> <span class="n">Attention</span>
+<span class="n">attention</span> <span class="o">=</span> <span class="nc">Attention</span><span class="p">()</span>  <span class="c1"># 需要具体实现
+</span></code></pre></div>    </div>
+  </li>
+  <li><strong>混合模型：</strong>
+    <ul>
+      <li>使用 CNN 提取特征，结合 LSTM 时间序列建模。</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="数据改进"><strong>数据改进：</strong></h4>
+<ul>
+  <li>数据增强：
+    <ul>
+      <li>对时间序列进行数据增强（滑动窗口、随机裁剪）。</li>
+    </ul>
+  </li>
+  <li>特征工程：
+    <ul>
+      <li>提取更多时间序列特征（均值、方差、趋势等）。</li>
     </ul>
   </li>
 </ul>
 
-<p>总结：</p>
+<h4 id="优化技巧"><strong>优化技巧：</strong></h4>
 <ul>
-  <li>数据库：存放集合的容器。</li>
-  <li>集合：存放文档的容器。</li>
-  <li>文档：实际存储数据的地方，包含具体的键值对信息。</li>
-</ul>]]></content><author><name></name></author><category term="mongodb" /><summary type="html"><![CDATA[学习 MongoDB 的基本概念：数据库、集合、文档。 MongoDB 是一种基于文档的 NoSQL 数据库，采用灵活的文档模型来存储数据。理解 MongoDB，首先需要掌握以下三个基本概念： 数据库（Database）： 定义：数据库是数据的逻辑容器，类似于传统关系型数据库中的数据库概念。 特点：一个 MongoDB 实例可以包含多个独立的数据库，每个数据库都有自己的集合和权限设置。 集合（Collection）： 定义：集合是一组文档的容器，类似于关系型数据库中的表。 特点： 集合存在于数据库中。 同一集合中的文档可以有不同的结构，但通常具有相似的用途或功能。 不需要预先定义模式（Schema），这提供了高度的灵活性。 文档（Document）： 定义：文档是 MongoDB 中数据的基本单元，采用类似 JSON 的格式来表示数据。 特点： 文档由键值对组成，键是字符串，值可以是多种数据类型，如字符串、数字、日期、数组、嵌套文档等。 使用 BSON（二进制 JSON）格式进行存储，提升了数据的处理效率。 总结： 数据库：存放集合的容器。 集合：存放文档的容器。 文档：实际存储数据的地方，包含具体的键值对信息。]]></summary></entry></feed>
+  <li>使用预训练的嵌入层（如词向量）。</li>
+  <li>增加模型训练轮数，结合学习率调度器逐步减少学习率。</li>
+</ul>
+
+<h4 id="对比模型"><strong>对比模型：</strong></h4>
+<ul>
+  <li>使用 GRU（门控循环单元），对比其性能。</li>
+  <li>测试 Transformer 模型在时间序列数据中的表现。</li>
+</ul>]]></content><author><name></name></author><category term="review" /><category term="diary" /><summary type="html"><![CDATA[LSTM 是一种广泛用于时间序列预测和序列数据建模的深度学习模型。]]></summary></entry><entry><title type="html">关于LSTM的模型建构(1)</title><link href="http://localhost:4000/review/diary/diary003/" rel="alternate" type="text/html" title="关于LSTM的模型建构(1)" /><published>2025-01-19T13:01:30+08:00</published><updated>2025-01-19T13:01:30+08:00</updated><id>http://localhost:4000/review/diary/diary003</id><content type="html" xml:base="http://localhost:4000/review/diary/diary003/"><![CDATA[<p>怎么建模?</p>
+
+<p>怎么调整?</p>
+
+<p>怎么调参?</p>
+
+<p>怎么即时输出参数?</p>
+
+<p>怎么改进?</p>]]></content><author><name></name></author><category term="review" /><category term="diary" /><summary type="html"><![CDATA[怎么建模?]]></summary></entry><entry><title type="html">对于人生的追求(2)</title><link href="http://localhost:4000/review/diary/diary002/" rel="alternate" type="text/html" title="对于人生的追求(2)" /><published>2025-01-18T13:01:30+08:00</published><updated>2025-01-18T13:01:30+08:00</updated><id>http://localhost:4000/review/diary/diary002</id><content type="html" xml:base="http://localhost:4000/review/diary/diary002/"><![CDATA[<p>退休应该要有的生活 应该是不后悔的生活模式 ，</p>
+
+<p>带家人去旅行 带家人去吃美食 带家人等等的</p>
+
+<p>也可以自己一个人享受一个人的旅行和生活</p>
+
+<p>我财富自由后要一个人住，一个人生活，定时回家带家人去旅行。</p>
+
+<p>这样就是我要的退休生活的生活模式</p>]]></content><author><name></name></author><category term="review" /><category term="diary" /><summary type="html"><![CDATA[退休应该要有的生活 应该是不后悔的生活模式 ，]]></summary></entry><entry><title type="html">forex 每日一句</title><link href="http://localhost:4000/forex/forex_words009/" rel="alternate" type="text/html" title="forex 每日一句" /><published>2025-01-18T11:01:30+08:00</published><updated>2025-01-18T11:01:30+08:00</updated><id>http://localhost:4000/forex/forex_words009</id><content type="html" xml:base="http://localhost:4000/forex/forex_words009/"><![CDATA[<p>Saturday｜18/365</p>
+
+<p>The only way to achieve the impossible is to believe it is possible.</p>
+
+<p>实现“不可能”唯一的方法，就是相信它是可能的。</p>]]></content><author><name></name></author><category term="forex" /><summary type="html"><![CDATA[Saturday｜18/365]]></summary></entry><entry><title type="html">对于人生的追求(1)</title><link href="http://localhost:4000/review/diary/diary001/" rel="alternate" type="text/html" title="对于人生的追求(1)" /><published>2025-01-17T13:01:30+08:00</published><updated>2025-01-17T13:01:30+08:00</updated><id>http://localhost:4000/review/diary/diary001</id><content type="html" xml:base="http://localhost:4000/review/diary/diary001/"><![CDATA[<p>我对于人生的追求很少欲望，只有简单的物欲和生活欲望就没有了</p>
+
+<p>要购买医疗保险和好好存款做好退休的准备，</p>
+
+<p>至于退休需要做什么，这需要好好想想。</p>
+
+<p>旅游呢?</p>
+
+<p>还是做自己想要的做的?</p>
+
+<p>工作不是唯一的追求。</p>
+
+<p>下一篇思考退休应该做什么?</p>]]></content><author><name></name></author><category term="review" /><category term="diary" /><summary type="html"><![CDATA[我对于人生的追求很少欲望，只有简单的物欲和生活欲望就没有了]]></summary></entry></feed>
