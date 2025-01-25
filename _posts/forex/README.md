@@ -1,12 +1,3 @@
----
-layout: post
-title:  forex 的学习
-date:   2025-01-01 11:01:30 +0800
-categories: 
-    - forex
-    - review
----
-
 以下是一个为期15天的外汇市场学习计划，涵盖基础知识、交易策略和风险管理等内容，适合初学者入门并逐步深入了解外汇交易。
 https://chatgpt.com/c/67775eb7-c014-800f-8f42-ec5b50024b90
 
