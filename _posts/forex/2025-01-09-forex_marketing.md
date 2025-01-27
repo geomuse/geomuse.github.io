@@ -1,14 +1,10 @@
 ---
 layout: post
-title:  forex 的营销学习
+title:  forex 的营销语录
 date:   2025-01-09 11:01:30 +0800
 categories: 
     - forex
 ---
-
-    Fortune knocks once at least at every man's gate.
-
-风水轮流转。
 
     Nothing is impossible; the word itself says 'I'm possible!
 
