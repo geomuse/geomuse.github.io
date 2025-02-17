@@ -1,12 +1,3 @@
----
-layout: post
-title:  nodejs express
-date:   2025-02-17 13:01:30 +0800
-categories: 
-    - nodejs
----
-
-```js
 const express = require("express");
 
 const app = express();
@@ -14,4 +5,3 @@ const app = express();
 app.listen(3000,function(){
     console.log('server started.');
 });
-```
