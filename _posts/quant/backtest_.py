@@ -23,12 +23,14 @@ class EMACrossoverStrategy(bt.Strategy):
                 self.order = self.buy()
             elif self.ema_short < self.ema_long:
                 self.order = self.sell()
+
         else:  # 处理止盈止损
             if self.position.size > 0:  # 持有多头
                 if self.data.close[0] >= self.buy_price + self.params.take_profit:
                     self.close()
                 elif self.data.close[0] <= self.buy_price - self.params.stop_loss:
                     self.close()
+
             elif self.position.size < 0:  # 持有空头
                 if self.data.close[0] <= self.sell_price - self.params.take_profit:
                     self.close()
@@ -42,6 +44,7 @@ class EMACrossoverStrategy(bt.Strategy):
             else:
                 self.sell_price = order.executed.price
             self.order = None
+            
         elif order.status in [order.Canceled, order.Margin, order.Rejected]:
             self.order = None
 
