@@ -1,32 +1,53 @@
-import numpy as np
-import scipy.stats as stats
-import matplotlib.pyplot as pt
+def bisection(a,b,tol,no,f):
+    fa = f(a)
+    i = 0
+    while i <= no :
+        p = a + (b-a)/2
+        fp = f(p)
+        yield p
+        if fp == 0 or (b-a)/2 < tol :
+            return  
+        i+=1 
+        if fa*fp > 0 :
+            a=p 
+            fa=fp
+        else :
+            b=p
 
-# 假设有一组测量数据 y 和预测值 y_pred
-y = np.array([10.2, 9.9, 10.5, 10.3, 9.8])   # 实际测量值
-y_pred = np.array([10.0, 10.1, 10.3, 10.4, 9.9])  # 模型预测值
+def fixed_point(po,tol,no,f):
+    i = 1
+    while i <= no :
+        p = f(po)
+        yield p
+        if abs(p-po) < tol :
+            return  
+        i+=1
+        po=p
 
-# 残差分析
-residuals = y - y_pred
-mean_residual = np.mean(residuals)
-std_residual = np.std(residuals)
+def newtion(po,tol,no,f,fp):
+    i = 1
+    while i <= no : 
+        p = po - f(po)/fp(po)
+        yield p
+        if abs(p-po) < tol :
+            return 
+        i+=1
+        po = p
 
-# 正态性检验
-_ , p_value = stats.shapiro(residuals)  # p值 < 0.05 则拒绝正态性假设
+def secant(po,p1,tol,no,f):
+    i = 2
+    qo = f(po)
+    q1 = f(p1)
+    while i <= no :
+        p = p1 - q1*(p1-po)/(q1-qo)
+        yield p
+        if abs(p-p1) < tol :
+            return 
+        i+=1
+        po=p1; qo=q1 ; p1=p ; q1=f(p)
 
-# 计算误差传播 - 假设 y_pred 的不确定度为 0.1
-uncertainty_y_pred = 0.1
-combined_uncertainty = np.sqrt(uncertainty_y_pred**2 + std_residual**2)
 
-# 输出结果
-print(f"残差均值(Mean Residual): {mean_residual}")
-print(f"残差标准差(Residual Std Dev): {std_residual}")
-print(f"正态性检验 p 值: {p_value}")
-print(f"预测结果的综合不确定度: {combined_uncertainty}")
+f = lambda x : x**2 - x - 2
 
-# 残差分布图
-pt.hist(residuals, bins=5, alpha=0.6, color='blue')
-pt.title('Residual Distribution')
-pt.xlabel('Residual')
-pt.ylabel('Frequency')
-pt.show()
+for value in secant(-5,5,1e-10,500,f):
+    print(value) 

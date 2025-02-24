@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  非线性方程求解 二分法和割线法
-date:   2024-11-07 11:24:29 +0800
+title:  bisection
+date:   2025-02-24 11:24:29 +0800
 categories:
     - python
     - na
@@ -17,7 +17,29 @@ categories:
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-1. 二分法
+```python
+def bisection(a,b,tol,no,f):
+    fa = f(a)
+    i = 0
+    while i <= no :
+        p = a + (b-a)/2
+        fp = f(p)
+        if fp == 0 or (b-a)/2 < tol :
+            yield p 
+        i += 1 
+        if fa * fp > 0 :
+            a = p 
+            fa = fp
+        else :
+            b = p
+
+f = lambda x : x**2 - x - 2
+
+for value in bisection(-5,5,1e-10,500,f):
+    print(value) 
+```
+
+<!-- 1. 二分法
 
 二分法用于求解方程 $f(x)=0$ 的根。它需要一个区间 $[a,b]$，并且在该区间上 f(a)⋅f(b)<0f(a)⋅f(b)<0。
 
@@ -70,4 +92,4 @@ print("Root found by secant method:", root)
 ```
 
 解释：
-割线法利用两个点 x0 和 x1 生成割线，并逐步逼近根。相比于二分法，割线法没有区间要求，但可能收敛性不如牛顿法。
+割线法利用两个点 x0 和 x1 生成割线，并逐步逼近根。相比于二分法，割线法没有区间要求，但可能收敛性不如牛顿法。 -->
