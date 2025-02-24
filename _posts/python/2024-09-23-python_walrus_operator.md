@@ -6,7 +6,7 @@ categories:
     - python
 ---
 
-```
+```py
 # 赋值并立即使用变量
 if (n := len("Hello World")) > 5:
     print(f"The length of the string is {n}")
