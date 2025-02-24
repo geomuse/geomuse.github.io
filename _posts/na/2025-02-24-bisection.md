@@ -24,14 +24,15 @@ def bisection(a,b,tol,no,f):
     while i <= no :
         p = a + (b-a)/2
         fp = f(p)
+        yield p
         if fp == 0 or (b-a)/2 < tol :
-            yield p 
-        i += 1 
-        if fa * fp > 0 :
-            a = p 
-            fa = fp
+            return  
+        i+=1 
+        if fa*fp > 0 :
+            a=p 
+            fa=fp
         else :
-            b = p
+            b=p
 
 f = lambda x : x**2 - x - 2
 
