@@ -23,17 +23,16 @@ BMI ≥ 30: 肥胖
 ```py
 import math 
 
-height = float(input())
-weight = float(input())
+# height = float(input())
+# weight = float(input())
 
-bmi = weight / math.pow(height,2)
+def match_bmi(height,weight):
+    bmi = weight / math.pow(height,2)
+    match bmi :
+        case _ if bmi < 18.5 : return "过轻"
+        case _ if 18.5 <= bmi < 24.9 : return "正常"
+        case _ if 25 <= bmi < 29.9 : return "超重"
+        case _ if bmi >= 30 : return "肥胖"
 
-def match_bmi(n):
-    match n :
-        case _ if n < 18.5 : return "过轻"
-        case _ if 18.5 <= n < 24.9 : return "正常"
-        case _ if 25 <= n < 29.9 : return "超重"
-        case _ if n >= 30 : return "肥胖"
-
-print(match_bmi(bmi))
+print(match_bmi(160,48))
 ```
