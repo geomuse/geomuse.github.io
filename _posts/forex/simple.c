@@ -9,29 +9,59 @@
 #property strict
 
 int magic = 101 ;
-
+double sl = 0 ;
+double tp = 0 ;
 // string symbols[3] ; 
 string symbol ; 
 double lots ; 
 int slippage = 10 ; 
+int close_profit = 5 ; 
+int close_loss = 10 ;
 
+// 退出EA亏损
+input double AccumulatedLossLimit = -10000;
 
-input int close_profit = 5 ; 
-input int close_loss = 10 ;
-input int trailing_start = 50;   // 启动移动止损点数
-input int trailing_stop = 20;    // 动态止损点数
+// 金字塔加仓
+input int step = 130 ;
 
-input int TEMA_Short_Period = 3;    // 短期TEMA周期
-input int TEMA_Long_Period = 7;     // 长期TEMA周期
-input int RSI_Period = 7;           // RSI周期
-input int RSI_Level = 50;            // RSI阈值
-input int MACD_Fast = 3;            // MACD快线
-input int MACD_Slow = 7;            // MACD慢线
-input int MACD_Signal = 9;           // MACD信号线
-input int Bands_Period = 20;         // 布林带周期
-input double Bands_Deviation = 2.5;  // 布林带标准差
+// 移动止损
+input int trailing_start = 110;   // 启动移动止损点数
+input int trailing_stop = 70;    // 动态止损点数
+
+// 全仓平仓
+input int TakeProfit = 400;       // 止盈点数
+input int StopLoss = 200;
+
+// stategy002
+double sar, prev_sar;
+
+// stategy001
+int TEMA_Short_Period = 3;    // 短期TEMA周期
+int TEMA_Long_Period = 7;     // 长期TEMA周期
+int RSI_Period = 7;           // RSI周期
+int RSI_Level = 50;            // RSI阈值
+int MACD_Fast = 3;            // MACD快线
+int MACD_Slow = 7;            // MACD慢线
+int MACD_Signal = 9;           // MACD信号线
+int Bands_Period = 20;         // 布林带周期
+double Bands_Deviation = 2.5;  // 布林带标准差
 
 datetime kbar = 0 ;
+
+// ROI
+input int CheckInterval    = 5;        
+input int      Level1_Time      = 120;       // 1
+input double   Level1_ROI       = 0.00;      // 1 ROI 持仓≥120分钟：盈利即可平仓（ROI≥0%）
+input int      Level2_Time      = 60;        // 2
+input double   Level2_ROI       = 0.02;      // 2 ROI 持仓≥60分钟：需要ROI≥2%
+input int      Level3_Time      = 30;        // 3
+input double   Level3_ROI       = 0.05;      // 3 ROI 持仓≥30分钟：需要ROI≥5%
+input int      Level4_Time      = 0;         // 4
+input double   Level4_ROI       = 0.10;      // 4 ROI 持仓≥0分钟：需要ROI≥10%
+
+//--- global variable
+double roi_levels[4][2];  // [??, ROI] ???????
+datetime lastCheckTime;
 
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
@@ -40,7 +70,27 @@ int OnInit()
   {
 //---
 //---
-   return(INIT_SUCCEEDED);
+
+    // initial ROI 
+    roi_levels[0][0] = Level1_Time;
+    roi_levels[0][1] = Level1_ROI;
+    roi_levels[1][0] = Level2_Time;
+    roi_levels[1][1] = Level2_ROI;
+    roi_levels[2][0] = Level3_Time;
+    roi_levels[2][1] = Level3_ROI;
+    roi_levels[3][0] = Level4_Time;
+    roi_levels[3][1] = Level4_ROI;
+    
+    // ???????
+    for(int i=0; i<4; i++) {
+        if(roi_levels[i][1] < 0) {
+            Alert("ROI????????? ", i+1);
+            return(INIT_PARAMETERS_INCORRECT);
+        }
+    }
+    
+    lastCheckTime = 0;
+    return(INIT_SUCCEEDED);
   }
 //+------------------------------------------------------------------+
 //| Expert deinitialization function                                 |
@@ -55,24 +105,80 @@ void OnDeinit(const int reason)
 //+------------------------------------------------------------------+
 void OnTick()
   {
+   if(is_friday()) {
+        close_all();
+        return;
+   }
+   
+   if(TimeCurrent() - lastCheckTime >= CheckInterval)
+    {
+        CheckMinROI();
+        lastCheckTime = TimeCurrent();
+    }
   
-        symbol = Symbol() ; 
-        entry_market();
-        check_intraday_close();
+   symbol = Symbol() ; 
+   entry_market();   // enter the markat.
+   check_intraday_close();     // only trade in day.
+  
+   if(balance_check_accumulated_loss()){
+      close_all();
+      stop_ea();
+      return;
+   }
 //---
   }
 //+------------------------------------------------------------------+
 
-void entry_logic(){
+void entry_market() {
+
+   entry() ;
+   // sar_check_open_condiitons() ;
+   // stoploss_trailing_stoploss() ; 
+   
+}
+
+void entry(){
   
-   if(kbar!=Time[0] && OrdersTotal() == 0 ){
-      lots = 0.01 ; buy() ; sell() ; kbar=Time[0] ; 
-   }  
+   //double total_buy_profit  = get_total_profit_buy() ; 
+   //double total_sell_profit = get_total_profit_sell() ; 
+ 
+   // if(kbar!=Time[0] && OrdersTotal() == 0 ){
+   //   lots = 0.1 ; open_position() ; kbar=Time[0] ; 
+   // }  
+   // sar_check_open_condiitons();
+   
+   tema_check_open_conditions() ;
+   reverse_pyramid_position() ;
+  
+   // if(total_buy_profit>15){close_buy(); }
+   // if(total_sell_profit>15){close_sell();}
+
+   //if(total_buy_profit<-10000){stop_ea() ; }
+   //if(total_sell_profit<-10000){stop_ea();}
 
 }
 
-void CheckOpenConditions() {
+void sar_check_open_condiitons(){
+    sar = iSAR(Symbol(), 0, 0.02, 0.2, 0);        // 当前周期 SAR 值
+    prev_sar = iSAR(Symbol(), 0, 0.02, 0.2, 1);  // 前一周期 SAR 值
+    double bid = Bid;
+    double ask = Ask;
     
+    bool buy_signal = (sar < bid && prev_sar > bid) ;
+    bool sell_signal = (sar > bid && prev_sar < bid) ;
+    
+    // 执行交易
+    if(buy_signal && OrdersTotal() == 0) {
+        lots = 0.1 ;
+        buy() ;
+    } else if(sell_signal && OrdersTotal() == 0) {
+        lots = 0.1 ;
+        sell();
+    }
+}
+
+void tema_check_open_conditions() {
+   
     // 计算指标
     double temaShort = tema(TEMA_Short_Period, 0);
     double temaLong = tema(TEMA_Long_Period, 0);
@@ -89,43 +195,97 @@ void CheckOpenConditions() {
     double middleBand = iBands(NULL, 0, Bands_Period, Bands_Deviation, 0, PRICE_CLOSE, MODE_MAIN, 0);
 
     // 生成信号
-    bool buySignal = (temaShort > temaLong && temaShortPrev <= temaLongPrev) &&
+    bool buy_signal = (temaShort > temaLong && temaShortPrev <= temaLongPrev) &&
                     (rsi > RSI_Level) &&
                     (macdHist > 0) &&
                     (Close[0] > middleBand && Close[1] <= middleBand);
     
-    bool sellSignal = (temaShort < temaLong && temaShortPrev >= temaLongPrev) &&
+    bool sell_signal = (temaShort < temaLong && temaShortPrev >= temaLongPrev) &&
                      (rsi < RSI_Level) &&
                      (macdHist < 0) &&
                      (Close[0] < middleBand && Close[1] >= middleBand);
-
     // 执行交易
-    if(buySignal && OrdersTotal() == 0) {
+    if(buy_signal && OrdersTotal() == 0) {
         lots = 0.1 ;
         buy() ;
-    } else if(sellSignal && OrdersTotal() == 0) {
+    } else if(sell_signal && OrdersTotal() == 0) {
         lots = 0.1 ;
         sell();
     }
 }
 
-void entry_market() {
-
-   double total_buy_profit  = get_total_profit_buy() ; 
-   double total_sell_profit = get_total_profit_sell() ; 
- 
-   if(is_friday()) {
-        close_all();
-        return;
+void pyramid_position(){
+   if (kbar!=Time[0] && OrdersTotal()>0 && OrdersTotal() <= 5){
+      double last_price = last_order_price() ;
+      double required_step = step * Point ;
+      
+      // 买家上涨了，就加买
+      if(Bid > last_price + required_step){
+         lots = MathPow(0.7,OrdersTotal()) ;
+         buy() ;
+      }
+      // 卖家下跌了，就加卖
+      if(Ask < last_price - required_step){
+         lots = MathPow(0.7,OrdersTotal()) ;
+         sell() ;
+      }
+      kbar = Time[0] ;
    }
-    
-   // entry_logic() ;
-   CheckOpenConditions() ;
-   trailing_stoploss() ;
-   
-   if(total_buy_profit>15){close_buy(); }
-   if(total_sell_profit>15){close_sell();}
+}
 
+void reverse_pyramid_position(){
+   if (kbar!=Time[0] && OrdersTotal()>0 && OrdersTotal() <= 5){
+      double last_price = last_order_price() ;
+      double required_step = step * Point ;
+      
+      // 买家上涨了，就加买
+      if(Bid > last_price + required_step){
+         lots = MathPow(0.7,OrdersTotal()) ;
+         sell() ;
+      }
+      // 卖家下跌了，就加卖
+      if(Ask < last_price - required_step){
+         lots = MathPow(0.7,OrdersTotal()) ;
+         buy() ;
+      }
+      kbar = Time[0] ;
+   }
+
+}
+
+
+
+double last_order_price()
+{
+   double price = 0;
+   datetime last_time = 0; // 记录最新订单的时间
+
+   for(int i = 0; i < OrdersTotal(); i++)
+   {
+      if(OrderSelect(i, SELECT_BY_POS, MODE_TRADES)) // 确保订单选择成功
+      {
+         if(OrderMagicNumber() == magic && OrderOpenTime() > last_time) 
+         {
+            // last_time = OrderOpenTime(); // 记录最新的开仓时间
+            price = OrderOpenPrice();   // 更新最新订单的开仓价格
+         }
+      }
+   }
+   return price;
+}
+
+bool open_condition(){
+   return (Close[1]>Open[1]) ;
+}
+
+void open_position(){
+   int type = (open_condition())? OP_BUY : OP_SELL ;
+   if(type == OP_BUY){
+      buy() ;
+   }
+   if(type == OP_SELL){
+      sell() ;
+   }
 }
 
 double ema(int timeframe, int shift){
@@ -149,16 +309,68 @@ bool is_friday() {
 
 void stop_ea(){
    ExpertRemove() ; 
+   SendNotification("交易暂停：亏损");
 }
 
-// 日内平仓检查
+bool balance_check_accumulated_loss()
+{
+    double totalLoss = 0.0;
+
+    // 检查历史订单
+    int totalHistoryOrders = OrdersHistoryTotal();
+    for(int i=0; i<totalHistoryOrders; i++)
+    {
+        if(OrderSelect(i, SELECT_BY_POS, MODE_HISTORY))
+        {
+            if(OrderMagicNumber() == magic && 
+               OrderSymbol() == symbol)
+            {
+               
+                double profit = OrderProfit() +
+                              OrderSwap() +
+                              OrderCommission();
+                if (profit < 0) {
+                  totalLoss += profit; // 损失为负收益
+                }
+            }
+        }
+    }
+
+    // 检查当前持仓（未平仓亏损）
+    for(int i=0; i<OrdersTotal(); i++)
+    {
+        if(OrderSelect(i, SELECT_BY_POS, MODE_TRADES))
+        {
+            if(OrderMagicNumber() == magic && 
+               OrderSymbol() == symbol)
+            {
+               double profit = OrderProfit() + OrderSwap() + OrderCommission();
+               if (profit < 0){
+                  totalLoss += profit;
+                }
+            }
+        }
+    }
+
+    // 判断是否超过限额
+    if(totalLoss <= AccumulatedLossLimit)
+    {
+        Print("触发累计止损！总损失：", totalLoss);
+        return true;
+    }
+    return false;
+}
+
+//+------------------------------------------------------------------+
+//| 日内平仓检查                                                   |
+//+------------------------------------------------------------------+
 void check_intraday_close() {
     datetime currentTime = TimeCurrent();
     for(int i = OrdersTotal()-1; i >= 0; i--) {
         if(OrderSelect(i, SELECT_BY_POS, MODE_TRADES)) {
             if(OrderSymbol() == Symbol() && OrderMagicNumber() == magic) {
                 if(TimeDay(OrderOpenTime()) != TimeDay(currentTime)) {
-                    bool closeSuccess = OrderClose(OrderTicket(), OrderLots(), OrderClosePrice(), 3, clrNONE);
+                    bool closeSuccess = OrderClose(OrderTicket(), OrderLots(), OrderClosePrice(), slippage, clrNONE);
                     if(!closeSuccess){
                      Print("check intraday close problem.");
                     }                   
@@ -168,7 +380,48 @@ void check_intraday_close() {
     }
 }
 
-void trailing_stoploss()
+//+------------------------------------------------------------------+
+//| 平仓管理函数                                                   |
+//+------------------------------------------------------------------+
+void stoploss_manage_exit_conditions()
+{
+   double totalProfit = 0;
+   double avgPrice = 0;
+   double totalLots = 0;
+   
+   // 计算整体持仓
+   for(int i=0; i<OrdersTotal(); i++)
+   {
+      if(OrderSelect(i, SELECT_BY_POS) && OrderMagicNumber() == magic)
+      {
+         totalProfit += OrderProfit();
+         totalLots += OrderLots();
+         avgPrice += OrderOpenPrice() * OrderLots();
+      }
+   }
+   
+   if(totalLots > 0) avgPrice /= totalLots;
+   
+   // 整体止盈
+   if(totalProfit >= TakeProfit * _Point * totalLots * MarketInfo(_Symbol, MODE_TICKVALUE))
+   {
+      close_all();
+      return;
+   }
+   
+   // 整体止损
+   double currentSL = (avgPrice > 0) ? 
+                     avgPrice - StopLoss * _Point : 
+                     avgPrice + StopLoss * _Point;
+                     
+   if((avgPrice > 0 && Bid <= currentSL) || (avgPrice < 0 && Ask >= currentSL))
+   {
+      close_all();
+   }
+}
+
+
+void stoploss_trailing_stoploss()
 {
    for(int i=0; i<OrdersTotal(); i++)
    {
@@ -220,11 +473,11 @@ void trailing_stoploss()
 }
 
 void buy(){
-   int ticket = OrderSend(symbol, OP_BUY, lots, Ask, slippage, 0, 0, "buy order", magic, 0, clrBlue);
+   int ticket = OrderSend(symbol, OP_BUY, lots, Ask, slippage, sl, tp, "buy order", magic, 0, clrBlue);
 }
 
 void sell(){
-   int ticket = OrderSend(symbol, OP_SELL, lots, Bid, slippage, 0, 0, "sell order", magic, 0, clrRed);
+   int ticket = OrderSend(symbol, OP_SELL, lots, Bid, slippage, sl, tp, "sell order", magic, 0, clrRed);
 }
 
 double get_total_profit_buy() {
@@ -324,4 +577,94 @@ void close_all() {
          }
       }
    }
+}
+
+//+------------------------------------------------------------------+
+//| ?????????(??????)                                |
+//+------------------------------------------------------------------+
+double CalculateROI()
+{
+    double openPrice = OrderOpenPrice();
+    double currentPrice;
+    
+    if(OrderType() == OP_BUY) {
+        currentPrice = Bid;
+    }
+    else if(OrderType() == OP_SELL) {
+        currentPrice = Ask;
+    }
+    else {
+        return(0.0); // ?????
+    }
+    
+    double priceDiff = currentPrice - openPrice;
+    if(OrderType() == OP_SELL) priceDiff = -priceDiff;
+    
+    return(NormalizeDouble(priceDiff / openPrice, 4));
+}
+
+//+------------------------------------------------------------------+
+//| close order                                                    |
+//+------------------------------------------------------------------+
+bool ExecuteClose()
+{
+    bool result = false;
+    double price;
+    
+    if(OrderType() == OP_BUY) {
+        price = Bid;
+    }
+    else if(OrderType() == OP_SELL) {
+        price = Ask;
+    }
+    else {
+        return(false);
+    }
+    
+    for(int attempt=0; attempt<3; attempt++) { // ????3?
+        result = OrderClose(OrderTicket(), OrderLots(), price, 3, clrNONE);
+        if(result) break;
+        Sleep(500); // ??500ms???
+    }
+    
+    if(!result) {
+        Print("????????:", OrderTicket(), " ??:", GetLastError());
+    }
+    return(result);
+}
+
+//+------------------------------------------------------------------+
+//| min_roi                                         |
+//+------------------------------------------------------------------+
+void CheckMinROI()
+{
+    for(int i=OrdersTotal()-1; i>=0; i--)
+    {
+        if(!OrderSelect(i, SELECT_BY_POS, MODE_TRADES)) continue;
+        
+        // ???????????
+        if(OrderMagicNumber() != magic) continue;
+        
+        // ????????(??)
+        double holdTimeMinutes = (TimeCurrent() - OrderOpenTime()) / 60.0;
+        double currentROI = CalculateROI();
+        
+        // ?? ROI ??(????)
+        for(int j=0; j<4; j++)
+        {
+            if(holdTimeMinutes >= roi_levels[j][0])
+            {
+                if(currentROI >= roi_levels[j][1])
+                {
+                    if(ExecuteClose())
+                    {
+                        PrintFormat("?? %d ??: ?? %.1f ??, ROI=%.2f%%, ???? %d (?%d??)",
+                                    OrderTicket(), holdTimeMinutes, currentROI*100, j+1, roi_levels[j][0]);
+                    }
+                    break; // ??????????????
+                }
+                break; // ROI??????????????????????
+            }
+        }
+    }
 }
