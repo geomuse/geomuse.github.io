@@ -110,7 +110,6 @@ implied_volatility.columns = ['S','K','T','r','C','imp_v']
 implied_volatility['imp_v'] = [float(implied_volatility['imp_v'][_].replace('%',''))/100 for _ in range(len(implied_volatility))]
 print(implied_volatility)
 
-
 class black_scholes :
 
     def __d1_d2(self,S,K,T,r,sigma):

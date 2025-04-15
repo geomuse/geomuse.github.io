@@ -1,19 +1,3 @@
----
-layout: post
-title:  CVaR 和 VaR 
-date:   2025-03-21 11:24:29 +0800
-categories: 
-    - financial
-    - python
----
-
-### VaR 
-
-### CVaR
-
-VaR的平均值
-
-```py
 from pymongo import MongoClient
 import pandas as pd 
 import matplotlib.pyplot as pt
@@ -21,25 +5,17 @@ import numpy as np
 from matplotlib import style
 style.use('ggplot')
 
-def database():
-    # 连接到 MongoDB（替换为实际的连接字符串）
-    client = MongoClient("mongodb://localhost:27017/")
-    # 选择数据库（例如 "mydatabase"）
-    db = client["stock_data"]
-    return db
-
-collection = database()["AAPL"]
+# 连接到 MongoDB（替换为实际的连接字符串）
+client = MongoClient("mongodb://localhost:27017/")
+# 选择数据库（例如 "mydatabase"）
+db = client["stock_data"]
+collection = db["AAPL"]
 
 # 查询数据，例如：读取所有数据
 results = collection.find()
-
-# 输出查询结果
 print(data := pd.DataFrame(results))
 
 close = data["Close"]
-
-# pt.plot(close)
-# pt.show()
 
 def calculate_var_(returns, confidence_level=0.95):
     """
@@ -65,7 +41,6 @@ def calculate_cvar_(returns, confidence_level=0.95):
     var_val = calculate_var_(returns, confidence_level)
     # 取所有低于或等于 VaR 的收益率（即损失较大的情况），求均值
     return returns[returns <= var_val].mean()
-
 
 def calculate_var(losses, beta=0.95):
     """
@@ -103,26 +78,20 @@ def calculate_cvar(losses, beta=0.95):
     cvar = alpha + mean_excess / (1 - beta)
     return cvar
 
-# 示例：生成模拟损失数据并计算 VaR 与 CVaR
-# 模拟 1000 个损失数据，假设损失服从均值为 5，标准差为 1 的正态分布
-losses =  close.pct_change().dropna()
+if __name__ == "__main__":
 
-beta = 0.95  # 置信水平
-var_value = calculate_var(losses, beta)
-cvar_value = calculate_cvar(losses, beta)
+    # 示例：生成模拟损失数据并计算 VaR 与 CVaR
+    # 模拟 1000 个损失数据，假设损失服从均值为 5，标准差为 1 的正态分布
+    losses =  close.pct_change().dropna()
 
-var_value = calculate_var_(losses, confidence_level=0.95)
-cvar_value = calculate_cvar_(losses, confidence_level=0.95)
+    beta = 0.95  # 置信水平
+    var_value = calculate_var(losses, beta)
+    cvar_value = calculate_cvar(losses, beta)
 
-print(f"VaR (95%): {var_value:4f}")
-print(f"CVaR (95%): {cvar_value:4f}")
-print(f"VaR ({beta*100}%): {var_value:.4f}")
-print(f"CVaR ({beta*100}%): {cvar_value:.4f}")
-```
+    var_value = calculate_var_(losses, confidence_level=0.95)
+    cvar_value = calculate_cvar_(losses, confidence_level=0.95)
 
-```bash
-VaR (95%): -0.030465449561970382
-CVaR (95%): -0.04084220575298457
-VaR (95.0%): -0.0305
-CVaR (95.0%): -0.0408
-```
+    print(f"VaR (95%): {var_value:4f}")
+    print(f"CVaR (95%): {cvar_value:4f}")
+    print(f"VaR ({beta*100}%): {var_value:.4f}")
+    print(f"CVaR ({beta*100}%): {cvar_value:.4f}")
