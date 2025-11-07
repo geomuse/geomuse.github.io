@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head><title>登录</title></head>
+<body>
+    <h1>用户登录</h1>
+    
+    {% for message in get_flashed_messages() %}
+        <p style="color: green;">{{ message }}</p>
+    {% endfor %}
+    
+    <form method="POST">
+        {{ form.hidden_tag() }} <p>
+            {{ form.username.label }}<br>
+            {{ form.username() }}
+            {% for error in form.username.errors %}
+                <span style="color: red;">*{{ error }}</span>
+            {% endfor %}
+        </p>
+        
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password() }}
+            {% for error in form.password.errors %}
+                <span style="color: red;">*{{ error }}</span>
+            {% endfor %}
+        </p>
+        
+        <p>{{ form.submit() }}</p>
+    </form>
+    <p><a href="{{ url_for('register') }}">没有账号？去注册</a></p>
+</body>
+</html>
