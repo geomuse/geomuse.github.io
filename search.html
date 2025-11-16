@@ -1,0 +1,50 @@
+---
+layout: default
+title: search
+---
+<div class="search-container">
+    <h1>search</h1>
+    <input type="text" id="search-input" placeholder="..." />
+    <ul id="results-container"></ul>
+</div>
+
+<style>
+    .search-container {
+        text-align: center;
+        font-size: 16px;
+    }
+
+    ul{
+        list-style-type: none;
+        text-align: left;
+        font-size: 18px;
+    }
+
+    #search-input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+</style>
+
+<script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
+<script>
+ SimpleJekyllSearch({
+  searchInput: document.getElementById('search-input'),
+  resultsContainer: document.getElementById('results-container'),
+  json: '/search.json',
+  searchResultTemplate: '<li><a href="{url}">{title}</a></li>',
+  noResultsText: 'no results found',
+  limit: 20,
+  fuzzy: false,
+  fields: ['title', 'content'],
+  success: function () {
+    var results = document.getElementById('results').getElementsByTagName('li');
+    for (var i = 0; i < results.length; i++) {
+      results[i].innerHTML = highlightKeyword(results[i].innerHTML, document.getElementById('searchBox').value);
+    }
+  }
+});
+</script>
