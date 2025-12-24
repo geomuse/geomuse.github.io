@@ -1,8 +1,0 @@
-- time management
-- sexual relations
-- consultation
-- learn
-- sleep
-- novel
-- minimalist
-- financial

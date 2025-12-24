@@ -1,0 +1,204 @@
+```{r}
+# app.R
+# 功能：
+# 1) 自动抓取维基百科的 S&P 500 成分股与行业
+# 2) 选择股票或随机抽取 N 支，计算近 12 个月股利 / 最近收盘价 * 100
+# 3) 表格排序与下载、收益率条形图、价格走势图
+
+# --- 需要的套件 ---
+# install.packages(c("shiny", "dplyr", "purrr", "stringr", "rvest", "tidyr", "DT", "ggplot2", "lubridate", "tidyquant", "xts"))
+
+library(shiny)
+library(dplyr)
+library(purrr)
+library(stringr)
+library(rvest)
+library(tidyr)
+library(DT)
+library(ggplot2)
+library(lubridate)
+library(tidyquant)
+library(xts)
+
+# --- 工具函数：抓取 S&P 500 成分股 ---
+get_sp500 <- function() {
+  url <- "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+  pg <- read_html(url)
+  tb <- pg |> html_element("table.wikitable") |> html_table()
+
+  # 兼容不同列名
+  nm <- names(tb)
+  symbol_col <- nm[which(str_detect(nm, regex("symbol", ignore_case = TRUE)))[1]]
+  name_col   <- nm[which(str_detect(nm, regex("security|company|name", ignore_case = TRUE)))[1]]
+  sector_col <- nm[which(str_detect(nm, regex("gics.*sector|sector", ignore_case = TRUE)))[1]]
+
+  tb |> 
+    rename(Symbol = !!symbol_col, Name = !!name_col, Sector = !!sector_col) |> 
+    mutate(Symbol = str_replace(Symbol, "\u00A0", "")) |> 
+    distinct(Symbol, .keep_all = TRUE) |> 
+    arrange(Symbol)
+}
+
+# --- 计算股利收益率：近 365 天总股利 / 最近收盘 * 100 ---
+calc_yield <- function(symbols) {
+  if (length(symbols) == 0) return(tibble())
+
+  # 最近价格：尽量一次性抓，减少 API 请求
+  price_df <- tq_get(symbols, get = "stock.prices", from = Sys.Date() - 10, to = Sys.Date(), warnings = FALSE) |>
+    group_by(symbol) |>
+    filter(date == max(date)) |>
+    ungroup() |>
+    select(Symbol = symbol, Price = close)
+
+  # 近一年股利
+  div_list <- map(symbols, function(sym) {
+    div <- tryCatch(
+      tq_get(sym, get = "dividends", from = Sys.Date() - 365, to = Sys.Date(), warnings = FALSE),
+      error = function(e) tibble(date = as.Date(character()), dividends = numeric())
+    )
+    if (nrow(div) == 0) tibble(Symbol = sym, Dividend = 0) else
+      div |>
+        summarise(Symbol = sym, Dividend = sum(dividends, na.rm = TRUE))
+  })
+
+  div_df <- list_rbind(div_list)
+
+  out <- price_df |>
+    left_join(div_df, by = "Symbol") |>
+    mutate(Dividend = replace_na(Dividend, 0),
+           Yield = if_else(Price > 0, Dividend / Price * 100, NA_real_)) |>
+    arrange(desc(Yield))
+
+  out
+}
+
+# --- 拿价格序列画走势图 ---
+get_price_series <- function(symbols, from = Sys.Date() - 365) {
+  if (length(symbols) == 0) return(tibble())
+  tq_get(symbols, get = "stock.prices", from = from, to = Sys.Date(), warnings = FALSE) |>
+    select(date, symbol, close) |>
+    rename(Symbol = symbol, Date = date, Close = close)
+}
+
+# --- UI ---
+ui <- fluidPage(
+  titlePanel("S&P 500 股利收益率筛选与可视化"),
+  sidebarLayout(
+    sidebarPanel(
+      tags$p("数据来源：Wikipedia（成分股）、Yahoo Finance（价格/股利）"),
+      actionButton("refresh_list", "刷新 S&P 500 列表"),
+      br(), br(),
+      uiOutput("sector_ui"),
+      uiOutput("picker_ui"),
+      numericInput("n_random", "随机抽取数量", value = 5, min = 1, max = 50, step = 1),
+      actionButton("btn_random", "随机抽取"),
+      br(), br(),
+      dateRangeInput("range", "计算股利收益率的价格/股利区间（价格近 10 天，股利近 365 天固定）", 
+                     start = Sys.Date() - 365, end = Sys.Date()),
+      actionButton("btn_calc", "计算收益率"),
+      width = 3
+    ),
+    mainPanel(
+      tabsetPanel(
+        tabPanel("收益率表格", 
+                 DTOutput("yield_table"),
+                 br(),
+                 downloadButton("dl_csv", "下载 CSV")),
+        tabPanel("收益率条形图", plotOutput("yield_plot", height = 500)),
+        tabPanel("价格走势图", plotOutput("price_plot", height = 500))
+      ), width = 9
+    )
+  )
+)
+
+# --- Server ---
+server <- function(input, output, session) {
+  sp500 <- reactiveVal(NULL)
+
+  observeEvent(input$refresh_list, {
+    withProgress(message = "正在抓取 S&P 500 列表...", value = 0.3, {
+      sp500(get_sp500())
+      incProgress(0.7)
+    })
+  }, ignoreInit = TRUE)
+
+  # 初次载入
+  observe({
+    if (is.null(sp500())) sp500(get_sp500())
+  })
+
+  output$sector_ui <- renderUI({
+    req(sp500())
+    sectors <- sort(unique(sp500()$Sector))
+    selectInput("sector", "按行业过滤（可选）", choices = c("全部" = "ALL", sectors), selected = "ALL")
+  })
+
+  filtered_tickers <- reactive({
+    req(sp500())
+    df <- sp500()
+    if (!is.null(input$sector) && input$sector != "ALL") {
+      df <- df |> filter(Sector == input$sector)
+    }
+    df
+  })
+
+  output$picker_ui <- renderUI({
+    req(filtered_tickers())
+    selectizeInput("tickers", "选择股票（可多选）", 
+                   choices = setNames(filtered_tickers()$Symbol, paste0(filtered_tickers()$Symbol, " — ", filtered_tickers()$Name)),
+                   multiple = TRUE, options = list(placeholder = "选择若干股票，或点击‘随机抽取’"))
+  })
+
+  observeEvent(input$btn_random, {
+    req(filtered_tickers())
+    n <- min(input$n_random, nrow(filtered_tickers()))
+    updateSelectizeInput(session, "tickers", selected = sample(filtered_tickers()$Symbol, n))
+  })
+
+  # 计算收益率
+  yield_data <- eventReactive(input$btn_calc, {
+    req(input$tickers)
+    withProgress(message = "正在计算股利收益率...", value = 0.1, {
+      out <- calc_yield(input$tickers)
+      incProgress(0.9)
+      out |> left_join(sp500() |> select(Symbol, Name, Sector), by = "Symbol")
+    })
+  })
+
+  output$yield_table <- renderDT({
+    req(yield_data())
+    datatable(yield_data() |> mutate(across(c(Price, Dividend, Yield), ~ round(., 4))),
+              rownames = FALSE,
+              options = list(pageLength = 10, scrollX = TRUE),
+              filter = "top")
+  })
+
+  output$dl_csv <- downloadHandler(
+    filename = function() paste0("sp500_yield_", Sys.Date(), ".csv"),
+    content = function(file) {
+      req(yield_data())
+      write.csv(yield_data(), file, row.names = FALSE)
+    }
+  )
+
+  output$yield_plot <- renderPlot({
+    req(yield_data())
+    df <- yield_data() |> slice_max(order_by = Yield, n = 30) # 画前 30 名
+    ggplot(df, aes(x = reorder(Symbol, Yield), y = Yield)) +
+      geom_col() +
+      coord_flip() +
+      labs(x = NULL, y = "Dividend Yield (%)", title = "股利收益率（近 12 个月 / 最近收盘）")
+  })
+
+  # 价格走势图（选中的股票）
+  output$price_plot <- renderPlot({
+    req(input$tickers)
+    prices <- get_price_series(input$tickers, from = input$range[1])
+    ggplot(prices, aes(x = Date, y = Close, color = Symbol)) +
+      geom_line() +
+      labs(x = NULL, y = "Close", title = "价格走势图")
+  })
+}
+
+shinyApp(ui, server)
+```

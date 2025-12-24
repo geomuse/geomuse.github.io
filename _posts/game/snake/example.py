@@ -1,0 +1,70 @@
+import pygame
+import sys
+
+pygame.init()
+
+WIDTH, HEIGHT = 640, 480
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Day 4 - Sprites")
+
+clock = pygame.time.Clock()
+
+# 颜色
+BG_COLOR = (30, 30, 30)
+
+# 玩家 Sprite 类（这比 Day 3 的变量更专业）
+class Player(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+
+        # 载入图片
+        self.image = pygame.image.load("/home/geo/Downloads/geo/_posts/game/snake/assets/player.jpeg").convert_alpha()
+        self.rect = self.image.get_rect()
+
+        # 起始位置
+        self.rect.center = (x, y)
+
+        self.speed = 5
+
+    def update(self):
+        # 键盘输入
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
+            self.rect.x -= self.speed
+        if keys[pygame.K_RIGHT]:
+            self.rect.x += self.speed
+        if keys[pygame.K_UP]:
+            self.rect.y -= self.speed
+        if keys[pygame.K_DOWN]:
+            self.rect.y += self.speed
+
+        # 边界限制
+        self.rect.x = max(0, min(self.rect.x, WIDTH - self.rect.width))
+        self.rect.y = max(0, min(self.rect.y, HEIGHT - self.rect.height))
+
+
+# 建立玩家对象 + Sprite group
+player = Player(320, 240)
+all_sprites = pygame.sprite.Group()
+all_sprites.add(player)
+
+
+# 游戏主循环
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # 更新逻辑
+    all_sprites.update()
+
+    # 绘图
+    screen.fill(BG_COLOR)
+    all_sprites.draw(screen)
+
+    pygame.display.flip()
+    clock.tick(60)
+
+pygame.quit()
+sys.exit()

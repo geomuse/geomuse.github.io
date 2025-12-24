@@ -1,0 +1,111 @@
+---
+title: "r stduo 基础"
+author : geo
+output: html_document
+---
+
+```{r}
+knitr::knit("basic.rmd", output = "_post/2025-08-17-r.md")
+```
+
+### 简单计算
+
+```{r}
+x <- 1 
+x
+```
+
+### 下载套件
+
+```{r}
+# install.packages("rmarkdown")
+# install.packages('tidyverse')
+# install.packages('dplyr')
+# install.packages('tidyr')
+```
+
+```{r}
+library(tidyverse)
+```
+
+### head() 检查 `diamonds` 数据
+
+```{r}
+diamonds %>%
+    head
+```
+
+### filter() 筛选出 carat 大于 1 的钻石
+
+```{r}
+diamonds %>%
+  filter(carat > 1)
+```
+
+### 筛选出 carat > 1 且 cut 为 "Premium"
+
+```{r}
+diamonds %>%
+  filter(carat > 1, cut == "Premium",z>3)
+```
+
+### arrange() 按价格从高到低排序
+
+```{r}
+diamonds %>%
+  arrange(desc(price))
+```
+
+由低到高排序则是 arrange(price)
+
+### mutate() 新增字段或修改字段
+
+```{r}
+diamonds %>%
+  filter(carat > 1) %>%
+  mutate(price_per_carat = price / carat) %>%
+  arrange(desc(price_per_carat))
+```
+
+### group_by()
+
+```{r}
+diamonds %>%
+  filter(carat > 1) %>%
+  mutate(price_per_carat = price / carat) %>%
+  group_by(cut) %>% 
+  summarise(avg_price_per_carat = mean(price_per_carat))
+```
+
+每个 cut 对应的平均每克拉价格
+
+### ggplot
+
+```{r}
+diamonds %>%
+  filter(carat > 1) %>%
+  mutate(price_per_carat = price / carat) %>%
+  group_by(cut) %>% 
+  summarise(avg_price_per_carat = mean(price_per_carat)) %>%
+  ggplot(aes(x = cut, y = avg_price_per_carat)) +
+  geom_bar(stat = "identity",fill = "steelblue")
+```
+
+```{r}
+diamonds %>%
+  filter(carat > 1) %>%
+  mutate(price_per_carat = price / carat) %>%
+  group_by(cut) %>%
+  summarise(avg_price_per_carat = mean(price_per_carat)) %>%
+  ggplot(aes(x = cut, y = avg_price_per_carat, group = 1)) +
+  geom_line(color='blue') +
+  geom_point()
+```
+
+```{r}
+diamonds %>%
+  filter(carat > 1) %>%
+  mutate(price_per_carat = price / carat) %>%
+  ggplot(aes(x = cut, y = price_per_carat)) +
+  geom_boxplot()
+```

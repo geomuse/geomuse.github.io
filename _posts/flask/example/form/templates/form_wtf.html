@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+    <title>Flask-WTF 表单</title>
+</head>
+<body>
+    <h1>注册</h1>
+    <form method="POST" action=""> 
+        {{ form.hidden_tag() }} 
+
+        {{ form.username.label }}
+        {{ form.username() }}
+        
+        {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        
+        <br><br>
+        
+        {{ form.submit() }}
+    </form>
+</body>
+</html>

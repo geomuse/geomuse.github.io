@@ -1,0 +1,521 @@
+```{r}
+# S&P 500 股利收益率分析 Shiny 应用
+# 需要安装的包：
+# install.packages(c("shiny", "shinydashboard", "DT", "plotly", "tidyquant", 
+#                    "dplyr", "rvest", "stringr", "purrr", "tidyr", "ggplot2"))
+
+library(shiny)
+library(shinydashboard)
+library(DT)
+library(plotly)
+library(tidyquant)
+library(dplyr)
+library(rvest)
+library(stringr)
+library(purrr)
+library(tidyr)
+library(ggplot2)
+
+# === 后端数据处理函数 ===
+
+# 获取S&P 500成分股
+get_sp500 <- function() {
+  tryCatch({
+    url <- "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+    pg <- read_html(url)
+    tb <- pg |> 
+      html_element("table.wikitable") |> 
+      html_table()
+    
+    tb |>
+      rename(Symbol = `Symbol`) |>
+      distinct(Symbol, .keep_all = TRUE) |>
+      filter(!is.na(Symbol), Symbol != "") |>
+      mutate(Symbol = str_trim(Symbol)) |>
+      select(Symbol, Security, `GICS Sector`)
+  }, error = function(e) {
+    tibble(Symbol = character(), Security = character(), `GICS Sector` = character())
+  })
+}
+
+# 计算股利收益率
+calc_dividend_yield <- function(symbols, progress = NULL) {
+  if (!is.null(progress)) {
+    progress$set(message = "正在获取股价数据...", value = 0.1)
+  }
+  
+  # 获取股价数据
+  price_df <- tryCatch({
+    tq_get(symbols, 
+           get = "stock.prices", 
+           from = Sys.Date() - 30, 
+           to = Sys.Date()) |>
+      group_by(symbol) |>
+      filter(date == max(date)) |>
+      ungroup() |>
+      select(Symbol = symbol, Price = close, Date = date)
+  }, error = function(e) {
+    tibble(Symbol = character(), Price = numeric(), Date = as.Date(character()))
+  })
+  
+  if (nrow(price_df) == 0) return(tibble())
+  
+  if (!is.null(progress)) {
+    progress$set(message = "正在获取股利数据...", value = 0.3)
+  }
+  
+  # 获取股利数据
+  total_symbols <- length(symbols)
+  div_list <- map(seq_along(symbols), function(i) {
+    sym <- symbols[i]
+    
+    if (!is.null(progress)) {
+      progress$set(
+        message = paste("正在处理", sym, paste0("(", i, "/", total_symbols, ")")),
+        value = 0.3 + (i / total_symbols) * 0.6
+      )
+    }
+    
+    div <- tryCatch({
+      tq_get(sym, get = "dividends", from = Sys.Date() - 365, to = Sys.Date())
+    }, error = function(e) {
+      tibble(date = as.Date(character()), dividends = numeric())
+    })
+    
+    if (nrow(div) == 0 || all(is.na(div$dividends))) {
+      tibble(Symbol = sym, Annual_Dividend = 0, Div_Count = 0)
+    } else {
+      div |> 
+        summarise(
+          Symbol = sym, 
+          Annual_Dividend = sum(dividends, na.rm = TRUE),
+          Div_Count = n(),
+          .groups = "drop"
+        )
+    }
+  })
+  
+  div_df <- list_rbind(div_list)
+  
+  if (!is.null(progress)) {
+    progress$set(message = "正在计算收益率...", value = 0.95)
+  }
+  
+  # 合并数据并计算收益率
+  result <- price_df |>
+    left_join(div_df, by = "Symbol") |>
+    mutate(
+      Annual_Dividend = replace_na(Annual_Dividend, 0),
+      Div_Count = replace_na(Div_Count, 0),
+      Dividend_Yield = if_else(Price > 0, Annual_Dividend / Price * 100, 0),
+      Yield_Category = case_when(
+        Dividend_Yield >= 4 ~ "高收益 (4%+)",
+        Dividend_Yield >= 2 ~ "中等收益 (2-4%)",
+        Dividend_Yield > 0 ~ "低收益 (0-2%)",
+        TRUE ~ "无股利"
+      )
+    ) |>
+    arrange(desc(Dividend_Yield)) |>
+    select(Symbol, Price, Annual_Dividend, Dividend_Yield, Yield_Category, Div_Count, Date)
+  
+  if (!is.null(progress)) {
+    progress$set(message = "完成!", value = 1)
+  }
+  
+  return(result)
+}
+
+# === UI界面 ===
+ui <- dashboardPage(
+  # 页面头部
+  dashboardHeader(title = "S&P 500 股利收益率分析"),
+  
+  # 侧边栏
+  dashboardSidebar(
+    sidebarMenu(
+      menuItem("数据分析", tabName = "analysis", icon = icon("chart-line")),
+      menuItem("关于", tabName = "about", icon = icon("info-circle"))
+    ),
+    
+    hr(),
+    
+    # 控制面板
+    h4("分析设置", style = "margin-left: 15px; color: white;"),
+    
+    numericInput("num_stocks", 
+                 "选择分析股票数量:", 
+                 value = 30, 
+                 min = 10, 
+                 max = 100, 
+                 step = 10),
+    
+    actionButton("run_analysis", 
+                 "开始分析", 
+                 class = "btn-primary",
+                 style = "margin: 10px 15px;"),
+    
+    hr(),
+    
+    # 统计信息显示
+    conditionalPanel(
+      condition = "output.has_data == true",
+      h4("分析结果", style = "margin-left: 15px; color: white;"),
+      verbatimTextOutput("summary_stats", placeholder = TRUE)
+    )
+  ),
+  
+  # 主体内容
+  dashboardBody(
+    tags$head(
+      tags$style(HTML("
+        .content-wrapper, .right-side {
+          background-color: #f4f4f4;
+        }
+        .box {
+          border-radius: 5px;
+        }
+        .small-box {
+          border-radius: 5px;
+        }
+      "))
+    ),
+    
+    tabItems(
+      # 数据分析标签页
+      tabItem(tabName = "analysis",
+        fluidRow(
+          # 关键指标卡片
+          valueBoxOutput("total_stocks"),
+          valueBoxOutput("avg_yield"),
+          valueBoxOutput("max_yield")
+        ),
+        
+        fluidRow(
+          # 数据表格
+          box(
+            title = "股利收益率排名", 
+            status = "primary", 
+            solidHeader = TRUE,
+            collapsible = TRUE,
+            width = 12,
+            height = 500,
+            DT::dataTableOutput("yield_table")
+          )
+        ),
+        
+        fluidRow(
+          # 收益率分布图
+          box(
+            title = "收益率分布", 
+            status = "info", 
+            solidHeader = TRUE,
+            collapsible = TRUE,
+            width = 6,
+            plotlyOutput("yield_histogram")
+          ),
+          
+          # 收益率分类饼图
+          box(
+            title = "收益率分类", 
+            status = "success", 
+            solidHeader = TRUE,
+            collapsible = TRUE,
+            width = 6,
+            plotlyOutput("yield_pie_chart")
+          )
+        ),
+        
+        fluidRow(
+          # 散点图：股价 vs 收益率
+          box(
+            title = "股价与收益率关系", 
+            status = "warning", 
+            solidHeader = TRUE,
+            collapsible = TRUE,
+            width = 12,
+            plotlyOutput("price_yield_scatter")
+          )
+        )
+      ),
+      
+      # 关于页面
+      tabItem(tabName = "about",
+        fluidRow(
+          box(
+            title = "关于这个应用", 
+            status = "primary", 
+            solidHeader = TRUE,
+            width = 12,
+            h3("S&P 500 股利收益率分析工具"),
+            p("这个Shiny应用帮助投资者分析S&P 500成分股的股利收益率。"),
+            
+            h4("功能特点:"),
+            tags$ul(
+              tags$li("实时获取S&P 500成分股数据"),
+              tags$li("计算年化股利收益率 (股利/股价 × 100%)"),
+              tags$li("交互式数据表格和图表"),
+              tags$li("多种可视化分析角度")
+            ),
+            
+            h4("使用说明:"),
+            tags$ol(
+              tags$li("在左侧选择要分析的股票数量"),
+              tags$li("点击"开始分析"按钮"),
+              tags$li("等待数据加载完成"),
+              tags$li("查看表格和图表结果")
+            ),
+            
+            h4("数据来源:"),
+            p("• S&P 500成分股列表：Wikipedia"),
+            p("• 股价和股利数据：Yahoo Finance (通过tidyquant包)"),
+            
+            h4("注意事项:"),
+            tags$ul(
+              tags$li("数据获取可能需要几分钟时间"),
+              tags$li("建议从较少股票数量开始测试"),
+              tags$li("股利数据基于过去12个月")
+            ),
+            
+            br(),
+            p(strong("开发：R Shiny"), style = "text-align: center;")
+          )
+        )
+      )
+    )
+  )
+)
+
+# === 服务器逻辑 ===
+server <- function(input, output, session) {
+  # 响应式数据
+  dividend_data <- reactiveVal(tibble())
+  sp500_data <- reactiveVal(tibble())
+  
+  # 获取S&P 500数据（应用启动时）
+  observe({
+    showNotification("正在加载S&P 500成分股列表...", type = "message")
+    sp500 <- get_sp500()
+    sp500_data(sp500)
+    
+    if (nrow(sp500) > 0) {
+      showNotification(
+        paste("成功加载", nrow(sp500), "只S&P 500股票"),
+        type = "success"
+      )
+    } else {
+      showNotification("无法获取S&P 500数据，请检查网络连接", type = "error")
+    }
+  })
+  
+  # 分析按钮点击事件
+  observeEvent(input$run_analysis, {
+    sp500 <- sp500_data()
+    
+    if (nrow(sp500) == 0) {
+      showNotification("请先等待S&P 500数据加载完成", type = "warning")
+      return()
+    }
+    
+    symbols <- sp500$Symbol[1:min(input$num_stocks, nrow(sp500))]
+    
+    # 显示进度条
+    progress <- shiny::Progress$new()
+    progress$set(message = "正在分析股利数据", value = 0)
+    on.exit(progress$close())
+    
+    # 计算股利收益率
+    result <- calc_dividend_yield(symbols, progress)
+    
+    if (nrow(result) > 0) {
+      # 添加公司名称
+      if (nrow(sp500_data()) > 0) {
+        result <- result |>
+          left_join(
+            sp500_data() |> select(Symbol, Security), 
+            by = "Symbol"
+          ) |>
+          select(Symbol, Security, everything())
+      }
+      
+      dividend_data(result)
+      showNotification(
+        paste("分析完成！共处理", nrow(result), "只股票"),
+        type = "success"
+      )
+    } else {
+      showNotification("未能获取股利数据，请稍后重试", type = "error")
+    }
+  })
+  
+  # 检查是否有数据
+  output$has_data <- reactive({
+    nrow(dividend_data()) > 0
+  })
+  outputOptions(output, "has_data", suspendWhenHidden = FALSE)
+  
+  # 关键指标卡片
+  output$total_stocks <- renderValueBox({
+    data <- dividend_data()
+    valueBox(
+      value = nrow(data),
+      subtitle = "分析股票数量",
+      icon = icon("building"),
+      color = "blue"
+    )
+  })
+  
+  output$avg_yield <- renderValueBox({
+    data <- dividend_data()
+    avg_yield <- if (nrow(data) > 0) {
+      paste0(round(mean(data$Dividend_Yield, na.rm = TRUE), 2), "%")
+    } else "0%"
+    
+    valueBox(
+      value = avg_yield,
+      subtitle = "平均收益率",
+      icon = icon("percent"),
+      color = "green"
+    )
+  })
+  
+  output$max_yield <- renderValueBox({
+    data <- dividend_data()
+    max_yield <- if (nrow(data) > 0) {
+      paste0(round(max(data$Dividend_Yield, na.rm = TRUE), 2), "%")
+    } else "0%"
+    
+    valueBox(
+      value = max_yield,
+      subtitle = "最高收益率",
+      icon = icon("arrow-up"),
+      color = "yellow"
+    )
+  })
+  
+  # 统计摘要
+  output$summary_stats <- renderText({
+    data <- dividend_data()
+    if (nrow(data) == 0) return("暂无数据")
+    
+    dividend_stocks <- sum(data$Dividend_Yield > 0)
+    high_yield <- sum(data$Dividend_Yield >= 4)
+    
+    paste(
+      paste("总股票数:", nrow(data)),
+      paste("有股利股票:", dividend_stocks),
+      paste("高收益股票:", high_yield),
+      paste("平均收益率:", paste0(round(mean(data$Dividend_Yield), 2), "%")),
+      sep = "\n"
+    )
+  })
+  
+  # 数据表格
+  output$yield_table <- DT::renderDataTable({
+    data <- dividend_data()
+    if (nrow(data) == 0) return(datatable(data.frame(提示 = "请点击'开始分析'按钮")))
+    
+    display_data <- data |>
+      mutate(
+        股价 = round(Price, 2),
+        年股利 = round(Annual_Dividend, 3),
+        收益率 = paste0(round(Dividend_Yield, 2), "%"),
+        股利次数 = Div_Count
+      ) |>
+      select(
+        代码 = Symbol,
+        公司名称 = Security,
+        股价,
+        年股利,
+        收益率,
+        分类 = Yield_Category,
+        股利次数
+      )
+    
+    datatable(
+      display_data,
+      options = list(
+        pageLength = 15,
+        scrollX = TRUE,
+        language = list(
+          search = "搜索:",
+          lengthMenu = "显示 _MENU_ 条记录",
+          info = "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+          paginate = list(previous = "上页", `next` = "下页")
+        )
+      ),
+      rownames = FALSE
+    ) |>
+      formatStyle("收益率", 
+                  backgroundColor = styleInterval(
+                    c(2, 4), 
+                    c("white", "#d4edda", "#c3e6cb")
+                  ))
+  })
+  
+  # 收益率分布直方图
+  output$yield_histogram <- renderPlotly({
+    data <- dividend_data()
+    if (nrow(data) == 0) return(plotly_empty())
+    
+    p <- data |>
+      filter(Dividend_Yield > 0) |>
+      ggplot(aes(x = Dividend_Yield)) +
+      geom_histogram(bins = 20, fill = "steelblue", alpha = 0.7, color = "white") +
+      labs(
+        title = "股利收益率分布",
+        x = "收益率 (%)",
+        y = "股票数量"
+      ) +
+      theme_minimal()
+    
+    ggplotly(p)
+  })
+  
+  # 收益率分类饼图
+  output$yield_pie_chart <- renderPlotly({
+    data <- dividend_data()
+    if (nrow(data) == 0) return(plotly_empty())
+    
+    pie_data <- data |>
+      count(Yield_Category) |>
+      mutate(percentage = n / sum(n) * 100)
+    
+    plot_ly(
+      pie_data,
+      labels = ~Yield_Category,
+      values = ~n,
+      type = 'pie',
+      textinfo = 'label+percent',
+      textposition = 'inside',
+      hovertemplate = '%{label}<br>数量: %{value}<br>占比: %{percent}<extra></extra>'
+    ) |>
+      layout(title = "收益率分类分布")
+  })
+  
+  # 股价与收益率散点图
+  output$price_yield_scatter <- renderPlotly({
+    data <- dividend_data()
+    if (nrow(data) == 0) return(plotly_empty())
+    
+    p <- data |>
+      filter(Dividend_Yield > 0) |>
+      ggplot(aes(x = Price, y = Dividend_Yield, text = Symbol)) +
+      geom_point(aes(color = Yield_Category), alpha = 0.7, size = 2) +
+      scale_color_manual(values = c("高收益 (4%+)" = "red", 
+                                   "中等收益 (2-4%)" = "orange", 
+                                   "低收益 (0-2%)" = "blue")) +
+      labs(
+        title = "股价与股利收益率关系",
+        x = "股价 ($)",
+        y = "收益率 (%)",
+        color = "收益率分类"
+      ) +
+      theme_minimal()
+    
+    ggplotly(p, tooltip = c("x", "y", "text"))
+  })
+}
+
+# === 运行应用 ===
+shinyApp(ui = ui, server = server)
+```

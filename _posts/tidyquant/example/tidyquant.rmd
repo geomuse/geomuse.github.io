@@ -1,0 +1,430 @@
+---
+title: "r stduo tidyquant"
+author : geo
+output: html_document
+---
+
+tidyquant
+```{r}
+install.packages('tidyquant')
+```
+
+```{r}
+library(tidyquant)
+library(dplyr)
+# 下载多支股票
+stocks <- tq_get(c("AAPL", "MSFT", "GOOG"),
+                 from = "2020-01-01",
+                 to   = "2024-12-31")
+
+head(stocks)
+```
+
+```{r}
+aapl <- tq_get("AAPL",
+                 from = "2020-01-01",
+                 to   = "2024-12-31")
+
+head(aapl)
+```
+
+```{r}
+returns <- aapl %>%
+  tq_transmute(select     = adjusted,     # 选择调整收盘价
+               mutate_fun = periodReturn, # 计算收益率
+               period     = "daily",      # 日收益率
+               type       = "log")        # 对数收益率
+
+head(returns)
+```
+
+```{r}
+multi_returns <- stocks %>%
+  group_by(symbol) %>%
+  tq_transmute(select     = adjusted,
+               mutate_fun = periodReturn,
+               period     = "monthly",
+               type       = "log")
+
+head(multi_returns)
+```
+
+```{r}
+library(ggplot2)
+
+multi_returns %>%
+  ggplot(aes(x = date, y = monthly.returns, color = symbol)) +
+  geom_line() +
+  labs(title = "Monthly Returns",
+       y = "Log Returns")
+```
+
+```{r}
+aapl_fin <- tq_get("AAPL", get = "financials")
+aapl_fin
+```
+
+```{r}
+# 安装必要套件
+if(!require(tidyquant)) install.packages("tidyquant")
+if(!require(dplyr)) install.packages("dplyr")
+if(!require(ggplot2)) install.packages("ggplot2")
+
+library(tidyquant)
+library(dplyr)
+library(ggplot2)
+
+# Step 1: 定义股票池
+stock_pool <- c("AAPL", "MSFT", "GOOG", "AMZN", "TSLA",
+                "META", "NFLX", "NVDA", "ORCL", "INTC")
+
+# Step 2: 下载过去 2 年的股价
+stocks <- tq_get(stock_pool,
+                 from = "2023-01-01",
+                 to   = Sys.Date())
+
+# Step 3: 计算每月收益率
+monthly_returns <- stocks %>%
+  group_by(symbol) %>%
+  tq_transmute(select     = adjusted,
+               mutate_fun = periodReturn,
+               period     = "monthly",
+               type       = "log")
+
+# Step 4: 计算每支股票的累计收益率
+cumulative_returns <- monthly_returns %>%
+  group_by(symbol) %>%
+  summarise(total_return = sum(monthly.returns, na.rm = TRUE)) %>%
+  arrange(desc(total_return))
+
+# 取前 5 名股票
+top5 <- head(cumulative_returns, 5)
+print(top5)
+
+# Step 5: 绘制前 5 名股票的收益走势
+monthly_returns %>%
+  filter(symbol %in% top5$symbol) %>%
+  ggplot(aes(x = date, y = monthly.returns, color = symbol)) +
+  geom_line(size = 1) +
+  labs(title = "前5名高收益股票月度收益走势",
+       x = "日期",
+       y = "月度对数收益率") +
+  theme_minimal()
+
+```
+
+```{r}
+library(quantmod)
+
+# 抓股价
+getSymbols("AAPL", from = "2020-01-01")
+
+# 财务数据 (EPS, PE 等)
+aapl_pe <- getQuote("AAPL", what = yahooQF("P/E Ratio"))
+print(aapl_pe)
+
+library(tidyquant)
+# 抓取 AAPL 的财务报表
+aapl_fin <- tq_get("AAPL", get = "financials")
+
+head(aapl_fin)
+```
+
+```{r}
+library(quantmod)
+
+# 定义要抓的基本面因子
+fundamentals <- yahooQF(c(
+  "P/E Ratio",
+  "Price/Book",
+  "Price/Sales",
+  "PEG Ratio",
+  "Earnings/Share",
+  "Dividend Yield",
+  "Return on Equity",
+  "Return on Assets",
+  "Beta",
+  "Total Debt/Equity",
+  "Profit Margin",
+  "Operating Margin"
+))
+
+# 抓取 AAPL 的数据
+aapl_factors <- getQuote("AAPL", what = fundamentals)
+print(aapl_factors)
+
+```
+
+```{r}
+library(quantmod)
+library(dplyr)
+
+# 1. 定义常见基本面因子
+fundamentals <- yahooQF(c(
+  "P/E Ratio",
+  "Price/Book",
+  "Price/Sales",
+  "PEG Ratio",
+  "Earnings/Share",
+  "Dividend Yield",
+  "Return on Equity",
+  "Return on Assets",
+  "Beta",
+  "Total Debt/Equity",
+  "Profit Margin",
+  "Operating Margin"
+))
+
+# 2. 定义函数：输入股票代码向量，返回基本面因子表格
+get_factors <- function(stocks) {
+  results <- lapply(stocks, function(sym) {
+    tryCatch({
+      df <- getQuote(sym, what = fundamentals)
+      df$Symbol <- sym
+      return(df)
+    }, error = function(e) {
+      message(paste("Error fetching:", sym))
+      return(NULL)
+    })
+  })
+  
+  # 合并结果
+  result_df <- do.call(rbind, results)
+  
+  # 整理列顺序
+  result_df <- result_df %>%
+    relocate(Symbol, .before = 1)
+  
+  return(result_df)
+}
+
+# 3. 测试：一次抓取多个股票
+stocks <- c("AAPL", "MSFT", "AMZN", "GOOG")
+factor_table <- get_factors(stocks)
+
+print(factor_table)
+
+```
+
+```{r}
+# 安装并载入套件
+install.packages("quantmod")
+install.packages("dplyr")
+
+library(quantmod)
+library(dplyr)
+
+# 1. 设定股票池
+stocks <- c("AAPL", "MSFT", "AMZN", "GOOG")
+
+# 2. 定义要抓的基本面指标
+fundamentals <- yahooQF(c(
+  "Price/Sales", 
+  "P/E Ratio", 
+  "Price/Book", 
+  "Return on Equity"
+))
+
+# 3. 批量抓取数据
+data_list <- lapply(stocks, function(sym) {
+  tryCatch({
+    quote <- getQuote(sym, what = fundamentals)
+    df <- data.frame(
+      stock = sym,
+      PriceToSales = as.numeric(quote[,"Price.Sales"]),
+      PE = as.numeric(quote[,"P.E.Ratio"]),
+      PB = as.numeric(quote[,"Price.Book"]),
+      ROE = as.numeric(quote[,"Return.on.Equity"])
+    )
+    return(df)
+  }, error = function(e) NULL)
+})
+
+# 4. 合并结果
+df <- do.call(rbind, data_list)
+
+# 5. 构建一个简单因子 (ROE / PB) 并排名
+df <- df %>%
+  mutate(ValueFactor = ROE / PB) %>%
+  arrange(desc(ValueFactor))
+
+print(df)
+```
+
+```{r}
+# 安装套件
+install.packages(c("quantmod", "rvest", "dplyr", "stringr"))
+library(quantmod)
+library(rvest)
+library(dplyr)
+library(stringr)
+
+# 股票池
+stocks <- c("AAPL", "MSFT", "AMZN", "GOOG")
+
+# 定义爬虫函数 (Yahoo Finance 财务数据)
+get_fundamentals <- function(symbol) {
+  url <- paste0("https://finance.yahoo.com/quote/", symbol, "/balance-sheet?p=", symbol)
+  
+  # 读取网页
+  page <- read_html(url)
+  
+  # 爬取 balance sheet 表格
+  tbl <- page %>%
+    html_nodes("div table") %>%
+    .[[1]] %>%
+    html_table(fill = TRUE)
+  
+  # 整理成 key-value 形式
+  tbl <- tbl %>%
+    setNames(c("Item", "Value")) %>%
+    mutate(Value = str_replace_all(Value, ",", "")) %>%
+    mutate(Value = as.numeric(Value))
+  
+  # 抓股东权益 (Total Stockholder Equity)
+  equity <- tbl %>% filter(Item == "Total Stockholder Equity") %>% pull(Value)
+  
+  # 再爬 Income Statement 抓 Net Income
+  url2 <- paste0("https://finance.yahoo.com/quote/", symbol, "/financials?p=", symbol)
+  page2 <- read_html(url2)
+  tbl2 <- page2 %>%
+    html_nodes("div table") %>%
+    .[[1]] %>%
+    html_table(fill = TRUE)
+  
+  tbl2 <- tbl2 %>%
+    setNames(c("Item", "Value")) %>%
+    mutate(Value = str_replace_all(Value, ",", "")) %>%
+    mutate(Value = as.numeric(Value))
+  
+  net_income <- tbl2 %>% filter(Item == "Net Income") %>% pull(Value)
+  
+  # 用 quantmod 抓当前股价
+  price <- as.numeric(getQuote(symbol)$Last)
+  
+  # 计算因子
+  roe <- net_income / equity
+  pe <- as.numeric(getQuote(symbol, what = yahooQF("P/E Ratio"))$"P.E.Ratio")
+  pb <- as.numeric(getQuote(symbol, what = yahooQF("Price/Book"))$"Price.Book")
+  
+  return(data.frame(
+    stock = symbol,
+    Price = price,
+    NetIncome = net_income,
+    Equity = equity,
+    ROE = roe,
+    PE = pe,
+    PB = pb,
+    ValueFactor = roe / pb
+  ))
+}
+
+# 批量执行
+results <- lapply(stocks, get_fundamentals)
+df <- do.call(rbind, results)
+
+# 按因子排序
+df_ranked <- df %>% arrange(desc(ValueFactor))
+
+print(df)
+print(df_ranked)
+```
+
+```{r}
+# 安装套件
+if(!require(shiny)) install.packages("shiny")
+if(!require(tidyquant)) install.packages("tidyquant")
+if(!require(dplyr)) install.packages("dplyr")
+if(!require(ggplot2)) install.packages("ggplot2")
+if(!require(DT)) install.packages("DT")
+
+library(shiny)
+library(tidyquant)
+library(dplyr)
+library(ggplot2)
+library(DT)
+
+# ---------------------
+# UI
+# ---------------------
+ui <- fluidPage(
+  titlePanel("📈 选股机器人 (Shiny + tidyquant)"),
+  
+  sidebarLayout(
+    sidebarPanel(
+      textInput("symbols", "输入股票池 (用逗号分隔):",
+                value = "AAPL,MSFT,GOOG,AMZN,TSLA,META,NFLX,NVDA,ORCL,INTC"),
+      
+      dateRangeInput("daterange", "选择日期范围:",
+                     start = "2023-01-01", end = Sys.Date()),
+      
+      actionButton("run", "开始选股", class = "btn-primary")
+    ),
+    
+    mainPanel(
+      h4("前 5 名高收益股票"),
+      DTOutput("table"),
+      h4("收益走势图"),
+      plotOutput("plot", height = "500px")
+    )
+  )
+)
+
+# ---------------------
+# Server
+# ---------------------
+server <- function(input, output) {
+  
+  observeEvent(input$run, { # nolint
+    req(input$symbols) # nolint
+    
+    # Step 1: 处理股票池输入
+    stock_list <- strsplit(input$symbols, ",")[[1]] %>% trimws()
+    
+    # Step 2: 下载股价数据
+    stocks <- tq_get(stock_list,
+                     from = input$daterange[1],
+                     to   = input$daterange[2])
+    
+    # Step 3: 计算月收益率
+    monthly_returns <- stocks %>%
+      group_by(symbol) %>%
+      tq_transmute(select     = adjusted,
+                   mutate_fun = periodReturn,
+                   period     = "monthly",
+                   type       = "log")
+    
+    # Step 4: 计算累计收益
+    cumulative_returns <- monthly_returns %>%
+      group_by(symbol) %>%
+      summarise(total_return = sum(monthly.returns, na.rm = TRUE)) %>%
+      arrange(desc(total_return))
+    
+    # Step 5: 取前 5 名
+    top5 <- head(cumulative_returns, 5)
+    
+    # 输出表格
+    output$table <- renderDT({
+      datatable(top5, options = list(pageLength = 5))
+    })
+    
+    # 输出图表
+    output$plot <- renderPlot({
+      monthly_returns %>%
+        filter(symbol %in% top5$symbol) %>%
+        ggplot(aes(x = date, y = monthly.returns, color = symbol)) +
+        geom_line(size = 1) +
+        labs(title = "前 5 名高收益股票月度收益走势",
+             x = "日期", y = "月度对数收益率") +
+        theme_minimal()
+    })
+    
+  })
+}
+
+# ---------------------
+# Run App
+# ---------------------
+shinyApp(ui = ui, server = server)
+
+```
