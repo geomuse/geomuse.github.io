@@ -77,9 +77,21 @@ risen | 增长
 preference | 偏好
 advantages | 优势
 
+2025-12-25
+---
 
+english | chinse
+-- | --
+depression | 沮丧
+on average | 结果显示
+workshop | 车间 ， 工作室
+indigenous | 原住民
 
+2025-12-29
+---
 
-
-
-
+english | chinse
+-- | --
+leftover | 剩菜
+bacteria | 细菌
+spoil | 变质
