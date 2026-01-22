@@ -4,3 +4,9 @@ _site
 *.DS_Store
 Gemfile.lock
 *.pkl
+_posts/fin/agent/config.py
+_posts/fin/agent/__pycache__/analyzer.cpython-313.pyc
+_posts/fin/agent/__pycache__/config.cpython-313.pyc
+_posts/fin/agent/__pycache__/content_agent.cpython-313.pyc
+_posts/fin/agent/__pycache__/data_provider.cpython-313.pyc
+_posts/fin/agent/__pycache__/telegram_sender.cpython-313.pyc
