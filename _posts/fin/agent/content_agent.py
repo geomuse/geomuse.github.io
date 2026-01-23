@@ -9,7 +9,7 @@ def generate_report(analysis, risk_event):
     prompt = f"""
 你是一位专业外汇分析师。
 请根据以下结构化分析，撰写一份适合 Telegram 频道发布的中文外汇市场简报。
-要求：专业、简洁、不夸张、不构成投资建议。
+要求：专业、简洁、不夸张、不构成投资建议。html格式的内容
 
 分析数据：
 {analysis}
@@ -29,7 +29,7 @@ def generate_report(analysis, risk_event):
                 thinking_config=types.ThinkingConfig(thinking_level="low")
             ),
         )
-        content = f"response.text"
+        content = f"{response.text}"
     # 直接在 create 调用中传入 api_key
 
     except Exception as e:
