@@ -12,7 +12,7 @@ image: 01.webp
 所以需要进修读研究所。
 
 #### 南开大学 金融学(金融科技方向)
-<small>2026 - 2028</small>
+<small>2027 - 2029</small>
 
 期待能在中国拿下一个硕士学位，全中国金融前1%
 
@@ -27,6 +27,18 @@ image: 01.webp
 <small>2020 - 2024</small>
 
 大学毕业的第一份工作兼顾着研究所的学业，虽然薪水不错，但是没有能力享受这段旅程
+
+在业界完成的专案 :
+
+| 项目内容 | 项目介绍 |
+| :--:| :-- |
+| FRTB 标准法计算 | 根据 Basel Commitee On Banking Supervision 的 Standardised Approach 计算资本计提 | 
+| 估计隐含波动率 | 利用 Cublic Spline , Linear Interpolation等插值方法和隐含波动率的模型 Sabr Model 和 Heston Model 估计隐含波动率 |
+| Exotic Option 定价 | Barrier Option 的定价 |
+| 投资组合计算 | 依据资产的历史收益率和投资的权重计算其标准差和收益率是否落在效率前缘线上且考虑资产配置线 | 
+| Kmv模型的建立 | 以莫顿的模型修正后估算资产价值再以此计算上市公司的违约间距 |
+| 核心存款的估值 | 使用hodrick–prescott filter 等模型估計核心存款 | 
+| 利率曲线的编制 | 利用Nelson-Siegel-Svensson Model等模型预测其曲线的趋势 , 再依据殖利率或者par swap rate和相关文件的方法估计利率曲线
 
 #### 静宜大学 金融工程
 <small>2016 - 2020</small>
