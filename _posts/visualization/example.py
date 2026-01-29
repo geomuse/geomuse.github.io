@@ -1,0 +1,25 @@
+import seaborn as sns
+import matplotlib.pyplot as pt
+import pandas as pd
+# pt.style.use('ggplot')
+
+df = sns.load_dataset("tips")
+print(df.head())
+
+# sns.lineplot(data=df, x="total_bill", y="tip")
+# sns.barplot(data=df, x="day", y="total_bill")
+
+# sns.barplot(
+#     data=df,
+#     x="day",
+#     y="total_bill",
+#     hue="sex"
+# )
+# sns.set_theme(style="whitegrid")
+# sns.pointplot(data=df, x="day", y="tip")
+
+sns.countplot(data=df, x="day")
+
+pt.savefig('/home/geo/Downloads/geo/_posts/visualization/output.png')
+print("图片已生成在 Downloads 目录下，请双击查看！")
+pt.close()
