@@ -22,6 +22,8 @@ image: 01.webp
 
 期望学习区块链技术 , 机器学习对于金融的应用
 
+---
+
 #### WY MACHINERY SDN BHD 数据分析师
 <small>2026 - 2027</small>
 
