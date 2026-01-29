@@ -18,7 +18,20 @@ print(df.head())
 # sns.set_theme(style="whitegrid")
 # sns.pointplot(data=df, x="day", y="tip")
 
-sns.countplot(data=df, x="day")
+# sns.countplot(data=df, x="day")
+# sns.histplot(data=df, x="total_bill")
+# sns.histplot(data=df, x="total_bill", bins=20)
+# sns.kdeplot(data=df, x="total_bill")
+# sns.histplot(data=df, x="total_bill", kde=True)
+# sns.boxplot(data=df, x="day", y="total_bill")
+sns.violinplot(
+    data=df,
+    x="day",
+    y="total_bill",
+    hue="sex",
+    split=True
+)
+# sns.violinplot(data=df, x="day", y="total_bill")
 
 pt.savefig('/home/geo/Downloads/geo/_posts/visualization/output.png')
 print("图片已生成在 Downloads 目录下，请双击查看！")
