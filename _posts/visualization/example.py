@@ -1,6 +1,7 @@
 import seaborn as sns
 import matplotlib.pyplot as pt
 import pandas as pd
+import numpy as np
 # pt.style.use('ggplot')
 
 df = sns.load_dataset("tips")
@@ -24,13 +25,16 @@ print(df.head())
 # sns.kdeplot(data=df, x="total_bill")
 # sns.histplot(data=df, x="total_bill", kde=True)
 # sns.boxplot(data=df, x="day", y="total_bill")
-sns.violinplot(
-    data=df,
-    x="day",
-    y="total_bill",
-    hue="sex",
-    split=True
-)
+
+corr = df.corr(numeric_only=True)
+print(corr)
+mask = np.triu(corr)
+num_df = df.select_dtypes(include="number")
+
+df_male = df[df['sex'] == 'Male']
+sns.heatmap(df_male.corr(numeric_only=True))
+
+# sns.heatmap(num_df.corr(), annot=True, cmap="coolwarm")
 # sns.violinplot(data=df, x="day", y="total_bill")
 
 pt.savefig('/home/geo/Downloads/geo/_posts/visualization/output.png')
