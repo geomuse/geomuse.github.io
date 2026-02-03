@@ -1,4 +1,4 @@
 #!bin/bash
 
 bundle exec jekyll clean
-bundle exec jekyll server
+bundle exec jekyll server --port 4001

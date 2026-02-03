@@ -43,3 +43,13 @@ sns.heatmap(
 只看下三角
 
 商业报表常用
+
+# 关闭科学记数法
+
+```py
+pt.ticklabel_format(style='plain',axis='y')
+```
+
+绘图时,坐标轴经常会自动缩放,通过`ticklabel_format`强制它显示原始数字
+
+
