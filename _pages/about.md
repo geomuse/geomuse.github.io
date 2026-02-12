@@ -24,10 +24,11 @@ image: 01.webp
 
 ---
 
-#### WY MACHINERY SDN BHD 数据分析师
+#### WY MACHINERY SDN BHD 市场行销 (marketing)
 <small>2026 - 2027</small>
 
-从数据收集开始学习,希望有机会学习建模并且评估数据
+<!-- 从数据收集开始学习,希望有机会学习建模并且评估数据 -->
+数据分析 , 市场行销走`tiktok`, `ig`, `facebook` ,`email` 等广告投入并且优化seo
 
 ---
 
