@@ -1,0 +1,207 @@
+2026-02-17 12:26:15,623 [INFO] ============================================================
+2026-02-17 12:26:15,623 [INFO] 启动EMA实盘交易系统
+2026-02-17 12:26:15,624 [INFO] ============================================================
+2026-02-17 12:26:15,698 [INFO] 账户余额: $1,000.00
+2026-02-17 12:26:15,698 [INFO] 净值: $1,000.00
+2026-02-17 12:26:15,699 [INFO] 杠杆: 1:200
+2026-02-17 12:26:15,699 [INFO] 交易品种: XAUUSD
+2026-02-17 12:26:15,699 [INFO] 时间周期: 5min
+2026-02-17 12:26:15,699 [INFO] 快速EMA: 12
+2026-02-17 12:26:15,699 [INFO] 慢速EMA: 26
+2026-02-17 12:26:15,700 [INFO] 止损: 50 点
+2026-02-17 12:26:15,700 [INFO] 止盈: 100 点
+2026-02-17 12:26:15,700 [INFO] ============================================================
+2026-02-17 12:36:33,604 [INFO] 
+用户中断，正在退出...
+2026-02-17 12:36:33,621 [INFO] 停止交易系统...
+2026-02-17 12:36:33,624 [INFO] 系统已停止
+2026-02-17 12:38:36,481 [INFO] ============================================================
+2026-02-17 12:38:36,482 [INFO] 启动EMA实盘交易系统
+2026-02-17 12:38:36,482 [INFO] ============================================================
+2026-02-17 12:38:36,549 [INFO] 账户余额: $1,000.00
+2026-02-17 12:38:36,549 [INFO] 净值: $1,000.00
+2026-02-17 12:38:36,549 [INFO] 杠杆: 1:200
+2026-02-17 12:38:36,549 [INFO] 交易品种: XAUUSD
+2026-02-17 12:38:36,550 [INFO] 时间周期: 5min
+2026-02-17 12:38:36,550 [INFO] 快速EMA: 50
+2026-02-17 12:38:36,550 [INFO] 慢速EMA: 200
+2026-02-17 12:38:36,550 [ERROR] 发生错误: 'EMAStrategy' object has no attribute 'stop_loss_points'
+Traceback (most recent call last):
+  File "C:\Users\boonh\Downloads\quant\live_trader.py", line 83, in start
+    self.logger.info(f"止损: {self.strategy.stop_loss_points} 点")
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EMAStrategy' object has no attribute 'stop_loss_points'
+2026-02-17 12:38:36,552 [INFO] 停止交易系统...
+2026-02-17 12:38:36,552 [INFO] 系统已停止
+2026-02-17 12:39:44,645 [INFO] ============================================================
+2026-02-17 12:39:44,646 [INFO] 启动EMA实盘交易系统
+2026-02-17 12:39:44,646 [INFO] ============================================================
+2026-02-17 12:39:44,661 [INFO] 账户余额: $1,000.00
+2026-02-17 12:39:44,661 [INFO] 净值: $1,000.00
+2026-02-17 12:39:44,661 [INFO] 杠杆: 1:200
+2026-02-17 12:39:44,662 [INFO] 交易品种: XAUUSD
+2026-02-17 12:39:44,662 [INFO] 时间周期: 5min
+2026-02-17 12:39:44,662 [INFO] 快速EMA: 50
+2026-02-17 12:39:44,662 [INFO] 慢速EMA: 200
+2026-02-17 12:39:44,662 [INFO] ADX阈值: 25.0
+2026-02-17 12:39:44,663 [INFO] ATR止损倍数: 2.0
+2026-02-17 12:39:44,663 [INFO] 移动止损倍数: 3.0
+2026-02-17 12:39:44,663 [INFO] ============================================================
+2026-02-17 13:18:23,785 [INFO] 
+用户中断，正在退出...
+2026-02-17 13:18:23,793 [INFO] 停止交易系统...
+2026-02-17 13:18:23,797 [INFO] 系统已停止
+2026-02-17 13:18:25,964 [INFO] ============================================================
+2026-02-17 13:18:25,964 [INFO] 启动EMA实盘交易系统
+2026-02-17 13:18:25,964 [INFO] ============================================================
+2026-02-17 13:18:26,001 [INFO] 账户余额: $1,000.00
+2026-02-17 13:18:26,001 [INFO] 净值: $1,000.00
+2026-02-17 13:18:26,002 [INFO] 杠杆: 1:200
+2026-02-17 13:18:26,002 [INFO] 交易品种: XAUUSD
+2026-02-17 13:18:26,002 [INFO] 时间周期: 5min
+2026-02-17 13:18:26,002 [INFO] 快速EMA: 50
+2026-02-17 13:18:26,002 [INFO] 慢速EMA: 200
+2026-02-17 13:18:26,002 [INFO] ADX阈值: 25.0
+2026-02-17 13:18:26,002 [INFO] ATR止损倍数: 2.0
+2026-02-17 13:18:26,002 [INFO] 移动止损倍数: 3.0
+2026-02-17 13:18:26,002 [INFO] ============================================================
+2026-02-17 13:18:26,015 [ERROR] 交易循环错误: Invalid format specifier '.2f if isinstance(ema_fast, (int, float)) else ema_fast' for object of type 'float'
+Traceback (most recent call last):
+  File "C:\Users\boonh\Downloads\quant\live_trader.py", line 132, in _trading_loop
+    self._execute_strategy(df)
+  File "C:\Users\boonh\Downloads\quant\live_trader.py", line 157, in _execute_strategy
+    self.logger.debug(f"Bar: {last_row['datetime']} | Price: {current_price:.2f} | "
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Invalid format specifier '.2f if isinstance(ema_fast, (int, float)) else ema_fast' for object of type 'float'
+2026-02-17 13:19:14,434 [INFO] 
+用户中断，正在退出...
+2026-02-17 13:19:14,435 [INFO] 停止交易系统...
+2026-02-17 13:19:14,435 [INFO] 系统已停止
+2026-02-17 13:19:16,543 [INFO] ============================================================
+2026-02-17 13:19:16,543 [INFO] 启动EMA实盘交易系统
+2026-02-17 13:19:16,543 [INFO] ============================================================
+2026-02-17 13:19:16,574 [INFO] 账户余额: $1,000.00
+2026-02-17 13:19:16,575 [INFO] 净值: $1,000.00
+2026-02-17 13:19:16,576 [INFO] 杠杆: 1:200
+2026-02-17 13:19:16,576 [INFO] 交易品种: XAUUSD
+2026-02-17 13:19:16,577 [INFO] 时间周期: 5min
+2026-02-17 13:19:16,577 [INFO] 快速EMA: 50
+2026-02-17 13:19:16,578 [INFO] 慢速EMA: 200
+2026-02-17 13:19:16,578 [INFO] ADX阈值: 25.0
+2026-02-17 13:19:16,579 [INFO] ATR止损倍数: 2.0
+2026-02-17 13:19:16,579 [INFO] 移动止损倍数: 3.0
+2026-02-17 13:19:16,580 [INFO] ============================================================
+2026-02-17 13:37:17,697 [ERROR] 交易循环错误: 无法获取K线数据: (-10001, 'IPC send failed')
+Traceback (most recent call last):
+  File "C:\Users\boonh\Downloads\quant\live_trader.py", line 120, in _trading_loop
+    df = self.mt5.get_bars(
+         ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\boonh\Downloads\quant\mt5_connector.py", line 139, in get_bars
+    raise Exception(f"无法获取K线数据: {mt5.last_error()}")
+Exception: 无法获取K线数据: (-10001, 'IPC send failed')
+2026-02-17 13:37:27,709 [ERROR] 交易循环错误: 无法获取K线数据: (-10001, 'IPC send failed')
+Traceback (most recent call last):
+  File "C:\Users\boonh\Downloads\quant\live_trader.py", line 120, in _trading_loop
+    df = self.mt5.get_bars(
+         ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\boonh\Downloads\quant\mt5_connector.py", line 139, in get_bars
+    raise Exception(f"无法获取K线数据: {mt5.last_error()}")
+Exception: 无法获取K线数据: (-10001, 'IPC send failed')
+2026-02-17 13:37:37,713 [ERROR] 交易循环错误: 无法获取K线数据: (-10001, 'IPC send failed')
+Traceback (most recent call last):
+  File "C:\Users\boonh\Downloads\quant\live_trader.py", line 120, in _trading_loop
+    df = self.mt5.get_bars(
+         ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\boonh\Downloads\quant\mt5_connector.py", line 139, in get_bars
+    raise Exception(f"无法获取K线数据: {mt5.last_error()}")
+Exception: 无法获取K线数据: (-10001, 'IPC send failed')
+2026-02-17 13:37:47,716 [ERROR] 交易循环错误: 无法获取K线数据: (-10001, 'IPC send failed')
+Traceback (most recent call last):
+  File "C:\Users\boonh\Downloads\quant\live_trader.py", line 120, in _trading_loop
+    df = self.mt5.get_bars(
+         ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\boonh\Downloads\quant\mt5_connector.py", line 139, in get_bars
+    raise Exception(f"无法获取K线数据: {mt5.last_error()}")
+Exception: 无法获取K线数据: (-10001, 'IPC send failed')
+2026-02-17 13:37:57,719 [ERROR] 交易循环错误: 无法获取K线数据: (-10001, 'IPC send failed')
+Traceback (most recent call last):
+  File "C:\Users\boonh\Downloads\quant\live_trader.py", line 120, in _trading_loop
+    df = self.mt5.get_bars(
+         ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\boonh\Downloads\quant\mt5_connector.py", line 139, in get_bars
+    raise Exception(f"无法获取K线数据: {mt5.last_error()}")
+Exception: 无法获取K线数据: (-10001, 'IPC send failed')
+2026-02-17 13:38:07,721 [ERROR] 交易循环错误: 无法获取K线数据: (-10001, 'IPC send failed')
+Traceback (most recent call last):
+  File "C:\Users\boonh\Downloads\quant\live_trader.py", line 120, in _trading_loop
+    df = self.mt5.get_bars(
+         ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\boonh\Downloads\quant\mt5_connector.py", line 139, in get_bars
+    raise Exception(f"无法获取K线数据: {mt5.last_error()}")
+Exception: 无法获取K线数据: (-10001, 'IPC send failed')
+2026-02-17 13:38:17,725 [ERROR] 交易循环错误: 无法获取K线数据: (-10001, 'IPC send failed')
+Traceback (most recent call last):
+  File "C:\Users\boonh\Downloads\quant\live_trader.py", line 120, in _trading_loop
+    df = self.mt5.get_bars(
+         ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\boonh\Downloads\quant\mt5_connector.py", line 139, in get_bars
+    raise Exception(f"无法获取K线数据: {mt5.last_error()}")
+Exception: 无法获取K线数据: (-10001, 'IPC send failed')
+2026-02-17 13:38:27,728 [ERROR] 交易循环错误: 无法获取K线数据: (-10001, 'IPC send failed')
+Traceback (most recent call last):
+  File "C:\Users\boonh\Downloads\quant\live_trader.py", line 120, in _trading_loop
+    df = self.mt5.get_bars(
+         ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\boonh\Downloads\quant\mt5_connector.py", line 139, in get_bars
+    raise Exception(f"无法获取K线数据: {mt5.last_error()}")
+Exception: 无法获取K线数据: (-10001, 'IPC send failed')
+2026-02-17 13:38:36,555 [INFO] 
+用户中断，正在退出...
+2026-02-17 13:38:36,556 [INFO] 停止交易系统...
+2026-02-17 13:38:36,557 [INFO] 系统已停止
+2026-02-17 13:38:40,021 [INFO] ============================================================
+2026-02-17 13:38:40,021 [INFO] 启动EMA实盘交易系统
+2026-02-17 13:38:40,021 [INFO] ============================================================
+2026-02-17 13:38:59,955 [INFO] 账户余额: $1,000.00
+2026-02-17 13:38:59,957 [INFO] 净值: $1,000.00
+2026-02-17 13:38:59,957 [INFO] 杠杆: 1:200
+2026-02-17 13:38:59,957 [INFO] 交易品种: XAUUSD
+2026-02-17 13:38:59,958 [INFO] 时间周期: 5min
+2026-02-17 13:38:59,958 [INFO] 快速EMA: 50
+2026-02-17 13:38:59,959 [INFO] 慢速EMA: 200
+2026-02-17 13:38:59,959 [INFO] ADX阈值: 25.0
+2026-02-17 13:38:59,959 [INFO] ATR止损倍数: 2.0
+2026-02-17 13:38:59,961 [INFO] 移动止损倍数: 3.0
+2026-02-17 13:38:59,961 [INFO] ============================================================
+2026-02-17 14:12:35,029 [INFO] 
+用户中断，正在退出...
+2026-02-17 14:12:35,030 [INFO] 停止交易系统...
+2026-02-17 14:12:35,030 [INFO] 系统已停止
+2026-02-17 14:12:41,047 [INFO] ============================================================
+2026-02-17 14:12:41,048 [INFO] 启动EMA实盘交易系统
+2026-02-17 14:12:41,048 [INFO] ============================================================
+2026-02-17 14:12:41,063 [INFO] 账户余额: $1,000.00
+2026-02-17 14:12:41,063 [INFO] 净值: $1,000.00
+2026-02-17 14:12:41,063 [INFO] 杠杆: 1:200
+2026-02-17 14:12:41,063 [INFO] 交易品种: XAUUSD
+2026-02-17 14:12:41,064 [INFO] 时间周期: 5min
+2026-02-17 14:12:41,064 [INFO] 快速EMA: 50
+2026-02-17 14:12:41,065 [INFO] 慢速EMA: 200
+2026-02-17 14:12:41,065 [INFO] ADX阈值: 25.0
+2026-02-17 14:12:41,065 [INFO] ATR止损倍数: 2.0
+2026-02-17 14:12:41,065 [INFO] 移动止损倍数: 3.0
+2026-02-17 14:12:41,066 [INFO] ============================================================
+2026-02-17 20:47:50,400 [INFO] ============================================================
+2026-02-17 20:47:50,401 [INFO] 启动EMA实盘交易系统
+2026-02-17 20:47:50,401 [INFO] ============================================================
+2026-02-17 20:47:51,004 [INFO] 账户余额: $1,000.00
+2026-02-17 20:47:51,005 [INFO] 净值: $1,000.00
+2026-02-17 20:47:51,006 [INFO] 杠杆: 1:200
+2026-02-17 20:47:51,006 [INFO] 交易品种: XAUUSD
+2026-02-17 20:47:51,006 [INFO] 时间周期: 5min
+2026-02-17 20:47:51,007 [INFO] 快速EMA: 50
+2026-02-17 20:47:51,007 [INFO] 慢速EMA: 200
+2026-02-17 20:47:51,007 [INFO] ADX阈值: 25.0
+2026-02-17 20:47:51,007 [INFO] ATR止损倍数: 2.0
+2026-02-17 20:47:51,007 [INFO] 移动止损倍数: 3.0
+2026-02-17 20:47:51,008 [INFO] ============================================================
