@@ -6,6 +6,7 @@ image: 09.jpg
 tags: 
     - python
     - postgresql
+    - database
 ---
 
 ### 連接到您的 PostgreSQL 資料庫 

@@ -5,6 +5,7 @@ date:   2025-10-08 09:01:00 +0800
 image: 09.jpg
 tags: 
     - python
+    - database
     - postgresql
 ---
 
@@ -21,7 +22,7 @@ conn = psycopg2.connect(
 cursor = conn.cursor()
 ```
 
-设定数据库
+查询数据并且设定数据库
 
 ```py
 select_all_query = "SELECT * FROM users;"
@@ -33,5 +34,3 @@ all_users = cursor.fetchall()
 for row in all_users:
     print(row)
 ```
-
-查询数据

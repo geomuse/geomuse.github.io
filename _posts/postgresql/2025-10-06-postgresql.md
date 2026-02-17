@@ -5,6 +5,7 @@ date:   2025-10-06 09:01:00 +0800
 image: 09.jpg
 tags: 
     - python
+    - database
     - postgresql
 ---
 
