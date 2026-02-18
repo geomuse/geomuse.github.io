@@ -19,7 +19,8 @@ class BacktestEngine:
                  initial_balance: float = BacktestConfig.INITIAL_BALANCE,
                  commission: float = BacktestConfig.COMMISSION,
                  slippage_points: float = BacktestConfig.SLIPPAGE_POINTS,
-                 point_value: float = 0.0001):
+                 point_value: float = 0.0001,
+                 contract_size: float = 100000.0):
         """
         初始化回测引擎
         
@@ -29,12 +30,14 @@ class BacktestEngine:
             commission: 手续费（每手）
             slippage_points: 滑点（点）
             point_value: 点值（如EURUSD为0.0001）
+            contract_size: 合约大小（标准手单位，默认100,000）
         """
         self.strategy = strategy
         self.initial_balance = initial_balance
         self.commission = commission
         self.slippage_points = slippage_points
         self.point_value = point_value
+        self.contract_size = contract_size
         
         # 账户状态
         self.balance = initial_balance
@@ -56,7 +59,7 @@ class BacktestEngine:
         
         Args:
             df: 包含OHLC数据的DataFrame
-            lot_size: 每次交易手数
+            lot_size: 每次交易手数 (如果策略返回了position_size，则忽略此参数)
             
         Returns:
             回测结果字典
@@ -64,6 +67,7 @@ class BacktestEngine:
         print("=" * 60)
         print("开始回测...")
         print(f"初始资金: ${self.initial_balance:,.2f}")
+        print(f"合约大小: {self.contract_size:,.0f}")
         print(f"数据长度: {len(df)} 根K线")
         print(f"时间范围: {df['datetime'].min()} 至 {df['datetime'].max()}")
         print("=" * 60)
@@ -79,11 +83,11 @@ class BacktestEngine:
             row = df.iloc[idx]
             
             # 跳过数据不足的初始阶段
-            if pd.isna(row['ema_fast']) or pd.isna(row['ema_slow']):
+            if pd.isna(row.get('ema_fast', row.get('supertrend'))): # 兼容不同策略
                 continue
             
             current_price = row['close']
-            signal = row['signal']
+            signal = row.get('signal', 0)
             
             # 获取ATR和ADX（如果存在）- 用于改进策略
             atr = row.get('atr', 0.01)  # 默认0.01
@@ -91,45 +95,75 @@ class BacktestEngine:
             
             # 获取交易动作（根据策略类型传递不同参数）
             try:
-                # 尝试调用改进策略的get_action
-                action_dict = self.strategy.get_action(current_price, signal, atr, adx)
-            except TypeError:
+                # 尝试调用高级策略的get_action
+                if hasattr(self.strategy, 'supertrend_period'): # AdvancedGoldStrategy check
+                     signal_strength = row.get('signal_strength', 0)
+                     supertrend_direction = row.get('supertrend_direction', 1)
+                     # Advanced strategy expects balance to calculate dynamic position size
+                     action_dict = self.strategy.get_action(
+                        current_price, signal, signal_strength, 
+                        atr, supertrend_direction, self.balance
+                    )
+                else:
+                    # 尝试调用改进策略的get_action
+                    action_dict = self.strategy.get_action(current_price, signal, atr, adx)
+            except (TypeError, AttributeError):
                 # 如果是旧策略，使用point_value参数
-                action_dict = self.strategy.get_action(current_price, signal, self.point_value)
+                try:
+                    action_dict = self.strategy.get_action(current_price, signal, self.point_value)
+                except TypeError:
+                     # Fallback for very old strategy signatures
+                     action_dict = self.strategy.get_action(current_price, signal)
+
             
             action = action_dict['action']
+            
+            # 确定手数
+            # 如果策略返回了 clear 'position_size'，使用它，否则使用默认 lot_size
+            trade_lot_size = action_dict.get('position_size', lot_size)
+            if trade_lot_size <= 0: trade_lot_size = lot_size # Fallback if 0 returned
+
             
             # 执行交易动作
             if action == 'buy':
                 # 开多仓
                 entry_price = self._apply_slippage(current_price, 'buy')
-                self.strategy.open_position(1, entry_price, 
-                                           action_dict['sl'], 
-                                           action_dict['tp'])
+                
+                # Check if strategy requires tiers (Advanced Strategy)
+                tiers = action_dict.get('tiers', [])
+                if hasattr(self.strategy, 'open_position') and 'tiers' in action_dict:
+                     self.strategy.open_position(1, entry_price, action_dict['sl'], tiers)
+                else:
+                     self.strategy.open_position(1, entry_price, action_dict['sl'], action_dict.get('tp', 0))
+
                 current_trade = {
                     'entry_time': row['datetime'],
                     'entry_price': entry_price,
                     'type': 'BUY',
-                    'lot_size': lot_size,
+                    'lot_size': trade_lot_size,
                     'sl': action_dict['sl'],
-                    'tp': action_dict['tp'],
-                    'reason': action_dict['reason']
+                    'tp': action_dict.get('tp', tiers[-1].take_profit if tiers else 0),
+                    'reason': action_dict.get('reason', '')
                 }
                 
             elif action == 'sell':
                 # 开空仓
                 entry_price = self._apply_slippage(current_price, 'sell')
-                self.strategy.open_position(-1, entry_price, 
-                                           action_dict['sl'], 
-                                           action_dict['tp'])
+                
+                tiers = action_dict.get('tiers', [])
+                if hasattr(self.strategy, 'open_position') and 'tiers' in action_dict:
+                     self.strategy.open_position(-1, entry_price, action_dict['sl'], tiers)
+                else:
+                     self.strategy.open_position(-1, entry_price, action_dict['sl'], action_dict.get('tp', 0))
+                
                 current_trade = {
                     'entry_time': row['datetime'],
                     'entry_price': entry_price,
                     'type': 'SELL',
-                    'lot_size': lot_size,
+                    'lot_size': trade_lot_size,
                     'sl': action_dict['sl'],
-                    'tp': action_dict['tp'],
-                    'reason': action_dict['reason']
+                    'tp': action_dict.get('tp', tiers[-1].take_profit if tiers else 0),
+                    'reason': action_dict.get('reason', '')
                 }
             
             elif action in ['close', 'close_and_buy', 'close_and_sell']:
@@ -145,7 +179,7 @@ class BacktestEngine:
                         'exit_time': row['datetime'],
                         'exit_price': exit_price,
                         'profit': profit,
-                        'exit_reason': action_dict['reason']
+                        'exit_reason': action_dict.get('reason', '')
                     }
                     self.trades.append(trade_record)
                     
@@ -158,37 +192,55 @@ class BacktestEngine:
                         self.losing_trades += 1
                     
                     # 关闭持仓
-                    self.strategy.close_position()
+                    if hasattr(self.strategy, 'close_position'):
+                        # Check signature
+                        import inspect
+                        sig = inspect.signature(self.strategy.close_position)
+                        if 'pnl' in sig.parameters:
+                            self.strategy.close_position(profit)
+                        else:
+                            self.strategy.close_position()
+                    
                     current_trade = None
                     
                     # 如果是反向开仓
                     if action == 'close_and_buy':
                         entry_price = self._apply_slippage(current_price, 'buy')
-                        self.strategy.open_position(1, entry_price, 
-                                                   action_dict['sl'], 
-                                                   action_dict['tp'])
+                        trade_lot_size = action_dict.get('position_size', lot_size)
+                        
+                        tiers = action_dict.get('tiers', [])
+                        if hasattr(self.strategy, 'open_position') and 'tiers' in action_dict:
+                             self.strategy.open_position(1, entry_price, action_dict['sl'], tiers)
+                        else:
+                             self.strategy.open_position(1, entry_price, action_dict['sl'], action_dict.get('tp', 0))
+
                         current_trade = {
                             'entry_time': row['datetime'],
                             'entry_price': entry_price,
                             'type': 'BUY',
-                            'lot_size': lot_size,
+                            'lot_size': trade_lot_size,
                             'sl': action_dict['sl'],
-                            'tp': action_dict['tp'],
-                            'reason': action_dict['reason']
+                            'tp': action_dict.get('tp', tiers[-1].take_profit if tiers else 0),
+                            'reason': action_dict.get('reason', '')
                         }
                     elif action == 'close_and_sell':
                         entry_price = self._apply_slippage(current_price, 'sell')
-                        self.strategy.open_position(-1, entry_price, 
-                                                   action_dict['sl'], 
-                                                   action_dict['tp'])
+                        trade_lot_size = action_dict.get('position_size', lot_size)
+                        
+                        tiers = action_dict.get('tiers', [])
+                        if hasattr(self.strategy, 'open_position') and 'tiers' in action_dict:
+                             self.strategy.open_position(-1, entry_price, action_dict['sl'], tiers)
+                        else:
+                             self.strategy.open_position(-1, entry_price, action_dict['sl'], action_dict.get('tp', 0))
+                        
                         current_trade = {
                             'entry_time': row['datetime'],
                             'entry_price': entry_price,
                             'type': 'SELL',
-                            'lot_size': lot_size,
+                            'lot_size': trade_lot_size,
                             'sl': action_dict['sl'],
-                            'tp': action_dict['tp'],
-                            'reason': action_dict['reason']
+                            'tp': action_dict.get('tp', tiers[-1].take_profit if tiers else 0),
+                            'reason': action_dict.get('reason', '')
                         }
             
             # 更新权益曲线
@@ -260,12 +312,13 @@ class BacktestEngine:
         
         # 计算点数差
         if trade['type'] == 'BUY':
-            point_diff = (exit_price - entry_price) / self.point_value
+            price_diff = exit_price - entry_price
         else:  # SELL
-            point_diff = (entry_price - exit_price) / self.point_value
+            price_diff = entry_price - exit_price
         
-        # 计算盈亏（标准手为100,000单位）
-        profit = point_diff * self.point_value * 100000 * lot_size
+        # 计算盈亏
+        # Profit = (Price Diff) * Contract Size * Lots
+        profit = price_diff * self.contract_size * lot_size
         
         # 减去手续费
         profit -= self.commission * lot_size * 2  # 开仓+平仓

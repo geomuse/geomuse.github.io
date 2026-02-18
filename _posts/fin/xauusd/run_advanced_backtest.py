@@ -349,10 +349,10 @@ def main():
     print("=" * 60 + "\n")
     
     # 步骤 1/5: 模式选择
-    print("请选择运行模式:")
-    print("  1. 历史回测 (Backtest)")
-    print("  2. 实盘/模拟 交易 (Live Trading)")
-    choice = input("\n请输入选项 (1/2): ").strip()
+    print("模式选择: 自动进入 1. 历史回测 (Backtest)")
+    # print("  2. 实盘/模拟 交易 (Live Trading)")
+    # choice = input("\n请输入选项 (1/2): ").strip()
+    choice = "1"
     
     strategy_params = {
         'supertrend_period': AdvancedStrategyConfig.SUPERTREND_PERIOD,
@@ -383,20 +383,38 @@ def main():
         strategy = AdvancedGoldStrategy(**strategy_params)
         
         # 步骤 4/5: 运行引擎
+        print("DEBUG: Starting Engine Run...")
         engine = AdvancedBacktestEngine(
             strategy=strategy,
             initial_balance=BacktestConfig.INITIAL_BALANCE,
             commission=BacktestConfig.COMMISSION,
             slippage_points=BacktestConfig.SLIPPAGE_POINTS,
-            point_value=0.01
+            point_value=0.01,
+            contract_size=100  # 黄金合约大小
         )
+        print("DEBUG: Engine initialized. Running...")
         results = engine.run(df)
+        print("DEBUG: Engine run completed.")
         
         # 步骤 5/5: 报告
+        print("DEBUG: Generating Report...")
         analyzer = PerformanceMetrics(results)
         analyzer.generate_report(AdvancedGeneralConfig.REPORT_FILE)
+        print("DEBUG: Report Generated.")
+        
+        # 保存交易记录
+        if AdvancedGeneralConfig.SAVE_TRADES:
+            print("DEBUG: Saving Trades...")
+            analyzer.trades_df.to_csv(AdvancedGeneralConfig.TRADES_FILE, index=False)
+            print(f"✓ 交易记录已保存至: {AdvancedGeneralConfig.TRADES_FILE}")
+            
         if AdvancedGeneralConfig.PLOT_RESULTS:
-            analyzer.plot_results("results/advanced_gold_performance.png", show=False)
+            print("DEBUG: Plotting Results...")
+            try:
+                analyzer.plot_results("results/advanced_gold_performance.png", show=False)
+                print("DEBUG: Plotting Completed.")
+            except Exception as e:
+                print(f"DEBUG: Plotting Failed: {e}")
         print(f"✓ 回测完成！报告: {AdvancedGeneralConfig.REPORT_FILE}")
         
     else:

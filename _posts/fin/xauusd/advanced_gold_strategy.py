@@ -51,7 +51,8 @@ class AdvancedGoldStrategy:
                  
                  # 风险管理
                  max_risk_per_trade: float = 0.015,
-                 kelly_fraction: float = 0.25):
+                 kelly_fraction: float = 0.25,
+                 contract_size: float = 100.0):
         """
         初始化高级策略
         
@@ -70,6 +71,7 @@ class AdvancedGoldStrategy:
             atr_sl_multiplier: ATR止损倍数
             max_risk_per_trade: 单笔最大风险
             kelly_fraction: Kelly比例（保守）
+            contract_size: 合约大小（黄金通常100）
         """
         # 指标参数
         self.supertrend_period = supertrend_period
@@ -88,6 +90,7 @@ class AdvancedGoldStrategy:
         # 风险管理
         self.max_risk_per_trade = max_risk_per_trade
         self.kelly_fraction = kelly_fraction
+        self.contract_size = contract_size
         
         # 持仓状态
         self.position = 0  # 0=无持仓, 1=多头, -1=空头
@@ -317,14 +320,11 @@ class AdvancedGoldStrategy:
     
     # ==================== 仓位管理 ====================
     
-    def calculate_kelly_position_size(self, balance: float, win_rate: float = None, 
+    def calculate_kelly_risk_percent(self, win_rate: float = None, 
                                       avg_win: float = None, avg_loss: float = None) -> float:
         """
-        Kelly Criterion仓位计算
-        Kelly % = (W * P - (1-P)) / W
-        其中：W = 平均盈利/平均亏损, P = 胜率
-        
-        使用保守的25% Kelly
+        Kelly Criterion风险比例计算
+        Returns: 建议的风险百分比 (如 0.02 表示 2%)
         """
         # 如果没有足够的历史数据，使用默认值
         if win_rate is None or avg_win is None or avg_loss is None:
@@ -350,6 +350,29 @@ class AdvancedGoldStrategy:
         kelly_pct = max(0, min(kelly_pct, self.max_risk_per_trade))
         
         return kelly_pct
+    
+    def calculate_lot_size(self, balance: float, entry_price: float, stop_loss: float) -> float:
+        """
+        根据风险百分比和止损距离计算手数
+        Lot Size = (Balance * Risk%) / (SL Distance * Contract Size)
+        """
+        risk_pct = self.calculate_kelly_risk_percent()
+        risk_amount = balance * risk_pct
+        
+        sl_distance = abs(entry_price - stop_loss)
+        
+        if sl_distance == 0:
+            return 0.0
+            
+        # 计算每手波动价值
+        value_per_lot_move = sl_distance * self.contract_size
+        
+        lot_size = risk_amount / value_per_lot_move
+        
+        # 简单的手数规整（0.01步长）
+        lot_size = round(lot_size, 2)
+        
+        return max(lot_size, 0.01) # 最小0.01手
     
     def create_position_tiers(self, entry_price: float, atr: float, 
                              position_type: int) -> List[PositionTier]:
@@ -417,36 +440,47 @@ class AdvancedGoldStrategy:
         if signal == 0 or signal_strength < 4:
             return action_dict
         
-        # 计算Kelly仓位
-        kelly_size = self.calculate_kelly_position_size(balance)
+        # 计算实际仓位（Lots）
         
         # 买入信号
         if signal == 1:
             if self.position == 0:
+                sl_price = current_price - self.atr_sl_multiplier * atr
+                lot_size = self.calculate_lot_size(balance, current_price, sl_price)
+                
                 action_dict['action'] = 'buy'
-                action_dict['sl'] = current_price - self.atr_sl_multiplier * atr
-                action_dict['position_size'] = kelly_size
+                action_dict['sl'] = sl_price
+                action_dict['position_size'] = lot_size
                 action_dict['tiers'] = self.create_position_tiers(current_price, atr, 1)
                 action_dict['reason'] = f'Multi-filter BUY (strength={signal_strength})'
             elif self.position == -1:
+                sl_price = current_price - self.atr_sl_multiplier * atr
+                lot_size = self.calculate_lot_size(balance, current_price, sl_price)
+                
                 action_dict['action'] = 'close_and_buy'
-                action_dict['sl'] = current_price - self.atr_sl_multiplier * atr
-                action_dict['position_size'] = kelly_size
+                action_dict['sl'] = sl_price
+                action_dict['position_size'] = lot_size
                 action_dict['tiers'] = self.create_position_tiers(current_price, atr, 1)
                 action_dict['reason'] = 'Reverse to LONG'
         
         # 卖出信号
         elif signal == -1:
             if self.position == 0:
+                sl_price = current_price + self.atr_sl_multiplier * atr
+                lot_size = self.calculate_lot_size(balance, current_price, sl_price)
+                
                 action_dict['action'] = 'sell'
-                action_dict['sl'] = current_price + self.atr_sl_multiplier * atr
-                action_dict['position_size'] = kelly_size
+                action_dict['sl'] = sl_price
+                action_dict['position_size'] = lot_size
                 action_dict['tiers'] = self.create_position_tiers(current_price, atr, -1)
                 action_dict['reason'] = f'Multi-filter SELL (strength={signal_strength})'
             elif self.position == 1:
+                sl_price = current_price + self.atr_sl_multiplier * atr
+                lot_size = self.calculate_lot_size(balance, current_price, sl_price)
+                
                 action_dict['action'] = 'close_and_sell'
-                action_dict['sl'] = current_price + self.atr_sl_multiplier * atr
-                action_dict['position_size'] = kelly_size
+                action_dict['sl'] = sl_price
+                action_dict['position_size'] = lot_size
                 action_dict['tiers'] = self.create_position_tiers(current_price, atr, -1)
                 action_dict['reason'] = 'Reverse to SHORT'
         
