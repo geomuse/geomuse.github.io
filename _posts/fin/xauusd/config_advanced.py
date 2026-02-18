@@ -53,28 +53,28 @@ class AdvancedStrategyConfig:
 # ============================================
 # MT5连接设置（继承原配置）
 # ============================================
-class MT5Config:
-    ACCOUNT = 60018521
-    PASSWORD = "Thuctive963,"
-    SERVER = "TradeMaxGlobal-Demo"
-    MT5_PATH = "C:\\Program Files\\MetaTrader 5\\terminal64.exe"
-    MAX_RETRIES = 5
-    RETRY_DELAY = 3
+# class MT5Config:
+#     ACCOUNT = 60018521
+#     PASSWORD = "Thuctive963,"
+#     SERVER = "TradeMaxGlobal-Demo"
+#     MT5_PATH = "C:\\Program Files\\MetaTrader 5\\terminal64.exe"
+#     MAX_RETRIES = 5
+#     RETRY_DELAY = 3
 
-# ============================================
-# 回测设置
-# ============================================
-class BacktestConfig:
-    INITIAL_BALANCE = 10000  # 10,000 USD
-    COMMISSION = 0.00007  # 每手手续费
-    SLIPPAGE_POINTS = 2
-    DATA_PATH = "data/XAUUSD.csv"
-    START_DATE = None
-    END_DATE = None
+# # ============================================
+# # 回测设置
+# # ============================================
+# class BacktestConfig:
+#     INITIAL_BALANCE = 10000  # 10,000 USD
+#     COMMISSION = 0.00007  # 每手手续费
+#     SLIPPAGE_POINTS = 2
+#     DATA_PATH = "data/XAUUSD.csv"
+#     START_DATE = None
+#     END_DATE = None
 
-# ============================================
-# 输出设置
-# ============================================
+# # ============================================
+# # 输出设置
+# # ============================================
 class GeneralConfig:
     LOG_LEVEL = "INFO"
     LOG_FILE = "logs/advanced_trading.log"

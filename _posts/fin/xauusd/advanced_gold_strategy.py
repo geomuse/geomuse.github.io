@@ -188,7 +188,15 @@ class AdvancedGoldStrategy:
         df['supertrend'] = 0.0
         df['supertrend_direction'] = 1  # 1=上升, -1=下降
         
-        for i in range(self.supertrend_period, len(df)):
+        # 确保从有数据的行开始计算
+        start_idx = max(self.supertrend_period, self.atr_period)
+        
+        # 初始化第一个有效值
+        if start_idx < len(df):
+            df.loc[start_idx, 'final_ub'] = df.loc[start_idx, 'basic_ub']
+            df.loc[start_idx, 'final_lb'] = df.loc[start_idx, 'basic_lb']
+            
+        for i in range(start_idx + 1, len(df)):
             # Final Upper Band
             if df.loc[i, 'basic_ub'] < df.loc[i-1, 'final_ub'] or df.loc[i-1, 'close'] > df.loc[i-1, 'final_ub']:
                 df.loc[i, 'final_ub'] = df.loc[i, 'basic_ub']

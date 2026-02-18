@@ -235,12 +235,13 @@ class MT5Connector:
             'comment': result.comment
         }
     
-    def close_position(self, ticket: int) -> Dict:
+    def close_position(self, ticket: int, volume: float = None) -> Dict:
         """
         平仓
         
         Args:
             ticket: 持仓票据号
+            volume: 平仓手数（可选，默认为全部）
             
         Returns:
             平仓结果
@@ -255,6 +256,9 @@ class MT5Connector:
         
         position = position[0]
         
+        # 确定平仓量
+        close_volume = volume if volume is not None else position.volume
+        
         # 准备平仓请求（反向订单）
         order_type = mt5.ORDER_TYPE_SELL if position.type == mt5.ORDER_TYPE_BUY else mt5.ORDER_TYPE_BUY
         price = mt5.symbol_info_tick(position.symbol).bid if order_type == mt5.ORDER_TYPE_SELL else mt5.symbol_info_tick(position.symbol).ask
@@ -262,7 +266,7 @@ class MT5Connector:
         request = {
             "action": mt5.TRADE_ACTION_DEAL,
             "symbol": position.symbol,
-            "volume": position.volume,
+            "volume": close_volume,
             "type": order_type,
             "position": ticket,
             "price": price,

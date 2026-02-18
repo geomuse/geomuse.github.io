@@ -196,7 +196,7 @@ class PerformanceMetrics:
             return
         
         fig, axes = plt.subplots(3, 1, figsize=(14, 10))
-        fig.suptitle('EMA策略回测结果', fontsize=16, fontweight='bold')
+        fig.suptitle('EMA strategy backtest results', fontsize=16, fontweight='bold')
         
         # 1. 权益曲线
         ax1 = axes[0]

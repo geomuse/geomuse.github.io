@@ -42,14 +42,14 @@ class MT5Config:
 # ============================================
 class BacktestConfig:
     # 初始资金
-    INITIAL_BALANCE = 10000    # 10,000 USD
+    INITIAL_BALANCE = 1000   # 1,000 USD
     
     # 交易成本
     COMMISSION = 0.00007       # 每手手续费（7美元/标准手）
     SLIPPAGE_POINTS = 2        # 滑点（点）
     
     # 数据设置
-    DATA_PATH = "data/XAUUSD.csv"  # CSV数据文件路径
+    DATA_PATH = "data/XAUUSD_.csv"  # CSV数据文件路径
     
     # 日期范围（如果需要限制回测时间段）
     START_DATE = None          # 例如: "2023-01-01"
@@ -58,15 +58,15 @@ class BacktestConfig:
 # ============================================
 # 其他设置
 # ============================================
-class GeneralConfig:
-    # 日志设置
-    LOG_LEVEL = "INFO"         # DEBUG, INFO, WARNING, ERROR
-    LOG_FILE = "logs/trading.log"
+# class GeneralConfig:
+#     # 日志设置
+#     LOG_LEVEL = "INFO"         # DEBUG, INFO, WARNING, ERROR
+#     LOG_FILE = "logs/trading.log"
     
-    # 输出设置
-    PLOT_RESULTS = True        # 是否生成图表
-    SAVE_TRADES = True         # 是否保存交易记录
-    TRADES_FILE = "results/trades.csv"
+#     # 输出设置
+#     PLOT_RESULTS = True        # 是否生成图表
+#     SAVE_TRADES = True         # 是否保存交易记录
+#     TRADES_FILE = "results/trades.csv"
     
-    # 性能报告
-    REPORT_FILE = "results/backtest_report.txt"
+#     # 性能报告
+#     REPORT_FILE = "results/backtest_report.txt"

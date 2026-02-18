@@ -11,10 +11,11 @@ import logging
 import pandas as pd
 from datetime import datetime
 import matplotlib.pyplot as plt
-
+import warnings
+warnings.filterwarnings("ignore")   
 # Use a font that supports Chinese characters
-plt.rcParams['font.sans-serif'] = ['SimHei', 'Arial Unicode MS', 'WenQuanYi Micro Hei', 'sans-serif']
-plt.rcParams['axes.unicode_minus'] = False  # Fixes minus signs showing as squares
+# plt.rcParams['font.sans-serif'] = ['SimHei', 'Arial Unicode MS', 'WenQuanYi Micro Hei', 'sans-serif']
+# plt.rcParams['axes.unicode_minus'] = False  # Fixes minus signs showing as squares
 
 # Fix Windows console encoding
 if sys.platform == 'win32':
@@ -26,7 +27,7 @@ from backtest_engine import BacktestEngine
 from mt5_connector import MT5Connector
 from advanced_gold_strategy import AdvancedGoldStrategy
 from performance_metrics import PerformanceMetrics
-from config import BacktestConfig, GeneralConfig, MT5Config
+from config import BacktestConfig   
 from config_advanced import AdvancedStrategyConfig, GeneralConfig as AdvancedGeneralConfig
 
 
@@ -152,7 +153,7 @@ class AdvancedBacktestEngine(BacktestEngine):
                     position_size = 0.0
                     
                     if action == 'close_and_buy':
-                        # ... reverse logic simplified for brevity but remains robust
+                        # Reverse logic: Close current position first, then open a new BUY position
                         entry_price = self._apply_slippage(current_price, 'buy')
                         position_size = action_dict['position_size']
                         self.strategy.open_position(1, entry_price, action_dict['sl'], action_dict['tiers'])
@@ -276,11 +277,29 @@ class AdvancedLiveTrader:
         
         # 3. 同步策略状态
         if symbol_positions:
-            # 简化逻辑：仅处理第一个持仓
-            pos = symbol_positions[0]
-            self.strategy.position = 1 if pos['type'] == 'BUY' else -1
-            self.strategy.entry_price = pos['price_open']
-            self.strategy.stop_loss = pos['sl']
+            # Complete logic: Find the position matching the strategy's current direction
+            # If multiple positions exist (e.g. from manual trades), prioritize the one managed by this strategy (magic number check ideal but simplified here to symbol/direction)
+            target_pos = None
+            
+            # Try to find a position matching our known state
+            if self.strategy.position == 1:
+                target_pos = next((p for p in symbol_positions if p['type'] == 'BUY'), None)
+            elif self.strategy.position == -1:
+                target_pos = next((p for p in symbol_positions if p['type'] == 'SELL'), None)
+                
+            # If no matching position found but we have positions, use the largest one as reference
+            if target_pos is None and symbol_positions:
+                # Sort by volume descending
+                symbol_positions.sort(key=lambda x: x['volume'], reverse=True)
+                target_pos = symbol_positions[0]
+                
+            if target_pos:
+                self.strategy.position = 1 if target_pos['type'] == 'BUY' else -1
+                self.strategy.entry_price = target_pos['price_open']
+                self.strategy.stop_loss = target_pos['sl']
+            else:
+                # Should not happen given symbol_positions is true, but safety fallback
+                 self.strategy.position = 0
             
             # 同步分批止盈状态 (如果未设置，则通过ATR计算)
             if not self.strategy.position_tiers:
@@ -329,15 +348,56 @@ class AdvancedLiveTrader:
             elif action.startswith('close_tier_'):
                 # 分批止盈：平掉部分仓位
                 tier_num = int(action.split('_')[-1])
-                pos = symbol_positions[0]
-                # 计算平仓量 (30%, 40%, 30%)
-                tiers_pct = [0.30, 0.40, 0.30]
-                close_vol = pos['volume'] * tiers_pct[tier_num - 1]
                 
-                # 注意：MT5部分平仓通常是发一个反向订单或直接指定volume
-                # 这里简化处理为全部平仓或根据MT5Connector能力调整
-                self.logger.info(f"⚠ 触发分批止盈 Tier {tier_num}，执行当前持仓全平 (演示)")
-                self.mt5.close_position(pos['ticket'])
+                # Find the position to partially close
+                target_pos = None
+                if self.strategy.position == 1:
+                    target_pos = next((p for p in symbol_positions if p['type'] == 'BUY'), None)
+                elif self.strategy.position == -1:
+                    target_pos = next((p for p in symbol_positions if p['type'] == 'SELL'), None)
+                
+                if target_pos:
+                     # Calculate close volume based on tier percentage (of initial size approx)
+                    # We can use the tier definition from strategy
+                    try:
+                        tier_idx = tier_num - 1
+                        # We need to know the 'original' or 'intended' lot size to calculate percentage correctly if we don't track it
+                        # For simplicity in this robust version, we use the current volume * relative factor OR fixed strategy tiers if we could track total.
+                        # Strategy tiers stores 'size_percent'. 
+                        # If we have 3 tiers: 30%, 40%, 30%.
+                        # Tier 1 close: close 30% of ORIGINAL. Current is 100%. Close 0.3 * Original.
+                        # But we only see Current.
+                        # If Tier 1 (30%) triggers, we have 100% volume. We close 30% of it? No, 30% of total.
+                        # Let's approximate: 
+                        # If Tier 1 (30%): Close 30% of CURRENT (approx 30/100 of original)
+                        # If Tier 2 (40%): Close 40% of ORIGINAL. Remaining was 70%. 40/70 = 57% of CURRENT.
+                        # If Tier 3 (30%): Close rest.
+                        
+                        # Better approach: Strategy should probably return volume to close, but for now we calculate:
+                        current_vol = target_pos['volume']
+                        close_vol = 0.0
+                        
+                        if tier_num == 1: # 30% of Total (approx 30% of current if full)
+                             close_vol = current_vol * 0.30
+                        elif tier_num == 2: # 40% of Total. If Tier 1 done, we have 70% left. 40/70 = 0.57
+                             close_vol = current_vol * (0.40 / 0.70)
+                        elif tier_num == 3: # 30% of Total. If T1, T2 done, we have 30% left. Close all.
+                             close_vol = current_vol 
+                        
+                        # Normalize volume to min step (usually 0.01)
+                        close_vol = round(close_vol, 2)
+                        if close_vol < 0.01: close_vol = 0.01
+                        if close_vol > current_vol: close_vol = current_vol
+                        
+                        self.logger.info(f"执行分批止盈 Tier {tier_num}: 平仓 {close_vol} 手 (持仓: {current_vol})")
+                        self.mt5.close_position(target_pos['ticket'], volume=close_vol)
+                        
+                    except Exception as e:
+                        self.logger.error(f"分批止盈计算错误: {e}")
+                        # Fallback to full close if calculation fails to be safe
+                        # self.mt5.close_position(target_pos['ticket']) # Optional: Don't panic close
+                else:
+                    self.logger.warning("尝试分批止盈但未找到对应持仓")
                 
         except Exception as e:
             self.logger.error(f"交易执行失败: {e}")
