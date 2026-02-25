@@ -18,5 +18,3 @@ featured_df = df.with_columns([
     # 3. 提取特定关键词（如：是否包含 'good' 或 'excellent'）
     pl.col("comment").str.to_lowercase().str.contains(r"good|excellent").alias("is_positive")
 ])
-
-print(featured_df)
